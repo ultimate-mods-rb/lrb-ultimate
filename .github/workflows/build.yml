@@ -107,8 +107,8 @@ jobs:
           chmod +x dependencies/linux/dtab
           mkdir -p _build/wii_riivolution/lrbul
           cp dependencies/wii_rebuild_file/main_wii.hdr dependencies/riivolution-patch/lrbul/main_wii.hdr
-          truncate -s 1994575183 _build/wii_riivolution/lrbul/main_wii_0.ark
-          truncate -s 1595018582 _build/wii_riivolution/lrbul/main_wii_1.ark
+          truncate -s 1994575183 dependencies/riivolution-patch/lrbul/main_wii_0.ark
+          truncate -s 1595018582 dependencies/riivolution-patch/lrbul/main_wii_1.ark
       - name: Remove Xbox and PS3 files
         run: |
           find . -name "*.*_xbox" -type f -delete
