@@ -1,0 +1,109 @@
+#define NORMALGEM_SET
+(gem_green.wid gem_red.wid gem_yellow.wid gem_blue.wid gem_orange.wid star_gem.wid)
+#define HOPOGEM_SET
+(gem_green_hopo.wid gem_red_hopo.wid gem_yellow_hopo.wid gem_blue_hopo.wid gem_orange_hopo.wid star_hopo.wid)
+#define DRUMGEM_SET
+(gem_kick.wid drum_red.wid drum_yellow.wid drum_blue.wid drum_green.wid drum_star.wid)
+#define GTR_SUSTAIN_COLORS
+(green red yellow blue orange star)
+#define COLOR_SHUFFLE_SLOT_1
+(
+   {if_else $colorshuffle
+      {random_int 0 5}
+      $gtrgem1
+   }
+)
+#define COLOR_SHUFFLE_SLOT_2
+(
+   {if_else $colorshuffle
+      {random_int 0 5}
+      $gtrgem2
+   }
+)
+#define COLOR_SHUFFLE_SLOT_3
+(
+   {if_else $colorshuffle
+      {random_int 0 5}
+      $gtrgem3
+   }
+)
+#define COLOR_SHUFFLE_SLOT_4
+(
+   {if_else $colorshuffle
+      {random_int 0 5}
+      $gtrgem4
+   }
+)
+#define COLOR_SHUFFLE_SLOT_5
+(
+   {if_else $colorshuffle
+      {random_int 0 5}
+      $gtrgem5
+   }
+)
+
+#define DRUMGEM_SLOT1
+(
+   $drmgem1
+)
+#define DRUMGEM_SLOT2
+(
+   {if_else $colorshuffle
+      {random_int 1 5}
+      $drmgem2
+   }
+)
+#define DRUMGEM_SLOT3
+(
+   {if_else $colorshuffle
+      {random_int 1 5}
+      $drmgem3
+   }
+)
+#define DRUMGEM_SLOT4
+(
+   {if_else $colorshuffle
+      {random_int 1 5}
+      $drmgem4
+   }
+)
+#define DRUMGEM_SLOT5
+(
+   {if_else $colorshuffle
+      {random_int 1 5}
+      $drmgem5
+   }
+)
+#define SLOT_SUSTAIN_COLORS
+(
+   {elem (GTR_SUSTAIN_COLORS)
+      {if_else $colorshuffle
+         {random_int 0 5}
+         $gtrsus1
+      }
+   }
+   {elem (GTR_SUSTAIN_COLORS)
+      {if_else $colorshuffle
+         {random_int 0 5}
+         $gtrsus2
+      }
+   }
+   {elem (GTR_SUSTAIN_COLORS)
+      {if_else $colorshuffle
+         {random_int 0 5}
+         $gtrsus3
+      }
+   }
+   {elem (GTR_SUSTAIN_COLORS)
+      {if_else $colorshuffle
+         {random_int 0 5}
+         $gtrsus4
+      }
+   }
+   {elem (GTR_SUSTAIN_COLORS)
+      {if_else $colorshuffle
+         {random_int 0 5}
+         $gtrsus5
+      }
+   }
+)

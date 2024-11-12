@@ -1,0 +1,61 @@
+{set $skipsplash TRUE}
+
+;sets default track speed. 1.15 is 115%, 1.30 is 130% and so on.
+{set $trackspeed 1.0}
+
+;sets default song speed 1.15 is 115%, 1.30 is 130% and so on.
+{set $speedmod 1.0}
+
+;default highway length
+{set $hwlength 1.0}
+
+;bloom
+{set $scrbloom TRUE}
+
+;camera shake
+{set $camerashake FALSE}
+
+;depth of field
+{set $fxdof TRUE}
+
+;film grain
+{set $scrnoise FALSE}
+
+;motion blur
+{set $mbblend TRUE}
+
+{set $emulatefps 60}
+
+{set $trkmuting TRUE}
+
+{set $whammypb TRUE}
+
+{set $misssounds TRUE}
+
+{set $fcring TRUE}
+
+;default gem/smasher/sustain colors
+{set $gtrgem1 1}
+{set $gtrgem2 4}
+{set $gtrgem3 2}
+{set $gtrgem4 0}
+{set $gtrgem5 3}
+{set $drmgem1 0}
+{set $drmgem2 1}
+{set $drmgem3 2}
+{set $drmgem4 3}
+{set $drmgem5 4}
+{set $gtrsm1 red}
+{set $gtrsm2 orange}
+{set $gtrsm3 yellow}
+{set $gtrsm4 green}
+{set $gtrsm5 blue}
+{set $gtrsus1 1}
+{set $gtrsus2 4}
+{set $gtrsus3 2}
+{set $gtrsus4 0}
+{set $gtrsus5 3}
+{set $drms1 red}
+{set $drms2 yellow}
+{set $drms3 blue}
+{set $drms4 green}

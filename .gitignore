@@ -1,0 +1,15 @@
+_build/wii/
+_build/xbox/gen/
+_build/ps3/USRDIR/gen/
+iso
+_tbrb_extracted
+cons
+old
+dependencies/riivolution-patch/riivolution/config/
+dependencies/riivolution-patch/lrbul/
+*_out
+/lrb_extracted
+/ignore
+/_build/xbox/movies
+_build/xbox/nxeart
+/_build/xbox/videos

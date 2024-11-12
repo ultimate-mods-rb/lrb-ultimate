@@ -1,0 +1,10 @@
+# setup.txt : scanned by wit+wwt while composing a disc.
+# remove the '!' before names to activate parameters.
+
+disc-type = Wii
+image-type = WBFS
+
+part-id = R6LEWR
+part-name = LEGO Rock Band Ultimate BETA
+part-offset = 0xf800000
+
