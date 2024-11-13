@@ -13,3 +13,4 @@ dependencies/riivolution-patch/lrbul/
 /_build/xbox/movies
 _build/xbox/nxeart
 /_build/xbox/videos
+.fuse_hidden*
