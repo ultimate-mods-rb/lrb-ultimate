@@ -331,3 +331,91 @@
    "80% - 100%")
 (funk
    "Funk")
+(ven_demolition
+   "demolition")
+(ven_ghostbusters
+   "ghostbusters")
+(ven_octopusattack
+   "octopusattack")
+(ven_farmrain
+   "farmrain")
+(ven_icebreaker
+   "icebreaker")
+(ven_dinochase
+   "dinochase")
+(ven_skeleton_battle
+   "skeleton battle")
+(ven_ufobreakdown
+   "ufobreakdown")
+(ven_asteroid
+   "asteroid")
+(ven_ovalrace
+   "ovalrace")
+(ven_blank
+   "blank")
+(ven_blank_arena
+   "blank arena")
+(ven_denpracticestage
+   "den practice stage")
+(ven_robotattack
+   "robot attack")
+(ven_skatepark
+   "skatepark")
+(ven_skatepark_early
+   "skatepark (early)")
+(ven_alienplanet_old
+   "alienplanet (old)")
+(ven_barnyard_continued
+   "barnyard (continued)")
+(ven_barnyard_revised
+   "barnyard (revised)")
+(ven_barnyard_steve
+   "barnyard (steve)")
+(ven_barnyard_blue_sky
+   "barnyard (blue sky)")
+(ven_barnyard_proj_light
+   "barnyard (proj light)")
+(ven_barnyard_red_sky
+   "barnyard (red sky)")
+(ven_bonecave_old
+   "barnyard (old)")
+(ven_carsmash_1
+   "carsmash 1")
+(ven_carsmash_copy
+   "carsmash (copy)")
+(ven_carsmash_wnrb
+   "carsmash (wnbr)")
+(ven_carsmash_wnrb_david
+   "carsmash (wnbr david)")
+(ven_carsmash_wnrb_david_1
+   "carsmash (wnbr david 1)")
+(ven_castlegardens_wiicrowd
+   "castlegardens (wiicrowd)")
+(ven_demolition_luke
+   "demolition (luke)")
+(ven_demolition_redux
+   "demolition (redux)")
+(ven_demolition_wc
+   "demolition (working copy)")
+(ven_demolition_wiz
+   "demolition (wiz)")
+(ven_farmrain_barnyard_g
+   "farmrain (barnyard grouped)")
+(ven_farmrain_temp
+   "farmrain (temp)")
+(ven_farmrain_tm
+   "farmrain (tm)")
+(ven_farmrain_tsc
+   "farmrain (total scene combo)")
+(ven_haunted_10842
+   "haunted 10842")
+(ven_icebreaker_temp
+   "icebreaker (temp)")
+(ven_icebreaker01
+   "icebreaker 01")
+(ven_icebreaker02
+   "icebreaker 02")
+(ven_skeleton_battle_copy
+   "skeleton battle (copy)")
+(ven_ufobreakdown_alt
+   "ufobreakdown (alt)")

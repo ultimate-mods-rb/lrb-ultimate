@@ -260,16 +260,88 @@
    (enter
       {input_mgr set_limit kLimitSession}
       {do
-         {venue.lst
-            set_provider
-            #ifndef _SHIP
-            {if_else
-               {tour is_all_unlocked}
-               {tour qp_dbg_venue_provider}
-               {tour qp_venue_provider}}
-            #else
-            {tour qp_venue_provider}
-            #endif}
+         ;{venue.lst
+         ;   set_provider
+         ;   #ifndef _SHIP
+         ;   {if_else
+         ;      {tour is_all_unlocked}
+         ;      {tour qp_dbg_venue_provider}
+         ;      {tour qp_venue_provider}}
+         ;   #else
+         ;   {tour qp_venue_provider}
+         ;   #endif}
+         {venue.lst ;no need for providers here
+            set_data
+            (
+               ;normal venues
+               ;ven_random reimplement at some point
+               ven_lego_city_central
+               ven_bill_ditt_construction_co
+               ven_blockton_manor
+               ven_crystal_mine
+               ven_the_jolly_rocker
+               ven_the_parrot_n_pegleg
+               ven_wreck_n_roll_bowl
+               ven_lego_city_rooftop
+               ven_stud_farm ven_lego_city_zoo
+               ven_the_cavern ven_volcanic_rock
+               ven_sub_zero_research_facility
+               ven_the_abyss
+               ven_blockingham_castle
+               ven_wembrick_stadium
+               ven_ufo
+               ven_the_moon
+               ven_space_rock_festival
+               ;challenge venues (honestly suprised how these work as normal venues)
+               ven_demolition
+               ven_ghostbusters
+               ven_octopusattack
+               ven_farmrain
+               ven_icebreaker
+               ven_dinochase
+               ven_skeleton_battle
+               ven_ufobreakdown
+               ven_asteroid
+               ven_ovalrace ;techically not a challenge venue as it's unused but its in a challenge dta
+               ;etc venues
+               ven_blank
+               ven_blank_arena
+               ven_denpracticestage
+               ven_robotattack ;wii crash
+               ven_skatepark ;wii crash
+               ven_skatepark_early
+               ven_alienplanet_old
+               ven_barnyard_continued
+               ven_barnyard_revised
+               ven_barnyard_steve
+               ven_barnyard_blue_sky
+               ven_barnyard_proj_light
+               ven_barnyard_red_sky
+               ven_bonecave_old
+               ven_carsmash_1
+               ven_carsmash_copy
+               ven_carsmash_wnrb
+               #ifdef HX_WII
+               ven_carsmash_wnrb_david
+               ven_carsmash_wnrb_david_1
+               #endif
+               ven_castlegardens_wiicrowd ;wii crash (wii too much for wii)
+               ven_demolition_luke
+               ven_demolition_redux
+               ven_demolition_wc
+               ven_demolition_wiz
+               ven_farmrain_barnyard_g
+               ven_farmrain_temp
+               ven_farmrain_tm
+               ven_farmrain_tsc
+               ven_haunted_10842
+               ven_icebreaker_temp ;wii crash
+               ven_icebreaker01 ;wii crash
+               ven_icebreaker02 ;wii crash
+               ven_skeleton_battle_copy
+               ven_ufobreakdown_alt
+            )
+         }
          {$this set_focus venue.lst}
          {venue.lst
             set_selected
@@ -363,7 +435,57 @@
             (ven_volcanic_rock big_club/volcano/volcano.milo)
             (ven_wreck_n_roll_bowl big_club/carsmash/carsmash.milo)
             (ven_space_rock_festival big_club/alienplanet/alienplanet.milo)
-            (ven_ufo big_club/alienship/alienship.milo)}}
+            (ven_ufo big_club/alienship/alienship.milo)
+            ;challenge
+            (ven_demolition big_club/demolition/demolition.milo)
+            (ven_ghostbusters big_club/ghostbusters/ghostbusters.milo)
+            (ven_octopusattack big_club/octopusattack/octopusattack.milo)
+            (ven_farmrain big_club/farmrain/farmrain.milo)
+            (ven_icebreaker big_club/icebreaker/icebreaker.milo)
+            (ven_dinochase big_club/dinochase/dinochase_parent.milo)
+            (ven_skeleton_battle big_club/SkeletonBattle/skeleton_battle.milo)
+            (ven_ufobreakdown big_club/stadium/ufobreakdown.milo)
+            (ven_asteroid big_club/asteroid/destroy_asteroid_MASTER.milo)
+            (ven_ovalrace {symbol "big_club/carsmash/wreck n roll bowl/wrecknroll.milo"})
+            ;etc
+            (ven_blank small_club/blank/blank.milo)
+            (ven_blank_arena big_club/arena.milo)
+            (ven_robotattack big_club/robotattack/robotattack.milo)
+            (ven_denpracticestage small_club/denpracticestage/den_practice_stage.milo)
+            (ven_skatepark small_club/skatepark/skatepark.milo)
+            (ven_skatepark_early big_club/skate_park/skate_park_test.milo)
+            (ven_alienplanet_old big_club/alienplanet/alienplanet_old.milo)
+            (ven_alienship_old big_club/alienship/alienship_old.milo)
+            (ven_barnyard_continued big_club/barnyard/barnyard_continued.milo)
+            (ven_barnyard_revised big_club/barnyard/barnyard_revised.milo)
+            (ven_barnyard_steve big_club/barnyard/barnyard_steveschanges.milo)
+            (ven_barnyard_blue_sky {symbol "big_club/barnyard/barnyard_blue sky.milo"})
+            (ven_barnyard_proj_light {symbol "big_club/barnyard/barnyard_proj light.milo"})
+            (ven_barnyard_red_sky {symbol "big_club/barnyard/backup of barnyard red sky.milo"})
+            (ven_bonecave_old big_club/bonecave/bonecave_old.milo)
+            (ven_carsmash_1 {symbol "big_club/carsmash/carsmash 1.milo"})
+            (ven_carsmash_copy {symbol "big_club/carsmash/copy of carsmash.milo"})
+            (ven_carsmash_wnrb {symbol "big_club/carsmash/wreck n roll bowl/wreck n roll bowl_01.milo"})
+            #ifdef HX_WII
+            ;TODO find whoever this "david" is i would like to have a word with them
+            (ven_carsmash_wnrb_david {symbol "big_club/carsmash/wreck n roll bowl/wreck n roll bowl (david).milo"})
+            (ven_carsmash_wnrb_david_1 {symbol "big_club/carsmash/wreck n roll bowl/davids wreck n roll bowl_01.milo"})
+            #endif
+            (ven_castlegardens_wiicrowd big_club/castlegardens/castlegardens_wiicrowd.milo)
+            (ven_demolition_luke {symbol "big_club/demolition/demolition luke.milo"})
+            (ven_demolition_redux big_club/demolition/demolition_redux.milo)
+            (ven_demolition_wc big_club/demolition/demolition_workingcopy.milo)
+            (ven_demolition_wiz big_club/demolition/wiz_demolition.milo)
+            (ven_farmrain_barnyard_g big_club/farmrain/barnyardgrouped.milo)
+            (ven_farmrain_temp big_club/farmrain/temp.milo)
+            (ven_farmrain_tsc {symbol "big_club/farmrain/total scene combo.milo"})
+            (ven_farmrain_tm big_club/farmrain/farmrain_tm.milo)
+            (ven_haunted_10842 big_club/haunted/haunted-10842.milo)
+            (ven_icebreaker_temp big_club/icebreaker/icebreaker_temp.milo)
+            (ven_icebreaker01 big_club/icebreaker/icebreaker01.milo)
+            (ven_icebreaker02 big_club/icebreaker/icebreaker02.milo)
+            (ven_skeleton_battle_copy {symbol "big_club/skeletonbattle/copy of skeleton_battle.milo"})
+            (ven_ufobreakdown_alt big_club/ufobreakdown/ufobreakdown.milo)}}
       {tour set_venue $venue})
    (go_back
       {if
