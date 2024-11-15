@@ -543,11 +543,18 @@
       qp_difficulty_screen
       (panels meta movie_panel seldiff_panel seldiff_border_panel)
       SELDIFF_SCREEN_HANDLERS}
-   #ifdef HX_WII
-   {ui goto_screen splash_WBIE_screen}
-   #else
-   {ui goto_screen splash_mtv_screen}
-   #endif)
+   {if_else $skipsplash
+      {do
+         {taskmgr clear_tasks}
+         {ui goto_screen main_startscreen}}
+      {ui goto_screen
+         #ifdef HX_WII
+         splash_WBIE_screen
+         #else
+         splash_mtv_screen
+         #endif
+      }
+   })
 (music_start)
 (color_presets
    #include ../../ui/color_presets.dta)
