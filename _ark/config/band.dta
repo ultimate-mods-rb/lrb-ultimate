@@ -105,18 +105,6 @@
       "NPWR00856_00")
    (titles
       (lrb
-         #ifdef _LRB_REGION_EU
-         (title_id
-            (live
-               "BLES00636")
-            (test
-               "NPXX00360"))
-         (service_id
-            (live
-               "EP1018-BLES00636_00")
-            (test
-               "UP0006-NPXX00360_00"))
-         #else
          (title_id
             (live
                "BLUS30382")
@@ -126,8 +114,18 @@
             (live
                "UP1018-BLUS30382_00")
             (test
-               "UP0006-NPXX00360_00"))
-         #endif)
+               "UP0006-NPXX00360_00")))
+      (lrb_eu
+         (title_id
+            (live
+               "BLES00636")
+            (test
+               "NPXX00360"))
+         (service_id
+            (live
+               "EP1018-BLES00636_00")
+            (test
+               "UP0006-NPXX00360_00")))
       (rb2
          (title_id
             (live
@@ -139,15 +137,17 @@
                "UP0006-BLUS30147_00")
             (test
                "UP0006-NPXX00360_00")))
-      #ifdef _LRB_REGION_EU
-      (rb1
+      (rb2_eu
          (title_id
             (live
-               "BLES00228"))
+               "BLES00385")
+            (test
+               "NPXX00360"))
          (service_id
             (live
-               "EP0006-BLES00228_00")))
-      #else
+               "UP0006-BLES00385_00")
+            (test
+               "UP0006-NPXX00360_00")))
       (rb1
          (title_id
             (live
@@ -159,7 +159,28 @@
                "UP0006-BLUS30050_00")
             (test
                "UD2464-NPXX00202_00")))
-      #endif)
+      (rb1_eu
+         (title_id
+            (live
+               "BLES00228"))
+         (service_id
+            (live
+               "EP0006-BLES00228_00")))
+      ;custom
+      (rb2c
+         (title_id
+            (live
+               "ROCKBAND2"))
+         (service_id
+            (live
+               "UP0006-ROCKBAND2_00")))
+      (rb3c
+         (title_id
+            (live
+               "ROCKBAND3"))
+         (service_id
+            (live
+               "UP0006-ROCKBAND3_00"))))
    #endif
    #ifdef HX_WII
    (load_commerce_container $commerce)
