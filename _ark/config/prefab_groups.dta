@@ -188,6 +188,12 @@
       Penelope_McQueen
       Mothership_Q
       Earl_Stephens_Jr
+      #ifdef HX_NG
+      dlc_elf
+      dlc_santa
+      dlc_snowman
+      dlc_riendeer
+      #endif
       Jimmy_Hendrix
       #else
       'Mini Figg'
