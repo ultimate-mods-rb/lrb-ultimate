@@ -1,3 +1,13 @@
+(bonus
+   "BONUS")
+(main_store
+   "BONUS")
+(musicstore
+   "Music Store")
+(theatre
+   "Theatre Mode")
+(framerate
+   "frame_rate_screen")
 (the10s
    "The 10s")
 (the20s

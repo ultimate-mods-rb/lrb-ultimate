@@ -73,10 +73,10 @@
          [focus_btn]}
       {meta music_load_and_start}
       {meta fade_meta_music 0}
-      #ifdef HX_WII
-      {$this disable store.btn}
-      {store.btn set_showing FALSE}
-      #endif
+      ;#ifdef HX_WII
+      ;{$this disable store.btn}
+      ;{store.btn set_showing FALSE}
+      ;#endif
       {input_mgr clear_ui_leader}
       #ifdef KIOSK_DEMO
       {if
@@ -221,34 +221,7 @@
                {set
                   [focus_btn]
                   store.btn}
-               #ifdef HX_XBOX
-               {input_mgr
-                  set_user
-                  {user_mgr get_band_user $player_num}}
-               {gamemode set_mode store}
-               {if_else
-                  {'||'
-                     {!
-                        {platform_mgr is_player_signed_into_live $player_num}}
-                     {platform_mgr is_player_a_guest $player_num}}
-                  {ui push_screen main_store_signin_screen}
-                  {ui push_screen main_store_find_cache_screen}}
-               #endif
-               #ifdef HX_PS3
-               {gamemode set_mode store}
-               {ui goto_screen store_enter_network_screen}
-               #endif
-               #ifdef HX_WII
-               {ui goto_screen store_loading_screen}
-               {force_goto_else_after_network_connect store_wii_enter_screen main_screen TRUE}
-               #endif
-               #ifdef HX_PC
-               {ui goto_screen store_loading_screen}
-               #endif
-               {fx fade_out}
-               {input_mgr
-                  set_user
-                  {user_mgr get_band_user $player_num}}})
+               {ui goto_screen bonus_menuscreen}})
          (options.btn
             {set
                [focus_btn]

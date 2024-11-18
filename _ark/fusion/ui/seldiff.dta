@@ -489,9 +489,11 @@
       (diff_select
          (FOCUS_MSG
             {if_else
-               {==
-                  novice.btn
-                  {$new_focus name}}
+               {'||'
+                  {gamemode get is_jukebox}
+                  {==
+                     novice.btn
+                     {$new_focus name}}}
                {do
                   {gamecfg
                      set_novice_mode
