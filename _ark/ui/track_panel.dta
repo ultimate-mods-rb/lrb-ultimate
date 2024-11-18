@@ -1,9 +1,10 @@
 #include ../ulti/track_macros.dta
-FC_CALLBACKS
 #define TRACK_END_FRAME
 (1920)
 #define TRACK_PANEL_HANDLERS
 ((enter
+      {unless {exists fc_bass_callback}
+         FC_CALLBACKS}
       {game add_sink $this}
       SET_TRACK_SPEEDS
       {$this
