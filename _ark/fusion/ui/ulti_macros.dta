@@ -107,3 +107,22 @@
       }
    }
 )
+#define OVERSHELL_DISALLOWED_SCREENS
+((
+      autosave_wait_screen
+      save_screen
+      song_select_screen
+      test_game_screen
+      practice_game_screen
+      meta_loading_screen
+      meta_loading_continue_screen
+      shop_hair
+      shop_tops
+      shop_legs
+      shop_instruments
+      drum_trainer_beats_screen
+      drum_trainer_fills_screen
+      drum_trainer_freestyle_screen
+      tutorials_guitar_main_screen
+      tutorials_drums_main_screen
+      tutorials_vocals_main_screen))
