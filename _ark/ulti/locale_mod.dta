@@ -1,3 +1,9 @@
+(speed_msg
+   "SONG SPEED: %d%%")
+(trackspeed_msg
+   "NOTE SPEED: %d%%")
+(hwlength_msg
+   "HW LENGTH: %d%%")
 (bonus
    "BONUS")
 (main_store

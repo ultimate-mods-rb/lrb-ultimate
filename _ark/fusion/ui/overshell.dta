@@ -11,7 +11,7 @@
    overshell_main_panel
    OVERSHELL_LIST_FILE
    (enter
-      {sel_section.lst set_data (os_mod os_vis os_trk os_gfx os_cnt)} ;os_spd
+      {sel_section.lst set_data (os_mod os_spd os_vis os_trk os_gfx os_cnt)}
       {title.lbl set text_token os_ultisettings}
       {set $overshell_up TRUE}
       {set $cntmodifierpos 0}
@@ -20,7 +20,7 @@
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_spd
-            {pop_and_goto_screen options_milo_screen}
+            {pop_and_goto_screen overshell_speed_screen}
          )
          (os_mod
             {pop_and_goto_screen overshell_modifier_screen}
@@ -53,11 +53,6 @@
    overshell_main_screen
    (panels overshell_main_panel practice_lower3rd_panel)
    (focus overshell_main_panel)}
-{new
-   UIScreen
-   options_milo_screen
-   (panels options_audio_panel)
-   (focus options_audio_panel)}
 ;
 #define MODIFIER_DATA
 ((
@@ -379,6 +374,142 @@
    (focus overshell_cnt_panel)}
 ;
 
+;could probably clean up a bit more at some point
+{new
+   UIPanel
+   overshell_speed_panel
+   (file
+      "options/options_audio.milo")
+   (focus instruments.btn)
+   (enter
+      {audio_options.lbl set text_token os_spd}
+      {$this set_slider_steps}
+      {$this hide_unused_sliders}
+      {$this update_btn_ints}
+      {$this update_all_sliders})
+   (exit)
+   (TRANSITION_COMPLETE_MSG
+      {$this
+         update_helpbar
+         {$this focus_name}}
+      kDataUnhandled)
+   (FOCUS_MSG
+      {$this update_helpbar $new_focus})
+   (SCROLL_SELECT_MSG
+      {$this set_speeds})
+   (SCROLL_MSG
+      {$this set_speeds})
+   (SELECT_MSG
+      {switch
+         $component
+         (instruments.btn
+            {instruments.sld store}
+            {$this set_focus instruments.sld})
+         (background_music.btn
+            {background.sld store}
+            {$this set_focus background.sld})
+         (vocal_track.btn
+            {vocal_track.sld store}
+            {$this set_focus vocal_track.sld})})
+   (BUTTON_DOWN_MSG
+      {switch
+         {$this focus_name}
+         (instruments.sld
+            {switch
+               $action
+               (kAction_Confirm
+                  {instruments.sld confirm}
+                  {$this set_focus instruments.btn})
+               (kAction_Cancel
+                  {instruments.sld undo $player}
+                  {$this set_focus instruments.btn})
+               kDataUnhandled})
+         (background.sld
+            {switch
+               $action
+               (kAction_Confirm
+                  {background.sld confirm}
+                  {$this set_focus background_music.btn})
+               (kAction_Cancel
+                  {background.sld undo $player}
+                  {$this set_focus background_music.btn})
+               kDataUnhandled})
+         (vocal_track.sld
+            {switch
+               $action
+               (kAction_Confirm
+                  {vocal_track.sld confirm}
+                  {$this set_focus vocal_track.btn})
+               (kAction_Cancel
+                  {vocal_track.sld undo $player}
+                  {$this set_focus vocal_track.btn})
+               kDataUnhandled})
+         kDataUnhandled})
+   (update_all_sliders
+      {$this
+         iterate
+         UISlider
+         $s
+         {$this update_sliders $s}})
+   (update_sliders
+      ($component)
+      {switch
+         $component
+         (instruments.sld
+            {$component
+               set_current
+               {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.05}}}})
+         (background.sld
+            {$component
+               set_current
+               {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}})
+         (vocal_track.sld
+            {$component
+               set_current
+               {int {+ 0.5 {/ {+ {- $hwlength 1} 0.5} 0.05}}}})})
+   (set_speeds
+      {set $trackspeed
+         {- {+ 1 {* {instruments.sld current} 0.05}} 0.5}}
+      {set $speedmod
+         {+ 1 {* {background.sld current} 0.05}}}
+      {set $hwlength
+         {- {+ 1 {* {vocal_track.sld current} 0.05}} 0.5}}
+      {$this update_btn_ints})
+   (set_slider_steps
+      {instruments.sld set_num_steps 41}
+      {background.sld set_num_steps 31}
+      {vocal_track.sld set_num_steps 41})
+   (hide_unused_sliders
+      {$this disable sfx.btn}
+      {$this disable crowd.btn}
+      {sfx.btn set_showing FALSE}
+      {crowd.btn set_showing FALSE}
+      {sfx.sld set_showing FALSE}
+      {crowd.sld set_showing FALSE})
+   (update_btn_ints
+      {instruments.btn set text_token {sprintf {localize trackspeed_msg} {int {+ 0.5 {* $trackspeed 100}}}}}
+      {background_music.btn set text_token {sprintf {localize speed_msg} {int {+ 0.5 {* $speedmod 100}}}}}
+      {vocal_track.btn set text_token {sprintf {localize hwlength_msg} {int {+ 0.5 {* $hwlength 100}}}}})
+   (update_helpbar
+      ($new_focus)
+      {switch
+         $new_focus
+         ((instruments.btn background_music.btn vocal_track.btn)
+            {helpbar
+               set_config
+               ((cancel helpbar_back)
+                  (confirm helpbar_changesetting))})
+         ((instruments.sld background.sld vocal_track.sld)
+            {helpbar
+               set_config
+               ((cancel helpbar_cancel)
+                  (confirm helpbar_confirmsetting))})})}
+{new
+   UIScreen
+   overshell_speed_screen
+   (back overshell_main_screen)
+   (panels options_background_panel overshell_speed_panel)
+   (focus overshell_speed_panel)}
 ;
 #define TRK_MODIFIER_DATA
 ((
