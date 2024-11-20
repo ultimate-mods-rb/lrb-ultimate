@@ -12,6 +12,8 @@
    "Music Store")
 (theatre
    "Theatre Mode")
+(cutsceneviewer
+   "Cutscene Viewer")
 (framerate
    "frame_rate_screen")
 (the10s
