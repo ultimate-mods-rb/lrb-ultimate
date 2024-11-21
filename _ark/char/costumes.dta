@@ -1522,6 +1522,17 @@
                Blank
                (colors 30 0))
             (hats hat_robinhood)))
+      (costume_kt_tunstall
+         (unlocked TRUE)
+         (genre lrb_shop_other)
+         (outfit
+            (hats no_hat)
+            (hair hair_kttunstall)
+            (heads kttunstallhead)
+            (torso kttunstallchest)
+            (legs
+               LthriftA
+               (colors 10 0))))
       #ifdef HX_NG
       (dlc_elf
          (unlocked TRUE)

@@ -787,6 +787,10 @@
                   (genre lrb_shop_heads_set_1)
                   (unlocked TRUE)
                   (exclude TRUE))
+               (kttunstallhead
+                  (ui_name kt_tunstall)
+                  (genre lrb_shop_other)
+                  (unlocked TRUE))
                #ifdef HX_NG
                (SnowmanHead
                   (ui_name snowman_head)
@@ -1637,6 +1641,10 @@
                   (cost 7)
                   (unlocked TRUE)
                   (exclude TRUE))
+               (kttunstallchest
+                  (ui_name kt_tunstall)
+                  (genre lrb_shop_other)
+                  (unlocked TRUE))
                #ifdef HX_NG
                (ElfChest 
                   (ui_name elf_chest)
@@ -3079,7 +3087,11 @@
                   (genre lrb_shop_other)
                   (cost 7)
                   (unlocked TRUE)
-                  (exclude TRUE))))
+                  (exclude TRUE))
+               (hair_kttunstall
+                  (ui_name kt_tunstall)
+                  (genre lrb_shop_other)
+                  (unlocked TRUE))))
          (wrists
             (allow_none TRUE)
             (none none)
