@@ -1,0 +1,637 @@
+(legs
+   (closet TRUE)
+   (sort FALSE)
+   (outfits
+      (MoonbeamLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (BuzzsawLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (SharkeyLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (MoosejawLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (OverdriveLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (TwilightLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (ScottLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (GeminiLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (FritziLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (MaynardLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (GravityLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (LanceLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (ThomasLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (SmokeyLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (DoraLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (McqueenLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (MothershipLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (creator TRUE))
+      (EarlLegs
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE))
+      (Roadie01Legs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (Roadie02Legs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (Roadie03Legs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (ManagerLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (SoundEngineer
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (AlienLegs
+         (genre lrb_shop_secret)
+         (cost 7)
+         (unlocked TRUE))
+      (AlienCowsuitLegs
+         (genre lrb_shop_secret)
+         (cost 7)
+         (unlocked TRUE))
+      (AlienIslanderLegs
+         (genre lrb_shop_secret)
+         (cost 7)
+         (unlocked TRUE))
+      (AlienPitBabeLegs
+         (genre lrb_shop_secret)
+         (cost 7)
+         (unlocked TRUE))
+      (SkeletonCostumeLegs
+         (genre lrb_shop_castle)
+         (unlocked TRUE))
+      (KingLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (QueenLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (DamselLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (KnightLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (SoldierLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (OrcLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (JesterLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (MadScientistLegs
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (AExplorerLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (EskimoMaleLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (EskimoFemaleLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (DeepSeaDiverLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (OldLadyLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (OldManLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (DinoHunterLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (DinoVisitorLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (HotelManagerLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (IslanderChiefLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (IslanderLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (DriverLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (PitbabeLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (HaleStormLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (VikingLegs
+         (genre lrb_shop_castle)
+         (cost 7)
+         (unlocked TRUE))
+      (MinerLegs
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (wizardpelvisLegs
+         (genre lrb_shop_spooky)
+         (cost 7)
+         (unlocked TRUE))
+      (witchpelvisLegs
+         (genre lrb_shop_spooky)
+         (cost 7)
+         (unlocked TRUE))
+      (FrankenstienLegs
+         (genre lrb_shop_spooky)
+         (cost 7)
+         (unlocked TRUE))
+      (MummyLegs
+         (genre lrb_shop_spooky)
+         (cost 7)
+         (unlocked TRUE))
+      (zombiepelvislegs
+         (genre lrb_shop_spooky)
+         (cost 7)
+         (unlocked TRUE))
+      (werewolfpelvislegs
+         (genre lrb_shop_spooky)
+         (cost 7)
+         (unlocked TRUE))
+      (NurseLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (LederhosenLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (AYoungLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (Blank
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (BrianMayLegs
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (CowboyLegs
+         (genre lrb_shop_city)
+         (cost 7)
+         (unlocked TRUE))
+      (DavidBowieLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (DRowntreeLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (FreddyMercuryLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (GothpantsCrazyPaving
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (GothpantsLittleTassles
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (GothpantsTwotone
+         (genre lrb_shop_rock)
+         (cost 3000)
+         (unlocked TRUE))
+      (GothTpants
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (IggyPopLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (JohnDeaconLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Legs02
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (Legs06
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (LmetalA
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LmetalAF
+         (genre lrb_shop_rock)
+         (cost 1000)
+         (unlocked TRUE))
+      (LmetalB
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LmetalBF
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE)
+         (creator TRUE))
+      (LmetalC
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LmetalCF
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (LmetalD
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LmetalDF
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LpunkA
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (LpunkaF
+         (genre lrb_shop_rock)
+         (cost 3000)
+         (unlocked TRUE))
+      (LpunkB
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LpunkbF
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LpunkC
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LpunkcF
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LpunkD
+         (genre lrb_shop_rock)
+         (cost 3000)
+         (unlocked TRUE))
+      (LpunkdF
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LthriftA
+         (genre lrb_shop_rock)
+         (cost 1000)
+         (unlocked TRUE))
+      (LthriftAF
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LthriftB
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (LthriftBF
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (LthriftC
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (LthriftCF
+         (genre lrb_shop_rock)
+         (cost 3000)
+         (unlocked TRUE))
+      (LthriftD
+         (genre lrb_shop_rock)
+         (cost 3000)
+         (unlocked TRUE))
+      (LthriftDF
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (NativeAmericanLegs
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (NTufnelLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (RockCheckNSash
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (RockCyclingShorts
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (RockpantsCircleseams
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (RockpantsCreases
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (RockpantsPatches
+         (genre lrb_shop_rock)
+         (cost 3000)
+         (unlocked TRUE))
+      (RockshortsNSocks
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (Rockstripypants
+         (genre lrb_shop_rock)
+         (cost 2000)
+         (unlocked TRUE))
+      (RogerTaylorLegs
+         (genre lrb_shop_rock_stars)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (SingerLegs
+         (genre lrb_shop_rock)
+         (cost 1500)
+         (unlocked TRUE))
+      (SirNoKegsLegs
+         (genre lrb_shop_adventure)
+         (cost 7)
+         (unlocked TRUE))
+      (WuFLegs
+         (genre lrb_shop_other)
+         (cost 7)
+         (unlocked TRUE))
+      (Naked_legs_Brown
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_Green
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_Pink
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_Yellow
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_02_Brown
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_02_Green
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_02_Pink
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_02_Yellow
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_03_Brown
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_03_Green
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_03_Pink
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      (Naked_legs_03_Yellow
+         (genre lrb_shop_rock)
+         (cost 7)
+         (unlocked TRUE)
+         (exclude TRUE))
+      #ifdef HX_NG
+      (ElfLegs
+         (ui_name elf_legs)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+                  
+      (SantaLegs
+         (ui_name santa_legs)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      
+      (SnowmanLegs
+         (ui_name snowman_legs)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+
+      (reindeerlegs
+         (ui_name reindeer_legs)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      #endif
+      ;unused
+      (ajameslegs
+         (ui_name ajameslegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (bassistlegs
+         (ui_name bassistlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (boblegs
+         (ui_name boblegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (drummerlegs
+         (ui_name drummerlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (farmerlegs
+         (ui_name farmerlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (foremanlegs
+         (ui_name foremanlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (guitaristlegs
+         (ui_name guitaristlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (legs01
+         (ui_name legs01)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (legs03
+         (ui_name legs03)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (legs04
+         (ui_name legs04)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (legs05
+         (ui_name legs05)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (legs07
+         (ui_name legs07)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (ninjalegs
+         (ui_name ninjalegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (piratelegsblack
+         (ui_name piratelegsblack)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (piratelegsblue
+         (ui_name piratelegsblue)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (piratelegsbrown
+         (ui_name piratelegsbrown)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (piratelegsgrey
+         (ui_name piratelegsgrey)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (plain
+         (ui_name plain)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (sthubbinslegs
+         (ui_name sthubbinslegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (villageidiotlegs
+         (ui_name villageidiotlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))
+      (zookeeperlegs
+         (ui_name zookeeperlegs)
+         (genre lrb_shop_other)
+         (unlocked TRUE))))
