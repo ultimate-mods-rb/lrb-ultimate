@@ -607,6 +607,8 @@
    (uisink_signout_screen main_community_screen))
 (theatre
    QP_COOP_MODE_PROPERTIES
+   (is_tour $band_sel_mode)
+   (is_tour_quickplay $band_sel_mode)
    (player_arrangement kArrangeBand)
    (intro_category INTRO_VENUE)
    (game_mode_context CONTEXT_GAME_MODE_TYPE_JUKEBOX)

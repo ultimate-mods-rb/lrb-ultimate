@@ -350,7 +350,9 @@
             set
             quickplay_exit_screen
             {if_else
-               {gamemode get is_tour_quickplay}
+               {&&
+                  {gamemode get is_tour_quickplay}
+                  {! $band_sel_mode}}
                loading_hub_screen
                matchmaking_screen}}
          {$this set_venue_image}

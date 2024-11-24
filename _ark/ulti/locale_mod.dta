@@ -477,3 +477,5 @@
    "skeleton battle (copy)")
 (ven_ufobreakdown_alt
    "ufobreakdown (alt)")
+(cant_create_band
+   "Go to STORY if you want to build another band")
