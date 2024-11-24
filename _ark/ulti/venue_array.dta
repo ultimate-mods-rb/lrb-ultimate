@@ -1,0 +1,136 @@
+;minimum amount for debug to not care
+(ven_demolition
+   (file big_club/demolition/demolition.milo)
+   (gigs (l (set l))))
+(ven_ghostbusters
+   (file big_club/ghostbusters/ghostbusters.milo)
+   (gigs (l (set l))))
+(ven_octopusattack
+   (file big_club/octopusattack/octopusattack.milo)
+   (gigs (l (set l))))
+(ven_farmrain
+   (file big_club/farmrain/farmrain.milo)
+   (gigs (l (set l))))
+(ven_icebreaker
+   (file big_club/icebreaker/icebreaker.milo)
+   (gigs (l (set l))))
+(ven_dinochase
+   (file big_club/dinochase/dinochase_parent.milo)
+   (gigs (l (set l))))
+(ven_skeleton_battle
+   (file big_club/SkeletonBattle/skeleton_battle.milo)
+   (gigs (l (set l))))
+(ven_ufobreakdown
+   (file big_club/stadium/ufobreakdown.milo)
+   (gigs (l (set l))))
+(ven_asteroid
+   (file big_club/asteroid/destroy_asteroid_MASTER.milo)
+   (gigs (l (set l))))
+(ven_ovalrace
+   (file {symbol "big_club/carsmash/wreck n roll bowl/wrecknroll.milo"})
+   (gigs (l (set l))))
+(ven_blank
+   (file small_club/blank/blank.milo)
+   (gigs (l (set l))))
+(ven_blank_arena
+   (file big_club/arena.milo)
+   (gigs (l (set l))))
+(ven_robotattack
+   (file big_club/robotattack/robotattack.milo)
+   (gigs (l (set l))))
+(ven_denpracticestage
+   (file small_club/denpracticestage/den_practice_stage.milo)
+   (gigs (l (set l))))
+(ven_skatepark
+   (file small_club/skatepark/skatepark.milo)
+   (gigs (l (set l))))
+(ven_skatepark_early
+   (file big_club/skate_park/skate_park_test.milo)
+   (gigs (l (set l))))
+(ven_alienplanet_old
+   (file big_club/alienplanet/alienplanet_old.milo)
+   (gigs (l (set l))))
+(ven_alienship_old
+   (file big_club/alienship/alienship_old.milo)
+   (gigs (l (set l))))
+(ven_barnyard_continued
+   (file big_club/barnyard/barnyard_continued.milo)
+   (gigs (l (set l))))
+(ven_barnyard_revised
+   (file big_club/barnyard/barnyard_revised.milo)
+   (gigs (l (set l))))
+(ven_barnyard_steve
+   (file big_club/barnyard/barnyard_steveschanges.milo)
+   (gigs (l (set l))))
+(ven_barnyard_blue_sky
+   (file {symbol "big_club/barnyard/barnyard_blue sky.milo"})
+   (gigs (l (set l))))
+(ven_barnyard_proj_light
+   (file {symbol "big_club/barnyard/barnyard_proj light.milo"})
+   (gigs (l (set l))))
+(ven_barnyard_red_sky
+   (file {symbol "big_club/barnyard/backup of barnyard red sky.milo"})
+   (gigs (l (set l))))
+(ven_bonecave_old
+   (file big_club/bonecave/bonecave_old.milo)
+   (gigs (l (set l))))
+(ven_carsmash_1
+   (file {symbol "big_club/carsmash/carsmash 1.milo"})
+   (gigs (l (set l))))
+(ven_carsmash_copy
+   (file {symbol "big_club/carsmash/copy of carsmash.milo"})
+   (gigs (l (set l))))
+(ven_carsmash_wnrb
+   (file {symbol "big_club/carsmash/wreck n roll bowl/wreck n roll bowl_01.milo"})
+   (gigs (l (set l))))
+(ven_carsmash_wnrb_david
+   (file {symbol "big_club/carsmash/wreck n roll bowl/wreck n roll bowl (david).milo"})
+   (gigs (l (set l))))
+(ven_carsmash_wnrb_david_1
+   (file {symbol "big_club/carsmash/wreck n roll bowl/davids wreck n roll bowl_01.milo"})
+   (gigs (l (set l))))
+(ven_castlegardens_wiicrowd
+   (file big_club/castlegardens/castlegardens_wiicrowd.milo)
+   (gigs (l (set l))))
+(ven_demolition_luke
+   (file {symbol "big_club/demolition/demolition luke.milo"})
+   (gigs (l (set l))))
+(ven_demolition_redux
+   (file big_club/demolition/demolition_redux.milo)
+   (gigs (l (set l))))
+(ven_demolition_wc
+   (file big_club/demolition/demolition_workingcopy.milo)
+   (gigs (l (set l))))
+(ven_demolition_wiz
+   (file big_club/demolition/wiz_demolition.milo)
+   (gigs (l (set l))))
+(ven_farmrain_barnyard_g
+   (file big_club/farmrain/barnyardgrouped.milo)
+   (gigs (l (set l))))
+(ven_farmrain_temp
+   (file big_club/farmrain/temp.milo)
+   (gigs (l (set l))))
+(ven_farmrain_tsc
+   (file {symbol "big_club/farmrain/total scene combo.milo"})
+   (gigs (l (set l))))
+(ven_farmrain_tm
+   (file big_club/farmrain/farmrain_tm.milo)
+   (gigs (l (set l))))
+(ven_haunted_10842
+   (file big_club/haunted/haunted-10842.milo)
+   (gigs (l (set l))))
+(ven_icebreaker_temp
+   (file big_club/icebreaker/icebreaker_temp.milo)
+   (gigs (l (set l))))
+(ven_icebreaker01
+   (file big_club/icebreaker/icebreaker01.milo)
+   (gigs (l (set l))))
+(ven_icebreaker02
+   (file big_club/icebreaker/icebreaker02.milo)
+   (gigs (l (set l))))
+(ven_skeleton_battle_copy
+   (file {symbol "big_club/skeletonbattle/copy of skeleton_battle.milo"})
+   (gigs (l (set l))))
+(ven_ufobreakdown_alt
+   (file big_club/ufobreakdown/ufobreakdown.milo)
+   (gigs (l (set l))))
