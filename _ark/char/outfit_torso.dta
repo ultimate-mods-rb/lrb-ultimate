@@ -566,33 +566,27 @@
       (AJamesChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (BrianMayChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (DAlbarnChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (DavidBowieChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (DRowntreeChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (DSmallsChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (FGT02
          (genre lrb_shop_rock)
          (cost 1500)
@@ -612,13 +606,11 @@
       (FreddyMercuryChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (GCoxonChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (GothGreyropes
          (genre lrb_shop_rock)
          (cost 2000)
@@ -638,13 +630,11 @@
       (IggyPopChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (JohnDeaconChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (LeatherguyChest
          (genre lrb_shop_rock)
          (cost 2000)
@@ -686,8 +676,7 @@
       (NTufnelChest
          (genre lrb_shop_rock_star)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (punkA
          (genre lrb_shop_rock)
          (cost 3000)
@@ -755,13 +744,11 @@
       (RogerTaylorChest
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (StHubbinsChest
          (genre lrb_shop_city)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (ThriftA
          (genre lrb_shop_rock)
          (cost 1500)
@@ -809,28 +796,23 @@
       (HendrixChest
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_Chest_Brown
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_Chest_Green
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_Chest_Pink
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_Chest_Yellow
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       #ifdef HX_NG
       (ElfChest 
          (ui_name elf_chest)

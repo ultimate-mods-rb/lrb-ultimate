@@ -259,8 +259,7 @@
       (BrianMayLegs
          (genre lrb_shop_other)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (CowboyLegs
          (genre lrb_shop_city)
          (cost 7)
@@ -268,18 +267,15 @@
       (DavidBowieLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (DRowntreeLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (FreddyMercuryLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (GothpantsCrazyPaving
          (genre lrb_shop_rock)
          (cost 2000)
@@ -299,13 +295,11 @@
       (IggyPopLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (JohnDeaconLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Legs02
          (genre lrb_shop_other)
          (cost 7)
@@ -418,8 +412,7 @@
       (NTufnelLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (RockCheckNSash
          (genre lrb_shop_rock)
          (cost 2000)
@@ -451,8 +444,7 @@
       (RogerTaylorLegs
          (genre lrb_shop_rock_stars)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (SingerLegs
          (genre lrb_shop_rock)
          (cost 1500)
@@ -468,63 +460,51 @@
       (Naked_legs_Brown
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_Green
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_Pink
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_Yellow
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_02_Brown
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_02_Green
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_02_Pink
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_02_Yellow
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_03_Brown
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_03_Green
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_03_Pink
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       (Naked_legs_03_Yellow
          (genre lrb_shop_rock)
          (cost 7)
-         (unlocked TRUE)
-         (exclude TRUE))
+         (unlocked TRUE))
       #ifdef HX_NG
       (ElfLegs
          (ui_name elf_legs)
