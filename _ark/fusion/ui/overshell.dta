@@ -16,7 +16,6 @@
       {set $overshell_up TRUE}
       {set $cntmodifierpos 0}
       {set $trkmodifierpos 0})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_spd
@@ -39,7 +38,6 @@
          )
       }
    )
-   (SCROLL_MSG)
    (BUTTON_DOWN_MSG
       {if {== $action kAction_Cancel}
          {ui pop_screen}
@@ -183,7 +181,6 @@
    (enter
       {$this lst_reset}
       {title.lbl set text_token {localize os_gfx}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          ((os_scrbloom1 os_scrbloom0)
@@ -231,7 +228,7 @@
    overshell_vsync_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data (infinite full half quarter)}
       {title.lbl set text_token {localize os_vsync}}
       {sel_section.lst set_selected {switch $vsyncrate (0 0) (1 1) (2 2) (4 3)}})
    (exit
@@ -252,10 +249,7 @@
          )
       }
       {pop_and_goto_screen overshell_graphics_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data (infinite full half quarter)})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_vsync_screen
@@ -267,10 +261,9 @@
    overshell_venuefps_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data (60fps 30fps 24fps 15fps 12fps 6fps 1fps)}
       {title.lbl set text_token {localize os_venuefps}}
       {sel_section.lst set_selected {switch $emulatefps (60 0) (30 1) (24 2) (15 3) (12 4) (6 5) (1 6)}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (60fps
@@ -296,10 +289,7 @@
          )
       }
       {pop_and_goto_screen overshell_graphics_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data (60fps 30fps 24fps 15fps 12fps 6fps 1fps)})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_venuefps_screen
@@ -327,7 +317,6 @@
       {$this lst_reset}
       {title.lbl set text_token {localize os_cnt}}
       {set $rcntmodifierpos 0})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_remap_cnt
@@ -387,7 +376,6 @@
       {$this hide_unused_sliders}
       {$this update_btn_ints}
       {$this update_all_sliders})
-   (exit)
    (TRANSITION_COMPLETE_MSG
       {$this
          update_helpbar
@@ -520,9 +508,10 @@
    overshell_trk_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data TRK_MODIFIER_DATA}
+      {if $trkmodifierpos
+         {sel_section.lst set_selected $trkmodifierpos}}
       {title.lbl set text_token {localize os_trk}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_gems_colors
@@ -533,13 +522,8 @@
          )
       }
    )
-   (lst_reset
-      {sel_section.lst set_data TRK_MODIFIER_DATA}
-   {if $trkmodifierpos
-      {sel_section.lst set_selected $trkmodifierpos}
-   })
    (SCROLL_MSG
-      {set $cntmodifierpos {sel_section.lst selected_pos}})}
+      {set $trkmodifierpos {sel_section.lst selected_pos}})}
 {new
    UIScreen
    overshell_trk_screen
@@ -549,11 +533,7 @@
 
 ;
 
-; take this "code" as an example as why you should leave this to the pros not like me
-
-; TODO rewrite this trash at some point to not use like 50 screens
-
-#define GEMC_MODIFIER_DATA ; dta make me cry why is dta dta
+#define GEMC_MODIFIER_DATA
 ((
    os_gtr_gems_color os_gtr_sus_color os_drm_gems_color
 ))
@@ -562,9 +542,8 @@
    overshell_gem_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data GEMC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_gems_colors}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_gtr_gems_color
@@ -577,10 +556,7 @@
             {pop_and_goto_screen overshell_drm_gem_color_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data GEMC_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_gem_color_screen
@@ -592,45 +568,46 @@
 
 #define GGEMC_MODIFIER_DATA
 ((
-   os_reset_gem os_gtr_gems_1 os_gtr_gems_2 os_gtr_gems_3 os_gtr_gems_4 os_gtr_gems_5
+   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5
 ))
 {new
    MultiSelectListPanel
    overshell_gtr_gem_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data GGEMC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_gtr_gems_color}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_reset_gem
+         (os_reset
             {set $gtrgem1 0}
             {set $gtrgem2 1}
             {set $gtrgem3 2}
             {set $gtrgem4 3}
             {set $gtrgem5 4}
          )
-         (os_gtr_gems_1
-            {pop_and_goto_screen overshell_gtr_gems_1_screen}
+         (os_slot_1
+            {set $os_var 1}
+            {pop_and_goto_screen overshell_gtr_gems_screen}
          )
-         (os_gtr_gems_2
-            {pop_and_goto_screen overshell_gtr_gems_2_screen}
+         (os_slot_2
+            {set $os_var 2}
+            {pop_and_goto_screen overshell_gtr_gems_screen}
          )
-         (os_gtr_gems_3
-            {pop_and_goto_screen overshell_gtr_gems_3_screen}
+         (os_slot_3
+            {set $os_var 3}
+            {pop_and_goto_screen overshell_gtr_gems_screen}
          )
-         (os_gtr_gems_4
-            {pop_and_goto_screen overshell_gtr_gems_4_screen}
+         (os_slot_4
+            {set $os_var 4}
+            {pop_and_goto_screen overshell_gtr_gems_screen}
          )
-         (os_gtr_gems_5
-            {pop_and_goto_screen overshell_gtr_gems_5_screen}
+         (os_slot_5
+            {set $os_var 5}
+            {pop_and_goto_screen overshell_gtr_gems_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data GGEMC_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_gtr_gem_color_screen
@@ -644,45 +621,46 @@
 
 #define DGEMC_MODIFIER_DATA
 ((
-   os_reset_gem os_drm_gems_1 os_drm_gems_2 os_drm_gems_3 os_drm_gems_4 os_drm_gems_5
+   os_reset os_kick_gem os_slot_1 os_slot_2 os_slot_3 os_slot_4
 ))
 {new
    MultiSelectListPanel
    overshell_drm_gem_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data DGEMC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_drm_gems_color}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_reset_gem
+         (os_reset
             {set $drmgem1 0}
             {set $drmgem2 1}
             {set $drmgem3 2}
             {set $drmgem4 3}
             {set $drmgem5 4}
          )
-         (os_drm_gems_1
-            {pop_and_goto_screen overshell_drm_gems_1_screen}
+         (os_kick_gem
+            {set $os_var 1}
+            {pop_and_goto_screen overshell_drm_gems_screen}
          )
-         (os_drm_gems_2
-            {pop_and_goto_screen overshell_drm_gems_2_screen}
+         (os_slot_1
+            {set $os_var 2}
+            {pop_and_goto_screen overshell_drm_gems_screen}
          )
-         (os_drm_gems_3
-            {pop_and_goto_screen overshell_drm_gems_3_screen}
+         (os_slot_2
+            {set $os_var 3}
+            {pop_and_goto_screen overshell_drm_gems_screen}
          )
-         (os_drm_gems_4
-            {pop_and_goto_screen overshell_drm_gems_4_screen}
+         (os_slot_3
+            {set $os_var 4}
+            {pop_and_goto_screen overshell_drm_gems_screen}
          )
-         (os_drm_gems_5
-            {pop_and_goto_screen overshell_drm_gems_5_screen}
+         (os_slot_4
+            {set $os_var 5}
+            {pop_and_goto_screen overshell_drm_gems_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data DGEMC_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_drm_gem_color_screen
@@ -696,49 +674,50 @@
 
 #define GSUSC_MODIFIER_DATA
 ((
-   os_reset_sus os_gtr_sus_1 os_gtr_sus_2 os_gtr_sus_3 os_gtr_sus_4 os_gtr_sus_5
+   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5
 ))
 {new
    MultiSelectListPanel
    overshell_gtr_sus_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data GSUSC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_gtr_sus_color}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_reset_sus
+         (os_reset
             {set $gtrsus1 0}
             {set $gtrsus2 1}
             {set $gtrsus3 2}
             {set $gtrsus4 3}
             {set $gtrsus5 4}
          )
-         (os_gtr_sus_1
-            {pop_and_goto_screen overshell_gtr_sus_1_screen}
+         (os_slot_1
+            {set $os_var 1}
+            {pop_and_goto_screen overshell_gtr_sus_screen}
          )
-         (os_gtr_sus_2
-            {pop_and_goto_screen overshell_gtr_sus_2_screen}
+         (os_slot_2
+            {set $os_var 2}
+            {pop_and_goto_screen overshell_gtr_sus_screen}
          )
-         (os_gtr_sus_3
-            {pop_and_goto_screen overshell_gtr_sus_3_screen}
+         (os_slot_3
+            {set $os_var 3}
+            {pop_and_goto_screen overshell_gtr_sus_screen}
          )
-         (os_gtr_sus_4
-            {pop_and_goto_screen overshell_gtr_sus_4_screen}
+         (os_slot_4
+            {set $os_var 4}
+            {pop_and_goto_screen overshell_gtr_sus_screen}
          )
-         (os_gtr_sus_5
-            {pop_and_goto_screen overshell_gtr_sus_5_screen}
+         (os_slot_5
+            {set $os_var 5}
+            {pop_and_goto_screen overshell_gtr_sus_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data GSUSC_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_gtr_sus_color_screen
-   (back overshell_gtr_gem_color_screen)
+   (back overshell_gem_color_screen)
    (panels overshell_gtr_sus_color_panel practice_lower3rd_panel)
    (focus overshell_gtr_sus_color_panel)}
    ;
@@ -764,668 +743,145 @@
 ;
 {new
    MultiSelectListPanel
-   overshell_gtr_gems_1_panel
+   overshell_gtr_gems_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_1}})
-   (exit)
+      {sel_section.lst set_data GCOLORS_MODIFIER_DATA}
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrgem1 0}
-         )
-         (os_red_gem
-            {set $gtrgem1 1}
-         )
-         (os_yellow_gem
-            {set $gtrgem1 2}
-         )
-         (os_blue_gem
-            {set $gtrgem1 3}
-         )
-         (os_orange_gem
-            {set $gtrgem1 4}
-         )
-         (os_overdrive_gem
-            {set $gtrgem1 5}
-         )
+      {set $os_sel
+         {switch {$component selected_sym}
+            (os_green_gem
+               0
+            )
+            (os_red_gem
+               1
+            )
+            (os_yellow_gem
+               2
+            )
+            (os_blue_gem
+               3
+            )
+            (os_orange_gem
+               4
+            )
+            (os_overdrive_gem
+               5
+            )
+         }
+      }
+      {switch $os_var
+         (1 {set $gtrgem1 $os_sel})
+         (2 {set $gtrgem2 $os_sel})
+         (3 {set $gtrgem3 $os_sel})
+         (4 {set $gtrgem4 $os_sel})
+         (5 {set $gtrgem5 $os_sel})
       }
       {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
-   overshell_gtr_gems_1_screen
+   overshell_gtr_gems_screen
    (back overshell_gtr_gem_color_screen)
-   (panels overshell_gtr_gems_1_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_1_panel)}
+   (panels overshell_gtr_gems_panel practice_lower3rd_panel)
+   (focus overshell_gtr_gems_panel)}
    ;
 ;
-
 ;
 {new
    MultiSelectListPanel
-   overshell_gtr_gems_2_panel
+   overshell_drm_gems_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_2}})
-   (exit)
+      {sel_section.lst set_data DCOLORS_MODIFIER_DATA}
+      {title.lbl set text_token {localize os_drm_gems_color}}) ;intentional
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrgem2 0}
-         )
-         (os_red_gem
-            {set $gtrgem2 1}
-         )
-         (os_yellow_gem
-            {set $gtrgem2 2}
-         )
-         (os_blue_gem
-            {set $gtrgem2 3}
-         )
-         (os_orange_gem
-            {set $gtrgem2 4}
-         )
-         (os_overdrive_gem
-            {set $gtrgem2 5}
-         )
+      {set $os_sel
+         {switch {$component selected_sym}
+            (os_kick_gem
+               0
+            )
+            (os_red_gem
+               1
+            )
+            (os_yellow_gem
+               2
+            )
+            (os_blue_gem
+               3
+            )
+            (os_green_gem
+               4
+            )
+            (os_overdrive_gem
+               5
+            )
+         }
       }
-      {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_gems_2_screen
-   (back overshell_gtr_gem_color_screen)
-   (panels overshell_gtr_gems_2_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_2_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_gems_3_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_3}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrgem3 0}
-         )
-         (os_red_gem
-            {set $gtrgem3 1}
-         )
-         (os_yellow_gem
-            {set $gtrgem3 2}
-         )
-         (os_blue_gem
-            {set $gtrgem3 3}
-         )
-         (os_orange_gem
-            {set $gtrgem3 4}
-         )
-         (os_overdrive_gem
-            {set $gtrgem3 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_gems_3_screen
-   (back overshell_gtr_gem_color_screen)
-   (panels overshell_gtr_gems_3_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_3_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_gems_4_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_4}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrgem4 0}
-         )
-         (os_red_gem
-            {set $gtrgem4 1}
-         )
-         (os_yellow_gem
-            {set $gtrgem4 2}
-         )
-         (os_blue_gem
-            {set $gtrgem4 3}
-         )
-         (os_orange_gem
-            {set $gtrgem4 4}
-         )
-         (os_overdrive_gem
-            {set $gtrgem4 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_gems_4_screen
-   (back overshell_gtr_gem_color_screen)
-   (panels overshell_gtr_gems_4_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_4_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_gems_5_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_5}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrgem5 0}
-         )
-         (os_red_gem
-            {set $gtrgem5 1}
-         )
-         (os_yellow_gem
-            {set $gtrgem5 2}
-         )
-         (os_blue_gem
-            {set $gtrgem5 3}
-         )
-         (os_orange_gem
-            {set $gtrgem5 4}
-         )
-         (os_overdrive_gem
-            {set $gtrgem5 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_gems_5_screen
-   (back overshell_gtr_gem_color_screen)
-   (panels overshell_gtr_gems_5_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_5_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_gems_1_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_gems_1}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_red_gem
-            {set $drmgem1 1}
-         )
-         (os_yellow_gem
-            {set $drmgem1 2}
-         )
-         (os_blue_gem
-            {set $drmgem1 3}
-         )
-         (os_green_gem
-            {set $drmgem1 4}
-         )
-         (os_kick_gem
-            {set $drmgem1 0}
-         )
-         (os_overdrive_gem
-            {set $drmgem1 5}
-         )
+      {switch $os_var
+         (1 {set $drmgem1 $os_sel})
+         (2 {set $drmgem2 $os_sel})
+         (3 {set $drmgem3 $os_sel})
+         (4 {set $drmgem4 $os_sel})
+         (5 {set $drmgem5 $os_sel})
       }
       {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
-   overshell_drm_gems_1_screen
+   overshell_drm_gems_screen
    (back overshell_drm_gem_color_screen)
-   (panels overshell_drm_gems_1_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_1_panel)}
-   ;
+   (panels overshell_drm_gems_panel practice_lower3rd_panel)
+   (focus overshell_drm_gems_panel)}
 ;
 
 ;
 {new
    MultiSelectListPanel
-   overshell_drm_gems_2_panel
+   overshell_gtr_sus_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_gems_2}})
-   (exit)
+      {sel_section.lst set_data GCOLORS_MODIFIER_DATA}
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_red_gem
-            {set $drmgem2 1}
-         )
-         (os_yellow_gem
-            {set $drmgem2 2}
-         )
-         (os_blue_gem
-            {set $drmgem2 3}
-         )
-         (os_green_gem
-            {set $drmgem2 4}
-         )
-         (os_kick_gem
-            {set $drmgem2 0}
-         )
-         (os_overdrive_gem
-            {set $drmgem2 5}
-         )
+      {set $os_sel
+         {switch {$component selected_sym}
+            (os_green_gem
+               0
+            )
+            (os_red_gem
+               1
+            )
+            (os_yellow_gem
+               2
+            )
+            (os_blue_gem
+               3
+            )
+            (os_orange_gem
+               4
+            )
+            (os_overdrive_gem
+               5
+            )
+         }
       }
-      {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_gems_2_screen
-   (back overshell_drm_gem_color_screen)
-   (panels overshell_drm_gems_2_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_2_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_gems_3_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_gems_3}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_red_gem
-            {set $drmgem3 1}
-         )
-         (os_yellow_gem
-            {set $drmgem3 2}
-         )
-         (os_blue_gem
-            {set $drmgem3 3}
-         )
-         (os_green_gem
-            {set $drmgem3 4}
-         )
-         (os_kick_gem
-            {set $drmgem3 0}
-         )
-         (os_overdrive_gem
-            {set $drmgem3 5}
-         )
-      }
-      {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_gems_3_screen
-   (back overshell_drm_gem_color_screen)
-   (panels overshell_drm_gems_3_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_3_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_gems_4_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_gems_4}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_red_gem
-            {set $drmgem4 1}
-         )
-         (os_yellow_gem
-            {set $drmgem4 2}
-         )
-         (os_blue_gem
-            {set $drmgem4 3}
-         )
-         (os_green_gem
-            {set $drmgem4 4}
-         )
-         (os_kick_gem
-            {set $drmgem4 0}
-         )
-         (os_overdrive_gem
-            {set $drmgem4 5}
-         )
-      }
-      {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_gems_4_screen
-   (back overshell_drm_gem_color_screen)
-   (panels overshell_drm_gems_4_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_4_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_gems_5_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_gems_5}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_red_gem
-            {set $drmgem5 1}
-         )
-         (os_yellow_gem
-            {set $drmgem5 2}
-         )
-         (os_blue_gem
-            {set $drmgem5 3}
-         )
-         (os_green_gem
-            {set $drmgem5 4}
-         )
-         (os_kick_gem
-            {set $drmgem5 0}
-         )
-         (os_overdrive_gem
-            {set $drmgem5 5}
-         )
-      }
-      {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_gems_5_screen
-   (back overshell_drm_gem_color_screen)
-   (panels overshell_drm_gems_5_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_5_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_sus_1_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_sus_1}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsus1 0}
-         )
-         (os_red_gem
-            {set $gtrsus1 1}
-         )
-         (os_yellow_gem
-            {set $gtrsus1 2}
-         )
-         (os_blue_gem
-            {set $gtrsus1 3}
-         )
-         (os_orange_gem
-            {set $gtrsus1 4}
-         )
-         (os_overdrive_gem
-            {set $gtrsus1 5}
-         )
+      {switch $os_var
+         (1 {set $gtrsus1 $os_sel})
+         (2 {set $gtrsus2 $os_sel})
+         (3 {set $gtrsus3 $os_sel})
+         (4 {set $gtrsus4 $os_sel})
+         (5 {set $gtrsus5 $os_sel})
       }
       {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {ui goto_screen overshell_gtr_sus_color_screen}
-         {ui pop_screen}
-      }
-      kDataUnhandled
-      )}
+   )}
 {new
    UIScreen
-   overshell_gtr_sus_1_screen
+   overshell_gtr_sus_screen
    (back overshell_gtr_sus_color_screen)
-   (panels overshell_gtr_sus_1_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_1_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_sus_2_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_sus_2}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsus2 0}
-         )
-         (os_red_gem
-            {set $gtrsus2 1}
-         )
-         (os_yellow_gem
-            {set $gtrsus2 2}
-         )
-         (os_blue_gem
-            {set $gtrsus2 3}
-         )
-         (os_orange_gem
-            {set $gtrsus2 4}
-         )
-         (os_overdrive_gem
-            {set $gtrsus2 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_sus_2_screen
-   (back overshell_gtr_sus_color_screen)
-   (panels overshell_gtr_sus_2_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_2_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_sus_3_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_sus_3}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsus3 0}
-         )
-         (os_red_gem
-            {set $gtrsus3 1}
-         )
-         (os_yellow_gem
-            {set $gtrsus3 2}
-         )
-         (os_blue_gem
-            {set $gtrsus3 3}
-         )
-         (os_orange_gem
-            {set $gtrsus3 4}
-         )
-         (os_overdrive_gem
-            {set $gtrsus3 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_sus_3_screen
-   (back overshell_gtr_sus_color_screen)
-   (panels overshell_gtr_sus_3_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_3_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_sus_4_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_sus_4}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsus4 0}
-         )
-         (os_red_gem
-            {set $gtrsus4 1}
-         )
-         (os_yellow_gem
-            {set $gtrsus4 2}
-         )
-         (os_blue_gem
-            {set $gtrsus4 3}
-         )
-         (os_orange_gem
-            {set $gtrsus4 4}
-         )
-         (os_overdrive_gem
-            {set $gtrsus4 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_sus_4_screen
-   (back overshell_gtr_sus_color_screen)
-   (panels overshell_gtr_sus_4_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_4_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_sus_5_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_sus_5}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsus5 0}
-         )
-         (os_red_gem
-            {set $gtrsus5 1}
-         )
-         (os_yellow_gem
-            {set $gtrsus5 2}
-         )
-         (os_blue_gem
-            {set $gtrsus5 3}
-         )
-         (os_orange_gem
-            {set $gtrsus5 4}
-         )
-         (os_overdrive_gem
-            {set $gtrsus5 5}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GCOLORS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_sus_5_screen
-   (back overshell_gtr_sus_color_screen)
-   (panels overshell_gtr_sus_5_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_5_panel)}
-   ;
+   (panels overshell_gtr_sus_panel practice_lower3rd_panel)
+   (focus overshell_gtr_sus_panel)}
 ;
 
 #define SMASHERC_MODIFIER_DATA
@@ -1437,9 +893,8 @@
    overshell_smasher_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data SMASHERC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_smashers_colors}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_gtr_smasher_color
@@ -1449,20 +904,11 @@
             {pop_and_goto_screen overshell_drm_smasher_color_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data SMASHERC_MODIFIER_DATA})
-   (SCROLL_MSG)
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {ui goto_screen overshell_trk_screen}
-         {ui pop_screen}
-      }
-      kDataUnhandled
-      )}
+   )}
 {new
    UIScreen
    overshell_smasher_color_screen
+   (back overshell_trk_screen)
    (panels overshell_smasher_color_panel practice_lower3rd_panel)
    (focus overshell_smasher_color_panel)}
    ;
@@ -1472,48 +918,46 @@
 
 #define GSMASHERC_MODIFIER_DATA
 ((
-   os_reset_gem os_gtr_smasher_1 os_gtr_smasher_2 os_gtr_smasher_3 os_gtr_smasher_4 os_gtr_smasher_5
+   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5
 ))
 {new
    MultiSelectListPanel
    overshell_gtr_smasher_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data GSMASHERC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_gtr_smasher_color}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_reset_gem
+         (os_reset
             {set $gtrsm1 green}
             {set $gtrsm2 red}
             {set $gtrsm3 yellow}
             {set $gtrsm4 blue}
             {set $gtrsm5 orange}
          )
-         (os_gtr_smasher_1
-            {pop_and_goto_screen overshell_gtr_smasher_1_screen}
+         (os_slot_1
+            {set $os_var 1}
+            {pop_and_goto_screen overshell_gtr_smasher_screen}
          )
-         (os_gtr_smasher_1
-            {pop_and_goto_screen overshell_gtr_smasher_1_screen}
+         (os_slot_2
+            {set $os_var 2}
+            {pop_and_goto_screen overshell_gtr_smasher_screen}
          )
-         (os_gtr_smasher_2
-            {pop_and_goto_screen overshell_gtr_smasher_2_screen}
+         (os_slot_3
+            {set $os_var 3}
+            {pop_and_goto_screen overshell_gtr_smasher_screen}
          )
-         (os_gtr_smasher_3
-            {pop_and_goto_screen overshell_gtr_smasher_3_screen}
+         (os_slot_4
+            {set $os_var 4}
+            {pop_and_goto_screen overshell_gtr_smasher_screen}
          )
-         (os_gtr_smasher_4
-            {pop_and_goto_screen overshell_gtr_smasher_4_screen}
-         )
-         (os_gtr_smasher_5
-            {pop_and_goto_screen overshell_gtr_smasher_5_screen}
+         (os_slot_5
+            {set $os_var 5}
+            {pop_and_goto_screen overshell_gtr_smasher_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data GSMASHERC_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_gtr_smasher_color_screen
@@ -1527,41 +971,41 @@
 
 #define DSMASHERC_MODIFIER_DATA
 ((
-   os_reset_gem os_drm_smasher_1 os_drm_smasher_2 os_drm_smasher_3 os_drm_smasher_4
+   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4
 ))
 {new
    MultiSelectListPanel
    overshell_drm_smasher_color_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data DSMASHERC_MODIFIER_DATA}
       {title.lbl set text_token {localize os_drm_smasher_color}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_reset_gem
+         (os_reset
             {set $drms1 red}
             {set $drms2 yellow}
             {set $drms3 blue}
             {set $drms4 green}
          )
-         (os_drm_smasher_1
-            {pop_and_goto_screen overshell_drm_smasher_1_screen}
+         (os_slot_1
+            {set $os_var 1}
+            {pop_and_goto_screen overshell_drm_smasher_screen}
          )
-         (os_drm_smasher_2
-            {pop_and_goto_screen overshell_drm_smasher_2_screen}
+         (os_slot_2
+            {set $os_var 2}
+            {pop_and_goto_screen overshell_drm_smasher_screen}
          )
-         (os_drm_smasher_3
-            {pop_and_goto_screen overshell_drm_smasher_3_screen}
+         (os_slot_3
+            {set $os_var 3}
+            {pop_and_goto_screen overshell_drm_smasher_screen}
          )
-         (os_drm_smasher_4
-            {pop_and_goto_screen overshell_drm_smasher_4_screen}
+         (os_slot_4
+            {set $os_var 4}
+            {pop_and_goto_screen overshell_drm_smasher_screen}
          )
       }
-   )
-   (lst_reset
-      {sel_section.lst set_data DSMASHERC_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_drm_smasher_color_screen
@@ -1574,373 +1018,93 @@
 ;
 {new
    MultiSelectListPanel
-   overshell_gtr_smasher_1_panel
+   overshell_gtr_smasher_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_smasher_1}})
-   (exit)
+      {sel_section.lst set_data GCOLORS_MODIFIER_DATA}
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsm1 green}
-         )
-         (os_red_gem
-            {set $gtrsm1 red}
-         )
-         (os_yellow_gem
-            {set $gtrsm1 yellow}
-         )
-         (os_blue_gem
-            {set $gtrsm1 blue}
-         )
-         (os_orange_gem
-            {set $gtrsm1 orange}
-         )
+      {set $os_sel
+         {switch {$component selected_sym}
+            (os_green_gem
+               green
+            )
+            (os_red_gem
+               red
+            )
+            (os_yellow_gem
+               yellow
+            )
+            (os_blue_gem
+               blue
+            )
+            (os_orange_gem
+               orange
+            )
+         }
+      }
+      {switch $os_var
+         (1 {set $gtrsm1 $os_sel})
+         (2 {set $gtrsm2 $os_sel})
+         (3 {set $gtrsm3 $os_sel})
+         (4 {set $gtrsm4 $os_sel})
+         (5 {set $gtrsm5 $os_sel})
       }
       {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
-   overshell_gtr_smasher_1_screen
+   overshell_gtr_smasher_screen
    (back overshell_gtr_smasher_color_screen)
-   (panels overshell_gtr_smasher_1_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_1_panel)}
+   (panels overshell_gtr_smasher_panel practice_lower3rd_panel)
+   (focus overshell_gtr_smasher_panel)}
    ;
 ;
 
 ;
 {new
    MultiSelectListPanel
-   overshell_gtr_smasher_2_panel
+   overshell_drm_smasher_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_smasher_2}})
-   (exit)
+      {sel_section.lst set_data DSMASHERS_MODIFIER_DATA}
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsm2 green}
-         )
-         (os_red_gem
-            {set $gtrsm2 red}
-         )
-         (os_yellow_gem
-            {set $gtrsm2 yellow}
-         )
-         (os_blue_gem
-            {set $gtrsm2 blue}
-         )
-         (os_orange_gem
-            {set $gtrsm2 orange}
-         )
+      {set $os_sel
+         {switch {$component selected_sym}
+            (os_red_gem
+               red
+            )
+            (os_yellow_gem
+               yellow
+            )
+            (os_blue_gem
+               blue
+            )
+            (os_green_gem
+               green
+            )
+            (os_orange_gem
+               orange
+            )
+         }
       }
-      {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_smasher_2_screen
-   (back overshell_gtr_smasher_color_screen)
-   (panels overshell_gtr_smasher_2_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_2_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_smasher_3_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_smasher_3}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsm3 green}
-         )
-         (os_red_gem
-            {set $gtrsm3 red}
-         )
-         (os_yellow_gem
-            {set $gtrsm3 yellow}
-         )
-         (os_blue_gem
-            {set $gtrsm3 blue}
-         )
-         (os_orange_gem
-            {set $gtrsm3 orange}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_smasher_3_screen
-   (back overshell_gtr_smasher_color_screen)
-   (panels overshell_gtr_smasher_3_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_3_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_smasher_4_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_smasher_4}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsm4 green}
-         )
-         (os_red_gem
-            {set $gtrsm4 red}
-         )
-         (os_yellow_gem
-            {set $gtrsm4 yellow}
-         )
-         (os_blue_gem
-            {set $gtrsm4 blue}
-         )
-         (os_orange_gem
-            {set $gtrsm4 orange}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_smasher_4_screen
-   (back overshell_gtr_smasher_color_screen)
-   (panels overshell_gtr_smasher_4_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_4_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_gtr_smasher_5_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_smasher_5}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $gtrsm5 green}
-         )
-         (os_red_gem
-            {set $gtrsm5 red}
-         )
-         (os_yellow_gem
-            {set $gtrsm5 yellow}
-         )
-         (os_blue_gem
-            {set $gtrsm5 blue}
-         )
-         (os_orange_gem
-            {set $gtrsm5 orange}
-         )
-      }
-      {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data GSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_gtr_smasher_5_screen
-   (back overshell_gtr_smasher_color_screen)
-   (panels overshell_gtr_smasher_5_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_5_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_smasher_1_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_smasher_1}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $drms1 green}
-         )
-         (os_red_gem
-            {set $drms1 red}
-         )
-         (os_yellow_gem
-            {set $drms1 yellow}
-         )
-         (os_blue_gem
-            {set $drms1 blue}
-         )
-         (os_orange_gem
-            {set $drms1 orange}
-         )
+      {switch $os_var
+         (1 {set $drms1 $os_sel})
+         (2 {set $drms2 $os_sel})
+         (3 {set $drms3 $os_sel})
+         (4 {set $drms4 $os_sel})
       }
       {pop_and_goto_screen overshell_drm_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
-   overshell_drm_smasher_1_screen
+   overshell_drm_smasher_screen
    (back overshell_drm_smasher_color_screen)
-   (panels overshell_drm_smasher_1_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_1_panel)}
+   (panels overshell_drm_smasher_panel practice_lower3rd_panel)
+   (focus overshell_drm_smasher_panel)}
    ;
 ;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_smasher_2_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_smasher_2}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $drms2 green}
-         )
-         (os_red_gem
-            {set $drms2 red}
-         )
-         (os_yellow_gem
-            {set $drms2 yellow}
-         )
-         (os_blue_gem
-            {set $drms2 blue}
-         )
-         (os_orange_gem
-            {set $drms2 orange}
-         )
-      }
-      {pop_and_goto_screen overshell_drm_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_smasher_2_screen
-   (back overshell_drm_smasher_color_screen)
-   (panels overshell_drm_smasher_2_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_2_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_smasher_3_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_smasher_3}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $drms3 green}
-         )
-         (os_red_gem
-            {set $drms3 red}
-         )
-         (os_yellow_gem
-            {set $drms3 yellow}
-         )
-         (os_blue_gem
-            {set $drms3 blue}
-         )
-         (os_orange_gem
-            {set $drms3 orange}
-         )
-      }
-      {pop_and_goto_screen overshell_drm_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_smasher_3_screen
-   (back overshell_drm_smasher_color_screen)
-   (panels overshell_drm_smasher_3_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_3_panel)}
-   ;
-;
-
-;
-{new
-   MultiSelectListPanel
-   overshell_drm_smasher_4_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_drm_smasher_4}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_green_gem
-            {set $drms4 green}
-         )
-         (os_red_gem
-            {set $drms4 red}
-         )
-         (os_yellow_gem
-            {set $drms4 yellow}
-         )
-         (os_blue_gem
-            {set $drms4 blue}
-         )
-         (os_orange_gem
-            {set $drms4 orange}
-         )
-      }
-      {pop_and_goto_screen overshell_drm_smasher_color_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data DSMASHERS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_drm_smasher_4_screen
-   (back overshell_drm_smasher_color_screen)
-   (panels overshell_drm_smasher_4_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_4_panel)}
-   ;
-;
-
-;I HOPE SHE MADE LOTSA SPAGHETTI :kekw:
 
 #ifdef HX_WII
 #define CNT_BUTTONS_MODIFIER_DATA 
@@ -1958,13 +1122,15 @@
    overshell_remap_cnt_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5 os_spotlight)}
+      {if $rcntmodifierpos
+         {sel_section.lst set_selected $rcntmodifierpos}}
       {title.lbl set text_token {localize os_remap_cnt}})
    (exit
       {set_cnt_mapping})
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_reset_gem
+         (os_reset
             #ifdef HX_WII
             {set $cnt_slot1 kPad_Circle}
             {set $cnt_slot2 kPad_DRight}
@@ -1981,30 +1147,32 @@
             {set $cnt_star kPad_Select}
             #endif
          )
-         (os_gtr_gems_1
-            {pop_and_goto_screen overshell_cnt_slot_1_screen}
+         (os_slot_1
+            {set $remap_slot_num 1}
+            {pop_and_goto_screen overshell_cnt_slot_screen}
          )
-         (os_gtr_gems_2
-            {pop_and_goto_screen overshell_cnt_slot_2_screen}
+         (os_slot_2
+            {set $remap_slot_num 2}
+            {pop_and_goto_screen overshell_cnt_slot_screen}
          )
-         (os_gtr_gems_3
-            {pop_and_goto_screen overshell_cnt_slot_3_screen}
+         (os_slot_3
+            {set $remap_slot_num 3}
+            {pop_and_goto_screen overshell_cnt_slot_screen}
          )
-         (os_gtr_gems_4
-            {pop_and_goto_screen overshell_cnt_slot_4_screen}
+         (os_slot_4
+            {set $remap_slot_num 4}
+            {pop_and_goto_screen overshell_cnt_slot_screen}
          )
-         (os_gtr_gems_5
-            {pop_and_goto_screen overshell_cnt_slot_5_screen}
+         (os_slot_5
+            {set $remap_slot_num 5}
+            {pop_and_goto_screen overshell_cnt_slot_screen}
          )
          (os_spotlight
-            {pop_and_goto_screen overshell_cnt_star_screen}
+            {set $remap_slot_num 6}
+            {pop_and_goto_screen overshell_cnt_slot_screen}
          )
       }
    )
-   (lst_reset
-      {sel_section.lst set_data (os_reset_gem os_gtr_gems_1 os_gtr_gems_2 os_gtr_gems_3 os_gtr_gems_4 os_gtr_gems_5 os_spotlight)}
-      {if $rcntmodifierpos
-         {sel_section.lst set_selected $rcntmodifierpos}})
    (SCROLL_MSG
       {set $rcntmodifierpos {sel_section.lst selected_pos}})}
 {new
@@ -2016,431 +1184,77 @@
 ;
 {new
    MultiSelectListPanel
-   overshell_cnt_slot_1_panel
+   overshell_cnt_slot_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_1}})
-   (exit)
+      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA}
+      {title.lbl set text_token {localize {sprint "os_slot_" $remap_slot_num}}})
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_pad_l2
-            {set $cnt_slot1 kPad_L2}
-         )
-         (os_pad_l1
-            {set $cnt_slot1 kPad_L1}
-         )
-         (os_pad_r1
-            {set $cnt_slot1 kPad_R1}
-         )
-         (os_pad_r2
-            {set $cnt_slot1 kPad_R2}
-         )
-         (os_pad_x
-            {set $cnt_slot1 kPad_X}
-         )
-         (os_pad_circle
-            {set $cnt_slot1 kPad_Circle}
-         )
-         (os_pad_square
-            {set $cnt_slot1 kPad_Square}
-         )
-         (os_pad_tri
-            {set $cnt_slot1 kPad_Tri}
-         )
-         (os_pad_dup
-            {set $cnt_slot1 kPad_DUp}
-         )
-         (os_pad_ddown
-            {set $cnt_slot1 kPad_DDown}
-         )
-         (os_pad_dleft
-            {set $cnt_slot1 kPad_DLeft}
-         )
-         (os_pad_dright
-            {set $cnt_slot1 kPad_DRight}
-         )
-         (os_pad_l3
-            {set $cnt_slot1 kPad_L3}
-         )
-         (os_pad_r3
-            {set $cnt_slot1 kPad_R3}
-         )
-         (os_pad_select
-            {set $cnt_slot1 kPad_Select}
-         )
+      {set $cnt_sel
+         {switch {$component selected_sym}
+            (os_pad_l2
+               kPad_L2
+            )
+            (os_pad_l1
+               kPad_L1
+            )
+            (os_pad_r1
+               kPad_R1
+            )
+            (os_pad_r2
+               kPad_R2
+            )
+            (os_pad_x
+               kPad_X
+            )
+            (os_pad_circle
+               kPad_Circle
+            )
+            (os_pad_square
+               kPad_Square
+            )
+            (os_pad_tri
+               kPad_Tri
+            )
+            (os_pad_dup
+               kPad_DUp
+            )
+            (os_pad_ddown
+               kPad_DDown
+            )
+            (os_pad_dleft
+               kPad_DLeft
+            )
+            (os_pad_dright
+               kPad_DRight
+            )
+            (os_pad_l3
+               kPad_L3
+            )
+            (os_pad_r3
+               kPad_R3
+            )
+            (os_pad_select
+               kPad_Select
+            )
+         }
+      }
+      {switch $remap_slot_num
+         (1 {set $cnt_slot1 $cnt_sel})
+         (2 {set $cnt_slot2 $cnt_sel})
+         (3 {set $cnt_slot3 $cnt_sel})
+         (4 {set $cnt_slot4 $cnt_sel})
+         (5 {set $cnt_slot5 $cnt_sel})
+         (6 {set $cnt_star $cnt_sel})
       }
       {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
-   overshell_cnt_slot_1_screen
+   overshell_cnt_slot_screen
    (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_slot_1_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_1_panel)}
-;
-;
-{new
-   MultiSelectListPanel
-   overshell_cnt_slot_2_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_2}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_pad_l2
-            {set $cnt_slot2 kPad_L2}
-         )
-         (os_pad_l1
-            {set $cnt_slot2 kPad_L1}
-         )
-         (os_pad_r1
-            {set $cnt_slot2 kPad_R1}
-         )
-         (os_pad_r2
-            {set $cnt_slot2 kPad_R2}
-         )
-         (os_pad_x
-            {set $cnt_slot2 kPad_X}
-         )
-         (os_pad_l2
-            {set $cnt_slot2 kPad_L2}
-         )
-         (os_pad_circle
-            {set $cnt_slot2 kPad_Circle}
-         )
-         (os_pad_square
-            {set $cnt_slot2 kPad_Square}
-         )
-         (os_pad_tri
-            {set $cnt_slot2 kPad_Tri}
-         )
-         (os_pad_dup
-            {set $cnt_slot2 kPad_DUp}
-         )
-         (os_pad_ddown
-            {set $cnt_slot2 kPad_DDown}
-         )
-         (os_pad_dleft
-            {set $cnt_slot2 kPad_DLeft}
-         )
-         (os_pad_dright
-            {set $cnt_slot2 kPad_DRight}
-         )
-         (os_pad_l3
-            {set $cnt_slot2 kPad_L3}
-         )
-         (os_pad_r3
-            {set $cnt_slot2 kPad_R3}
-         )
-         (os_pad_select
-            {set $cnt_slot2 kPad_Select}
-         )
-      }
-      {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_cnt_slot_2_screen
-   (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_slot_2_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_2_panel)}
-;
-;
-{new
-   MultiSelectListPanel
-   overshell_cnt_slot_3_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_3}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_pad_l2
-            {set $cnt_slot3 kPad_L2}
-         )
-         (os_pad_l1
-            {set $cnt_slot3 kPad_L1}
-         )
-         (os_pad_r1
-            {set $cnt_slot3 kPad_R1}
-         )
-         (os_pad_r2
-            {set $cnt_slot3 kPad_R2}
-         )
-         (os_pad_x
-            {set $cnt_slot3 kPad_X}
-         )
-         (os_pad_l2
-            {set $cnt_slot3 kPad_L2}
-         )
-         (os_pad_circle
-            {set $cnt_slot3 kPad_Circle}
-         )
-         (os_pad_square
-            {set $cnt_slot3 kPad_Square}
-         )
-         (os_pad_tri
-            {set $cnt_slot3 kPad_Tri}
-         )
-         (os_pad_dup
-            {set $cnt_slot3 kPad_DUp}
-         )
-         (os_pad_ddown
-            {set $cnt_slot3 kPad_DDown}
-         )
-         (os_pad_dleft
-            {set $cnt_slot3 kPad_DLeft}
-         )
-         (os_pad_dright
-            {set $cnt_slot3 kPad_DRight}
-         )
-         (os_pad_l3
-            {set $cnt_slot3 kPad_L3}
-         )
-         (os_pad_r3
-            {set $cnt_slot3 kPad_R3}
-         )
-         (os_pad_select
-            {set $cnt_slot3 kPad_Select}
-         )
-      }
-      {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_cnt_slot_3_screen
-   (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_slot_3_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_3_panel)}
-;
-;
-{new
-   MultiSelectListPanel
-   overshell_cnt_slot_4_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_4}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_pad_l2
-            {set $cnt_slot4 kPad_L2}
-         )
-         (os_pad_l1
-            {set $cnt_slot4 kPad_L1}
-         )
-         (os_pad_r1
-            {set $cnt_slot4 kPad_R1}
-         )
-         (os_pad_r2
-            {set $cnt_slot4 kPad_R2}
-         )
-         (os_pad_x
-            {set $cnt_slot4 kPad_X}
-         )
-         (os_pad_l2
-            {set $cnt_slot4 kPad_L2}
-         )
-         (os_pad_circle
-            {set $cnt_slot4 kPad_Circle}
-         )
-         (os_pad_square
-            {set $cnt_slot4 kPad_Square}
-         )
-         (os_pad_tri
-            {set $cnt_slot4 kPad_Tri}
-         )
-         (os_pad_dup
-            {set $cnt_slot4 kPad_DUp}
-         )
-         (os_pad_ddown
-            {set $cnt_slot4 kPad_DDown}
-         )
-         (os_pad_dleft
-            {set $cnt_slot4 kPad_DLeft}
-         )
-         (os_pad_dright
-            {set $cnt_slot4 kPad_DRight}
-         )
-         (os_pad_l3
-            {set $cnt_slot4 kPad_L3}
-         )
-         (os_pad_r3
-            {set $cnt_slot4 kPad_R3}
-         )
-         (os_pad_select
-            {set $cnt_slot4 kPad_Select}
-         )
-      }
-      {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_cnt_slot_4_screen
-   (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_slot_4_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_4_panel)}
-;
-;
-{new
-   MultiSelectListPanel
-   overshell_cnt_slot_5_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_gtr_gems_5}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_pad_l2
-            {set $cnt_slot5 kPad_L2}
-         )
-         (os_pad_l1
-            {set $cnt_slot5 kPad_L1}
-         )
-         (os_pad_r1
-            {set $cnt_slot5 kPad_R1}
-         )
-         (os_pad_r2
-            {set $cnt_slot5 kPad_R2}
-         )
-         (os_pad_x
-            {set $cnt_slot5 kPad_X}
-         )
-         (os_pad_l2
-            {set $cnt_slot5 kPad_L2}
-         )
-         (os_pad_circle
-            {set $cnt_slot5 kPad_Circle}
-         )
-         (os_pad_square
-            {set $cnt_slot5 kPad_Square}
-         )
-         (os_pad_tri
-            {set $cnt_slot5 kPad_Tri}
-         )
-         (os_pad_dup
-            {set $cnt_slot5 kPad_DUp}
-         )
-         (os_pad_ddown
-            {set $cnt_slot5 kPad_DDown}
-         )
-         (os_pad_dleft
-            {set $cnt_slot5 kPad_DLeft}
-         )
-         (os_pad_dright
-            {set $cnt_slot5 kPad_DRight}
-         )
-         (os_pad_l3
-            {set $cnt_slot5 kPad_L3}
-         )
-         (os_pad_r3
-            {set $cnt_slot5 kPad_R3}
-         )
-         (os_pad_select
-            {set $cnt_slot5 kPad_Select}
-         )
-      }
-      {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_cnt_slot_5_screen
-   (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_slot_5_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_5_panel)}
-;
-;
-{new
-   MultiSelectListPanel
-   overshell_cnt_star_panel
-   OVERSHELL_LIST_FILE
-   (enter
-      {$this lst_reset}
-      {title.lbl set text_token {localize os_spotlight}})
-   (exit)
-   (SELECT_MSG
-      {switch {$component selected_sym}
-         (os_pad_l2
-            {set $cnt_star kPad_L2}
-         )
-         (os_pad_l1
-            {set $cnt_star kPad_L1}
-         )
-         (os_pad_r1
-            {set $cnt_star kPad_R1}
-         )
-         (os_pad_r2
-            {set $cnt_star kPad_R2}
-         )
-         (os_pad_x
-            {set $cnt_star kPad_X}
-         )
-         (os_pad_l2
-            {set $cnt_star kPad_L2}
-         )
-         (os_pad_circle
-            {set $cnt_star kPad_Circle}
-         )
-         (os_pad_square
-            {set $cnt_star kPad_Square}
-         )
-         (os_pad_tri
-            {set $cnt_star kPad_Tri}
-         )
-         (os_pad_dup
-            {set $cnt_star kPad_DUp}
-         )
-         (os_pad_ddown
-            {set $cnt_star kPad_DDown}
-         )
-         (os_pad_dleft
-            {set $cnt_star kPad_DLeft}
-         )
-         (os_pad_dright
-            {set $cnt_star kPad_DRight}
-         )
-         (os_pad_l3
-            {set $cnt_star kPad_L3}
-         )
-         (os_pad_r3
-            {set $cnt_star kPad_R3}
-         )
-         (os_pad_select
-            {set $cnt_star kPad_Select}
-         )
-      }
-      {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA})
-   (SCROLL_MSG)}
-{new
-   UIScreen
-   overshell_cnt_star_screen
-   (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_star_panel practice_lower3rd_panel)
-   (focus overshell_cnt_star_panel)}
+   (panels overshell_cnt_slot_panel practice_lower3rd_panel)
+   (focus overshell_cnt_slot_panel)}
 ;
 ;
 {new
@@ -2448,9 +1262,8 @@
    overshell_force_inst_detec_panel
    OVERSHELL_LIST_FILE
    (enter
-      {$this lst_reset}
+      {sel_section.lst set_data (off guitar #ifdef HX_PS3 gh_guitar #endif drum)}
       {title.lbl set text_token {localize os_force_inst_detec}})
-   (exit)
    (SELECT_MSG
       {switch {$component selected_sym}
          (off
@@ -2471,10 +1284,7 @@
          )
       }
       {pop_and_goto_screen overshell_cnt_screen}
-   )
-   (lst_reset
-      {sel_section.lst set_data (off guitar #ifdef HX_PS3 gh_guitar #endif drum)})
-   (SCROLL_MSG)}
+   )}
 {new
    UIScreen
    overshell_force_inst_detec_screen
