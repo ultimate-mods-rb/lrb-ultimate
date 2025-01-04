@@ -96,3 +96,61 @@
       }
    }
 }
+{func
+   ulti_cycle_free_camera
+   {if $world
+      {do
+         ($free_cam_state
+            {$world get_free_cam_state}
+         )
+         {switch
+            $free_cam_state
+            (0
+               {$world toggle_free_cam $cheat_controller}
+               {cheat_display
+                  show
+                  "Free camera: world"}
+               {$world next_free_cam_state}
+            )
+            (1
+               {$world
+                  set_free_cam_parent
+                  {find_obj $world player_vocal Head.mesh}} ; normally goes off player_vocals0 bone_head.mesh which neither exist in this game so we fix :)
+               {$world set_free_cam_parent_dof 0 0 1}
+               {$world set_free_cam_pos 0 -70 0}
+               {$world set_free_cam_rot 0 0 0}
+               {cheat_display
+                  show
+                  "Free camera: vocalist"}
+               {$world next_free_cam_state}
+            )
+            (2
+               {$world
+                  set_free_cam_parent
+                  {find_obj $world player_vocal Head.mesh}}
+               {$world set_free_cam_parent_dof 1 0 1} ; normally all are 1 but that caused it to go portrait mode
+               {$world set_free_cam_pos 0 -70 0}
+               {$world set_free_cam_rot 0 0 0}
+               {cheat_display
+                  show
+                  "Free camera: vocalist fixed"}
+               {$world next_free_cam_state}
+            )
+            (3
+               {$world toggle_free_cam $cheat_controller}
+               {cheat_display
+                  show
+                  "Free camera: frozen"}
+               {$world next_free_cam_state}
+            )
+            (4
+               {$world toggle_free_cam $cheat_controller}
+               {cheat_display
+                  show
+                  "Free camera: off"}
+               {$world next_free_cam_state}
+            )
+         }
+      }
+   }
+}

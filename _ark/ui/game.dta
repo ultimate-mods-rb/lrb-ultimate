@@ -738,7 +738,7 @@
          {switch
             $raw_button
             (kPad_Square
-               {cycle_free_camera})
+               {ulti_cycle_free_camera})
             (kPad_Tri
                {toggle_time_paused})}}))
 {new
