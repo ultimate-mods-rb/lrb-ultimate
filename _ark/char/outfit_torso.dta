@@ -950,4 +950,12 @@
       (wizardchest
          (ui_name wizardchest)
          (genre lrb_shop_other)
-         (unlocked TRUE))))
+         (unlocked TRUE))
+      ;custom
+      (knuckles_shirt
+         (ui_name knuckles_shirt)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+   )
+)
