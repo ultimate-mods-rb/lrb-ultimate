@@ -1,153 +1,292 @@
-{func
-   set_cnt_type
+{func set_cnt_type
    ($cnt $instr)
-   {set_elem {find $syscfg joypad instrument_mapping $cnt} 1 $instr}
+   {set_elem
+      {find $syscfg joypad instrument_mapping $cnt}
+      1
+      $instr
+   }
 }
-{func
-   set_cnt_mapping
+{func set_cnt_mapping
    #ifdef HX_WII
-   {set_elem {find $syscfg beatmatcher controller wii_remote slots} 1 $cnt_slot1}
-   {set_elem {find $syscfg beatmatcher controller wii_remote slots} 3 $cnt_slot2}
-   {set_elem {find $syscfg beatmatcher controller wii_remote slots} 5 $cnt_slot3}
-   {set_elem {find $syscfg beatmatcher controller wii_remote slots} 7 $cnt_slot4}
-   {set_elem {find $syscfg beatmatcher controller wii_remote slots} 9 $cnt_slot5}
-   {set_elem {find $syscfg beatmatcher controller wii_remote force_mercury} 1 $cnt_star}
+   {set_elem
+      {find $syscfg beatmatcher controller wii_remote slots}
+      1
+      $cnt_slot1
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller wii_remote slots}
+      3
+      $cnt_slot2
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller wii_remote slots}
+      5
+      $cnt_slot3
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller wii_remote slots}
+      7
+      $cnt_slot4
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller wii_remote slots}
+      9
+      $cnt_slot5
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller wii_remote force_mercury}
+      1
+      $cnt_star
+   }
    #else
-   {set_elem {find $syscfg beatmatcher controller joypad slots} 1 $cnt_slot1}
-   {set_elem {find $syscfg beatmatcher controller joypad slots} 3 $cnt_slot2}
-   {set_elem {find $syscfg beatmatcher controller joypad slots} 5 $cnt_slot3}
-   {set_elem {find $syscfg beatmatcher controller joypad slots} 7 $cnt_slot4}
-   {set_elem {find $syscfg beatmatcher controller joypad slots} 9 $cnt_slot5}
-   {set_elem {find $syscfg beatmatcher controller joypad force_mercury} 1 $cnt_star}
+   {set_elem
+      {find $syscfg beatmatcher controller joypad slots}
+      1
+      $cnt_slot1
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller joypad slots}
+      3
+      $cnt_slot2
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller joypad slots}
+      5
+      $cnt_slot3
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller joypad slots}
+      7
+      $cnt_slot4
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller joypad slots}
+      9
+      $cnt_slot5
+   }
+   {set_elem
+      {find $syscfg beatmatcher controller joypad force_mercury}
+      1
+      $cnt_star
+   }
    #endif
 }
-{func
-   enable_second_kick_mapping
+{func enable_second_kick_mapping
    #ifdef HX_XBOX
-   {insert_elems {find $syscfg beatmatcher controller hx_drums_xbox slots} 1 (kPad_R1 0)}
+   {insert_elems
+      {find $syscfg beatmatcher controller hx_drums_xbox slots}
+      1
+      (kPad_R1 0)
+   }
    #endif
    #ifdef HX_PS3
-   {insert_elems {find $syscfg beatmatcher controller hx_drums_ps3 slots} 1 (kPad_R1 0)}
+   {insert_elems
+      {find $syscfg beatmatcher controller hx_drums_ps3 slots}
+      1
+      (kPad_R1 0)
+   }
    #endif
    #ifdef HX_WII
-   {insert_elems {find $syscfg beatmatcher controller wii_drums slots} 1 (kPad_R1 0)}
+   {insert_elems
+      {find $syscfg beatmatcher controller wii_drums slots}
+      1
+      (kPad_R1 0)
+   }
    #endif
 }
-{func
-   disable_second_kick_mapping
+{func disable_second_kick_mapping
    #ifdef HX_XBOX
-   {set_elem {find $syscfg beatmatcher controller hx_drums_xbox slots} 1 69}
+   {set_elem
+      {find $syscfg beatmatcher controller hx_drums_xbox slots}
+      1
+      69
+   }
    #endif
    #ifdef HX_PS3
-   {set_elem {find $syscfg beatmatcher controller hx_drums_ps3 slots} 1 69}
+   {set_elem
+      {find $syscfg beatmatcher controller hx_drums_ps3 slots}
+      1
+      69
+   }
    #endif
    #ifdef HX_WII
-   {set_elem {find $syscfg beatmatcher controller wii_drums slots} 1 69}
+   {set_elem
+      {find $syscfg beatmatcher controller wii_drums slots}
+      1
+      69
+   }
    #endif
 }
-{func
-   reset_fc_vars
-   {set $guitar_milosong FALSE} {set $bass_milosong FALSE} {set $drum_milosong FALSE} {set $h2h_0_milosong FALSE} {set $h2h_1_milosong FALSE}
-   {set $guitar_firstnote FALSE} {set $bass_firstnote FALSE} {set $drum_firstnote FALSE} {set $h2h_0_firstnote FALSE} {set $h2h_1_firstnote FALSE}
-   {set $guitar_groove_active FALSE} {set $drum_groove_active FALSE} {set $h2h_0_groove_active FALSE} {set $h2h_1_groove_active FALSE}
+{func reset_fc_vars
+   {set $guitar_milosong FALSE}
+   {set $bass_milosong FALSE}
+   {set $drum_milosong FALSE}
+   {set $h2h_0_milosong FALSE}
+   {set $h2h_1_milosong FALSE}
+   {set $guitar_firstnote FALSE}
+   {set $bass_firstnote FALSE}
+   {set $drum_firstnote FALSE}
+   {set $h2h_0_firstnote FALSE}
+   {set $h2h_1_firstnote FALSE}
+   {set $guitar_groove_active FALSE}
+   {set $drum_groove_active FALSE}
+   {set $h2h_0_groove_active FALSE}
+   {set $h2h_1_groove_active FALSE}
 }
-{func
-   force_inst_detection
+{func force_inst_detection
    {set $padtar FALSE}
    {set $paddrum FALSE}
    {if_else $force_inst_detec
       {switch $force_inst_detec
          (guitar
-            {set_elem {find $syscfg joypad instrument_mapping analog} 1 kControllerGuitar}
+            {set_elem
+               {find $syscfg joypad instrument_mapping analog}
+               1
+               kControllerGuitar
+            }
             #ifdef HX_PS3
-            {set_elem {find $syscfg joypad instrument_mapping dualshock} 1 kControllerGuitar}
-            {set_elem {find $syscfg joypad controller_mapping dualshock} 1 hx_guitar_ps3}
-            {set_elem {find $syscfg joypad controller_mapping analog} 1 hx_guitar_ps3}
+            {set_elem
+               {find $syscfg joypad instrument_mapping dualshock}
+               1
+               kControllerGuitar
+            }
+            {set_elem
+               {find $syscfg joypad controller_mapping dualshock}
+               1
+               hx_guitar_ps3
+            }
+            {set_elem
+               {find $syscfg joypad controller_mapping analog}
+               1
+               hx_guitar_ps3
+            }
             #else
-            {set_elem {find $syscfg joypad controller_mapping analog} 1 ro_guitar_xbox}
+            {set_elem
+               {find $syscfg joypad controller_mapping analog}
+               1
+               ro_guitar_xbox
+            }
             #endif
          )
          #ifdef HX_PS3
          (gh_guitar
-            {set_elem {find $syscfg joypad instrument_mapping dualshock} 1 kControllerGuitar}
-            {set_elem {find $syscfg joypad controller_mapping dualshock} 1 ro_guitar_ps3}
-            {set_elem {find $syscfg joypad instrument_mapping analog} 1 kControllerGuitar}
-            {set_elem {find $syscfg joypad controller_mapping analog} 1 ro_guitar_ps3}
+            {set_elem
+               {find $syscfg joypad instrument_mapping dualshock}
+               1
+               kControllerGuitar
+            }
+            {set_elem
+               {find $syscfg joypad controller_mapping dualshock}
+               1
+               ro_guitar_ps3
+            }
+            {set_elem
+               {find $syscfg joypad instrument_mapping analog}
+               1
+               kControllerGuitar
+            }
+            {set_elem
+               {find $syscfg joypad controller_mapping analog}
+               1
+               ro_guitar_ps3
+            }
          )
          #endif
          (drum
-            {set_elem {find $syscfg joypad instrument_mapping analog} 1 kControllerDrum}
+            {set_elem
+               {find $syscfg joypad instrument_mapping analog}
+               1
+               kControllerDrum
+            }
             #ifdef HX_PS3
-            {set_elem {find $syscfg joypad instrument_mapping dualshock} 1 kControllerDrum}
-            {set_elem {find $syscfg joypad controller_mapping dualshock} 1 hx_drums_ps3}
-            {set_elem {find $syscfg joypad controller_mapping analog} 1 hx_drums_ps3}
+            {set_elem
+               {find $syscfg joypad instrument_mapping dualshock}
+               1
+               kControllerDrum
+            }
+            {set_elem
+               {find $syscfg joypad controller_mapping dualshock}
+               1
+               hx_drums_ps3
+            }
+            {set_elem
+               {find $syscfg joypad controller_mapping analog}
+               1
+               hx_drums_ps3
+            }
             #else
-            {set_elem {find $syscfg joypad controller_mapping analog} 1 hx_drums_xbox}
+            {set_elem
+               {find $syscfg joypad controller_mapping analog}
+               1
+               hx_drums_xbox
+            }
             #endif
          )
       }
       {do
          #ifdef HX_PS3
-         {set_elem {find $syscfg joypad instrument_mapping dualshock} 1 kControllerVocals}
-         {set_elem {find $syscfg joypad controller_mapping dualshock} 1 joypad}
+         {set_elem
+            {find $syscfg joypad instrument_mapping dualshock}
+            1
+            kControllerVocals
+         }
+         {set_elem
+            {find $syscfg joypad controller_mapping dualshock}
+            1
+            joypad
+         }
          #endif
-         {set_elem {find $syscfg joypad instrument_mapping analog} 1 kControllerVocals}
-         {set_elem {find $syscfg joypad controller_mapping analog} 1 joypad}
+         {set_elem
+            {find $syscfg joypad instrument_mapping analog}
+            1
+            kControllerVocals
+         }
+         {set_elem
+            {find $syscfg joypad controller_mapping analog}
+            1
+            joypad
+         }
       }
    }
 }
-{func
-   ulti_cycle_free_camera
+{func ulti_cycle_free_camera
    {if $world
       {do
-         ($free_cam_state
-            {$world get_free_cam_state}
-         )
-         {switch
-            $free_cam_state
+         ($free_cam_state {$world get_free_cam_state})
+         {switch $free_cam_state
             (0
                {$world toggle_free_cam $cheat_controller}
-               {cheat_display
-                  show
-                  "Free camera: world"}
+               {cheat_display show "Free camera: world"}
                {$world next_free_cam_state}
             )
             (1
-               {$world
-                  set_free_cam_parent
-                  {find_obj $world player_vocal Head.mesh}} ; normally goes off player_vocals0 bone_head.mesh which neither exist in this game so we fix :)
+               {$world set_free_cam_parent
+                  {find_obj $world player_vocal Head.mesh}
+               } ; normally goes off player_vocals0 bone_head.mesh which neither exist in this game so we fix :)
                {$world set_free_cam_parent_dof 0 0 1}
                {$world set_free_cam_pos 0 -70 0}
                {$world set_free_cam_rot 0 0 0}
-               {cheat_display
-                  show
-                  "Free camera: vocalist"}
+               {cheat_display show "Free camera: vocalist"}
                {$world next_free_cam_state}
             )
             (2
-               {$world
-                  set_free_cam_parent
-                  {find_obj $world player_vocal Head.mesh}}
+               {$world set_free_cam_parent
+                  {find_obj $world player_vocal Head.mesh}
+               }
                {$world set_free_cam_parent_dof 1 0 1} ; normally all are 1 but that caused it to go portrait mode
                {$world set_free_cam_pos 0 -70 0}
                {$world set_free_cam_rot 0 0 0}
-               {cheat_display
-                  show
-                  "Free camera: vocalist fixed"}
+               {cheat_display show "Free camera: vocalist fixed"}
                {$world next_free_cam_state}
             )
             (3
                {$world toggle_free_cam $cheat_controller}
-               {cheat_display
-                  show
-                  "Free camera: frozen"}
+               {cheat_display show "Free camera: frozen"}
                {$world next_free_cam_state}
             )
             (4
                {$world toggle_free_cam $cheat_controller}
-               {cheat_display
-                  show
-                  "Free camera: off"}
+               {cheat_display show "Free camera: off"}
                {$world next_free_cam_state}
             )
          }

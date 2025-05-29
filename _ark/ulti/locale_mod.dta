@@ -1,443 +1,225 @@
-(speed_msg
-   "SONG SPEED: %d%%")
-(trackspeed_msg
-   "NOTE SPEED: %d%%")
-(hwlength_msg
-   "HW LENGTH: %d%%")
-(bonus
-   "BONUS")
-(main_store
-   "BONUS")
-(musicstore
-   "Music Store")
-(theatre
-   "Theatre Mode")
-(cutsceneviewer
-   "Cutscene Viewer")
-(framerate
-   "frame_rate_screen")
-(the10s
-   "The 10s")
-(the20s
-   "The 20s")
-(the50s
-   "The 50s")
-(os_ultisettings
-   "Settings")
-(os_mod
-   "Gameplay Modifiers")
-(os_vis
-   "Visual Modifiers")
-(os_gfx
-   "Graphics Modifiers")
-(os_spd
-   "Speed Settings")
-(os_fxdof1
-   "Depth of Field: ON")
-(os_fxdof0
-   "Depth of Field: OFF")
-(os_scrnoise1
-   "Film Grain: ON")
-(os_scrnoise0
-   "Film Grain: OFF")
-(os_scrbloom1
-   "Bloom: ON")
-(os_scrbloom0
-   "Bloom: OFF")
-(os_mbblend1
-   "Motion Blur: ON")
-(os_mbblend0
-   "Motion Blur: OFF")
-(os_camerashake1
-   "Camera Shake: ON")
-(os_camerashake0
-   "Camera Shake: OFF")
-(os_misssounds1
-   "Miss Sounds: ON")
-(os_misssounds0
-   "Miss Sounds: OFF")
-(os_trkmuting1
-   "Track Muting: ON")
-(os_trkmuting0
-   "Track Muting: OFF")
-(os_venuefps
-   "Venue FPS")
-(os_vsync
-   "Vsync Rate")
-(os_blackbg1
-   "Disable Venues: ON")
-(os_blackbg0
-   "Disable Venues: OFF")
-(os_songtitle1
-   "Song Title Always: ON")
-(os_songtitle0
-   "Song Title Always: OFF")
-(os_gems_colors
-   "Gem Colors")
-(os_smashers_colors
-   "Smashers Colors")
-(os_gtr_gems_color
-   "Guitar Gems Color")
-(os_drm_gems_color
-   "Drum Gems Color")
-(os_gtr_sus_color
-   "Guitar Sustains Color")
-(os_gtr_smasher_color
-   "Guitar Smasher Color")
-(os_drm_smasher_color
-   "Drum Smasher Color")
-(os_reset
-   "Reset")
-(os_green_gem
-   "Green")
-(os_red_gem
-   "Red")
-(os_yellow_gem
-   "Yellow")
-(os_blue_gem
-   "Blue")
-(os_orange_gem
-   "Orange")
-(os_overdrive_gem
-   "Overdrive")
-(os_kick_gem
-   "Kick")
-(os_slot_1
-   "Slot 1")
-(os_slot_2
-   "Slot 2")
-(os_slot_3
-   "Slot 3")
-(os_slot_4
-   "Slot 4")
-(os_slot_5
-   "Slot 5")
-(os_slot_6
-   "Overdrive")
-(os_fcring1
-   "Show FC Ring: ON")
-(os_fcring0
-   "Show FC Ring: OFF")
-(os_cnt
-   "Controller Settings")
-(os_remap_cnt
-   "Remap Pad Controls")
+(speed_msg "SONG SPEED: %d%%")
+(trackspeed_msg "NOTE SPEED: %d%%")
+(hwlength_msg "HW LENGTH: %d%%")
+(bonus "BONUS")
+(main_store "BONUS")
+(musicstore "Music Store")
+(theatre "Theatre Mode")
+(cutsceneviewer "Cutscene Viewer")
+(framerate "frame_rate_screen")
+(the10s "The 10s")
+(the20s "The 20s")
+(the50s "The 50s")
+(os_ultisettings "Settings")
+(os_mod "Gameplay Modifiers")
+(os_vis "Visual Modifiers")
+(os_gfx "Graphics Modifiers")
+(os_spd "Speed Settings")
+(os_fxdof1 "Depth of Field: ON")
+(os_fxdof0 "Depth of Field: OFF")
+(os_scrnoise1 "Film Grain: ON")
+(os_scrnoise0 "Film Grain: OFF")
+(os_scrbloom1 "Bloom: ON")
+(os_scrbloom0 "Bloom: OFF")
+(os_mbblend1 "Motion Blur: ON")
+(os_mbblend0 "Motion Blur: OFF")
+(os_camerashake1 "Camera Shake: ON")
+(os_camerashake0 "Camera Shake: OFF")
+(os_misssounds1 "Miss Sounds: ON")
+(os_misssounds0 "Miss Sounds: OFF")
+(os_trkmuting1 "Track Muting: ON")
+(os_trkmuting0 "Track Muting: OFF")
+(os_venuefps "Venue FPS")
+(os_vsync "Vsync Rate")
+(os_blackbg1 "Disable Venues: ON")
+(os_blackbg0 "Disable Venues: OFF")
+(os_songtitle1 "Song Title Always: ON")
+(os_songtitle0 "Song Title Always: OFF")
+(os_gems_colors "Gem Colors")
+(os_smashers_colors "Smashers Colors")
+(os_gtr_gems_color "Guitar Gems Color")
+(os_drm_gems_color "Drum Gems Color")
+(os_gtr_sus_color "Guitar Sustains Color")
+(os_gtr_smasher_color "Guitar Smasher Color")
+(os_drm_smasher_color "Drum Smasher Color")
+(os_reset "Reset")
+(os_green_gem "Green")
+(os_red_gem "Red")
+(os_yellow_gem "Yellow")
+(os_blue_gem "Blue")
+(os_orange_gem "Orange")
+(os_overdrive_gem "Overdrive")
+(os_kick_gem "Kick")
+(os_slot_1 "Slot 1")
+(os_slot_2 "Slot 2")
+(os_slot_3 "Slot 3")
+(os_slot_4 "Slot 4")
+(os_slot_5 "Slot 5")
+(os_slot_6 "Overdrive")
+(os_fcring1 "Show FC Ring: ON")
+(os_fcring0 "Show FC Ring: OFF")
+(os_cnt "Controller Settings")
+(os_remap_cnt "Remap Pad Controls")
 ;buttons
 #ifdef HX_WII
-(os_pad_x
-   "A")
-(os_pad_circle
-   "B")
-(os_pad_square
-   "1")
-(os_pad_tri
-   "2")
-(os_pad_select
-   "-")
+(os_pad_x "A")
+(os_pad_circle "B")
+(os_pad_square "1")
+(os_pad_tri "2")
+(os_pad_select "-")
 #endif
 #ifdef HX_PS3
-(os_pad_x
-   "Cross")
-(os_pad_circle
-   "Circle")
-(os_pad_square
-   "Square")
-(os_pad_tri
-   "Triangle")
-(os_pad_l2
-   "L2")
-(os_pad_l1
-   "L1")
-(os_pad_r1
-   "R1")
-(os_pad_r2
-   "R2")
-(os_pad_l3
-   "L3")
-(os_pad_r3
-   "R3")
-(os_pad_select
-   "Select")
+(os_pad_x "Cross")
+(os_pad_circle "Circle")
+(os_pad_square "Square")
+(os_pad_tri "Triangle")
+(os_pad_l2 "L2")
+(os_pad_l1 "L1")
+(os_pad_r1 "R1")
+(os_pad_r2 "R2")
+(os_pad_l3 "L3")
+(os_pad_r3 "R3")
+(os_pad_select "Select")
 #endif
 #ifdef HX_XBOX
-(os_pad_x
-   "A")
-(os_pad_circle
-   "B")
-(os_pad_square
-   "X")
-(os_pad_tri
-   "Y")
-(os_pad_l2
-   "RT")
-(os_pad_l1
-   "LB")
-(os_pad_r1
-   "RB")
-(os_pad_r2
-   "RT")
-(os_pad_l3
-   "LS")
-(os_pad_r3
-   "RS")
-(os_pad_select
-   "Back")
+(os_pad_x "A")
+(os_pad_circle "B")
+(os_pad_square "X")
+(os_pad_tri "Y")
+(os_pad_l2 "RT")
+(os_pad_l1 "LB")
+(os_pad_r1 "RB")
+(os_pad_r2 "RT")
+(os_pad_l3 "LS")
+(os_pad_r3 "RS")
+(os_pad_select "Back")
 #endif
-(os_pad_dup
-   "Up")
-(os_pad_ddown
-   "Down")
-(os_pad_dleft
-   "Left")
-(os_pad_dright
-   "Right")
-(os_force_inst_detec
-   "Force Instrument Detection")
-(gh_guitar
-   "GH Guitar")
-(os_autokick1
-   "Auto Kick: ON")
-(os_autokick0
-   "Auto Kick: OFF")
-(os_breakneck1
-   "Breakneck Speed: ON")
-(os_breakneck0
-   "Breakneck Speed: OFF")
-(os_perfmode1
-   "Performance Mode: ON")
-(os_perfmode0
-   "Performance Mode: OFF")
-(os_whammypb1
-   "Whammy Pitch Bending: ON")
-(os_whammypb0
-   "Whammy Pitch Bending: OFF")
-(os_legacybass1
-   "Legacy Bass Streak: ON")
-(os_legacybass0
-   "Legacy Bass Streak: OFF")
-(os_padtar1
-   "Pad is Guitar: ON")
-(os_padtar0
-   "Pad is Guitar: OFF")
-(os_paddrum1
-   "Pad is Drums: ON")
-(os_paddrum0
-   "Pad is Drums: OFF")
-(os_syncdifspeeds1
-   "Sync Dificulty Speeds: ON")
-(os_syncdifspeeds0
-   "Sync Dificulty Speeds: OFF")
-(os_colorshuffle1
-   "Note Color Shuffle: ON")
-(os_colorshuffle0
-   "Note Color Shuffle: OFF")
-(os_secondkick1
-   "Second Kick Mapping: ON")
-(os_secondkick0
-   "Second Kick Mapping: OFF")
-(os_trk
-   "Appearance")
-(os_spotlight
-   "Overdrive")
-(ugc_section_5_0
-   "0% - 5%")
-(ugc_section_5_5
-   "5% - 10%")
-(ugc_section_5_10
-   "10% - 15%")
-(ugc_section_5_15
-   "15% - 20%")
-(ugc_section_5_20
-   "20% - 25%")
-(ugc_section_5_25
-   "25% - 30%")
-(ugc_section_5_30
-   "30% - 35%")
-(ugc_section_5_35
-   "35% - 40%")
-(ugc_section_5_40
-   "40% - 45%")
-(ugc_section_5_45
-   "45% - 50%")
-(ugc_section_5_50
-   "50% - 55%")
-(ugc_section_5_55
-   "55% - 60%")
-(ugc_section_5_60
-   "60% - 65%")
-(ugc_section_5_65
-   "65% - 70%")
-(ugc_section_5_70
-   "70% - 75%")
-(ugc_section_5_75
-   "75% - 80%")
-(ugc_section_5_80
-   "80% - 85%")
-(ugc_section_5_85
-   "85% - 90%")
-(ugc_section_5_90
-   "90% - 95%")
-(ugc_section_5_95
-   "95% - 100%")
-(ugc_section_10_0
-   "0% - 10%")
-(ugc_section_10_10
-   "10% - 20%")
-(ugc_section_10_20
-   "20% - 30%")
-(ugc_section_10_30
-   "30% - 40%")
-(ugc_section_10_40
-   "40% - 50%")
-(ugc_section_10_50
-   "50% - 60%")
-(ugc_section_10_60
-   "60% - 70%")
-(ugc_section_10_70
-   "70% - 80%")
-(ugc_section_10_80
-   "80% - 90%")
-(ugc_section_10_90
-   "90% - 100%")
-(ugc_section_20_0
-   "0% - 20%")
-(ugc_section_20_20
-   "20% - 40%")
-(ugc_section_20_40
-   "40% - 60%")
-(ugc_section_20_60
-   "60% - 80%")
-(ugc_section_20_80
-   "80% - 100%")
-(funk
-   "Funk")
-(dlc_elf
-   "Elf")
-(dlc_santa
-   "Santa")
-(dlc_snowman
-   "Snowman")
-(dlc_riendeer
-   "Riendeer")
-(elf_head
-   "Elf Head")
-(santa_head
-   "Santa Head")
-(snowman_head
-   "Snowman Head")
-(riendeer_head
-   "Riendeer Head")
-(elf_hat
-   "Elf Hat")
-(santa_hat
-   "Santa Hat")
-(snowman_hat
-   "Snowman Hat")
-(riendeer_hat
-   "Riendeer Hat")
-(elf_chest
-   "Elf Chest")
-(santa_chest
-   "Santa Chest")
-(snowman_chest
-   "Snowman Chest")
-(riendeer_chest
-   "Riendeer Chest")
-(elf_legs
-   "Elf Legs")
-(santa_legs
-   "Santa Legs")
-(snowman_legs
-   "Snowman Legs")
-(reindeer_legs
-   "Reindeer Legs")
-(ven_demolition
-   "demolition")
-(ven_ghostbusters
-   "ghostbusters")
-(ven_octopusattack
-   "octopusattack")
-(ven_farmrain
-   "farmrain")
-(ven_icebreaker
-   "icebreaker")
-(ven_dinochase
-   "dinochase")
-(ven_skeleton_battle
-   "skeleton battle")
-(ven_ufobreakdown
-   "ufobreakdown")
-(ven_asteroid
-   "asteroid")
-(ven_ovalrace
-   "ovalrace")
-(ven_blank
-   "blank")
-(ven_blank_arena
-   "blank arena")
-(ven_denpracticestage
-   "den practice stage")
-(ven_robotattack
-   "robot attack")
-(ven_skatepark
-   "skatepark")
-(ven_skatepark_early
-   "skatepark (early)")
-(ven_alienplanet_old
-   "alienplanet (old)")
-(ven_barnyard_continued
-   "barnyard (continued)")
-(ven_barnyard_revised
-   "barnyard (revised)")
-(ven_barnyard_steve
-   "barnyard (steve)")
-(ven_barnyard_blue_sky
-   "barnyard (blue sky)")
-(ven_barnyard_proj_light
-   "barnyard (proj light)")
-(ven_barnyard_red_sky
-   "barnyard (red sky)")
-(ven_bonecave_old
-   "barnyard (old)")
-(ven_carsmash_1
-   "carsmash 1")
-(ven_carsmash_copy
-   "carsmash (copy)")
-(ven_carsmash_wnrb
-   "carsmash (wnbr)")
-(ven_carsmash_wnrb_david
-   "carsmash (wnbr david)")
-(ven_carsmash_wnrb_david_1
-   "carsmash (wnbr david 1)")
-(ven_castlegardens_wiicrowd
-   "castlegardens (wiicrowd)")
-(ven_demolition_luke
-   "demolition (luke)")
-(ven_demolition_redux
-   "demolition (redux)")
-(ven_demolition_wc
-   "demolition (working copy)")
-(ven_demolition_wiz
-   "demolition (wiz)")
-(ven_farmrain_barnyard_g
-   "farmrain (barnyard grouped)")
-(ven_farmrain_temp
-   "farmrain (temp)")
-(ven_farmrain_tm
-   "farmrain (tm)")
-(ven_farmrain_tsc
-   "farmrain (total scene combo)")
-(ven_haunted_10842
-   "haunted 10842")
-(ven_icebreaker_temp
-   "icebreaker (temp)")
-(ven_icebreaker01
-   "icebreaker 01")
-(ven_icebreaker02
-   "icebreaker 02")
-(ven_skeleton_battle_copy
-   "skeleton battle (copy)")
-(ven_ufobreakdown_alt
-   "ufobreakdown (alt)")
-(cant_create_band
-   "Go to STORY if you want to build another band")
+(os_pad_dup "Up")
+(os_pad_ddown "Down")
+(os_pad_dleft "Left")
+(os_pad_dright "Right")
+(os_force_inst_detec "Force Instrument Detection")
+(gh_guitar "GH Guitar")
+(os_autokick1 "Auto Kick: ON")
+(os_autokick0 "Auto Kick: OFF")
+(os_breakneck1 "Breakneck Speed: ON")
+(os_breakneck0 "Breakneck Speed: OFF")
+(os_perfmode1 "Performance Mode: ON")
+(os_perfmode0 "Performance Mode: OFF")
+(os_whammypb1 "Whammy Pitch Bending: ON")
+(os_whammypb0 "Whammy Pitch Bending: OFF")
+(os_legacybass1 "Legacy Bass Streak: ON")
+(os_legacybass0 "Legacy Bass Streak: OFF")
+(os_padtar1 "Pad is Guitar: ON")
+(os_padtar0 "Pad is Guitar: OFF")
+(os_paddrum1 "Pad is Drums: ON")
+(os_paddrum0 "Pad is Drums: OFF")
+(os_syncdifspeeds1 "Sync Dificulty Speeds: ON")
+(os_syncdifspeeds0 "Sync Dificulty Speeds: OFF")
+(os_colorshuffle1 "Note Color Shuffle: ON")
+(os_colorshuffle0 "Note Color Shuffle: OFF")
+(os_secondkick1 "Second Kick Mapping: ON")
+(os_secondkick0 "Second Kick Mapping: OFF")
+(os_trk "Appearance")
+(os_spotlight "Overdrive")
+(ugc_section_5_0 "0% - 5%")
+(ugc_section_5_5 "5% - 10%")
+(ugc_section_5_10 "10% - 15%")
+(ugc_section_5_15 "15% - 20%")
+(ugc_section_5_20 "20% - 25%")
+(ugc_section_5_25 "25% - 30%")
+(ugc_section_5_30 "30% - 35%")
+(ugc_section_5_35 "35% - 40%")
+(ugc_section_5_40 "40% - 45%")
+(ugc_section_5_45 "45% - 50%")
+(ugc_section_5_50 "50% - 55%")
+(ugc_section_5_55 "55% - 60%")
+(ugc_section_5_60 "60% - 65%")
+(ugc_section_5_65 "65% - 70%")
+(ugc_section_5_70 "70% - 75%")
+(ugc_section_5_75 "75% - 80%")
+(ugc_section_5_80 "80% - 85%")
+(ugc_section_5_85 "85% - 90%")
+(ugc_section_5_90 "90% - 95%")
+(ugc_section_5_95 "95% - 100%")
+(ugc_section_10_0 "0% - 10%")
+(ugc_section_10_10 "10% - 20%")
+(ugc_section_10_20 "20% - 30%")
+(ugc_section_10_30 "30% - 40%")
+(ugc_section_10_40 "40% - 50%")
+(ugc_section_10_50 "50% - 60%")
+(ugc_section_10_60 "60% - 70%")
+(ugc_section_10_70 "70% - 80%")
+(ugc_section_10_80 "80% - 90%")
+(ugc_section_10_90 "90% - 100%")
+(ugc_section_20_0 "0% - 20%")
+(ugc_section_20_20 "20% - 40%")
+(ugc_section_20_40 "40% - 60%")
+(ugc_section_20_60 "60% - 80%")
+(ugc_section_20_80 "80% - 100%")
+(funk "Funk")
+(dlc_elf "Elf")
+(dlc_santa "Santa")
+(dlc_snowman "Snowman")
+(dlc_riendeer "Riendeer")
+(elf_head "Elf Head")
+(santa_head "Santa Head")
+(snowman_head "Snowman Head")
+(riendeer_head "Riendeer Head")
+(elf_hat "Elf Hat")
+(santa_hat "Santa Hat")
+(snowman_hat "Snowman Hat")
+(riendeer_hat "Riendeer Hat")
+(elf_chest "Elf Chest")
+(santa_chest "Santa Chest")
+(snowman_chest "Snowman Chest")
+(riendeer_chest "Riendeer Chest")
+(elf_legs "Elf Legs")
+(santa_legs "Santa Legs")
+(snowman_legs "Snowman Legs")
+(reindeer_legs "Reindeer Legs")
+(ven_demolition "demolition")
+(ven_ghostbusters "ghostbusters")
+(ven_octopusattack "octopusattack")
+(ven_farmrain "farmrain")
+(ven_icebreaker "icebreaker")
+(ven_dinochase "dinochase")
+(ven_skeleton_battle "skeleton battle")
+(ven_ufobreakdown "ufobreakdown")
+(ven_asteroid "asteroid")
+(ven_ovalrace "ovalrace")
+(ven_blank "blank")
+(ven_blank_arena "blank arena")
+(ven_denpracticestage "den practice stage")
+(ven_robotattack "robot attack")
+(ven_skatepark "skatepark")
+(ven_skatepark_early "skatepark (early)")
+(ven_alienplanet_old "alienplanet (old)")
+(ven_barnyard_continued "barnyard (continued)")
+(ven_barnyard_revised "barnyard (revised)")
+(ven_barnyard_steve "barnyard (steve)")
+(ven_barnyard_blue_sky "barnyard (blue sky)")
+(ven_barnyard_proj_light "barnyard (proj light)")
+(ven_barnyard_red_sky "barnyard (red sky)")
+(ven_bonecave_old "barnyard (old)")
+(ven_carsmash_1 "carsmash 1")
+(ven_carsmash_copy "carsmash (copy)")
+(ven_carsmash_wnrb "carsmash (wnbr)")
+(ven_carsmash_wnrb_david "carsmash (wnbr david)")
+(ven_carsmash_wnrb_david_1 "carsmash (wnbr david 1)")
+(ven_castlegardens_wiicrowd "castlegardens (wiicrowd)")
+(ven_demolition_luke "demolition (luke)")
+(ven_demolition_redux "demolition (redux)")
+(ven_demolition_wc "demolition (working copy)")
+(ven_demolition_wiz "demolition (wiz)")
+(ven_farmrain_barnyard_g "farmrain (barnyard grouped)")
+(ven_farmrain_temp "farmrain (temp)")
+(ven_farmrain_tm "farmrain (tm)")
+(ven_farmrain_tsc "farmrain (total scene combo)")
+(ven_haunted_10842 "haunted 10842")
+(ven_icebreaker_temp "icebreaker (temp)")
+(ven_icebreaker01 "icebreaker 01")
+(ven_icebreaker02 "icebreaker 02")
+(ven_skeleton_battle_copy "skeleton battle (copy)")
+(ven_ufobreakdown_alt "ufobreakdown (alt)")
+(cant_create_band "Go to STORY if you want to build another band")

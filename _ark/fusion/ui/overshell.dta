@@ -1,41 +1,32 @@
-#define OVERSHELL_LIST_FILE
-((file practice/practice_sel_section.milo)
- (focus sel_section.lst))
-{func
-   pop_and_goto_screen
+#define OVERSHELL_LIST_FILE (
+   (file practice/practice_sel_section.milo)
+   (focus sel_section.lst)
+)
+{func pop_and_goto_screen
    ($gotoscreen)
    {ui pop_screen}
-   {ui goto_screen $gotoscreen}}
-{new
-   MultiSelectListPanel
+   {ui goto_screen $gotoscreen}
+}
+{new MultiSelectListPanel
    overshell_main_panel
    OVERSHELL_LIST_FILE
    (enter
-      {sel_section.lst set_data (os_mod os_spd os_vis os_trk os_gfx os_cnt)}
+      {sel_section.lst set_data
+         (os_mod os_spd os_vis os_trk os_gfx os_cnt)
+      }
       {title.lbl set text_token os_ultisettings}
       {set $overshell_up TRUE}
       {set $cntmodifierpos 0}
-      {set $trkmodifierpos 0})
+      {set $trkmodifierpos 0}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_spd
-            {pop_and_goto_screen overshell_speed_screen}
-         )
-         (os_mod
-            {pop_and_goto_screen overshell_modifier_screen}
-         )
-         (os_vis
-            {pop_and_goto_screen overshell_visual_screen}
-         )
-         (os_gfx
-            {pop_and_goto_screen overshell_graphics_screen}
-         )
-         (os_trk
-            {pop_and_goto_screen overshell_trk_screen}
-         )
-         (os_cnt
-            {pop_and_goto_screen overshell_cnt_screen}
-         )
+         (os_spd {pop_and_goto_screen overshell_speed_screen})
+         (os_mod {pop_and_goto_screen overshell_modifier_screen})
+         (os_vis {pop_and_goto_screen overshell_visual_screen})
+         (os_gfx {pop_and_goto_screen overshell_graphics_screen})
+         (os_trk {pop_and_goto_screen overshell_trk_screen})
+         (os_cnt {pop_and_goto_screen overshell_cnt_screen})
       }
    )
    (BUTTON_DOWN_MSG
@@ -46,48 +37,68 @@
       kDataUnhandled
    )
 }
-{new
-   UIScreen
+{new UIScreen
    overshell_main_screen
    (panels overshell_main_panel practice_lower3rd_panel)
-   (focus overshell_main_panel)}
+   (focus overshell_main_panel)
+}
 ;
-#define MODIFIER_DATA
-((
-   {if_else {modifier_mgr is_modifier_active mod_autokick} os_autokick1 os_autokick0}
-   {if_else {modifier_mgr is_modifier_active mod_doublespeed} os_breakneck1 os_breakneck0}
-   {if_else $syncdifspeeds os_syncdifspeeds1 os_syncdifspeeds0}
-   {if_else $whammypb os_whammypb1 os_whammypb0}
-   {if_else $trkmuting os_trkmuting1 os_trkmuting0}
-   {if_else $misssounds os_misssounds1 os_misssounds0}
-))
-{new
-   MultiSelectListPanel
+#define MODIFIER_DATA (
+   ({if_else {modifier_mgr is_modifier_active mod_autokick} os_autokick1 os_autokick0}
+      {if_else {modifier_mgr is_modifier_active mod_doublespeed}
+         os_breakneck1
+         os_breakneck0
+      }
+      {if_else $syncdifspeeds
+         os_syncdifspeeds1
+         os_syncdifspeeds0
+      }
+      {if_else $whammypb
+         os_whammypb1
+         os_whammypb0
+      }
+      {if_else $trkmuting
+         os_trkmuting1
+         os_trkmuting0
+      }
+      {if_else $misssounds
+         os_misssounds1
+         os_misssounds0
+      }
+   )
+)
+{new MultiSelectListPanel
    overshell_modifier_panel
    OVERSHELL_LIST_FILE
    (enter
       {$this lst_reset}
-      {title.lbl set text_token {localize os_mod}})
-   (exit
-      {set $modifierpos 0})
+      {title.lbl set text_token {localize os_mod}}
+   )
+   (exit {set $modifierpos 0})
    (SELECT_MSG
       {switch {$component selected_sym}
-         ((os_syncdifspeeds1 os_syncdifspeeds0)
+         (
+            (os_syncdifspeeds1 os_syncdifspeeds0)
             {set $syncdifspeeds {! $syncdifspeeds}}
          )
-         ((os_whammypb1 os_whammypb0)
+         (
+            (os_whammypb1 os_whammypb0)
             {set $whammypb {! $whammypb}}
          )
-         ((os_trkmuting1 os_trkmuting0)
+         (
+            (os_trkmuting1 os_trkmuting0)
             {set $trkmuting {! $trkmuting}}
          )
-         ((os_misssounds1 os_misssounds0)
+         (
+            (os_misssounds1 os_misssounds0)
             {set $misssounds {! $misssounds}}
          )
-         ((os_autokick1 os_autokick0)
+         (
+            (os_autokick1 os_autokick0)
             {modifier_mgr toggle_modifier_active mod_autokick}
          )
-         ((os_breakneck1 os_breakneck0)
+         (
+            (os_breakneck1 os_breakneck0)
             {modifier_mgr toggle_modifier_active mod_doublespeed}
          )
       }
@@ -96,50 +107,67 @@
    (lst_reset
       {sel_section.lst set_data MODIFIER_DATA}
       {if $modifierpos
-         {sel_section.lst set_selected $modifierpos}})
-   (SCROLL_MSG
-      {set $modifierpos {sel_section.lst selected_pos}})
+         {sel_section.lst set_selected $modifierpos}
+      }
+   )
+   (SCROLL_MSG {set $modifierpos {sel_section.lst selected_pos}})
 }
-{new
-   UIScreen
+{new UIScreen
    overshell_modifier_screen
    (back overshell_main_screen)
    (panels overshell_modifier_panel practice_lower3rd_panel)
-   (focus overshell_modifier_panel)}
+   (focus overshell_modifier_panel)
+}
 
 ;
-#define VIS_MODIFIER_DATA
-((
-   {if_else {modifier_mgr is_modifier_active mod_nohud} os_perfmode1 os_perfmode0}
-   {if_else $songtitle os_songtitle1 os_songtitle0}
-   {if_else $legacybass os_legacybass1 os_legacybass0}
-   {if_else $colorshuffle os_colorshuffle1 os_colorshuffle0}
-   {if_else $fcring os_fcring1 os_fcring0}
-))
-{new
-   MultiSelectListPanel
+#define VIS_MODIFIER_DATA (
+   ({if_else {modifier_mgr is_modifier_active mod_nohud} os_perfmode1 os_perfmode0}
+      {if_else $songtitle
+         os_songtitle1
+         os_songtitle0
+      }
+      {if_else $legacybass
+         os_legacybass1
+         os_legacybass0
+      }
+      {if_else $colorshuffle
+         os_colorshuffle1
+         os_colorshuffle0
+      }
+      {if_else $fcring
+         os_fcring1
+         os_fcring0
+      }
+   )
+)
+{new MultiSelectListPanel
    overshell_visual_panel
    OVERSHELL_LIST_FILE
    (enter
       {$this lst_reset}
-      {title.lbl set text_token {localize os_vis}})
-   (exit
-      {set $vismodifierpos 0})
+      {title.lbl set text_token {localize os_vis}}
+   )
+   (exit {set $vismodifierpos 0})
    (SELECT_MSG
       {switch {$component selected_sym}
-         ((os_perfmode1 os_perfmode0)
+         (
+            (os_perfmode1 os_perfmode0)
             {modifier_mgr toggle_modifier_active mod_nohud}
          )
-         ((os_songtitle1 os_songtitle0)
+         (
+            (os_songtitle1 os_songtitle0)
             {set $songtitle {! $songtitle}}
          )
-         ((os_fcring1 os_fcring0)
+         (
+            (os_fcring1 os_fcring0)
             {set $fcring {! $fcring}}
          )
-         ((os_legacybass1 os_legacybass0)
+         (
+            (os_legacybass1 os_legacybass0)
             {set $legacybass {! $legacybass}}
          )
-         ((os_colorshuffle1 os_colorshuffle0)
+         (
+            (os_colorshuffle1 os_colorshuffle0)
             {set $colorshuffle {! $colorshuffle}}
          )
       }
@@ -148,63 +176,86 @@
    (lst_reset
       {sel_section.lst set_data VIS_MODIFIER_DATA}
       {if $vismodifierpos
-         {sel_section.lst set_selected $vismodifierpos}})
-   (SCROLL_MSG
-      {set $vismodifierpos {sel_section.lst selected_pos}})}
-{new
-   UIScreen
+         {sel_section.lst set_selected $vismodifierpos}
+      }
+   )
+   (SCROLL_MSG {set $vismodifierpos {sel_section.lst selected_pos}})
+}
+{new UIScreen
    overshell_visual_screen
    (back overshell_main_screen)
    (panels overshell_visual_panel practice_lower3rd_panel)
-   (focus overshell_visual_panel)}
+   (focus overshell_visual_panel)
+}
 ;
 ;
-#define GFX_MODIFIER_DATA
-((
-   #ifndef HX_WII
-   os_venuefps
-   os_vsync
-   #endif
-   {if_else $blackbg os_blackbg1 os_blackbg0}
-   {if_else $fxdof os_fxdof1 os_fxdof0}
-   {if_else $scrnoise os_scrnoise1 os_scrnoise0}
-   {if_else $scrbloom os_scrbloom1 os_scrbloom0}
-   {if_else $camerashake os_camerashake1 os_camerashake0}
-   #ifndef HX_WII
-   {if_else $mbblend os_mbblend1 os_mbblend0}
-   #endif
-))
-{new
-   MultiSelectListPanel
+#define GFX_MODIFIER_DATA (
+   (
+      #ifndef HX_WII
+      os_venuefps
+      os_vsync
+      #endif
+      {if_else $blackbg
+         os_blackbg1
+         os_blackbg0
+      }
+      {if_else $fxdof
+         os_fxdof1
+         os_fxdof0
+      }
+      {if_else $scrnoise
+         os_scrnoise1
+         os_scrnoise0
+      }
+      {if_else $scrbloom
+         os_scrbloom1
+         os_scrbloom0
+      }
+      {if_else $camerashake
+         os_camerashake1
+         os_camerashake0
+      }
+      #ifndef HX_WII
+      {if_else $mbblend
+         os_mbblend1
+         os_mbblend0
+      }
+      #endif
+   )
+)
+{new MultiSelectListPanel
    overshell_graphics_panel
    OVERSHELL_LIST_FILE
    (enter
       {$this lst_reset}
-      {title.lbl set text_token {localize os_gfx}})
+      {title.lbl set text_token {localize os_gfx}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
-         ((os_scrbloom1 os_scrbloom0)
+         (
+            (os_scrbloom1 os_scrbloom0)
             {set $scrbloom {! $scrbloom}}
          )
-         ((os_scrnoise1 os_scrnoise0)
+         (
+            (os_scrnoise1 os_scrnoise0)
             {set $scrnoise {! $scrnoise}}
          )
-         ((os_camerashake1 os_camerashake0)
+         (
+            (os_camerashake1 os_camerashake0)
             {set $camerashake {! $camerashake}}
          )
-         ((os_mbblend1 os_mbblend0)
+         (
+            (os_mbblend1 os_mbblend0)
             {set $mbblend {! $mbblend}}
          )
-         ((os_fxdof1 os_fxdof0)
+         (
+            (os_fxdof1 os_fxdof0)
             {set $fxdof {! $fxdof}}
          )
-         (os_venuefps
-            {pop_and_goto_screen overshell_venuefps_screen}
-         )
-         (os_vsync
-            {pop_and_goto_screen overshell_vsync_screen}
-         )
-         ((os_blackbg1 os_blackbg0)
+         (os_venuefps {pop_and_goto_screen overshell_venuefps_screen})
+         (os_vsync {pop_and_goto_screen overshell_vsync_screen})
+         (
+            (os_blackbg1 os_blackbg0)
             {set $blackbg {! $blackbg}}
          )
       }
@@ -213,133 +264,175 @@
    (lst_reset
       {sel_section.lst set_data GFX_MODIFIER_DATA}
       {if $gfxmodifierpos
-         {sel_section.lst set_selected $gfxmodifierpos}})
-   (SCROLL_MSG
-      {set $gfxmodifierpos {sel_section.lst selected_pos}})}
-{new
-   UIScreen
+         {sel_section.lst set_selected $gfxmodifierpos}
+      }
+   )
+   (SCROLL_MSG {set $gfxmodifierpos {sel_section.lst selected_pos}})
+}
+{new UIScreen
    overshell_graphics_screen
    (back overshell_main_screen)
    (panels overshell_graphics_panel practice_lower3rd_panel)
-   (focus overshell_graphics_panel)}
+   (focus overshell_graphics_panel)
+}
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_vsync_panel
    OVERSHELL_LIST_FILE
    (enter
-      {sel_section.lst set_data (infinite full half quarter)}
+      {sel_section.lst set_data
+         (infinite full half quarter)
+      }
       {title.lbl set text_token {localize os_vsync}}
-      {sel_section.lst set_selected {switch $vsyncrate (0 0) (1 1) (2 2) (4 3)}})
-   (exit
-      {rnd set_sync $vsyncrate})
+      {sel_section.lst set_selected
+         {switch $vsyncrate
+            (0 0)
+            (1 1)
+            (2 2)
+            (4 3)
+         }
+      }
+   )
+   (exit {rnd set_sync $vsyncrate})
    (SELECT_MSG
       {switch {$component selected_sym}
-         (infinite
-            {set $vsyncrate 0}
-         )
-         (full
-            {set $vsyncrate 1}
-         )
-         (half
-            {set $vsyncrate 2}
-         )
-         (quarter
-            {set $vsyncrate 4}
-         )
+         (infinite {set $vsyncrate 0})
+         (full {set $vsyncrate 1})
+         (half {set $vsyncrate 2})
+         (quarter {set $vsyncrate 4})
       }
       {pop_and_goto_screen overshell_graphics_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_vsync_screen
    (back overshell_graphics_screen)
    (panels overshell_vsync_panel practice_lower3rd_panel)
-   (focus overshell_vsync_panel)}
-{new
-   MultiSelectListPanel
+   (focus overshell_vsync_panel)
+}
+{new MultiSelectListPanel
    overshell_venuefps_panel
    OVERSHELL_LIST_FILE
    (enter
-      {sel_section.lst set_data (60fps 30fps 24fps 15fps 12fps 6fps 1fps)}
+      {sel_section.lst set_data
+         (60fps 30fps 24fps 15fps 12fps 6fps 1fps)
+      }
       {title.lbl set text_token {localize os_venuefps}}
-      {sel_section.lst set_selected {switch $emulatefps (60 0) (30 1) (24 2) (15 3) (12 4) (6 5) (1 6)}})
+      {sel_section.lst set_selected
+         {switch $emulatefps
+            (60 0)
+            (30 1)
+            (24 2)
+            (15 3)
+            (12 4)
+            (6 5)
+            (1 6)
+         }
+      }
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
-         (60fps
-            {set $emulatefps 60}
-         )
-         (30fps
-            {set $emulatefps 30}
-         )
-         (24fps
-            {set $emulatefps 24}
-         )
-         (15fps
-            {set $emulatefps 15}
-         )
-         (12fps
-            {set $emulatefps 12}
-         )
-         (6fps
-            {set $emulatefps 6}
-         )
-         (1fps
-            {set $emulatefps 1}
-         )
+         (60fps {set $emulatefps 60})
+         (30fps {set $emulatefps 30})
+         (24fps {set $emulatefps 24})
+         (15fps {set $emulatefps 15})
+         (12fps {set $emulatefps 12})
+         (6fps {set $emulatefps 6})
+         (1fps {set $emulatefps 1})
       }
       {pop_and_goto_screen overshell_graphics_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_venuefps_screen
    (back overshell_graphics_screen)
    (panels overshell_venuefps_panel practice_lower3rd_panel)
-   (focus overshell_venuefps_panel)}
+   (focus overshell_venuefps_panel)
+}
 ;
 ;
 
-#define CNT_MODIFIER_DATA
-((
-   os_remap_cnt
-   #ifndef HX_WII
-   os_force_inst_detec
-   #endif
-   {if_else $padtar os_padtar1 os_padtar0}
-   {if_else $paddrum os_paddrum1 os_paddrum0}
-   {if_else $secondkick os_secondkick1 os_secondkick0}
-))
-{new
-   MultiSelectListPanel
+#define CNT_MODIFIER_DATA (
+   (os_remap_cnt
+      #ifndef HX_WII
+      os_force_inst_detec
+      #endif
+      {if_else $padtar
+         os_padtar1
+         os_padtar0
+      }
+      {if_else $paddrum
+         os_paddrum1
+         os_paddrum0
+      }
+      {if_else $secondkick
+         os_secondkick1
+         os_secondkick0
+      }
+   )
+)
+{new MultiSelectListPanel
    overshell_cnt_panel
    OVERSHELL_LIST_FILE
    (enter
       {$this lst_reset}
       {title.lbl set text_token {localize os_cnt}}
-      {set $rcntmodifierpos 0})
+      {set $rcntmodifierpos 0}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_remap_cnt
-            {pop_and_goto_screen overshell_remap_cnt_screen}
-         )
+         (os_remap_cnt {pop_and_goto_screen overshell_remap_cnt_screen})
          (os_force_inst_detec
             {pop_and_goto_screen overshell_force_inst_detec_screen}
          )
-         ((os_padtar1 os_padtar0)
+         (
+            (os_padtar1 os_padtar0)
             {set $padtar {! $padtar}}
             {set $paddrum FALSE}
-            {set_cnt_type wii_remote {if_else $padtar kControllerGuitar kControllerVocals}}
-            {set_cnt_type dualshock {if_else $padtar kControllerGuitar kControllerVocals}}
-            {set_cnt_type analog {if_else $padtar kControllerGuitar kControllerVocals}}
+            {set_cnt_type wii_remote
+               {if_else $padtar
+                  kControllerGuitar
+                  kControllerVocals
+               }
+            }
+            {set_cnt_type dualshock
+               {if_else $padtar
+                  kControllerGuitar
+                  kControllerVocals
+               }
+            }
+            {set_cnt_type analog
+               {if_else $padtar
+                  kControllerGuitar
+                  kControllerVocals
+               }
+            }
          )
-         ((os_paddrum1 os_paddrum0)
+         (
+            (os_paddrum1 os_paddrum0)
             {set $paddrum {! $paddrum}}
             {set $padtar FALSE}
-            {set_cnt_type wii_remote {if_else $paddrum kControllerDrum kControllerVocals}}
-            {set_cnt_type dualshock {if_else $paddrum kControllerDrum kControllerVocals}}
-            {set_cnt_type analog {if_else $paddrum kControllerDrum kControllerVocals}}
+            {set_cnt_type wii_remote
+               {if_else $paddrum
+                  kControllerDrum
+                  kControllerVocals
+               }
+            }
+            {set_cnt_type dualshock
+               {if_else $paddrum
+                  kControllerDrum
+                  kControllerVocals
+               }
+            }
+            {set_cnt_type analog
+               {if_else $paddrum
+                  kControllerDrum
+                  kControllerVocals
+               }
+            }
          )
-         ((os_secondkick1 os_secondkick0)
+         (
+            (os_secondkick1 os_secondkick0)
             {set $secondkick {! $secondkick}}
             {if_else $secondkick
                {enable_second_kick_mapping}
@@ -352,231 +445,238 @@
    (lst_reset
       {sel_section.lst set_data CNT_MODIFIER_DATA}
       {if $cntmodifierpos
-         {sel_section.lst set_selected $cntmodifierpos}})
-   (SCROLL_MSG
-      {set $cntmodifierpos {sel_section.lst selected_pos}})}
-{new
-   UIScreen
+         {sel_section.lst set_selected $cntmodifierpos}
+      }
+   )
+   (SCROLL_MSG {set $cntmodifierpos {sel_section.lst selected_pos}})
+}
+{new UIScreen
    overshell_cnt_screen
    (back overshell_main_screen)
    (panels overshell_cnt_panel practice_lower3rd_panel)
-   (focus overshell_cnt_panel)}
+   (focus overshell_cnt_panel)
+}
 ;
 
 ;could probably clean up a bit more at some point
-{new
-   UIPanel
+{new UIPanel
    overshell_speed_panel
-   (file
-      "options/options_audio.milo")
+   (file "options/options_audio.milo")
    (focus instruments.btn)
    (enter
       {audio_options.lbl set text_token os_spd}
       {$this set_slider_steps}
       {$this hide_unused_sliders}
       {$this update_btn_ints}
-      {$this update_all_sliders})
+      {$this update_all_sliders}
+   )
    (TRANSITION_COMPLETE_MSG
-      {$this
-         update_helpbar
-         {$this focus_name}}
-      kDataUnhandled)
-   (FOCUS_MSG
-      {$this update_helpbar $new_focus})
-   (SCROLL_SELECT_MSG
-      {$this set_speeds})
-   (SCROLL_MSG
-      {$this set_speeds})
+      {$this update_helpbar {$this focus_name}}
+      kDataUnhandled
+   )
+   (FOCUS_MSG {$this update_helpbar $new_focus})
+   (SCROLL_SELECT_MSG {$this set_speeds})
+   (SCROLL_MSG {$this set_speeds})
    (SELECT_MSG
-      {switch
-         $component
+      {switch $component
          (instruments.btn
             {instruments.sld store}
-            {$this set_focus instruments.sld})
+            {$this set_focus instruments.sld}
+         )
          (background_music.btn
             {background.sld store}
-            {$this set_focus background.sld})
+            {$this set_focus background.sld}
+         )
          (vocal_track.btn
             {vocal_track.sld store}
-            {$this set_focus vocal_track.sld})})
+            {$this set_focus vocal_track.sld}
+         )
+      }
+   )
    (BUTTON_DOWN_MSG
-      {switch
-         {$this focus_name}
+      {switch {$this focus_name}
          (instruments.sld
-            {switch
-               $action
+            {switch $action
                (kAction_Confirm
                   {instruments.sld confirm}
-                  {$this set_focus instruments.btn})
+                  {$this set_focus instruments.btn}
+               )
                (kAction_Cancel
                   {instruments.sld undo $player}
-                  {$this set_focus instruments.btn})
-               kDataUnhandled})
+                  {$this set_focus instruments.btn}
+               )
+               kDataUnhandled
+            }
+         )
          (background.sld
-            {switch
-               $action
+            {switch $action
                (kAction_Confirm
                   {background.sld confirm}
-                  {$this set_focus background_music.btn})
+                  {$this set_focus background_music.btn}
+               )
                (kAction_Cancel
                   {background.sld undo $player}
-                  {$this set_focus background_music.btn})
-               kDataUnhandled})
+                  {$this set_focus background_music.btn}
+               )
+               kDataUnhandled
+            }
+         )
          (vocal_track.sld
-            {switch
-               $action
+            {switch $action
                (kAction_Confirm
                   {vocal_track.sld confirm}
-                  {$this set_focus vocal_track.btn})
+                  {$this set_focus vocal_track.btn}
+               )
                (kAction_Cancel
                   {vocal_track.sld undo $player}
-                  {$this set_focus vocal_track.btn})
-               kDataUnhandled})
-         kDataUnhandled})
-   (update_all_sliders
-      {$this
-         iterate
-         UISlider
-         $s
-         {$this update_sliders $s}})
+                  {$this set_focus vocal_track.btn}
+               )
+               kDataUnhandled
+            }
+         )
+         kDataUnhandled
+      }
+   )
+   (update_all_sliders {$this iterate UISlider $s {$this update_sliders $s}})
    (update_sliders
       ($component)
-      {switch
-         $component
+      {switch $component
          (instruments.sld
-            {$component
-               set_current
-               {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.05}}}})
+            {$component set_current {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.05}}}}
+         )
          (background.sld
-            {$component
-               set_current
-               {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}})
+            {$component set_current {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}}
+         )
          (vocal_track.sld
-            {$component
-               set_current
-               {int {+ 0.5 {/ {+ {- $hwlength 1} 0.5} 0.05}}}})})
+            {$component set_current {int {+ 0.5 {/ {+ {- $hwlength 1} 0.5} 0.05}}}}
+         )
+      }
+   )
    (set_speeds
-      {set $trackspeed
-         {- {+ 1 {* {instruments.sld current} 0.05}} 0.5}}
-      {set $speedmod
-         {+ 1 {* {background.sld current} 0.05}}}
-      {set $hwlength
-         {- {+ 1 {* {vocal_track.sld current} 0.05}} 0.5}}
-      {$this update_btn_ints})
+      {set $trackspeed {- {+ 1 {* {instruments.sld current} 0.05}} 0.5}}
+      {set $speedmod {+ 1 {* {background.sld current} 0.05}}}
+      {set $hwlength {- {+ 1 {* {vocal_track.sld current} 0.05}} 0.5}}
+      {$this update_btn_ints}
+   )
    (set_slider_steps
       {instruments.sld set_num_steps 41}
       {background.sld set_num_steps 31}
-      {vocal_track.sld set_num_steps 41})
+      {vocal_track.sld set_num_steps 41}
+   )
    (hide_unused_sliders
       {$this disable sfx.btn}
       {$this disable crowd.btn}
       {sfx.btn set_showing FALSE}
       {crowd.btn set_showing FALSE}
       {sfx.sld set_showing FALSE}
-      {crowd.sld set_showing FALSE})
+      {crowd.sld set_showing FALSE}
+   )
    (update_btn_ints
-      {instruments.btn set text_token {sprintf {localize trackspeed_msg} {int {+ 0.5 {* $trackspeed 100}}}}}
-      {background_music.btn set text_token {sprintf {localize speed_msg} {int {+ 0.5 {* $speedmod 100}}}}}
-      {vocal_track.btn set text_token {sprintf {localize hwlength_msg} {int {+ 0.5 {* $hwlength 100}}}}})
+      {instruments.btn set
+         text_token
+         {sprintf {localize trackspeed_msg} {int {+ 0.5 {* $trackspeed 100}}}}
+      }
+      {background_music.btn set
+         text_token
+         {sprintf {localize speed_msg} {int {+ 0.5 {* $speedmod 100}}}}
+      }
+      {vocal_track.btn set
+         text_token
+         {sprintf {localize hwlength_msg} {int {+ 0.5 {* $hwlength 100}}}}
+      }
+   )
    (update_helpbar
       ($new_focus)
-      {switch
-         $new_focus
-         ((instruments.btn background_music.btn vocal_track.btn)
-            {helpbar
-               set_config
-               ((cancel helpbar_back)
-                  (confirm helpbar_changesetting))})
-         ((instruments.sld background.sld vocal_track.sld)
-            {helpbar
-               set_config
-               ((cancel helpbar_cancel)
-                  (confirm helpbar_confirmsetting))})})}
-{new
-   UIScreen
+      {switch $new_focus
+         (
+            (instruments.btn background_music.btn vocal_track.btn)
+            {helpbar set_config
+               (
+                  (cancel helpbar_back)
+                  (confirm helpbar_changesetting)
+               )
+            }
+         )
+         (
+            (instruments.sld background.sld vocal_track.sld)
+            {helpbar set_config
+               (
+                  (cancel helpbar_cancel)
+                  (confirm helpbar_confirmsetting)
+               )
+            }
+         )
+      }
+   )
+}
+{new UIScreen
    overshell_speed_screen
    (back overshell_main_screen)
    (panels options_background_panel overshell_speed_panel)
-   (focus overshell_speed_panel)}
+   (focus overshell_speed_panel)
+}
 ;
-#define TRK_MODIFIER_DATA
-((
-   os_gems_colors os_smashers_colors
-))
-{new
-   MultiSelectListPanel
+#define TRK_MODIFIER_DATA ((os_gems_colors os_smashers_colors))
+{new MultiSelectListPanel
    overshell_trk_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data TRK_MODIFIER_DATA}
       {if $trkmodifierpos
-         {sel_section.lst set_selected $trkmodifierpos}}
-      {title.lbl set text_token {localize os_trk}})
+         {sel_section.lst set_selected $trkmodifierpos}
+      }
+      {title.lbl set text_token {localize os_trk}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_gems_colors
-            {pop_and_goto_screen overshell_gem_color_screen}
-         )
-         (os_smashers_colors
-            {pop_and_goto_screen overshell_smasher_color_screen}
-         )
+         (os_gems_colors {pop_and_goto_screen overshell_gem_color_screen})
+         (os_smashers_colors {pop_and_goto_screen overshell_smasher_color_screen})
       }
    )
-   (SCROLL_MSG
-      {set $trkmodifierpos {sel_section.lst selected_pos}})}
-{new
-   UIScreen
+   (SCROLL_MSG {set $trkmodifierpos {sel_section.lst selected_pos}})
+}
+{new UIScreen
    overshell_trk_screen
    (back overshell_main_screen)
    (panels overshell_trk_panel practice_lower3rd_panel)
-   (focus overshell_trk_panel)}
+   (focus overshell_trk_panel)
+}
 
 ;
 
-#define GEMC_MODIFIER_DATA
-((
-   os_gtr_gems_color os_gtr_sus_color os_drm_gems_color
-))
-{new
-   MultiSelectListPanel
+#define GEMC_MODIFIER_DATA ((os_gtr_gems_color os_gtr_sus_color os_drm_gems_color))
+{new MultiSelectListPanel
    overshell_gem_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GEMC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_gems_colors}})
+      {title.lbl set text_token {localize os_gems_colors}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
-         (os_gtr_gems_color
-            {pop_and_goto_screen overshell_gtr_gem_color_screen}
-         )
-         (os_gtr_sus_color
-            {pop_and_goto_screen overshell_gtr_sus_color_screen}
-         )
-         (os_drm_gems_color
-            {pop_and_goto_screen overshell_drm_gem_color_screen}
-         )
+         (os_gtr_gems_color {pop_and_goto_screen overshell_gtr_gem_color_screen})
+         (os_gtr_sus_color {pop_and_goto_screen overshell_gtr_sus_color_screen})
+         (os_drm_gems_color {pop_and_goto_screen overshell_drm_gem_color_screen})
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gem_color_screen
    (back overshell_trk_screen)
    (panels overshell_gem_color_panel practice_lower3rd_panel)
-   (focus overshell_gem_color_panel)}
-   ;
+   (focus overshell_gem_color_panel)
+}
+;
 ;
 
-#define GGEMC_MODIFIER_DATA
-((
-   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5
-))
-{new
-   MultiSelectListPanel
+#define GGEMC_MODIFIER_DATA ((os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
+{new MultiSelectListPanel
    overshell_gtr_gem_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GGEMC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_gtr_gems_color}})
+      {title.lbl set text_token {localize os_gtr_gems_color}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -607,29 +707,27 @@
             {pop_and_goto_screen overshell_gtr_gems_screen}
          )
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gtr_gem_color_screen
    (back overshell_gem_color_screen)
    (panels overshell_gtr_gem_color_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gem_color_panel)}
-   ;
+   (focus overshell_gtr_gem_color_panel)
+}
+;
 ;
 
 ;
 
-#define DGEMC_MODIFIER_DATA
-((
-   os_reset os_kick_gem os_slot_1 os_slot_2 os_slot_3 os_slot_4
-))
-{new
-   MultiSelectListPanel
+#define DGEMC_MODIFIER_DATA ((os_reset os_kick_gem os_slot_1 os_slot_2 os_slot_3 os_slot_4))
+{new MultiSelectListPanel
    overshell_drm_gem_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data DGEMC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_drm_gems_color}})
+      {title.lbl set text_token {localize os_drm_gems_color}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -660,29 +758,27 @@
             {pop_and_goto_screen overshell_drm_gems_screen}
          )
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_drm_gem_color_screen
    (back overshell_gem_color_screen)
    (panels overshell_drm_gem_color_panel practice_lower3rd_panel)
-   (focus overshell_drm_gem_color_panel)}
-   ;
+   (focus overshell_drm_gem_color_panel)
+}
+;
 ;
 
 ;
 
-#define GSUSC_MODIFIER_DATA
-((
-   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5
-))
-{new
-   MultiSelectListPanel
+#define GSUSC_MODIFIER_DATA ((os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
+{new MultiSelectListPanel
    overshell_gtr_sus_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GSUSC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_gtr_sus_color}})
+      {title.lbl set text_token {localize os_gtr_sus_color}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -713,62 +809,55 @@
             {pop_and_goto_screen overshell_gtr_sus_screen}
          )
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gtr_sus_color_screen
    (back overshell_gem_color_screen)
    (panels overshell_gtr_sus_color_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_color_panel)}
-   ;
+   (focus overshell_gtr_sus_color_panel)
+}
+;
 ;
 
-#define GCOLORS_MODIFIER_DATA
-((
-   os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem os_overdrive_gem
-))
-#define DCOLORS_MODIFIER_DATA
-((
-   os_red_gem os_yellow_gem os_blue_gem os_green_gem os_kick_gem os_overdrive_gem
-))
-#define GSMASHERS_MODIFIER_DATA
-((
-   os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem
-))
-#define DSMASHERS_MODIFIER_DATA
-((
-   os_red_gem os_yellow_gem os_blue_gem os_green_gem os_orange_gem
-))
+#define GCOLORS_MODIFIER_DATA (
+   (os_green_gem
+      os_red_gem
+      os_yellow_gem
+      os_blue_gem
+      os_orange_gem
+      os_overdrive_gem
+   )
+)
+#define DCOLORS_MODIFIER_DATA (
+   (os_red_gem
+      os_yellow_gem
+      os_blue_gem
+      os_green_gem
+      os_kick_gem
+      os_overdrive_gem
+   )
+)
+#define GSMASHERS_MODIFIER_DATA ((os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem))
+#define DSMASHERS_MODIFIER_DATA ((os_red_gem os_yellow_gem os_blue_gem os_green_gem os_orange_gem))
 
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_gtr_gems_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GCOLORS_MODIFIER_DATA}
-      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}}
+   )
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_green_gem
-               0
-            )
-            (os_red_gem
-               1
-            )
-            (os_yellow_gem
-               2
-            )
-            (os_blue_gem
-               3
-            )
-            (os_orange_gem
-               4
-            )
-            (os_overdrive_gem
-               5
-            )
+            (os_green_gem 0)
+            (os_red_gem 1)
+            (os_yellow_gem 2)
+            (os_blue_gem 3)
+            (os_orange_gem 4)
+            (os_overdrive_gem 5)
          }
       }
       {switch $os_var
@@ -779,44 +868,33 @@
          (5 {set $gtrgem5 $os_sel})
       }
       {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gtr_gems_screen
    (back overshell_gtr_gem_color_screen)
    (panels overshell_gtr_gems_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_panel)}
-   ;
+   (focus overshell_gtr_gems_panel)
+}
 ;
 ;
-{new
-   MultiSelectListPanel
+;
+{new MultiSelectListPanel
    overshell_drm_gems_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data DCOLORS_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_drm_gems_color}}) ;intentional
+      {title.lbl set text_token {localize os_drm_gems_color}}
+   ) ;intentional
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_kick_gem
-               0
-            )
-            (os_red_gem
-               1
-            )
-            (os_yellow_gem
-               2
-            )
-            (os_blue_gem
-               3
-            )
-            (os_green_gem
-               4
-            )
-            (os_overdrive_gem
-               5
-            )
+            (os_kick_gem 0)
+            (os_red_gem 1)
+            (os_yellow_gem 2)
+            (os_blue_gem 3)
+            (os_green_gem 4)
+            (os_overdrive_gem 5)
          }
       }
       {switch $os_var
@@ -827,44 +905,33 @@
          (5 {set $drmgem5 $os_sel})
       }
       {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_drm_gems_screen
    (back overshell_drm_gem_color_screen)
    (panels overshell_drm_gems_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_panel)}
+   (focus overshell_drm_gems_panel)
+}
 ;
 
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_gtr_sus_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GCOLORS_MODIFIER_DATA}
-      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}}
+   )
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_green_gem
-               0
-            )
-            (os_red_gem
-               1
-            )
-            (os_yellow_gem
-               2
-            )
-            (os_blue_gem
-               3
-            )
-            (os_orange_gem
-               4
-            )
-            (os_overdrive_gem
-               5
-            )
+            (os_green_gem 0)
+            (os_red_gem 1)
+            (os_yellow_gem 2)
+            (os_blue_gem 3)
+            (os_orange_gem 4)
+            (os_overdrive_gem 5)
          }
       }
       {switch $os_var
@@ -875,26 +942,24 @@
          (5 {set $gtrsus5 $os_sel})
       }
       {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gtr_sus_screen
    (back overshell_gtr_sus_color_screen)
    (panels overshell_gtr_sus_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_panel)}
+   (focus overshell_gtr_sus_panel)
+}
 ;
 
-#define SMASHERC_MODIFIER_DATA
-((
-   os_gtr_smasher_color os_drm_smasher_color
-))
-{new
-   MultiSelectListPanel
+#define SMASHERC_MODIFIER_DATA ((os_gtr_smasher_color os_drm_smasher_color))
+{new MultiSelectListPanel
    overshell_smasher_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data SMASHERC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_smashers_colors}})
+      {title.lbl set text_token {localize os_smashers_colors}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_gtr_smasher_color
@@ -904,29 +969,27 @@
             {pop_and_goto_screen overshell_drm_smasher_color_screen}
          )
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_smasher_color_screen
    (back overshell_trk_screen)
    (panels overshell_smasher_color_panel practice_lower3rd_panel)
-   (focus overshell_smasher_color_panel)}
-   ;
+   (focus overshell_smasher_color_panel)
+}
+;
 ;
 
 ;
 
-#define GSMASHERC_MODIFIER_DATA
-((
-   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5
-))
-{new
-   MultiSelectListPanel
+#define GSMASHERC_MODIFIER_DATA ((os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
+{new MultiSelectListPanel
    overshell_gtr_smasher_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GSMASHERC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_gtr_smasher_color}})
+      {title.lbl set text_token {localize os_gtr_smasher_color}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -957,29 +1020,27 @@
             {pop_and_goto_screen overshell_gtr_smasher_screen}
          )
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gtr_smasher_color_screen
    (back overshell_smasher_color_screen)
    (panels overshell_gtr_smasher_color_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_color_panel)}
-   ;
+   (focus overshell_gtr_smasher_color_panel)
+}
+;
 ;
 
 ;
 
-#define DSMASHERC_MODIFIER_DATA
-((
-   os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4
-))
-{new
-   MultiSelectListPanel
+#define DSMASHERC_MODIFIER_DATA ((os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4))
+{new MultiSelectListPanel
    overshell_drm_smasher_color_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data DSMASHERC_MODIFIER_DATA}
-      {title.lbl set text_token {localize os_drm_smasher_color}})
+      {title.lbl set text_token {localize os_drm_smasher_color}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -1005,42 +1066,33 @@
             {pop_and_goto_screen overshell_drm_smasher_screen}
          )
       }
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_drm_smasher_color_screen
    (back overshell_smasher_color_screen)
    (panels overshell_drm_smasher_color_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_color_panel)}
-   ;
+   (focus overshell_drm_smasher_color_panel)
+}
+;
 ;
 
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_gtr_smasher_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data GCOLORS_MODIFIER_DATA}
-      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}}
+   )
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_green_gem
-               green
-            )
-            (os_red_gem
-               red
-            )
-            (os_yellow_gem
-               yellow
-            )
-            (os_blue_gem
-               blue
-            )
-            (os_orange_gem
-               orange
-            )
+            (os_green_gem green)
+            (os_red_gem red)
+            (os_yellow_gem yellow)
+            (os_blue_gem blue)
+            (os_orange_gem orange)
          }
       }
       {switch $os_var
@@ -1051,42 +1103,33 @@
          (5 {set $gtrsm5 $os_sel})
       }
       {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_gtr_smasher_screen
    (back overshell_gtr_smasher_color_screen)
    (panels overshell_gtr_smasher_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_panel)}
-   ;
+   (focus overshell_gtr_smasher_panel)
+}
+;
 ;
 
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_drm_smasher_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data DSMASHERS_MODIFIER_DATA}
-      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}})
+      {title.lbl set text_token {localize {sprint "os_slot_" $os_var}}}
+   )
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_red_gem
-               red
-            )
-            (os_yellow_gem
-               yellow
-            )
-            (os_blue_gem
-               blue
-            )
-            (os_green_gem
-               green
-            )
-            (os_orange_gem
-               orange
-            )
+            (os_red_gem red)
+            (os_yellow_gem yellow)
+            (os_blue_gem blue)
+            (os_green_gem green)
+            (os_orange_gem orange)
          }
       }
       {switch $os_var
@@ -1096,38 +1139,63 @@
          (4 {set $drms4 $os_sel})
       }
       {pop_and_goto_screen overshell_drm_smasher_color_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_drm_smasher_screen
    (back overshell_drm_smasher_color_screen)
    (panels overshell_drm_smasher_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_panel)}
-   ;
+   (focus overshell_drm_smasher_panel)
+}
+;
 ;
 
 #ifdef HX_WII
-#define CNT_BUTTONS_MODIFIER_DATA 
-((
-   os_pad_x os_pad_circle os_pad_square os_pad_tri os_pad_dup os_pad_ddown os_pad_dleft os_pad_dright os_pad_select
-))
+#define CNT_BUTTONS_MODIFIER_DATA (
+   (os_pad_x
+      os_pad_circle
+      os_pad_square
+      os_pad_tri
+      os_pad_dup
+      os_pad_ddown
+      os_pad_dleft
+      os_pad_dright
+      os_pad_select
+   )
+)
 #else
-#define CNT_BUTTONS_MODIFIER_DATA
-((
-   os_pad_l2 os_pad_l1 os_pad_r1 os_pad_r2 os_pad_x os_pad_circle os_pad_square os_pad_tri os_pad_dup os_pad_ddown os_pad_dleft os_pad_dright os_pad_l3 os_pad_r3 os_pad_select
-))
+#define CNT_BUTTONS_MODIFIER_DATA (
+   (os_pad_l2
+      os_pad_l1
+      os_pad_r1
+      os_pad_r2
+      os_pad_x
+      os_pad_circle
+      os_pad_square
+      os_pad_tri
+      os_pad_dup
+      os_pad_ddown
+      os_pad_dleft
+      os_pad_dright
+      os_pad_l3
+      os_pad_r3
+      os_pad_select
+   )
+)
 #endif
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_remap_cnt_panel
    OVERSHELL_LIST_FILE
    (enter
-      {sel_section.lst set_data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5 os_spotlight)}
+      {sel_section.lst set_data
+         (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5 os_spotlight)
+      }
       {if $rcntmodifierpos
-         {sel_section.lst set_selected $rcntmodifierpos}}
-      {title.lbl set text_token {localize os_remap_cnt}})
-   (exit
-      {set_cnt_mapping})
+         {sel_section.lst set_selected $rcntmodifierpos}
+      }
+      {title.lbl set text_token {localize os_remap_cnt}}
+   )
+   (exit {set_cnt_mapping})
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -1173,70 +1241,40 @@
          )
       }
    )
-   (SCROLL_MSG
-      {set $rcntmodifierpos {sel_section.lst selected_pos}})}
-{new
-   UIScreen
+   (SCROLL_MSG {set $rcntmodifierpos {sel_section.lst selected_pos}})
+}
+{new UIScreen
    overshell_remap_cnt_screen
    (back overshell_cnt_screen)
    (panels overshell_remap_cnt_panel practice_lower3rd_panel)
-   (focus overshell_remap_cnt_panel)}
+   (focus overshell_remap_cnt_panel)
+}
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_cnt_slot_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data CNT_BUTTONS_MODIFIER_DATA}
-      {title.lbl set text_token {localize {sprint "os_slot_" $remap_slot_num}}})
+      {title.lbl set text_token {localize {sprint "os_slot_" $remap_slot_num}}}
+   )
    (SELECT_MSG
       {set $cnt_sel
          {switch {$component selected_sym}
-            (os_pad_l2
-               kPad_L2
-            )
-            (os_pad_l1
-               kPad_L1
-            )
-            (os_pad_r1
-               kPad_R1
-            )
-            (os_pad_r2
-               kPad_R2
-            )
-            (os_pad_x
-               kPad_X
-            )
-            (os_pad_circle
-               kPad_Circle
-            )
-            (os_pad_square
-               kPad_Square
-            )
-            (os_pad_tri
-               kPad_Tri
-            )
-            (os_pad_dup
-               kPad_DUp
-            )
-            (os_pad_ddown
-               kPad_DDown
-            )
-            (os_pad_dleft
-               kPad_DLeft
-            )
-            (os_pad_dright
-               kPad_DRight
-            )
-            (os_pad_l3
-               kPad_L3
-            )
-            (os_pad_r3
-               kPad_R3
-            )
-            (os_pad_select
-               kPad_Select
-            )
+            (os_pad_l2 kPad_L2)
+            (os_pad_l1 kPad_L1)
+            (os_pad_r1 kPad_R1)
+            (os_pad_r2 kPad_R2)
+            (os_pad_x kPad_X)
+            (os_pad_circle kPad_Circle)
+            (os_pad_square kPad_Square)
+            (os_pad_tri kPad_Tri)
+            (os_pad_dup kPad_DUp)
+            (os_pad_ddown kPad_DDown)
+            (os_pad_dleft kPad_DLeft)
+            (os_pad_dright kPad_DRight)
+            (os_pad_l3 kPad_L3)
+            (os_pad_r3 kPad_R3)
+            (os_pad_select kPad_Select)
          }
       }
       {switch $remap_slot_num
@@ -1248,22 +1286,31 @@
          (6 {set $cnt_star $cnt_sel})
       }
       {pop_and_goto_screen overshell_remap_cnt_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_cnt_slot_screen
    (back overshell_remap_cnt_screen)
    (panels overshell_cnt_slot_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_panel)}
+   (focus overshell_cnt_slot_panel)
+}
 ;
 ;
-{new
-   MultiSelectListPanel
+{new MultiSelectListPanel
    overshell_force_inst_detec_panel
    OVERSHELL_LIST_FILE
    (enter
-      {sel_section.lst set_data (off guitar #ifdef HX_PS3 gh_guitar #endif drum)}
-      {title.lbl set text_token {localize os_force_inst_detec}})
+      {sel_section.lst set_data
+         (off
+            guitar
+            #ifdef HX_PS3
+            gh_guitar
+            #endif
+            drum
+         )
+      }
+      {title.lbl set text_token {localize os_force_inst_detec}}
+   )
    (SELECT_MSG
       {switch {$component selected_sym}
          (off
@@ -1284,11 +1331,12 @@
          )
       }
       {pop_and_goto_screen overshell_cnt_screen}
-   )}
-{new
-   UIScreen
+   )
+}
+{new UIScreen
    overshell_force_inst_detec_screen
    (back overshell_cnt_screen)
    (panels overshell_force_inst_detec_panel practice_lower3rd_panel)
-   (focus overshell_force_inst_detec_panel)}
+   (focus overshell_force_inst_detec_panel)
+}
 ;

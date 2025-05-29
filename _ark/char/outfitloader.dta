@@ -1,66 +1,48 @@
-#define OUTFIT_LOADER_COMMON
-((change_outfit
+#define OUTFIT_LOADER_COMMON (
+   (change_outfit
       ($async $loading)
-      {if
-         $loading
-         {if
-            {&&
-               {exists game}
-               {exists char_cache}}
+      {if $loading
+         {if {&& {exists game} {exists char_cache}}
             {do
-               ($char_data
-                  {char_cache
-                     find_char_data
-                     {$this dir}})
-               ($instrument
-                  {char_cache
-                     find_controller_sym
-                     {$this dir}})
-               {if
-                  $char_data
+               ($char_data {char_cache find_char_data {$this dir}})
+               ($instrument {char_cache find_controller_sym {$this dir}})
+               {if $char_data
                   {do
-                     {$this
-                        set_prefab
-                        {find
-                           {$char_data get_char_data}
-                           outfit}}
-                     {$this select_instrument $char_data $instrument}}}}}})
-   (create_path
-      ($outfit $cat)
-      kDataUnhandled)
+                     {$this set_prefab {find {$char_data get_char_data} outfit}}
+                     {$this select_instrument $char_data $instrument}
+                  }
+               }
+            }
+         }
+      }
+   )
+   (create_path ($outfit $cat) kDataUnhandled)
    (select_instrument
       ($char_data $instrument)
-      {switch
-         $instrument
+      {switch $instrument
          (vocals
-            {$this
-               select
-               mic
-               {$char_data selected_outfit mic}}
+            {$this select mic {$char_data selected_outfit mic}}
             {$this select drum none}
             {$this select guitar none}
-            {$this select bass none})
-         (drum
-            {$this wipe_instruments})
+            {$this select bass none}
+         )
+         (drum {$this wipe_instruments})
          (guitar
             {$this select mic none}
             {$this select drum none}
-            {$this
-               select
-               guitar
-               {$char_data selected_outfit guitar}}
-            {$this select bass none})
-         (none
-            {$this wipe_instruments})}
-      TRUE)
+            {$this select guitar {$char_data selected_outfit guitar}}
+            {$this select bass none}
+         )
+         (none {$this wipe_instruments})
+      }
+      TRUE
+   )
    (wipe_instruments
-      {foreach
-         $inst
-         (INSTRUMENTS)
-         {$this
-            select
-            {elem $inst 0}
-            none}}))
+      {foreach $inst (INSTRUMENTS)
+         {$this select {elem $inst 0} none}
+      }
+   )
+)
 (types
    (male
       (is_bass FALSE)
@@ -71,181 +53,109 @@
             (none Eyes01)
             (sort FALSE)
             (outfits
-               (Eyes01
-                  (ui_name male_eyes_01))
-               (Eyes02
-                  (ui_name male_eyes_02))
-               (Eyes03
-                  (ui_name male_eyes_03))
-               (Eyes04
-                  (ui_name male_eyes_04))
-               (Eyes05
-                  (ui_name male_eyes_05))
-               (Eyes06
-                  (ui_name male_eyes_06))
-               (Eyes07
-                  (ui_name male_eyes_07))
-               (Eyes08
-                  (ui_name male_eyes_08))
-               (Eyes09
-                  (ui_name male_eyes_09))
-               (Eyes10
-                  (ui_name male_eyes_10))
-               (Eyes11
-                  (ui_name male_eyes_11))
-               (Eyes12
-                  (ui_name male_eyes_12))
-               (Eyes13
-                  (ui_name male_eyes_13))
-               (Eyes14
-                  (ui_name male_eyes_14))
-               (Eyes15
-                  (ui_name male_eyes_15))
-               (Eyes16
-                  (ui_name male_eyes_16))
-               (Eyes17
-                  (ui_name male_eyes_17))
-               (Eyes18
-                  (ui_name male_eyes_18))
-               (Eyes19
-                  (ui_name male_eyes_19))
-               (Eyes20
-                  (ui_name male_eyes_20))
-               (Eyes21
-                  (ui_name male_eyes_21))
-               (Eyes22
-                  (ui_name male_eyes_22))
-               (Eyes23
-                  (ui_name male_eyes_23))
-               (Eyes24
-                  (ui_name male_eyes_24))
-               (Eyes25
-                  (ui_name male_eyes_25))
-               (OrcEye
-                  (ui_name male_eyes_26))))
+               (Eyes01 (ui_name male_eyes_01))
+               (Eyes02 (ui_name male_eyes_02))
+               (Eyes03 (ui_name male_eyes_03))
+               (Eyes04 (ui_name male_eyes_04))
+               (Eyes05 (ui_name male_eyes_05))
+               (Eyes06 (ui_name male_eyes_06))
+               (Eyes07 (ui_name male_eyes_07))
+               (Eyes08 (ui_name male_eyes_08))
+               (Eyes09 (ui_name male_eyes_09))
+               (Eyes10 (ui_name male_eyes_10))
+               (Eyes11 (ui_name male_eyes_11))
+               (Eyes12 (ui_name male_eyes_12))
+               (Eyes13 (ui_name male_eyes_13))
+               (Eyes14 (ui_name male_eyes_14))
+               (Eyes15 (ui_name male_eyes_15))
+               (Eyes16 (ui_name male_eyes_16))
+               (Eyes17 (ui_name male_eyes_17))
+               (Eyes18 (ui_name male_eyes_18))
+               (Eyes19 (ui_name male_eyes_19))
+               (Eyes20 (ui_name male_eyes_20))
+               (Eyes21 (ui_name male_eyes_21))
+               (Eyes22 (ui_name male_eyes_22))
+               (Eyes23 (ui_name male_eyes_23))
+               (Eyes24 (ui_name male_eyes_24))
+               (Eyes25 (ui_name male_eyes_25))
+               (OrcEye (ui_name male_eyes_26))
+            )
+         )
          (mouth
             (closet FALSE)
             (none Mouth08)
             (sort FALSE)
             (outfits
-               (Mouth01
-                  (ui_name female_mouth_01))
-               (Mouth02
-                  (ui_name female_mouth_02))
-               (Mouth03
-                  (ui_name female_mouth_03))
-               (Mouth04
-                  (ui_name female_mouth_04))
-               (Mouth05
-                  (ui_name female_mouth_05))
-               (Mouth06
-                  (ui_name female_mouth_06))
-               (Mouth07
-                  (ui_name female_mouth_07))
-               (Mouth08
-                  (ui_name male_mouth_01))
-               (Mouth09
-                  (ui_name male_mouth_02))
-               (Mouth10
-                  (ui_name male_mouth_03))
-               (Mouth11
-                  (ui_name male_mouth_04))
-               (Mouth12
-                  (ui_name male_mouth_05))
-               (Mouth13
-                  (ui_name male_mouth_06))
-               (Mouth14
-                  (ui_name male_mouth_07))
-               (Mouth15
-                  (ui_name male_mouth_08))))
+               (Mouth01 (ui_name female_mouth_01))
+               (Mouth02 (ui_name female_mouth_02))
+               (Mouth03 (ui_name female_mouth_03))
+               (Mouth04 (ui_name female_mouth_04))
+               (Mouth05 (ui_name female_mouth_05))
+               (Mouth06 (ui_name female_mouth_06))
+               (Mouth07 (ui_name female_mouth_07))
+               (Mouth08 (ui_name male_mouth_01))
+               (Mouth09 (ui_name male_mouth_02))
+               (Mouth10 (ui_name male_mouth_03))
+               (Mouth11 (ui_name male_mouth_04))
+               (Mouth12 (ui_name male_mouth_05))
+               (Mouth13 (ui_name male_mouth_06))
+               (Mouth14 (ui_name male_mouth_07))
+               (Mouth15 (ui_name male_mouth_08))
+            )
+         )
          (beard
             (closet FALSE)
             (none no_beard)
             (sort FALSE)
             (outfits
-               (no_beard
-                  (ui_name no_beard))
-               (beard01
-                  (ui_name beard_01))
-               (beard02
-                  (ui_name beard_02))
-               (beard03
-                  (ui_name beard_03))
-               (beard04
-                  (ui_name beard_04))
-               (beard05
-                  (ui_name beard_05))
-               (beard06
-                  (ui_name beard_06))
-               (beard07
-                  (ui_name beard_07))))
+               (no_beard (ui_name no_beard))
+               (beard01 (ui_name beard_01))
+               (beard02 (ui_name beard_02))
+               (beard03 (ui_name beard_03))
+               (beard04 (ui_name beard_04))
+               (beard05 (ui_name beard_05))
+               (beard06 (ui_name beard_06))
+               (beard07 (ui_name beard_07))
+            )
+         )
          (brow
             (closet FALSE)
             (none Brow01)
             (sort FALSE)
             (outfits
-               (Brow01
-                  (ui_name male_brow_01))
-               (Brow02
-                  (ui_name male_brow_02))
-               (Brow03
-                  (ui_name male_brow_03))
-               (Brow04
-                  (ui_name male_brow_04))
-               (Brow05
-                  (ui_name male_brow_05))
-               (Brow06
-                  (ui_name male_brow_06))
-               (Brow07
-                  (ui_name male_brow_07))
-               (Brow08
-                  (ui_name male_brow_08))
-               (Brow09
-                  (ui_name male_brow_09))
-               (Brow10
-                  (ui_name male_brow_10))
-               (Brow11
-                  (ui_name male_brow_11))
-               (Brow12
-                  (ui_name male_brow_12))
-               (Brow13
-                  (ui_name male_brow_13))
-               (Brow14
-                  (ui_name male_brow_14))
-               (Brow15
-                  (ui_name male_brow_15))
-               (Brow16
-                  (ui_name male_brow_16))
-               (Brow17
-                  (ui_name male_brow_17))
-               (Brow18
-                  (ui_name male_brow_18))
-               (Brow19
-                  (ui_name male_brow_19))
-               (Brow20
-                  (ui_name male_brow_20))
-               (Brow21
-                  (ui_name male_brow_21))
-               (Brow22
-                  (ui_name male_brow_22))
-               (Brow23
-                  (ui_name male_brow_23))
-               (Brow24
-                  (ui_name male_brow_24))
-               (Brow25
-                  (ui_name male_brow_25))
-               (Brow26
-                  (ui_name male_brow_26))
-               (Brow27
-                  (ui_name male_brow_27))
-               (Brow28
-                  (ui_name male_brow_28))
-               (Brow29
-                  (ui_name male_brow_29))
-               (Brow30
-                  (ui_name male_brow_30))
-               (OrcEyebrow
-                  (ui_name male_brow_31))))
+               (Brow01 (ui_name male_brow_01))
+               (Brow02 (ui_name male_brow_02))
+               (Brow03 (ui_name male_brow_03))
+               (Brow04 (ui_name male_brow_04))
+               (Brow05 (ui_name male_brow_05))
+               (Brow06 (ui_name male_brow_06))
+               (Brow07 (ui_name male_brow_07))
+               (Brow08 (ui_name male_brow_08))
+               (Brow09 (ui_name male_brow_09))
+               (Brow10 (ui_name male_brow_10))
+               (Brow11 (ui_name male_brow_11))
+               (Brow12 (ui_name male_brow_12))
+               (Brow13 (ui_name male_brow_13))
+               (Brow14 (ui_name male_brow_14))
+               (Brow15 (ui_name male_brow_15))
+               (Brow16 (ui_name male_brow_16))
+               (Brow17 (ui_name male_brow_17))
+               (Brow18 (ui_name male_brow_18))
+               (Brow19 (ui_name male_brow_19))
+               (Brow20 (ui_name male_brow_20))
+               (Brow21 (ui_name male_brow_21))
+               (Brow22 (ui_name male_brow_22))
+               (Brow23 (ui_name male_brow_23))
+               (Brow24 (ui_name male_brow_24))
+               (Brow25 (ui_name male_brow_25))
+               (Brow26 (ui_name male_brow_26))
+               (Brow27 (ui_name male_brow_27))
+               (Brow28 (ui_name male_brow_28))
+               (Brow29 (ui_name male_brow_29))
+               (Brow30 (ui_name male_brow_30))
+               (OrcEyebrow (ui_name male_brow_31))
+            )
+         )
          #include outfit_heads.dta
          #include outfit_torso.dta
          #include outfit_legs.dta
@@ -258,12 +168,11 @@
             (sort FALSE)
             (none no_wrist)
             (outfits
-               (no_wrist
-                  (ui_name no_wrist))
-               (wrist01
-                  (ui_name wrist1))
-               (wrist02
-                  (ui_name wrist2))))
+               (no_wrist (ui_name no_wrist))
+               (wrist01 (ui_name wrist1))
+               (wrist02 (ui_name wrist2))
+            )
+         )
          (glasses
             (allow_none TRUE)
             (none none)
@@ -271,66 +180,52 @@
             (sort FALSE)
             (none no_glasses)
             (outfits
-               (no_glasses
-                  (ui_name no_glasses))
-               (glasses01
-                  (ui_name glasses1))
-               (glasses02
-                  (ui_name glasses2))))
+               (no_glasses (ui_name no_glasses))
+               (glasses01 (ui_name glasses1))
+               (glasses02 (ui_name glasses2))
+            )
+         )
          #include outfit_bass.dta
          #include outfit_drum.dta
          #include outfit_guitar.dta
-         #include outfit_mic.dta)
-      #include costumes.dta)
+         #include outfit_mic.dta
+      )
+      #include costumes.dta
+   )
    (anim
       (change_outfit
          ($async $loading)
-         {if
-            $loading
+         {if $loading
             {do
-               ($char
-                  {{$this dir}
-                     proxy_dir})
-               {if
-                  $char
-                  {if_else
-                     {'||'
-                        $venue_test
-                        {&&
-                           {exists game}
-                           {gamemode get is_framerate_test}}}
+               ($char {{$this dir} proxy_dir})
+               {if $char
+                  {if_else {'||' $venue_test {&& {exists game} {gamemode get is_framerate_test}}}
                      {$char set clip_mode kClipModeNone}
-                     {handle
-                        (char_cache set_clip_mode $char)}}
-                  {if
-                     {&&
-                        {exists cutscene}
-                        {cutscene get_current_cutscene}}
-                     {$char set clip_mode kClipModeNone}}
-                  {$char sync_clip_loader $this}}}})
+                     {handle (char_cache set_clip_mode $char)}
+                  }
+                  {if {&& {exists cutscene} {cutscene get_current_cutscene}}
+                     {$char set clip_mode kClipModeNone}
+                  }
+                  {$char sync_clip_loader $this}
+               }
+            }
+         }
+      )
       (create_path
          ($outfit $cat)
-         {if_else
-            {&&
-               {== $cat dircut}
-               {!
-                  {has_substr
-                     {$this name}
-                     "_play"}}}
+         {if_else {&& {== $cat dircut} {! {has_substr {$this name} "_play"}}}
             {do
-               ($char
-                  {{$this dir}
-                     dir})
-               {if_else
-                  {$char is_a CompositeCharacter}
+               ($char {{$this dir} dir})
+               {if_else {$char is_a CompositeCharacter}
                   {$char get_dircut_file $outfit}
-                  none}}
-            kDataUnhandled})
+                  none
+               }
+            }
+            kDataUnhandled
+         }
+      )
       (category
-         (realtime
-            (outfits
-               (none)
-               (banger)))
+         (realtime (outfits (none) (banger)))
          (tempo
             (outfits
                (none)
@@ -339,15 +234,11 @@
                (slow_banger)
                (fast_challenge)
                (medium_challenge)
-               (slow_challenge)))
-         (finale
-            (outfits
-               (none)
-               (banger)))
-         (shell
-            (outfits
-               (none)
-               (shell)))
+               (slow_challenge)
+            )
+         )
+         (finale (outfits (none) (banger)))
+         (shell (outfits (none) (shell)))
          (challenge
             (outfits
                (none)
@@ -362,118 +253,79 @@
                (farmrain)
                (rooftop)
                (octopus)
-               (ufo)))
-         (dircut
-            (outfits
-               (dircut0)))
-         (dircut
-            (outfits
-               (dircut1)))
-         (dircut
-            (outfits
-               (dircut2)))
-         (dircut
-            (outfits
-               (dircut3)))
-         (dircut
-            (outfits
-               (dircut4)))
-         (dircut
-            (outfits
-               (dircut5)))
-         (dircut
-            (outfits
-               (dircut6)))
-         (dircut
-            (outfits
-               (dircut7)))
-         (dircut
-            (outfits
-               (dircut8)))
-         (dircut
-            (outfits
-               (dircut9)))
-         (dircut
-            (outfits
-               (dircut10)))
-         (dircut
-            (outfits
-               (dircut11)))
-         (dircut
-            (outfits
-               (dircut12)))
-         (dircut
-            (outfits
-               (dircut13)))
-         (dircut
-            (outfits
-               (dircut14)))
-         (dircut
-            (outfits
-               (dircut15)))
-         (dircut
-            (outfits
-               (dircut16)))
-         (dircut
-            (outfits
-               (dircut17)))
-         (dircut
-            (outfits
-               (dircut18)))
-         (dircut
-            (outfits
-               (dircut19)))
-         (dircut
-            (outfits
-               (dircut20)))
-         (dircut
-            (outfits
-               (dircut21)))))
+               (ufo)
+            )
+         )
+         (dircut (outfits (dircut0)))
+         (dircut (outfits (dircut1)))
+         (dircut (outfits (dircut2)))
+         (dircut (outfits (dircut3)))
+         (dircut (outfits (dircut4)))
+         (dircut (outfits (dircut5)))
+         (dircut (outfits (dircut6)))
+         (dircut (outfits (dircut7)))
+         (dircut (outfits (dircut8)))
+         (dircut (outfits (dircut9)))
+         (dircut (outfits (dircut10)))
+         (dircut (outfits (dircut11)))
+         (dircut (outfits (dircut12)))
+         (dircut (outfits (dircut13)))
+         (dircut (outfits (dircut14)))
+         (dircut (outfits (dircut15)))
+         (dircut (outfits (dircut16)))
+         (dircut (outfits (dircut17)))
+         (dircut (outfits (dircut18)))
+         (dircut (outfits (dircut19)))
+         (dircut (outfits (dircut20)))
+         (dircut (outfits (dircut21)))
+      )
+   )
    (crowd_anim
       (change_outfit
          ($async $loading)
-         {if
-            $loading
-            {$this select tempo none}})
+         {if $loading
+            {$this select tempo none}
+         }
+      )
       (category
          (tempo
             (outfits
                (none)
                (slow)
                (medium)
-               (fast))))
+               (fast)
+            )
+         )
+      )
       (load_tempo
          ($tempo)
-         {$this
-            select
+         {$this select
             tempo
-            {switch
-               $tempo
+            {switch $tempo
                (kTempoSlow slow)
                (kTempoMedium medium)
-               (kTempoFast fast)}}
-         {$this start_load TRUE}))
+               (kTempoFast fast)
+            }
+         }
+         {$this start_load TRUE}
+      )
+   )
    (drum_hand_anim
       (change_outfit
          ($async $loading)
-         {if
-            $loading
+         {if $loading
             {do
-               ($char
-                  {{$this dir}
-                     proxy_dir})
-               {if
-                  $char
-                  {if_else
-                     {'||'
-                        $venue_test
-                        {&&
-                           {exists game}
-                           {gamemode get is_framerate_test}}}
+               ($char {{$this dir} proxy_dir})
+               {if $char
+                  {if_else {'||' $venue_test {&& {exists game} {gamemode get is_framerate_test}}}
                      {$char set clip_mode kClipModeNone}
-                     {handle
-                        (char_cache set_clip_mode $char)}}
-                  {$char sync_clip_loader $this}}}})
+                     {handle (char_cache set_clip_mode $char)}
+                  }
+                  {$char sync_clip_loader $this}
+               }
+            }
+         }
+      )
       (category
          (tempo_only
             (outfits
@@ -481,4 +333,9 @@
                (fast)
                (medium)
                (slow)
-               (realtime))))))
+               (realtime)
+            )
+         )
+      )
+   )
+)

@@ -1,8 +1,6 @@
-{new
-   UIPanel
+{new UIPanel
    bonus_menupanel
-   (file
-      "quickplay/quickplay_venue.milo")
+   (file "quickplay/quickplay_venue.milo")
    (selection_memory 0)
    (enter
       {do
@@ -10,10 +8,8 @@
          {delete Venue_BG_BG.mesh}
          {delete Venue_BG_Border.mesh}
          {set $band_sel_mode 0}
-         {venue.lst
-            set_data
-            (
-               theatre
+         {venue.lst set_data
+            (theatre
                cutsceneviewer
                framerate
                #ifdef HX_NG
@@ -22,79 +18,78 @@
             )
          }
          {$this set_focus venue.lst}
-         {venue.lst
-            set_selected
-            [selection_memory]}})
+         {venue.lst set_selected [selection_memory]}
+      }
+   )
    (BUTTON_DOWN_MSG
-      {if
-         {== $action kAction_Cancel}
-         {synth play button_back}}
-      kDataUnhandled)
+      {if {== $action kAction_Cancel}
+         {synth play button_back}
+      }
+      kDataUnhandled
+   )
    (SELECT_MSG
       {do
-         ($selected
-            {venue.lst selected_sym})
-         {$this exec_sel $selected}})
+         ($selected {venue.lst selected_sym})
+         {$this exec_sel $selected}
+      }
+   )
    (SCROLL_MSG
       {synth play button_focus}
-      {$this
-         set
-         selection_memory
-         {venue.lst selected_pos}})
+      {$this set selection_memory {venue.lst selected_pos}}
+   )
    (exec_sel
       ($bonus_sel)
       {synth play button_select}
-      {switch
-         $bonus_sel
+      {switch $bonus_sel
          (theatre
-            {if_else
-               {gamecfg is_missing_mic $player_num FALSE}
+            {if_else {gamecfg is_missing_mic $player_num FALSE}
                {do
                   #ifdef KIOSK_DEMO
                   {vocalist_must_have_mic_screen set message demo_solo_vocalist_needs_mic}
                   #else
                   {vocalist_must_have_mic_screen set message solo_vocalist_needs_mic}
                   #endif
-                  {ui push_screen vocalist_must_have_mic_screen}}
-                  {if_else
-                     {{profile_mgr get_profile $player_num} num_bands}
-                     {do
-                        {set $band_sel_mode 1}
-                        {gamemode set_mode theatre $player_num}
-                        {ui goto_screen tour_band_sel_screen}
-                        {fx fade_out}}
-                     {do
-                        {gamemode set_mode theatre $player_num}
-                        {ui goto_screen {gamemode get matchmaking_screen}}
-                        {fx fade_out}}}}
+                  {ui push_screen vocalist_must_have_mic_screen}
+               }
+               {if_else {{profile_mgr get_profile $player_num} num_bands}
+                  {do
+                     {set $band_sel_mode 1}
+                     {gamemode set_mode theatre $player_num}
+                     {ui goto_screen tour_band_sel_screen}
+                     {fx fade_out}
+                  }
+                  {do
+                     {gamemode set_mode theatre $player_num}
+                     {ui goto_screen {gamemode get matchmaking_screen}}
+                     {fx fade_out}
+                  }
+               }
+            }
          )
          (cutsceneviewer
-            {if_else
-               {{profile_mgr get_profile $player_num} num_bands}
+            {if_else {{profile_mgr get_profile $player_num} num_bands}
                {do
                   {set $band_sel_mode 2}
                   {gamemode set_mode tour_local $player_num}
-                  {ui goto_screen tour_band_sel_screen}}
+                  {ui goto_screen tour_band_sel_screen}
+               }
                {ui goto_screen cutscene_menuscreen}
             }
          )
-         (framerate
-            {ui goto_screen frame_rate_screen}
-         )
+         (framerate {ui goto_screen frame_rate_screen})
          (musicstore
             {do
                #ifdef HX_XBOX
-               {input_mgr
-                  set_user
-                  {user_mgr get_band_user $player_num}}
+               {input_mgr set_user {user_mgr get_band_user $player_num}}
                {gamemode set_mode store}
                {if_else
                   {'||'
-                     {!
-                        {platform_mgr is_player_signed_into_live $player_num}}
-                     {platform_mgr is_player_a_guest $player_num}}
+                     {! {platform_mgr is_player_signed_into_live $player_num}}
+                     {platform_mgr is_player_a_guest $player_num}
+                  }
                   {ui push_screen main_store_signin_screen}
-                  {ui push_screen main_store_find_cache_screen}}
+                  {ui push_screen main_store_find_cache_screen}
+               }
                #endif
                #ifdef HX_PS3
                {gamemode set_mode store}
@@ -102,47 +97,49 @@
                #endif
                #ifdef HX_WII
                {ui goto_screen store_loading_screen}
-               {force_goto_else_after_network_connect store_wii_enter_screen main_screen TRUE}
+               {force_goto_else_after_network_connect store_wii_enter_screen
+                  main_screen
+                  TRUE
+               }
                #endif
                #ifdef HX_PC
                {ui goto_screen store_loading_screen}
                #endif
                {fx fade_out}
-               {input_mgr
-                  set_user
-                  {user_mgr get_band_user $player_num}}}
+               {input_mgr set_user {user_mgr get_band_user $player_num}}
+            }
          )
       }
-   )}
-{new
-   MainScreen
+   )
+}
+{new MainScreen
    bonus_menuscreen
    (back main_screen)
    (panels meta movie_panel bonus_menupanel tour_lower3rd_panel)
    (focus bonus_menupanel)
    (helpbar
-      ((cancel helpbar_back)
-         (confirm helpbar_confirm)))}
-{new
-   UIPanel
+      (
+         (cancel helpbar_back)
+         (confirm helpbar_confirm)
+      )
+   )
+}
+{new UIPanel
    cutscene_menupanel
-   (file
-      "quickplay/quickplay_venue.milo")
+   (file "quickplay/quickplay_venue.milo")
    (selection_memory 0)
    (enter
       {do
          {choosevenue.lbl set text_token "cutsceneviewer"}
          {delete Venue_BG_BG.mesh}
          {delete Venue_BG_Border.mesh}
-         {venue.lst
-            set_data
-            (
-               hotel_smash_up
+         {venue.lst set_data
+            (hotel_smash_up
                alien_abduction_02
                ;audition_1_guitar ;milo is 50 mb good luck
                #ifdef HX_WII
                audition_2_vocal ;loads on dolphin with extended memory
-               #endif 
+               #endif
                audition_3_drum
                audition_4_bass
                audition_testing
@@ -179,70 +176,65 @@
                alien_signing
                ufo_breakdown
                moon_set_up
-               stop_the_rock 
+               stop_the_rock
                story_outro
             )
          }
          {$this set_focus venue.lst}
-         {venue.lst
-            set_selected
-            [selection_memory]}})
+         {venue.lst set_selected [selection_memory]}
+      }
+   )
    (BUTTON_DOWN_MSG
-      {if
-         {== $action kAction_Cancel}
-         {synth play button_back}}
-      kDataUnhandled)
+      {if {== $action kAction_Cancel}
+         {synth play button_back}
+      }
+      kDataUnhandled
+   )
    (SELECT_MSG
       {do
          {set $fake_cut_enter TRUE}
-         {cutscene
-            set_current_cutscene
-            {venue.lst selected_sym}}
+         {cutscene set_current_cutscene {venue.lst selected_sym}}
          {cutscene set replay 1}
          {$this setup_users}
-         {if
-            {==
-               {cutscene get_current_cutscene}
-               auditions}
-            {cutscene
-               set_required_driver
-               {switch
-                  {$player get_track_type}
+         {if {== {cutscene get_current_cutscene} auditions}
+            {cutscene set_required_driver
+               {switch {$player get_track_type}
                   (kTrackGuitar guitar.cutdrv)
                   (kTrackDrum drum.cutdrv)
                   (kTrackVocals vocal.cutdrv)
                   (kTrackBass bass.cutdrv)
-                  guitar.cutdrv}
-               guitar.cutdrv}}
+                  guitar.cutdrv
+               }
+               guitar.cutdrv
+            }
+         }
          {synth play button_select}
-         {ui goto_screen cutscene_loading_screen_1}})
+         {ui goto_screen cutscene_loading_screen_1}
+      }
+   )
    (SCROLL_MSG
       {synth play button_focus}
-      {$this
-         set
-         selection_memory
-         {venue.lst selected_pos}})}
-{new
-   MainScreen
+      {$this set selection_memory {venue.lst selected_pos}}
+   )
+}
+{new MainScreen
    cutscene_menuscreen
    (back bonus_menuscreen)
    (panels meta movie_panel cutscene_menupanel tour_lower3rd_panel)
    (focus cutscene_menupanel)
    (helpbar
-      ((cancel helpbar_back)
-         (confirm helpbar_confirm)))}
-{new
-   BandScreen
+      (
+         (cancel helpbar_back)
+         (confirm helpbar_confirm)
+      )
+   )
+}
+{new BandScreen
    cant_create_band_screen
    (panels dialog_panel)
    (focus dialog_panel)
    (message cant_create_band)
-   (helpbar
-      ((confirm helpbar_select)))
-   (enter
-      {dialog_panel
-         set_ok
-         {localize
-            [message]}})
-   (SELECT_MSG
-      {ui pop_screen})}
+   (helpbar ((confirm helpbar_select)))
+   (enter {dialog_panel set_ok {localize [message]}})
+   (SELECT_MSG {ui pop_screen})
+}
