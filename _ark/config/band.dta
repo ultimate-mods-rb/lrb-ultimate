@@ -772,10 +772,7 @@ HX_EE
 )
 (missing_song_data
    #ifndef KIOSK_DEMO
-      #include ../songs/rb1/missing_song_data.dta
-      #ifdef HX_NG
-      #include ../songs/updates/missing_song_data_update.dta
-      #endif
+      #include ../ulti/missing_song_data.dta
    #endif
 )
 (quick_cheats

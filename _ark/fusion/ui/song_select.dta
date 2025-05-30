@@ -12,7 +12,16 @@
 {new UIPanel
    song_select_details_panel
    (file "song_select_details.milo")
-   (enter {loading.mnm animate (loop)})
+   (enter
+      {loading.mnm animate (loop)}
+      {with subheader_song_count.lbl
+         {set [text_token] ""}
+         {set [text_size] 15.00}
+         {set [alignment] kTopRight}
+         {$this set_local_pos -101.00 -2.48 -58.17}
+         {details.grp add_object $this}
+      }
+   )
    (init_setlist_mode
       {if_else {song_offer_provider get_setlist_mode}
          {do
@@ -126,6 +135,23 @@
                   {printf "The song %s is missing year_released data." {$offer short_name}}
                   {year.lbl set_localized ""}
                }
+            }
+            {if_else {&& {$offer has_data song_length} {== {type {$offer get_data (song_length)}} kDataInt}}
+               {subheader_song_count.lbl set_localized
+                  {do
+                     ($song_length {/ {$offer get_data (song_length)} 1000})
+                     ($minutes {int {/ $song_length 60}})
+                     ($seconds {int {mod $song_length 60}})
+                     {sprintf "%d:%s"
+                        $minutes
+                        {if_else {< $seconds 10}
+                           {sprintf "0%d" $seconds}
+                           {sprint $seconds}
+                        }
+                     }
+                  }
+               }
+               {subheader_song_count.lbl set_localized ""}
             }
             {genre.lbl set text_token {$offer get_data (genre)}}
             {foreach $part (STORE_PART_SYMBOLS)
