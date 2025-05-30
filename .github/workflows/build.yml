@@ -36,7 +36,7 @@ jobs:
           path: _build/xbox
 
   build_ps3_usa:
-    runs-on: windows-2019
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
           path: '*.pkg'
 
   build_ps3_eur:
-    runs-on: windows-2019
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
