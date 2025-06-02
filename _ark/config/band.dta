@@ -117,26 +117,27 @@
             (test "UP0006-NPXX00360_00")
          )
       )
-      (rb2
-         (title_id
-            (live "BLUS30147")
-            (test "NPXX00360")
-         )
-         (service_id
-            (live "UP0006-BLUS30147_00")
-            (test "UP0006-NPXX00360_00")
-         )
-      )
-      (rb2_eu
-         (title_id
-            (live "BLES00385")
-            (test "NPXX00360")
-         )
-         (service_id
-            (live "UP0006-BLES00385_00")
-            (test "UP0006-NPXX00360_00")
-         )
-      )
+      ; this game can't decrypt ugc moggs
+      ;(rb2
+      ;   (title_id
+      ;      (live "BLUS30147")
+      ;      (test "NPXX00360")
+      ;   )
+      ;   (service_id
+      ;      (live "UP0006-BLUS30147_00")
+      ;      (test "UP0006-NPXX00360_00")
+      ;   )
+      ;)
+      ;(rb2_eu
+      ;   (title_id
+      ;      (live "BLES00385")
+      ;      (test "NPXX00360")
+      ;   )
+      ;   (service_id
+      ;      (live "UP0006-BLES00385_00")
+      ;      (test "UP0006-NPXX00360_00")
+      ;   )
+      ;)
       (rb1
          (title_id
             (live "BLUS30050")
