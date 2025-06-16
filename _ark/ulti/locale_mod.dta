@@ -222,4 +222,5 @@
 (ven_icebreaker02 "icebreaker 02")
 (ven_skeleton_battle_copy "skeleton battle (copy)")
 (ven_ufobreakdown_alt "ufobreakdown (alt)")
+(ven_battle "Battle of the Bands")
 (cant_create_band "Go to STORY if you want to build another band")

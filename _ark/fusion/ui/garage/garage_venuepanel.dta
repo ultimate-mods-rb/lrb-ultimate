@@ -278,6 +278,8 @@
                ven_ufobreakdown
                ven_asteroid
                ven_ovalrace ;techically not a challenge venue as it's unused but its in a challenge dta
+               ;custom venues
+               ven_battle
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -419,6 +421,8 @@
             (ven_ovalrace
                {symbol "big_club/carsmash/wreck n roll bowl/wrecknroll.milo"}
             )
+            ;custom
+            (ven_battle small_club/battle/battle.milo)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
