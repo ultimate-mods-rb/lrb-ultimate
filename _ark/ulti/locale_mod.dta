@@ -223,4 +223,5 @@
 (ven_skeleton_battle_copy "skeleton battle (copy)")
 (ven_ufobreakdown_alt "ufobreakdown (alt)")
 (ven_battle "Battle of the Bands")
+(ven_small2 "The Blackout Bar")
 (cant_create_band "Go to STORY if you want to build another band")

@@ -280,6 +280,7 @@
                ven_ovalrace ;techically not a challenge venue as it's unused but its in a challenge dta
                ;custom venues
                ven_battle
+               ven_small2
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -423,6 +424,7 @@
             )
             ;custom
             (ven_battle small_club/battle/battle.milo)
+            (ven_small2 small_club/small2/small2.milo)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
