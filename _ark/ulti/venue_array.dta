@@ -199,3 +199,7 @@
    (file small_club/small2/small2.milo)
    FAKE_GIG
 )
+(ven_wikker
+   (file big_club/wikker/wikker.milo)
+   FAKE_GIG
+)

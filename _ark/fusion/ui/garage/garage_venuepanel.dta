@@ -281,6 +281,9 @@
                ;custom venues
                ven_battle
                ven_small2
+               #ifdef HX_NG ; meshes need to be generated differently for wii
+               ven_wikker
+               #endif
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -425,6 +428,7 @@
             ;custom
             (ven_battle small_club/battle/battle.milo)
             (ven_small2 small_club/small2/small2.milo)
+            (ven_wikker big_club/wikker/wikker.milo)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
