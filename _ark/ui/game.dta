@@ -265,7 +265,17 @@
          }
       }
    )
-   (enter)
+   (script_ran FALSE)
+   (enter
+      {unless [script_ran]
+         {do
+            ($str {sprint "fusion/world/" {game get_venue}})
+            {search_replace $str ".milo" ".dtb" $str}
+            {with {$this loaded_dir} {run $str}}
+         }
+         {set [script_ran] TRUE}
+      }
+   )
    (reset_drums
       {if {$this loaded_dir}
          {set $drummer {{$this loaded_dir} find "player_drum"}}
@@ -288,6 +298,7 @@
       }
    )
    (unload
+      {set [script_ran] FALSE}
       #ifndef HX_PC
          #ifndef HX_OG
          {rnd suspend}
