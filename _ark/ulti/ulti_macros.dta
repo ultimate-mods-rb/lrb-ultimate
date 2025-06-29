@@ -1,3 +1,4 @@
+#define SMASHER_COLORS ((green red yellow blue orange))
 #define NORMALGEM_SET (
    gem_green.wid
    gem_red.wid

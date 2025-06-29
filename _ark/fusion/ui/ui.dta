@@ -94,7 +94,6 @@
    #include overshell.dta
    #include ulti_init.dta
    #include ulti_funcs.dta
-   #include ulti_macros.dta
    #include ulti_screens.dta
    #ifdef HX_WII
    {overflow_dialog_panel load TRUE}

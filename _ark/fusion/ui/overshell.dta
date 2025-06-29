@@ -993,11 +993,11 @@
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
-            {set $gtrsm1 green}
-            {set $gtrsm2 red}
-            {set $gtrsm3 yellow}
-            {set $gtrsm4 blue}
-            {set $gtrsm5 orange}
+            {set $gtrsm1 0}
+            {set $gtrsm2 1}
+            {set $gtrsm3 2}
+            {set $gtrsm4 3}
+            {set $gtrsm5 4}
          )
          (os_slot_1
             {set $os_var 1}
@@ -1044,10 +1044,10 @@
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
-            {set $drms1 red}
-            {set $drms2 yellow}
-            {set $drms3 blue}
-            {set $drms4 green}
+            {set $drms1 1}
+            {set $drms2 2}
+            {set $drms3 3}
+            {set $drms4 0}
          )
          (os_slot_1
             {set $os_var 1}
@@ -1088,11 +1088,11 @@
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_green_gem green)
-            (os_red_gem red)
-            (os_yellow_gem yellow)
-            (os_blue_gem blue)
-            (os_orange_gem orange)
+            (os_green_gem 0)
+            (os_red_gem 1)
+            (os_yellow_gem 2)
+            (os_blue_gem 3)
+            (os_orange_gem 4)
          }
       }
       {switch $os_var
@@ -1125,11 +1125,11 @@
    (SELECT_MSG
       {set $os_sel
          {switch {$component selected_sym}
-            (os_red_gem red)
-            (os_yellow_gem yellow)
-            (os_blue_gem blue)
-            (os_green_gem green)
-            (os_orange_gem orange)
+            (os_red_gem 1)
+            (os_yellow_gem 2)
+            (os_blue_gem 3)
+            (os_green_gem 0)
+            (os_orange_gem 4)
          }
       }
       {switch $os_var

@@ -46,17 +46,18 @@
 {set $drmgem3 2}
 {set $drmgem4 3}
 {set $drmgem5 4}
-{set $gtrsm1 red}
-{set $gtrsm2 orange}
-{set $gtrsm3 yellow}
-{set $gtrsm4 green}
-{set $gtrsm5 blue}
+{set $gtrsm1 1}
+{set $gtrsm2 4}
+{set $gtrsm3 2}
+{set $gtrsm4 0}
+{set $gtrsm5 3}
 {set $gtrsus1 1}
 {set $gtrsus2 4}
 {set $gtrsus3 2}
 {set $gtrsus4 0}
 {set $gtrsus5 3}
-{set $drms1 red}
-{set $drms2 yellow}
-{set $drms3 blue}
-{set $drms4 green}
+{set $drms1 1}
+{set $drms2 2}
+{set $drms3 3}
+{set $drms4 0}
+

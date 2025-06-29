@@ -5,6 +5,7 @@
 #define PATCH_NO_STICKERS (1)
 #endif
 #include macros.dta
+#include ../ulti/ulti_macros.dta
 (band_version
    #include band_version.dta
 )

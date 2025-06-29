@@ -40,35 +40,35 @@
                {do
                   {gem_smasher1 set_color
                      {if_else [lefty]
-                        $drms4
-                        $drms1
+                        {elem SMASHER_COLORS $drms4}
+                        {elem SMASHER_COLORS $drms1}
                      }
                   }
                   {gem_smasher2 set_color
                      {if_else [lefty]
-                        $drms3
-                        $drms2
+                        {elem SMASHER_COLORS $drms3}
+                        {elem SMASHER_COLORS $drms2}
                      }
                   }
                   {gem_smasher3 set_color
                      {if_else [lefty]
-                        $drms2
-                        $drms3
+                        {elem SMASHER_COLORS $drms2}
+                        {elem SMASHER_COLORS $drms3}
                      }
                   }
                   {gem_smasher4 set_color
                      {if_else [lefty]
-                        $drms1
-                        $drms4
+                        {elem SMASHER_COLORS $drms1}
+                        {elem SMASHER_COLORS $drms4}
                      }
                   }
                }
                {do
-                  {gem_smasher0 set_color $gtrsm1}
-                  {gem_smasher1 set_color $gtrsm2}
-                  {gem_smasher2 set_color $gtrsm3}
-                  {gem_smasher3 set_color $gtrsm4}
-                  {gem_smasher4 set_color $gtrsm5}
+                  {gem_smasher0 set_color {elem SMASHER_COLORS $gtrsm1}}
+                  {gem_smasher1 set_color {elem SMASHER_COLORS $gtrsm2}}
+                  {gem_smasher2 set_color {elem SMASHER_COLORS $gtrsm3}}
+                  {gem_smasher3 set_color {elem SMASHER_COLORS $gtrsm4}}
+                  {gem_smasher4 set_color {elem SMASHER_COLORS $gtrsm5}}
                }
             }
          )
