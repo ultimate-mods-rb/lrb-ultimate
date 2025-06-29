@@ -1,6 +1,7 @@
 #include ../../../../system/run/config/macros.dta
 (init
    {set_key_cheats_enabled 1}
+   #include ../../ulti/ulti_settings_rw.dta
    #include ../tour/tour_helpers.dta
    #include meta.dta
    #include meta_loading.dta

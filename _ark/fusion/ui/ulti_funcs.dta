@@ -1,121 +1,126 @@
-{func set_cnt_type
-   ($cnt $instr)
-   {set_elem
-      {find $syscfg joypad instrument_mapping $cnt}
-      1
-      $instr
+{func sti
+   ($str)
+   {switch $str
+      ("0" 0)   ("1" 1)   ("2" 2)   ("3" 3)   ("4" 4)
+      ("5" 5)   ("6" 6)   ("7" 7)   ("8" 8)   ("9" 9)
+
+      ("a" 10)  ("b" 11)  ("c" 12)  ("d" 13)  ("e" 14)  ("f" 15)
+      ("g" 16)  ("h" 17)  ("i" 18)  ("j" 19)  ("k" 20)  ("l" 21)
+      ("m" 22)  ("n" 23)  ("o" 24)  ("p" 25)  ("q" 26)  ("r" 27)
+      ("s" 28)  ("t" 29)  ("u" 30)  ("v" 31)  ("w" 32)  ("x" 33)
+      ("y" 34)  ("z" 35)
+
+      ("A" 36)  ("B" 37)  ("C" 38)  ("D" 39)  ("E" 40)  ("F" 41)
+      ("G" 42)  ("H" 43)  ("I" 44)  ("J" 45)  ("K" 46)  ("L" 47)
+      ("M" 48)  ("N" 49)  ("O" 50)  ("P" 51)  ("Q" 52)  ("R" 53)
+      ("S" 54)  ("T" 55)  ("U" 56)  ("V" 57)  ("W" 58)  ("X" 59)
+      ("Y" 60)  ("Z" 61)
+
+      {fail {sprint "can't decode " $str}}
    }
 }
-{func set_cnt_mapping
-   #ifdef HX_WII
-   {set_elem
-      {find $syscfg beatmatcher controller wii_remote slots}
-      1
-      $cnt_slot1
+{func its
+   ($int)
+   {switch $int
+      (0 "0")   (1 "1")   (2 "2")   (3 "3")   (4 "4")
+      (5 "5")   (6 "6")   (7 "7")   (8 "8")   (9 "9")
+
+      (10 "a")  (11 "b")  (12 "c")  (13 "d")  (14 "e")  (15 "f")
+      (16 "g")  (17 "h")  (18 "i")  (19 "j")  (20 "k")  (21 "l")
+      (22 "m")  (23 "n")  (24 "o")  (25 "p")  (26 "q")  (27 "r")
+      (28 "s")  (29 "t")  (30 "u")  (31 "v")  (32 "w")  (33 "x")
+      (34 "y")  (35 "z")
+
+      (36 "A")  (37 "B")  (38 "C")  (39 "D")  (40 "E")  (41 "F")
+      (42 "G")  (43 "H")  (44 "I")  (45 "J")  (46 "K")  (47 "L")
+      (48 "M")  (49 "N")  (50 "O")  (51 "P")  (52 "Q")  (53 "R")
+      (54 "S")  (55 "T")  (56 "U")  (57 "V")  (58 "W")  (59 "X")
+      (60 "Y")  (61 "Z")
+
+      {fail {sprint "can't encode " $str}}
    }
-   {set_elem
-      {find $syscfg beatmatcher controller wii_remote slots}
-      3
-      $cnt_slot2
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller wii_remote slots}
-      5
-      $cnt_slot3
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller wii_remote slots}
-      7
-      $cnt_slot4
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller wii_remote slots}
-      9
-      $cnt_slot5
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller wii_remote force_mercury}
-      1
-      $cnt_star
-   }
-   #else
-   {set_elem
-      {find $syscfg beatmatcher controller joypad slots}
-      1
-      $cnt_slot1
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller joypad slots}
-      3
-      $cnt_slot2
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller joypad slots}
-      5
-      $cnt_slot3
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller joypad slots}
-      7
-      $cnt_slot4
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller joypad slots}
-      9
-      $cnt_slot5
-   }
-   {set_elem
-      {find $syscfg beatmatcher controller joypad force_mercury}
-      1
-      $cnt_star
-   }
-   #endif
 }
-{func enable_second_kick_mapping
-   #ifdef HX_XBOX
-   {insert_elems
-      {find $syscfg beatmatcher controller hx_drums_xbox slots}
-      1
-      (kPad_R1 0)
+{func siti
+   ($str)
+   {do
+      ($result)
+      ($len {strlen $str})
+      {foreach_int $elem 0 $len
+         {set $result {+ {* $result 10} {sti {str_elem $str $elem}}}}
+      }
+      $result
    }
-   #endif
-   #ifdef HX_PS3
-   {insert_elems
-      {find $syscfg beatmatcher controller hx_drums_ps3 slots}
-      1
-      (kPad_R1 0)
-   }
-   #endif
-   #ifdef HX_WII
-   {insert_elems
-      {find $syscfg beatmatcher controller wii_drums slots}
-      1
-      (kPad_R1 0)
-   }
-   #endif
 }
-{func disable_second_kick_mapping
-   #ifdef HX_XBOX
-   {set_elem
-      {find $syscfg beatmatcher controller hx_drums_xbox slots}
-      1
-      69
+{func sftf
+   ($str)
+   {do
+      ($dotpos {str_elemof $str "."})
+      {if_else $dotpos
+         {do
+            ($fracpart {substr $str {+ $dotpos 1} {strlen $str}})
+            {+
+               {siti {substr $str 0 $dotpos}}
+               {/
+                  {siti $fracpart}
+                  {pow 10 {strlen $fracpart}}
+               }
+            }
+         }
+         {siti $str}
+      }
    }
-   #endif
-   #ifdef HX_PS3
-   {set_elem
-      {find $syscfg beatmatcher controller hx_drums_ps3 slots}
-      1
-      69
+}
+{func str_elemof
+   ($str $char)
+   {do
+      ($len {strlen $str})
+      ($found)
+      ($elem)
+      ($return)
+      {while {&& {! $found} {> $len $elem}}
+         {if_else {== {str_elem $str $elem} $char}
+            {do
+               {set $found TRUE}
+               {set $return $elem}
+            }
+            {++ $elem}
+         }
+      }
+      $return
    }
-   #endif
-   #ifdef HX_WII
-   {set_elem
-      {find $syscfg beatmatcher controller wii_drums slots}
-      1
-      69
+}
+{func pow
+   ($base $exp)
+   {do
+      ($return 1)
+      {foreach_int $i 0 $exp
+         {set $return {* $return $base}}
+      }
+      $return
    }
-   #endif
+}
+{func set_pad_map
+   ($mapping)
+   {foreach $pad (analog dualshock)
+      {set_elem
+         {find $syscfg joypad controller_mapping $pad} 1
+         {switch $mapping
+            (0 joypad)
+            #ifdef HX_XBOX
+            (1 ro_guitar_xbox)
+            #else
+            (1 hx_guitar_ps3)
+            #endif
+            (2 ro_guitar_ps3)
+            (3 guitar)
+            #ifdef HX_XBOX
+            (4 hx_drums_xbox)
+            #else
+            (4 hx_drums_ps3)
+            #endif
+         }
+      }
+   }
 }
 {func reset_fc_vars
    {set $guitar_milosong FALSE}
@@ -132,122 +137,6 @@
    {set $drum_groove_active FALSE}
    {set $h2h_0_groove_active FALSE}
    {set $h2h_1_groove_active FALSE}
-}
-{func force_inst_detection
-   {set $padtar FALSE}
-   {set $paddrum FALSE}
-   {if_else $force_inst_detec
-      {switch $force_inst_detec
-         (guitar
-            {set_elem
-               {find $syscfg joypad instrument_mapping analog}
-               1
-               kControllerGuitar
-            }
-            #ifdef HX_PS3
-            {set_elem
-               {find $syscfg joypad instrument_mapping dualshock}
-               1
-               kControllerGuitar
-            }
-            {set_elem
-               {find $syscfg joypad controller_mapping dualshock}
-               1
-               hx_guitar_ps3
-            }
-            {set_elem
-               {find $syscfg joypad controller_mapping analog}
-               1
-               hx_guitar_ps3
-            }
-            #else
-            {set_elem
-               {find $syscfg joypad controller_mapping analog}
-               1
-               ro_guitar_xbox
-            }
-            #endif
-         )
-         #ifdef HX_PS3
-         (gh_guitar
-            {set_elem
-               {find $syscfg joypad instrument_mapping dualshock}
-               1
-               kControllerGuitar
-            }
-            {set_elem
-               {find $syscfg joypad controller_mapping dualshock}
-               1
-               ro_guitar_ps3
-            }
-            {set_elem
-               {find $syscfg joypad instrument_mapping analog}
-               1
-               kControllerGuitar
-            }
-            {set_elem
-               {find $syscfg joypad controller_mapping analog}
-               1
-               ro_guitar_ps3
-            }
-         )
-         #endif
-         (drum
-            {set_elem
-               {find $syscfg joypad instrument_mapping analog}
-               1
-               kControllerDrum
-            }
-            #ifdef HX_PS3
-            {set_elem
-               {find $syscfg joypad instrument_mapping dualshock}
-               1
-               kControllerDrum
-            }
-            {set_elem
-               {find $syscfg joypad controller_mapping dualshock}
-               1
-               hx_drums_ps3
-            }
-            {set_elem
-               {find $syscfg joypad controller_mapping analog}
-               1
-               hx_drums_ps3
-            }
-            #else
-            {set_elem
-               {find $syscfg joypad controller_mapping analog}
-               1
-               hx_drums_xbox
-            }
-            #endif
-         )
-      }
-      {do
-         #ifdef HX_PS3
-         {set_elem
-            {find $syscfg joypad instrument_mapping dualshock}
-            1
-            kControllerVocals
-         }
-         {set_elem
-            {find $syscfg joypad controller_mapping dualshock}
-            1
-            joypad
-         }
-         #endif
-         {set_elem
-            {find $syscfg joypad instrument_mapping analog}
-            1
-            kControllerVocals
-         }
-         {set_elem
-            {find $syscfg joypad controller_mapping analog}
-            1
-            joypad
-         }
-      }
-   }
 }
 {func ulti_cycle_free_camera
    {if $world

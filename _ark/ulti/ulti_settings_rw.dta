@@ -1,0 +1,214 @@
+#define SETTINGS_VERSION (1) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+{new UIPanel
+   mod_settings_rw
+   (file "bp_init.milo")
+   (band_provider 0)
+   (loaded 0)
+   (load {memcardmgr add_sink $this (save_load_all_complete_msg)})
+   (initalize
+      {set [band_provider] {get_band_provider}}
+      {band.lst set_provider [band_provider]} ; fixes "File: z:/LEGORockBand/Code/Game/meta/BandProvider.cpp Line: 396 Error: (0) <= (pos) && (pos) < (mBands.size())"
+   )
+   (save_load_all_complete_msg
+      #ifdef _SHIP
+      {mod_settings_rw load_settings}
+      #else
+      {switch {mod_settings_rw load_settings}
+         (1 {print "no bands found. unable to load mod settings.\n"})
+         (2 {print "mod settings version too new\n"})
+      }
+      #endif
+   )
+   (get_max_pos
+      {do
+         ($return {[band_provider] get_default_pos})
+         {band.lst set_selected $return}
+         {while {== {band.lst selected_pos} $return}
+            {++ $return}
+            {band.lst set_selected $return}
+         }
+         $return
+      }
+   )
+   (save_settings
+      {$this initalize}
+      {do
+         ($default_pos {[band_provider] get_default_pos})
+         {if_else {[band_provider] is_pos_band $default_pos}
+            {foreach_int $i $default_pos {$this get_max_pos}
+               {do
+                  ($band {[band_provider] get_band $i})
+                  ($new_motto {sprint
+                     SETTINGS_VERSION
+                     " "
+                     $syncdifspeeds
+                     $whammypb
+                     $trkmuting
+                     $misssounds
+                     $songtitle
+                     $legacybass
+                     $colorshuffle
+                     $fcring
+                     $blackbg
+                     $fxdof
+                     $scrnoise
+                     $scrbloom
+                     $camerashake
+                     $mbblend
+                     $gtrgem1
+                     $gtrgem2
+                     $gtrgem3
+                     $gtrgem4
+                     $gtrgem5
+                     $drmgem1
+                     $drmgem2
+                     $drmgem3
+                     $drmgem4
+                     $drmgem5
+                     $gtrsm1
+                     $gtrsm2
+                     $gtrsm3
+                     $gtrsm4
+                     $gtrsm5
+                     $gtrsus1
+                     $gtrsus2
+                     $gtrsus3
+                     $gtrsus4
+                     $gtrsus5
+                     $drms1
+                     $drms2
+                     $drms3
+                     $drms4
+                     $pad_inst
+                     $pad_map
+                     $vsyncrate
+                     {its $emulatefps}
+                     {its $cnt_slot1}
+                     {its $cnt_slot2}
+                     {its $cnt_slot3}
+                     {its $cnt_slot4}
+                     {its $cnt_slot5}
+                     {its $cnt_star}
+                     " "
+                     $trackspeed
+                     " "
+                     $hwlength
+                  })
+                  {unless {== $new_motto {$band band_motto}}
+                     {$band set_band_motto $new_motto}
+                     #ifndef _SHIP
+                     {print {sprintf "saved mod settings to \q%s\q\n" {$band band_name}}}
+                     #endif
+                  }
+               }
+            }
+            1
+         }
+      }
+   )
+   (load_settings
+      {$this initalize}
+      {do
+         ($default_pos {[band_provider] get_default_pos})
+         {if_else {[band_provider] is_pos_band $default_pos}
+            {foreach_int $i $default_pos {$this get_max_pos} {unless [loaded]
+               {do
+                  ($band {[band_provider] get_band $i})
+                  ($settings {$band band_motto})
+                  ($array {array 0})
+                  ($str)
+                  {if {> {strlen $settings} 5}
+                     #ifndef _SHIP
+                     {print {sprintf "Attempting to load mod settings from \q%s\q\n" {$band band_name}}}
+                     #endif
+                     {foreach_int $elem 0 {strlen $settings} {do
+                        ($char {str_elem $settings $elem})
+                        {if_else {== $char " "}
+                           {do
+                              {push_back $array $str}
+                              {set $str 0}
+                           }
+                           {set $str
+                              {if_else $str
+                                 {sprint $str $char}
+                                 $char
+                              }
+                           }
+                        }
+                     }}
+                     {push_back $array $str}
+                     {if_else {> {siti {elem $array 0}} SETTINGS_VERSION}
+                        2
+                        {do
+                           ($pool {elem $array 1})
+
+                           {set $syncdifspeeds {sti {str_elem $pool 0}}}
+                           {set $whammypb {sti {str_elem $pool 1}}}
+                           {set $trkmuting {sti {str_elem $pool 2}}}
+                           {set $misssounds {sti {str_elem $pool 3}}}
+                           {set $songtitle {sti {str_elem $pool 4}}}
+                           {set $legacybass {sti {str_elem $pool 5}}}
+                           {set $colorshuffle {sti {str_elem $pool 6}}}
+                           {set $fcring {sti {str_elem $pool 7}}}
+                           {set $blackbg {sti {str_elem $pool 8}}}
+                           {set $fxdof {sti {str_elem $pool 9}}}
+                           {set $scrnoise {sti {str_elem $pool 10}}}
+                           {set $scrbloom {sti {str_elem $pool 11}}}
+                           {set $camerashake {sti {str_elem $pool 12}}}
+                           {set $mbblend {sti {str_elem $pool 13}}}
+                           {set $gtrgem1 {sti {str_elem $pool 14}}}
+                           {set $gtrgem2 {sti {str_elem $pool 15}}}
+                           {set $gtrgem3 {sti {str_elem $pool 16}}}
+                           {set $gtrgem4 {sti {str_elem $pool 17}}}
+                           {set $gtrgem5 {sti {str_elem $pool 18}}}
+                           {set $drmgem1 {sti {str_elem $pool 19}}}
+                           {set $drmgem2 {sti {str_elem $pool 20}}}
+                           {set $drmgem3 {sti {str_elem $pool 21}}}
+                           {set $drmgem4 {sti {str_elem $pool 22}}}
+                           {set $drmgem5 {sti {str_elem $pool 23}}}
+                           {set $gtrsm1 {sti {str_elem $pool 24}}}
+                           {set $gtrsm2 {sti {str_elem $pool 25}}}
+                           {set $gtrsm3 {sti {str_elem $pool 26}}}
+                           {set $gtrsm4 {sti {str_elem $pool 27}}}
+                           {set $gtrsm5 {sti {str_elem $pool 28}}}
+                           {set $gtrsus1 {sti {str_elem $pool 29}}}
+                           {set $gtrsus2 {sti {str_elem $pool 30}}}
+                           {set $gtrsus3 {sti {str_elem $pool 31}}}
+                           {set $gtrsus4 {sti {str_elem $pool 32}}}
+                           {set $gtrsus5 {sti {str_elem $pool 33}}}
+                           {set $drms1 {sti {str_elem $pool 34}}}
+                           {set $drms2 {sti {str_elem $pool 35}}}
+                           {set $drms3 {sti {str_elem $pool 36}}}
+                           {set $drms4 {sti {str_elem $pool 37}}}
+                           {set $pad_inst {sti {str_elem $pool 38}}}
+                           {set $pad_map {sti {str_elem $pool 39}}}
+                           {set $vsyncrate {sti {str_elem $pool 40}}}
+                           {set $emulatefps {sti {str_elem $pool 41}}}
+                           {set $cnt_slot1 {sti {str_elem $pool 42}}}
+                           {set $cnt_slot2 {sti {str_elem $pool 43}}}
+                           {set $cnt_slot3 {sti {str_elem $pool 44}}}
+                           {set $cnt_slot4 {sti {str_elem $pool 45}}}
+                           {set $cnt_slot5 {sti {str_elem $pool 46}}}
+                           {set $cnt_star {sti {str_elem $pool 47}}}
+
+                           {set $trackspeed {sftf {elem $array 2}}}
+
+                           {set $hwlength {sftf {elem $array 3}}}
+
+                           {set_pad_map $pad_map}
+                           {set [loaded] TRUE}
+                           {passive_messages_panel queue_message {localize mod_settings_loaded}}
+                           #ifndef _SHIP
+                           {print "Mod settings loaded successfully!"}
+                           #endif
+                        }
+                     }
+                  }
+               }
+            }}
+            1
+         }
+      }
+   )
+}
+{mod_settings_rw load TRUE}

@@ -60,6 +60,7 @@
 (os_fcring0 "Show FC Ring: OFF")
 (os_cnt "Controller Settings")
 (os_remap_cnt "Remap Pad Controls")
+(os_cnt_map "Controller Mapping")
 ;buttons
 #ifdef HX_WII
 (os_pad_x "A")
@@ -98,8 +99,8 @@
 (os_pad_ddown "Down")
 (os_pad_dleft "Left")
 (os_pad_dright "Right")
-(os_force_inst_detec "Force Instrument Detection")
 (gh_guitar "GH Guitar")
+(ps2_guitar "PS2 Guitar")
 (os_autokick1 "Auto Kick: ON")
 (os_autokick0 "Auto Kick: OFF")
 (os_breakneck1 "Breakneck Speed: ON")
@@ -226,3 +227,5 @@
 (ven_small2 "The Blackout Bar")
 (ven_wikker "Desert Rock Tour")
 (cant_create_band "Go to STORY if you want to build another band")
+(no_bands "To save mod settings you need to build a band.")
+(mod_settings_loaded "Mod settings loaded successfully!")

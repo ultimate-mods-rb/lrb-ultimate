@@ -31,6 +31,7 @@
    )
    (BUTTON_DOWN_MSG
       {if {== $action kAction_Cancel}
+         {mod_settings_rw save_settings}
          {ui pop_screen}
          {set $overshell_up FALSE}
       }
@@ -355,19 +356,15 @@
 #define CNT_MODIFIER_DATA (
    (os_remap_cnt
       #ifndef HX_WII
-      os_force_inst_detec
+      os_cnt_map
       #endif
-      {if_else $padtar
+      {if_else {== $pad_inst kControllerGuitar}
          os_padtar1
          os_padtar0
       }
-      {if_else $paddrum
+      {if_else {== $pad_inst kControllerDrum}
          os_paddrum1
          os_paddrum0
-      }
-      {if_else $secondkick
-         os_secondkick1
-         os_secondkick0
       }
    )
 )
@@ -382,61 +379,25 @@
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_remap_cnt {pop_and_goto_screen overshell_remap_cnt_screen})
-         (os_force_inst_detec
-            {pop_and_goto_screen overshell_force_inst_detec_screen}
+         (os_cnt_map
+            {pop_and_goto_screen overshell_cnt_map_screen}
          )
          (
             (os_padtar1 os_padtar0)
-            {set $padtar {! $padtar}}
-            {set $paddrum FALSE}
-            {set_cnt_type wii_remote
-               {if_else $padtar
-                  kControllerGuitar
+            {set $pad_inst
+               {if_else {== $pad_inst kControllerGuitar}
                   kControllerVocals
-               }
-            }
-            {set_cnt_type dualshock
-               {if_else $padtar
                   kControllerGuitar
-                  kControllerVocals
-               }
-            }
-            {set_cnt_type analog
-               {if_else $padtar
-                  kControllerGuitar
-                  kControllerVocals
                }
             }
          )
          (
             (os_paddrum1 os_paddrum0)
-            {set $paddrum {! $paddrum}}
-            {set $padtar FALSE}
-            {set_cnt_type wii_remote
-               {if_else $paddrum
-                  kControllerDrum
+            {set $pad_inst
+               {if_else {== $pad_inst kControllerDrum}
                   kControllerVocals
-               }
-            }
-            {set_cnt_type dualshock
-               {if_else $paddrum
                   kControllerDrum
-                  kControllerVocals
                }
-            }
-            {set_cnt_type analog
-               {if_else $paddrum
-                  kControllerDrum
-                  kControllerVocals
-               }
-            }
-         )
-         (
-            (os_secondkick1 os_secondkick0)
-            {set $secondkick {! $secondkick}}
-            {if_else $secondkick
-               {enable_second_kick_mapping}
-               {disable_second_kick_mapping}
             }
          )
       }
@@ -1195,7 +1156,6 @@
       }
       {title.lbl set text_token {localize os_remap_cnt}}
    )
-   (exit {set_cnt_mapping})
    (SELECT_MSG
       {switch {$component selected_sym}
          (os_reset
@@ -1297,46 +1257,38 @@
 ;
 ;
 {new UIPanel
-   overshell_force_inst_detec_panel
+   overshell_cnt_map_panel
    OVERSHELL_LIST_FILE
    (enter
       {sel_section.lst set_data
-         (off
+         (
+            custom
             guitar
-            #ifdef HX_PS3
             gh_guitar
-            #endif
+            ps2_guitar
             drum
          )
       }
-      {title.lbl set text_token {localize os_force_inst_detec}}
+      {title.lbl set text_token {localize os_cnt_map}}
    )
+   (exit {set_pad_map $pad_map})
    (SELECT_MSG
-      {switch {$component selected_sym}
-         (off
-            {set $force_inst_detec FALSE}
-            {force_inst_detection}
-         )
-         (guitar
-            {set $force_inst_detec guitar}
-            {force_inst_detection}
-         )
-         (gh_guitar
-            {set $force_inst_detec gh_guitar}
-            {force_inst_detection}
-         )
-         (drum
-            {set $force_inst_detec drum}
-            {force_inst_detection}
-         )
+      {set $pad_map
+         {switch {$component selected_sym}
+            (custom 0)
+            (guitar 1)
+            (gh_guitar 2)
+            (ps2_guitar 3)
+            (drum 4)
+         }
       }
       {pop_and_goto_screen overshell_cnt_screen}
    )
 }
 {new UIScreen
-   overshell_force_inst_detec_screen
+   overshell_cnt_map_screen
    (back overshell_cnt_screen)
-   (panels overshell_force_inst_detec_panel practice_lower3rd_panel)
-   (focus overshell_force_inst_detec_panel)
+   (panels overshell_cnt_map_panel practice_lower3rd_panel)
+   (focus overshell_cnt_map_panel)
 }
 ;
