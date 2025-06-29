@@ -378,79 +378,32 @@
       }
    )
    (enter
-      {$world iterate
-         PostProc
-         $p
+      {$world iterate PostProc $p
          {$p set emulate_fps $emulatefps}
-         {$p set
-            noise_intensity
-            {if_else $scrnoise
-               #ifdef HX_WII
-               0.25
-               #else
-               0.5
-               #endif
-               0
-            }
-         } ;this val is (likely) wrong as i had to guess it as i couldnt find it anywhere
+         {unless $scrnoise
+            {$p set noise_intensity 0}
+         }
          #ifndef HX_WII ;wii doesn't have motion blur (citation needed)
          {unless $mbblend
             {$p set motion_blur_blend 0}
             {$p set motion_blur_weight 0}
          }
          #endif
-         {$p set
-            bloom_intensity
-            {if_else $scrbloom
-               0.5
-               0
-            }
-         } ;estimated from wii
+         {unless $scrbloom
+            {$p set bloom_intensity 0}
+         }
       }
-      {$world iterate
-         WorldDir
-         $wd
-         {$wd iterate
-            BandCamShot
-            $bcs
+      {$world iterate WorldDir $wd
+         {$wd iterate  BandCamShot $bcs
             {unless $fxdof
                {$bcs set use_depth_of_field FALSE}
             }
-            #ifndef HX_WII ;this crashes wii
-            {if $forcelod0
-               {foreach_int $i 0 {$bcs size (targets)}
-                  {$bcs set (targets $i force_lod) kLOD0}
-               }
-            }
-            #endif
             {unless $camerashake
                {foreach_int $i 0 {$bcs size (keyframes)}
-                  {$bcs set
-                     (keyframes $i shake_noisefreq)
-                     {'*' {$bcs get (keyframes $i shake_noisefreq)} 0}
-                  }
-                  {$bcs set
-                     (keyframes $i shake_noiseamp)
-                     {'*' {$bcs get (keyframes $i shake_noiseamp)} 0}
-                  }
-                  {$bcs set
-                     (keyframes $i shake_maxangle x)
-                     {'*'
-                        {$bcs get
-                           (keyframes $i shake_maxangle x)
-                        }
-                        0
-                     }
-                  }
-                  {$bcs set
-                     (keyframes $i shake_maxangle y)
-                     {'*'
-                        {$bcs get
-                           (keyframes $i shake_maxangle y)
-                        }
-                        0
-                     }
-                  }
+                  {$bcs set (keyframes $i shake_noisefreq) 0}
+                  {$bcs set (keyframes $i shake_noiseamp) 0}
+                  {$bcs set (keyframes $i shake_maxangle x) 0}
+                  {$bcs set (keyframes $i shake_maxangle y) 0}
                }
             }
          }
