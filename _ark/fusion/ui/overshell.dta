@@ -31,7 +31,9 @@
    )
    (BUTTON_DOWN_MSG
       {if {== $action kAction_Cancel}
-         {mod_settings_rw save_settings}
+         {if {mod_settings_rw save_settings}
+            {passive_messages_panel queue_message {localize no_bands}}
+         }
          {ui pop_screen}
          {set $overshell_up FALSE}
       }
