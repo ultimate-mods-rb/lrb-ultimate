@@ -226,6 +226,7 @@
 (ven_battle "Battle of the Bands")
 (ven_small2 "The Blackout Bar")
 (ven_wikker "Desert Rock Tour")
+(stevehead "Steve Head")
 (cant_create_band "Go to STORY if you want to build another band")
 (no_bands "To save mod settings you need to build a band.")
 (mod_settings_loaded "Mod settings loaded successfully!")
