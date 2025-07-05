@@ -36,70 +36,72 @@
          ($default_pos {[band_provider] get_default_pos})
          {if_else {[band_provider] is_pos_band $default_pos}
             {foreach_int $i $default_pos {$this get_max_pos}
-               {do
-                  ($band {[band_provider] get_band $i})
-                  ($new_motto {sprint
-                     SETTINGS_VERSION
-                     " "
-                     $syncdifspeeds
-                     $whammypb
-                     $trkmuting
-                     $misssounds
-                     $songtitle
-                     $legacybass
-                     $colorshuffle
-                     $fcring
-                     $blackbg
-                     $fxdof
-                     $scrnoise
-                     $scrbloom
-                     $camerashake
-                     $mbblend
-                     $gtrgem1
-                     $gtrgem2
-                     $gtrgem3
-                     $gtrgem4
-                     $gtrgem5
-                     $drmgem1
-                     $drmgem2
-                     $drmgem3
-                     $drmgem4
-                     $drmgem5
-                     $gtrsm1
-                     $gtrsm2
-                     $gtrsm3
-                     $gtrsm4
-                     $gtrsm5
-                     $gtrsus1
-                     $gtrsus2
-                     $gtrsus3
-                     $gtrsus4
-                     $gtrsus5
-                     $drms1
-                     $drms2
-                     $drms3
-                     $drms4
-                     $pad_inst
-                     $pad_map
-                     $vsyncrate
-                     {its $emulatefps}
-                     {its $cnt_slot1}
-                     {its $cnt_slot2}
-                     {its $cnt_slot3}
-                     {its $cnt_slot4}
-                     {its $cnt_slot5}
-                     {its $cnt_star}
-                     $countdown
-                     " "
-                     $trackspeed
-                     " "
-                     $hwlength
-                  })
-                  {unless {== $new_motto {$band band_motto}}
-                     {$band set_band_motto $new_motto}
-                     #ifndef _SHIP
-                     {print {sprintf "saved mod settings to \q%s\q\n" {$band band_name}}}
-                     #endif
+               {if {[band_provider] is_pos_band $i}
+                  {do
+                     ($band {[band_provider] get_band $i})
+                     ($new_motto {sprint
+                        SETTINGS_VERSION
+                        " "
+                        $syncdifspeeds
+                        $whammypb
+                        $trkmuting
+                        $misssounds
+                        $songtitle
+                        $legacybass
+                        $colorshuffle
+                        $fcring
+                        $blackbg
+                        $fxdof
+                        $scrnoise
+                        $scrbloom
+                        $camerashake
+                        $mbblend
+                        $gtrgem1
+                        $gtrgem2
+                        $gtrgem3
+                        $gtrgem4
+                        $gtrgem5
+                        $drmgem1
+                        $drmgem2
+                        $drmgem3
+                        $drmgem4
+                        $drmgem5
+                        $gtrsm1
+                        $gtrsm2
+                        $gtrsm3
+                        $gtrsm4
+                        $gtrsm5
+                        $gtrsus1
+                        $gtrsus2
+                        $gtrsus3
+                        $gtrsus4
+                        $gtrsus5
+                        $drms1
+                        $drms2
+                        $drms3
+                        $drms4
+                        $pad_inst
+                        $pad_map
+                        $vsyncrate
+                        {its $emulatefps}
+                        {its $cnt_slot1}
+                        {its $cnt_slot2}
+                        {its $cnt_slot3}
+                        {its $cnt_slot4}
+                        {its $cnt_slot5}
+                        {its $cnt_star}
+                        $countdown
+                        " "
+                        $trackspeed
+                        " "
+                        $hwlength
+                     })
+                     {unless {== $new_motto {$band band_motto}}
+                        {$band set_band_motto $new_motto}
+                        #ifndef _SHIP
+                        {print {sprintf "saved mod settings to \q%s\q\n" {$band band_name}}}
+                        #endif
+                     }
                   }
                }
             }
@@ -112,7 +114,7 @@
       {do
          ($default_pos {[band_provider] get_default_pos})
          {if_else {[band_provider] is_pos_band $default_pos}
-            {foreach_int $i $default_pos {$this get_max_pos} {unless [loaded]
+            {foreach_int $i $default_pos {$this get_max_pos} {unless {|| [loaded] {! {[band_provider] is_pos_band $i}}}
                {do
                   ($band {[band_provider] get_band $i})
                   ($settings {$band band_motto})
