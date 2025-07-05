@@ -3,6 +3,7 @@
 )
 (midi_parsers
    #include midi_parsers.dta
+   #include ../ulti/midi_parsers.dta
 )
 (callbacks
    (sixteenth_note
@@ -13,6 +14,16 @@
    )
    (eighth_note {handle_type ($world halfbeat)})
    (beat
+      ; doing this on downbeat causes it to countdown at half speed on songs like vasoline and tomsawyer
+      {if {== {mod {int {taskmgr beat}} 4} 0}
+         {foreach $inst (guitar drum vocals bass)
+            {with coop_track_panel
+               {if {exists {sprint $inst "_countdown"}}
+                  {{sprint $inst "_countdown"} downbeat}
+               }
+            }
+         }
+      }
       {if_else $world
          {handle_type ($world beat)}
          {handle (game beat)}

@@ -89,6 +89,7 @@
                      {its $cnt_slot4}
                      {its $cnt_slot5}
                      {its $cnt_star}
+                     $countdown
                      " "
                      $trackspeed
                      " "
@@ -140,6 +141,7 @@
                      {if_else {> {siti {elem $array 0}} SETTINGS_VERSION}
                         2
                         {do
+                           ($version {siti {elem $array 0}})
                            ($pool {elem $array 1})
 
                            {set $syncdifspeeds {sti {str_elem $pool 0}}}
@@ -190,6 +192,7 @@
                            {set $cnt_slot4 {sti {str_elem $pool 45}}}
                            {set $cnt_slot5 {sti {str_elem $pool 46}}}
                            {set $cnt_star {sti {str_elem $pool 47}}}
+                           {set $countdown {sti {str_elem $pool 48}}}
 
                            {set $trackspeed {sftf {elem $array 2}}}
 

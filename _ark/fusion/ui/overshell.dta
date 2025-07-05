@@ -141,6 +141,10 @@
          os_fcring1
          os_fcring0
       }
+      {if_else $countdown
+         os_countdown1
+         os_countdown0
+      }
    )
 )
 {new UIPanel
@@ -172,6 +176,10 @@
          (
             (os_colorshuffle1 os_colorshuffle0)
             {set $colorshuffle {! $colorshuffle}}
+         )
+         (
+            (os_countdown1 os_countdown0)
+            {set $countdown {! $countdown}}
          )
       }
       {$this lst_reset}

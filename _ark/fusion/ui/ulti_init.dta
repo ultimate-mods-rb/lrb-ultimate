@@ -35,6 +35,8 @@
 
 {set $fcring TRUE}
 
+{set $countdown TRUE}
+
 ;default gem/smasher/sustain colors
 {set $gtrgem1 1}
 {set $gtrgem2 4}

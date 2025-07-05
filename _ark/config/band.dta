@@ -620,6 +620,7 @@ HX_EE
 )
 (objects
    #include objects.dta
+   #merge ../ulti/ulti_objects.dta
 )
 (locale ../fusion/ui/locale/eng/locale.dta)
 (locale_eng

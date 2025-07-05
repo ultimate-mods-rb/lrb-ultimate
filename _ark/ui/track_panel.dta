@@ -2,6 +2,11 @@
 #define TRACK_END_FRAME (1920)
 #define TRACK_PANEL_HANDLERS (
    (enter
+      {foreach $obj {draw_order.grp get_array objects}
+         {if {$obj is_a BandLabel}
+            {draw_order.grp remove_object $obj}
+         }
+      }
       {unless {exists fc_bass_callback}
          {new Object
             fc_bass_callback ;remove FC groove on bass miss/pass
@@ -295,6 +300,30 @@
             (bass {$player add_sink fc_bass_callback FC_CALLBACK_ELEMS})
             (guitar {$player add_sink fc_guitar_callback FC_CALLBACK_ELEMS})
             (drum {$player add_sink fc_drum_callback FC_CALLBACK_ELEMS})
+         }
+         {unless {|| {! $countdown} {gamemode get is_practice} {gamemode get is_drum_trainer} {challenge_mgr has_challenge}}
+            {do
+               ($obj {sprint {$player instrument} "_countdown"})
+               {print $str " " $slot "\n"}
+               {if {exists $obj} {delete $obj}}
+               {new Object $obj}
+               {$obj set_type countdown}
+               {$obj init
+                  {$player instrument}
+                  {
+                     {sprint "endgame_feedback_"
+                        {if_else {== {$player instrument} vocals}
+                           vox
+                           {do
+                              ($str {sprint {{$player instrument} get player_feedback}})
+                              {sprint 0 {str_elem $str {- {strlen $str} 1}}}
+                           }
+                        }
+                     }
+                     find end_game_drum.lbl
+                  }
+               }
+            }
          }
       }
       {$this play_intro}

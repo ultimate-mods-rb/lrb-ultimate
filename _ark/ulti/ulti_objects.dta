@@ -1,0 +1,66 @@
+(Object
+   (types
+      (countdown
+         (active FALSE)
+         (done FALSE)
+         (current_event 0)
+         (total_events 0)
+         (remaining 0)
+         (event_array 0)
+         (target 0)
+         (track 0)
+         (init
+            ($track $target)
+            {set [track] {coop_track_panel find $track}}
+            {set [target] $target}
+            {$this set_lbl " "}
+            {{coop_track_panel find draw_order.grp} add_object [target]}
+            {unless {== [track] vocals} {[target] set_local_pos 0 0 -335}}
+            {set [event_array] {{sprint $this "_mp"} get event_array}}
+            {do
+               ($pos {{sprint $this "_mp"} get final_note_pos})
+               ($len {- {end_of_song get end} $pos})
+               {if {>= $len 20}
+                  {push_back [event_array] {array ($pos {int {- $len 4}})}}
+               }
+            }
+            {set [total_events] {max 0 {- {size [event_array]} 1}}}
+         )
+         (set_lbl
+            ($text)
+            {[target] set_localized {sprint $text}}
+         )
+         (downbeat
+            {if {&& {size [event_array]} {! [done]}}
+               {if
+                  {&&
+                     {! [active]}
+                     {>= {taskmgr beat} {elem {elem [event_array] [current_event]} 0}}
+                  }
+                  {set [remaining] {int {/ {elem {elem [event_array] [current_event]} 1} 4}}}
+                  {set [active] TRUE}
+                  {{[track] find retract.trig} trigger}
+               }
+               {if [active]
+                  {-- [remaining]}
+                  {if_else [remaining]
+                     {$this set_lbl [remaining]}
+                     {do
+                        {$this set_lbl " "}
+                        {set [active] FALSE}
+                        {if_else {== {[track] name} vocals}
+                           {{[track] find play_intro.trig} trigger}
+                           {{[track] find intro.trig} trigger}
+                        }
+                        {if_else {== [current_event] [total_events]}
+                           {set [done] TRUE}
+                           {++ [current_event]}
+                        }
+                     }
+                  }
+               }
+            }
+         )
+      )
+   )
+)

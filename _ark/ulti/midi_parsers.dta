@@ -1,0 +1,66 @@
+#define MIDI_GEMS (96 97 98 99 100 120)
+#define COUNTDOWN_PARSER_INIT (
+   {set [event_array] {array 0}}
+   {set [first_note] TRUE}
+)
+#define COUNTDOWN_PARSER (
+   {if [first_note]
+      {if {>= $mp.start 20}
+         {push_back [event_array] {array (4.0 {int {- $mp.start 4}})}}
+      }
+      {set [first_note] FALSE}
+   }
+   {if {&& {>= $mp.prev_end 20} {< $mp.prev_end 9000}}
+      {push_back [event_array] {array ({- $mp.start $mp.prev_end} {- {int $mp.prev_end} 4})}}
+   }
+   {set [final_note_pos] $mp.end}
+)
+{new MidiParser
+   end_of_song
+   (track_name EVENTS)
+   (text
+      {if {== $mp.val end}
+         {set [end] $mp.start}
+      }
+   )
+}
+{new MidiParser
+   guitar_countdown_mp
+   (track_name 'PART GUITAR')
+   (inverted TRUE)
+   (append_length TRUE)
+   (compress TRUE)
+   (allowed_notes MIDI_GEMS)
+   (init COUNTDOWN_PARSER_INIT)
+   (midi COUNTDOWN_PARSER)
+}
+{new MidiParser
+   bass_countdown_mp
+   (track_name 'PART BASS')
+   (inverted TRUE)
+   (append_length TRUE)
+   (compress TRUE)
+   (allowed_notes MIDI_GEMS)
+   (init COUNTDOWN_PARSER_INIT)
+   (midi COUNTDOWN_PARSER)
+}
+{new MidiParser
+   drum_countdown_mp
+   (track_name 'PART DRUMS')
+   (inverted TRUE)
+   (append_length TRUE)
+   (compress TRUE)
+   (allowed_notes MIDI_GEMS)
+   (init COUNTDOWN_PARSER_INIT)
+   (midi COUNTDOWN_PARSER)
+}
+{new MidiParser
+   vocals_countdown_mp
+   (track_name 'PART VOCALS')
+   (inverted TRUE)
+   (append_length TRUE)
+   (compress TRUE)
+   (allowed_notes 96 105 106 120)
+   (init COUNTDOWN_PARSER_INIT)
+   (midi COUNTDOWN_PARSER)
+}
