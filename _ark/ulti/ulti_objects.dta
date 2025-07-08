@@ -62,5 +62,76 @@
             }
          )
       )
+      (track_callback
+         (init
+            ($player)
+            {set [player] $player}
+            {[player] add_sink $this (hit miss pass phrase_rating)}
+            {set [track] {coop_track_panel find {$player instrument}}}
+            {if $fcring
+               {with {[track] get streak_meter}
+                  {unless {exists fake.trig}
+                     {{new EventTrigger show_ring.trig} copy star_deploy.trig 0}
+                     {{new EventTrigger hide_ring.trig} copy star_deploy_stop.trig 0}
+
+                     {new EventTrigger fake.trig}
+                     {star_deploy.trig copy fake.trig 0}
+                     {star_deploy_stop.trig copy fake.trig 0}
+                  }
+                  {show_ring.trig trigger}
+               }
+            }
+         )
+         (hit
+            {++ [gems_hit]}
+            {++ [gems_combo]}
+            {if {&& {! {|| $legacybass {== [track] bass}}} {> [gems_combo] 29} {! [groove_active]}}
+               {set [groove_active] TRUE}
+               {{[track] find BassSuperStreak_ON.trig} trigger}
+            }
+         )
+         (miss
+            {++ [gems_miss]}
+            {set [gems_combo] 0}
+            {$this on_miss}
+         )
+         (pass
+            {unless {[player] current_streak}
+               {++ [gems_pass]}
+               {set [gems_combo] 0}
+               {$this on_miss}
+            }
+         )
+         (phrase_rating
+            ($rating)
+            {if_else {== $rating 4}
+               {do
+                  {++ [gems_hit]}
+                  {++ [gems_combo]}
+               }
+               {do
+                  {++ [gems_miss]}
+                  {set [gems_combo] 0}
+                  {$this on_miss}
+               }
+            }
+         )
+         (on_miss
+            {if $fcring
+               {{{[track] get streak_meter} find hide_ring.trig} trigger}
+            }
+            {if [groove_active]
+               {set [groove_active] FALSE}
+               {{[track] find BassSuperStreak_OFF.trig} trigger}
+            }
+         )
+         (gems_hit 0)
+         (gems_combo 0)
+         (gems_miss 0)
+         (gems_pass 0)
+         (groove_active FALSE)
+         (player 0)
+         (track 0)
+      )
    )
 )

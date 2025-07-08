@@ -122,22 +122,6 @@
       }
    }
 }
-{func reset_fc_vars
-   {set $guitar_milosong FALSE}
-   {set $bass_milosong FALSE}
-   {set $drum_milosong FALSE}
-   {set $h2h_0_milosong FALSE}
-   {set $h2h_1_milosong FALSE}
-   {set $guitar_firstnote FALSE}
-   {set $bass_firstnote FALSE}
-   {set $drum_firstnote FALSE}
-   {set $h2h_0_firstnote FALSE}
-   {set $h2h_1_firstnote FALSE}
-   {set $guitar_groove_active FALSE}
-   {set $drum_groove_active FALSE}
-   {set $h2h_0_groove_active FALSE}
-   {set $h2h_1_groove_active FALSE}
-}
 {func ulti_cycle_free_camera
    {if $world
       {do

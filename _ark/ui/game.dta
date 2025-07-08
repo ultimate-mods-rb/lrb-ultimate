@@ -74,7 +74,6 @@
             {$p set emulate_fps 1}
          }
       }
-      {reset_fc_vars}
       {script_task kTaskSeconds
          (delay {- 0 {taskmgr seconds}})
          (script {handle ($this on_extend)})
@@ -94,14 +93,12 @@
             {$p set emulate_fps 1}
          }
       }
-      {reset_fc_vars}
       {if {'||' $skip_intro {gamemode get is_framerate_test}}
          {beatmatch set_intro_real_time 0}
       }
       kDataUnhandled
    )
    (music_start
-      {reset_fc_vars}
       {ui music_start}
       kDataUnhandled
    )
@@ -131,7 +128,6 @@
       kDataUnhandled
    )
    (game_over
-      {reset_fc_vars}
       #ifndef HX_OG
       {stagekit_reset}
       #endif
@@ -177,7 +173,6 @@
       kDataUnhandled
    )
    (game_outro
-      {reset_fc_vars}
       {beatmatch foreach_active_player $p
          {$p disable_controller}
       }
