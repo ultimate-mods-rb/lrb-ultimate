@@ -9,10 +9,12 @@
          (event_array 0)
          (target 0)
          (track 0)
+         (anim 0)
          (init
-            ($track $target)
+            ($track $target $anim)
             {set [track] {coop_track_panel find $track}}
             {set [target] $target}
+            {set [anim] $anim}
             {$this set_lbl " "}
             {{coop_track_panel find draw_order.grp} add_object [target]}
             {unless {== [track] vocals} {[target] set_local_pos 0 0 -335}}
@@ -44,7 +46,10 @@
                {if [active]
                   {-- [remaining]}
                   {if_else [remaining]
-                     {$this set_lbl [remaining]}
+                     {do
+                        {$this set_lbl [remaining]}
+                        {[anim] animate (range 2.5 8)}
+                     }
                      {do
                         {$this set_lbl " "}
                         {set [active] FALSE}
