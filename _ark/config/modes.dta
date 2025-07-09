@@ -618,3 +618,10 @@
    (enable_star_power FALSE)
    (allow_overdrive_phrases FALSE)
 )
+(play_a_show
+   QP_COOP_MODE_PROPERTIES
+   (main_mode_screen bonus_menuscreen)
+   (post_matchmaking_screen play_a_show_screen)
+   (continue_screen play_a_show_screen)
+   (pause_new_song_screen play_a_show_screen)
+)

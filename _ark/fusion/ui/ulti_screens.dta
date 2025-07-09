@@ -10,6 +10,7 @@
          {set $band_sel_mode 0}
          {venue.lst set_data
             (theatre
+               play_a_show
                cutsceneviewer
                framerate
                #ifdef HX_NG
@@ -77,6 +78,10 @@
             }
          )
          (framerate {ui goto_screen frame_rate_screen})
+         (play_a_show
+            {gamemode set_mode play_a_show}
+            {ui goto_screen {gamemode get matchmaking_screen}}
+         )
          (musicstore
             {do
                #ifdef HX_XBOX
@@ -237,4 +242,225 @@
    (helpbar ((confirm helpbar_select)))
    (enter {dialog_panel set_ok {localize [message]}})
    (SELECT_MSG {ui pop_screen})
+}
+{new UIPanel
+   play_a_show_panel
+   (file "play_a_show.milo")
+   ;(focus Career_Stats.lst)
+   (filters
+      (
+         song_and_artist
+         artist
+         gender
+         genre
+         ;length
+         ;tempo
+         year
+      )
+   )
+   (played_songs)
+   (songs)
+   (options)
+   (current_set)
+   (current_filters)
+   (enter
+      {print "play a show panel enter\n"}
+      ;move any stuff like this to the objects before merging
+      {songs.lst set_local_pos 90.00 0.00 97.53}
+      {subtitle.btn set_local_pos -74.62 -4.86 172.76}
+      {icons.lst set_local_pos -440.00 0.00 97.53}
+      {icons.lst set_data
+         (
+            "GD"
+            "B"
+            ""
+            ""
+            "V"
+         )
+      }
+      {buttons.lst set_local_pos -395.00 0.00 97.53}
+      {buttons.lst set_data
+         (
+            "gA"
+            "rB"
+            "yY"
+            "bX"
+            "yR"
+         )
+      }
+      {set [played_songs] {array 0}}
+      {set [current_set] {array 0}}
+      {$this do_stuff}
+   )
+   (exit
+      {set [current_set] {array 0}}
+   )
+   (do_stuff
+      {print "resetting arrays\n"}
+      {set [songs] {array 0}}
+      {set [options] {array 0}}
+      {set [current_filters] {array 0}}
+      {print "doing song stuff\n"}
+      {do
+         ($array {array 0})
+         ; this will lock up the game if it runs out of songs. fix at some point. maybe if it fails like 100 times?
+         {while {!= {size $array} 4} {do
+            ($song {random_int 0 {song_offer_provider num_data}})
+            ($song_sym {song_offer_provider data_symbol $song})
+            {unless
+               {||
+                  {find_elem [played_songs] $song_sym}
+                  {find_elem $array $song}
+                  {! {song_offer_provider is_song $song}}
+                  {song_mgr has_missing_parts $song_sym {gamemode get missing_part_type}}
+               }
+               {push_back $array $song}
+            }
+         }}
+         {set [songs] $array}
+      }
+      {print "song stuff done\n"}
+      {print "doing filter stuff\n"}
+      {while {!= {size [current_filters]} 4} {do
+         ($filter {random_elem [filters]})
+         {unless {find_elem [current_filters] $filter}
+            {push_back [current_filters] $filter}
+         }
+      }}
+      {print "filter stuff done\n"}
+      {print "doing hacky option stuff\n"}
+      {foreach_int $elem 0 4 {do
+         ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
+         {push_back [options]
+            {switch {elem [current_filters] $elem}
+               (song_and_artist
+                  {sprintf {localize vote_song_and_artist_fmt} {$offer get_data (name)} {$offer artist}}
+               )
+               (artist
+                  {sprintf {localize vote_obfuscate_song_by_artist_fmt} {$offer artist}}
+               )
+               (gender
+                  {sprintf {localize vote_obfuscate_song_by_gender_fmt} {$offer get_data (vocal_gender)}}
+               )
+               (genre
+                  {sprintf {localize vote_obfuscate_song_by_genre_fmt} {localize {$offer get_data (genre)}}}
+               )
+               (year
+                  {sprintf {localize vote_obfuscate_song_by_year_fmt}
+                     {if_else {$offer has_data year_released}
+                        {$offer get_data (year_released)}
+                        1969
+                     }
+                  }
+               )
+               {fail {elem [current_filters] $elem} " isn't a valid filter\n"}
+            }
+         }
+      }}
+      {print "hacky option stuff done\n"}
+
+      {push_back [options] moreinfo}
+      {songs.lst set_data [options]}
+   )
+   (add_song
+      ($elem)
+      {push_back [current_set] {song_offer_provider data_symbol {elem [songs] $elem}}}
+      {print_array [current_set]}
+      {do
+         ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
+         {cheat_display show {sprint "added " {$offer get_data (name)} " by " {$offer artist} " to setlist :3"}}
+      }
+      {$this do_stuff}
+   )
+   (BUTTON_DOWN_MSG
+      {cond
+         ({player_on_instrument $player_num kControllerGuitar}
+            {switch $action
+               (kAction_Confirm {$this add_song 0})
+               (kAction_Cancel {$this add_song 1})
+               (kAction_Option {$this do_stuff})
+               {switch $raw_button
+                  (kPad_Tri {$this add_song 2})
+                  (kPad_Square {$this add_song 3})
+               }
+            }
+         )
+         ({player_on_instrument $player_num kControllerDrum}
+            {switch $raw_button
+               (kPad_X {$this add_song 0})
+               (kPad_Circle {$this add_song 1})
+               (kPad_Tri {$this add_song 2})
+               (kPad_Square {$this add_song 3})
+               (kPad_R1 {$this do_stuff})
+            }
+         )
+         ({player_on_instrument $player_num kControllerVocals}
+            {switch $action
+               (kAction_Confirm {$this add_song 0})
+               (kAction_Cancel {$this add_song 1})
+               (kAction_Option {$this do_stuff})
+               {switch $raw_button
+                  (kPad_Tri {$this add_song 2})
+                  (kPad_Square {$this add_song 3})
+               }
+            }
+         )
+      }
+      {switch $action
+         (kAction_Start
+            {if_else {size [current_set]}
+               {do
+                  {game set_venue big_club/SkeletonBattle/skeleton_battle.milo}
+                  {meta_performer set_songs [current_set]}
+                  {song_select_panel move_on}
+               }
+               {synth play button_error}
+            }
+         )
+         (kAction_ViewModify {ui goto_screen matchmaking_screen})
+      }
+   )
+}
+{new BandScreen
+   play_a_show_screen
+   (panels
+      meta
+      #ifndef HX_EE
+      song_sync_panel
+      #endif
+      postsong_sfx_panel
+      movie_panel
+      song_select_details_panel
+      song_select_panel
+      song_select_lower3rd_panel
+      play_a_show_panel
+   )
+   (focus play_a_show_panel)
+   (helpbar
+      (
+         (state_confirm helpbar_play_setlist)
+         (view_modify option_exit)
+      )
+   )
+   (unused_panels
+      (
+         song_sync_panel
+         postsong_sfx_panel
+         movie_panel
+         song_select_details_panel
+         song_select_panel
+         song_select_lower3rd_panel
+      )
+   )
+   (enter
+      {foreach $panel [unused_panels]
+         {$panel set_showing FALSE}
+      }
+   )
+   (exit
+      {foreach $panel [unused_panels]
+         {$panel set_showing TRUE}
+      }
+      {reset_random_selection}
+   )
 }
