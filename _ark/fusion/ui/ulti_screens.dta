@@ -254,7 +254,6 @@
          gender
          genre
          ;length
-         ;tempo
          year
       )
    )
@@ -263,31 +262,47 @@
    (options)
    (current_set)
    (current_filters)
+   (voted)
+   (counting)
+   (can_vote)
+   (guitar_vote)
+   (bass_vote)
+   (drum_vote)
+   (vocals_vote)
    (enter
       {print "play a show panel enter\n"}
       ;move any stuff like this to the objects before merging
       {songs.lst set_local_pos 90.00 0.00 97.53}
       {subtitle.btn set_local_pos -74.62 -4.86 172.76}
       {icons.lst set_local_pos -440.00 0.00 97.53}
-      {icons.lst set_data
-         (
-            "GD"
-            "B"
-            ""
-            ""
-            "V"
-         )
-      }
+      {icons.lst set_data ("" "" "" "" "")}
       {buttons.lst set_local_pos -395.00 0.00 97.53}
-      {buttons.lst set_data
-         (
-            "gA"
-            "rB"
-            "yY"
-            "bX"
-            "yR"
-         )
-      }
+      {buttons.lst set_data ("gA" "rB" "yY" "bX" "yR")}
+      {song0.lbl set alignment kMiddleLeft}
+      {song0.lbl set text_size 18.00}
+      {song0.lbl set fixed_length 21}
+      {song0.lbl set_local_pos -195.00 0.00 159}
+      {song2.lbl set alignment kMiddleLeft}
+      {song2.lbl set text_size 18.00}
+      {song2.lbl set fixed_length 21}
+      {song2.lbl set_local_pos -195.00 0.00 139}
+
+
+      {song1.lbl set alignment kMiddleRight}
+      {song1.lbl set text_size 18.00}
+      {song1.lbl set fixed_length 21}
+      {song1.lbl set_local_pos 195.00 0.00 159}
+      {song3.lbl set alignment kMiddleRight}
+      {song3.lbl set text_size 18.00}
+      {song3.lbl set fixed_length 21}
+      {song3.lbl set_local_pos 195.00 0.00 139}
+
+      {StudBG_04.mesh set_local_pos 161.36 -3.13 185.43}
+
+      {timer.lbl set_localized ""}
+      {timer.lbl set text_size 18.00}
+      {timer.lbl set_local_pos 160.50 0.00 185.76}
+
       {set [played_songs] {array 0}}
       {set [current_set] {array 0}}
       {$this do_stuff}
@@ -300,25 +315,25 @@
       {set [songs] {array 0}}
       {set [options] {array 0}}
       {set [current_filters] {array 0}}
+      {set [voted] {array 0}}
+      {set [counting] FALSE}
+      {set [can_vote] TRUE}
+      {icons.lst set_data ("" "" "" "" "")}
       {print "doing song stuff\n"}
-      {do
-         ($array {array 0})
-         ; this will lock up the game if it runs out of songs. fix at some point. maybe if it fails like 100 times?
-         {while {!= {size $array} 4} {do
-            ($song {random_int 0 {song_offer_provider num_data}})
-            ($song_sym {song_offer_provider data_symbol $song})
-            {unless
-               {||
-                  {find_elem [played_songs] $song_sym}
-                  {find_elem $array $song}
-                  {! {song_offer_provider is_song $song}}
-                  {song_mgr has_missing_parts $song_sym {gamemode get missing_part_type}}
-               }
-               {push_back $array $song}
+      ; this will lock up the game if it runs out of songs. fix at some point. maybe if it fails like 100 times?
+      {while {!= {size [songs]} 4} {do
+         ($song {random_int 0 {song_offer_provider num_data}})
+         ($song_sym {song_offer_provider data_symbol $song})
+         {unless
+            {||
+               {find_elem [played_songs] $song_sym}
+               {find_elem [songs] $song}
+               {! {song_offer_provider is_song $song}}
+               {song_mgr has_missing_parts $song_sym {gamemode get missing_part_type}}
             }
-         }}
-         {set [songs] $array}
-      }
+            {push_back [songs] $song}
+         }
+      }}
       {print "song stuff done\n"}
       {print "doing filter stuff\n"}
       {while {!= {size [current_filters]} 4} {do
@@ -345,6 +360,25 @@
                (genre
                   {sprintf {localize vote_obfuscate_song_by_genre_fmt} {localize {$offer get_data (genre)}}}
                )
+               (length
+                  {sprintf {localize vote_obfuscate_song_by_length_fmt}
+                     {localize
+                        {if_else {$offer has_data song_length}
+                           {do
+                              ($length {$offer get_data (song_length)})
+                              {cond
+                                 ({< $length 180001} short)
+                                  ; there is no medium length in rb4 as most songs are and this becomes repetitive. rewrite how filters are chosen so this can't happen.
+                                 ({< $length 300001} placeholder)
+                                 ({< $length 420001} long)
+                                 very_long
+                              }
+                           }
+                           invalid
+                        }
+                     }
+                  }
+               )
                (year
                   {sprintf {localize vote_obfuscate_song_by_year_fmt}
                      {if_else {$offer has_data year_released}
@@ -365,6 +399,9 @@
    (add_song
       ($elem)
       {push_back [current_set] {song_offer_provider data_symbol {elem [songs] $elem}}}
+      {{sprintf "song%d.lbl" {- {size [current_set]} 1}} set_localized
+         {{song_offer_provider get_song_offer {elem [songs] $elem}} get_data (name)}
+      }
       {print_array [current_set]}
       {do
          ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
@@ -372,40 +409,110 @@
       }
       {$this do_stuff}
    )
-   (BUTTON_DOWN_MSG
-      {cond
-         ({player_on_instrument $player_num kControllerGuitar}
-            {switch $action
-               (kAction_Confirm {$this add_song 0})
-               (kAction_Cancel {$this add_song 1})
-               (kAction_Option {$this do_stuff})
-               {switch $raw_button
-                  (kPad_Tri {$this add_song 2})
-                  (kPad_Square {$this add_song 3})
-               }
-            }
-         )
-         ({player_on_instrument $player_num kControllerDrum}
-            {switch $raw_button
-               (kPad_X {$this add_song 0})
-               (kPad_Circle {$this add_song 1})
-               (kPad_Tri {$this add_song 2})
-               (kPad_Square {$this add_song 3})
-               (kPad_R1 {$this do_stuff})
-            }
-         )
-         ({player_on_instrument $player_num kControllerVocals}
-            {switch $action
-               (kAction_Confirm {$this add_song 0})
-               (kAction_Cancel {$this add_song 1})
-               (kAction_Option {$this do_stuff})
-               {switch $raw_button
-                  (kPad_Tri {$this add_song 2})
-                  (kPad_Square {$this add_song 3})
-               }
-            }
+   (start_timer
+      {set [counting] TRUE}
+      {thread_task kTaskSeconds
+         (script
+            {timer.lbl set_localized "7"}
+            {$task sleep 1}
+            {timer.lbl set_localized "6"}
+            {$task sleep 1}
+            {timer.lbl set_localized "5"}
+            {$task sleep 1}
+            {timer.lbl set_localized "4"}
+            {$task sleep 1}
+            {timer.lbl set_localized "3"}
+            {$task sleep 1}
+            {timer.lbl set_localized "2"}
+            {$task sleep 1}
+            {timer.lbl set_localized "1"}
+            {$task sleep 1}
+            {timer.lbl set_localized " "}
+            {$this finalize_vote}
          )
       }
+   )
+   (finalize_vote
+      {set [can_vote] FALSE}
+      {do
+         ($array {array (0 0 0 0 0)})
+         ($target 0)
+         ($not_done TRUE)
+         {foreach $voter [voted] {do
+            ($elem {$this get {symbol {sprint $voter "_vote"}}})
+            {set_elem $array $elem {+ {elem $array $elem} 1}}
+         }}
+         {foreach $vote $array
+            {if {> $vote $target}
+               {set $target $vote}
+            }
+         }
+         {while $not_done {do
+            ($rand {random_int 0 5})
+            {if {== {elem $array $rand} $target}
+               {set $target $rand}
+               {set $not_done FALSE}
+            }
+         }}
+         {if_else {== $target 4}
+            {$this do_stuff}
+            {$this add_song $target}
+         }
+      }
+   )
+   (BUTTON_DOWN_MSG
+      {if {&& {$player is_participating} [can_vote]} {do
+         ($inst
+            {if_else {&& {== {$player get_controller_sym} guitar} {!= {$player slot_num} 0}}
+               bass
+               {$player get_controller_sym}
+            }
+         )
+         {switch $inst
+            ((guitar bass vocals)
+               {if {|| {find_elem (kAction_Confirm kAction_Cancel kAction_Option) $action} {find_elem (kPad_Tri kPad_Square) $raw_button}}
+                  {$this set {symbol {sprint $inst "_vote"}}
+                     {switch $action
+                        (kAction_Confirm 0)
+                        (kAction_Cancel 1)
+                        (kAction_Option 4)
+                        {switch $raw_button
+                           (kPad_Tri 2)
+                           (kPad_Square 3)
+                        }
+                     }
+                  }
+               }
+            )
+            (drum
+               {if {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_R1) $raw_button}
+                  {set [drum_vote]
+                     {switch $raw_button
+                        (kPad_X 0)
+                        (kPad_Circle 1)
+                        (kPad_Tri 2)
+                        (kPad_Square 3)
+                        (kPad_R1 4)
+                     }
+                  }
+               }
+            )
+         }
+         {unless {find_elem [voted] $inst}
+            {push_back [voted] $inst}
+         }
+         {do
+            ($array {array ("" "" "" "" "")})
+            {foreach $voter [voted] {do
+               ($elem {$this get {symbol {sprint $voter "_vote"}}})
+               {set_elem $array $elem {sprint {elem $array $elem} {switch $voter (guitar "G") (bass "B") (vocals "V") (drum "D")}}}
+            }}
+            {icons.lst set_data $array}
+         }
+         {if {&& {! [counting]} {== {size [voted]} {user_mgr get_num_participants}}}
+            {$this start_timer}
+         }
+      }}
       {switch $action
          (kAction_Start
             {if_else {size [current_set]}

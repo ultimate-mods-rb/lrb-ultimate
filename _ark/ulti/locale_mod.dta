@@ -240,3 +240,7 @@
 (vote_obfuscate_song_by_year_fmt "A song from %d")
 (vote_on_a_setlist "Vote on a Setlist")
 (vote_song_and_artist_fmt "%s by %s")
+(invalid "invalid")
+(short "short")
+(long "long")
+(very_long "very long")
