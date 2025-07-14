@@ -439,7 +439,7 @@
          ($target 0)
          ($not_done TRUE)
          {foreach $voter [voted] {do
-            ($elem {$this get {symbol {sprint $voter "_vote"}}})
+            ($elem {$this get {symbol $voter "_vote"}})
             {set_elem $array $elem {+ {elem $array $elem} 1}}
          }}
          {foreach $vote $array
@@ -468,35 +468,16 @@
                {$player get_controller_sym}
             }
          )
-         {switch $inst
-            ((guitar bass vocals)
-               {if {|| {find_elem (kAction_Confirm kAction_Cancel kAction_Option) $action} {find_elem (kPad_Tri kPad_Square) $raw_button}}
-                  {$this set {symbol {sprint $inst "_vote"}}
-                     {switch $action
-                        (kAction_Confirm 0)
-                        (kAction_Cancel 1)
-                        (kAction_Option 4)
-                        {switch $raw_button
-                           (kPad_Tri 2)
-                           (kPad_Square 3)
-                        }
-                     }
-                  }
+         {if {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_R1) $raw_button}
+            {$this set {symbol $inst "_vote"}
+               {switch $raw_button
+                  (kPad_X 0)
+                  (kPad_Circle 1)
+                  (kPad_Tri 2)
+                  (kPad_Square 3)
+                  (kPad_R1 4)
                }
-            )
-            (drum
-               {if {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_R1) $raw_button}
-                  {set [drum_vote]
-                     {switch $raw_button
-                        (kPad_X 0)
-                        (kPad_Circle 1)
-                        (kPad_Tri 2)
-                        (kPad_Square 3)
-                        (kPad_R1 4)
-                     }
-                  }
-               }
-            )
+            }
          }
          {unless {find_elem [voted] $inst}
             {push_back [voted] $inst}
@@ -504,7 +485,7 @@
          {do
             ($array {array ("" "" "" "" "")})
             {foreach $voter [voted] {do
-               ($elem {$this get {symbol {sprint $voter "_vote"}}})
+               ($elem {$this get {symbol $voter "_vote"}})
                {set_elem $array $elem {sprint {elem $array $elem} {switch $voter (guitar "G") (bass "B") (vocals "V") (drum "D")}}}
             }}
             {icons.lst set_data $array}
