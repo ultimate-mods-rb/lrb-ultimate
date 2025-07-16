@@ -609,25 +609,28 @@
             }
          )
          (kAction_Cancel
-            {do
-               {synth play button_back}
-               {if
-                  {&&
-                     {gamemode is_tour}
-                     {== [cancel_screen] song_select_screen}
-                     {== {gamemode get is_tour_quickplay} FALSE}
+            {if_else {gamemode get play_a_show}
+               {band_ui trigger_event confirm_seldiff_quit}
+               {do
+                  {synth play button_back}
+                  {if
+                     {&&
+                        {gamemode is_tour}
+                        {== [cancel_screen] song_select_screen}
+                        {== {gamemode get is_tour_quickplay} FALSE}
+                     }
+                     {do
+                        ($band {tour band})
+                        {meta_performer reset_songs}
+                        {$band set_gig {$band gig}}
+                     }
                   }
-                  {do
-                     ($band {tour band})
-                     {meta_performer reset_songs}
-                     {$band set_gig {$band gig}}
-                  }
+                  #ifndef KIOSK_DEMO
+                  {challenge_mgr clear_current_challenge}
+                  #endif
+                  {ui goto_screen [cancel_screen]}
+                  {input_mgr set_limit kLimitUILeaderNoSwap}
                }
-               #ifndef KIOSK_DEMO
-               {challenge_mgr clear_current_challenge}
-               #endif
-               {ui goto_screen [cancel_screen]}
-               {input_mgr set_limit kLimitUILeaderNoSwap}
             }
          )
          (
