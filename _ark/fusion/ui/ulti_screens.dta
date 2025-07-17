@@ -254,7 +254,7 @@
          artist
          gender
          genre
-         ;length
+         length
          year
       )
    )
@@ -272,7 +272,9 @@
    (drum_vote)
    (vocals_vote)
    (enter
+      #ifndef _SHIP
       {print "play a show panel enter\n"}
+      #endif
       ;move any stuff like this to the objects before merging
       {songs.lst set_local_pos 90.00 0.00 97.53}
       {subtitle.btn set_local_pos -74.62 -4.86 172.76}
@@ -312,7 +314,9 @@
       {set [current_set] {array 0}}
    )
    (do_stuff
-      {print "resetting arrays\n"}
+      #ifndef _SHIP
+      {print "resetting stuff\n"}
+      #endif
       {set [songs] {array 0}}
       {set [options] {array 0}}
       {set [current_filters] {array 0}}
@@ -320,7 +324,9 @@
       {set [counting] FALSE}
       {set [can_vote] TRUE}
       {icons.lst set_data ("" "" "" "" "")}
+      #ifndef _SHIP
       {print "doing song stuff\n"}
+      #endif
       ; this will lock up the game if it runs out of songs. fix at some point. maybe if it fails like 100 times?
       {while {!= {size [songs]} 4} {do
          ($song {random_int 0 {song_offer_provider num_data}})
@@ -336,16 +342,35 @@
             {push_back [songs] $song}
          }
       }}
-      {print "song stuff done\n"}
+      #ifndef _SHIP
       {print "doing filter stuff\n"}
-      {while {!= {size [current_filters]} 4} {do
-         ($filter {random_elem [filters]})
-         {unless {find_elem [current_filters] $filter}
-            {push_back [current_filters] $filter}
+      #endif
+      {foreach_int $elem 0 4 {do
+         ($filters {array [filters]}) ; something is fucked with how arrays work. just doing ($filters [filters]) results in it not resetting properly.
+         ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
+         {unless
+            {&&
+               {$offer has_data song_length}
+               {||
+                  {<= {$offer get_data (song_length)} 180000}
+                  {> {$offer get_data (song_length)} 300000}
+               }
+            }
+            {remove_elem $filters length}
          }
+         {unless {$offer has_data year_released}
+            {remove_elem $filters year}
+         }
+         {foreach $filter [current_filters]
+            {if {find_elem $filters $filter}
+               {remove_elem $filters $filter}
+            }
+         }
+         {push_back [current_filters] {random_elem $filters}}
       }}
-      {print "filter stuff done\n"}
+      #ifndef _SHIP
       {print "doing hacky option stuff\n"}
+      #endif
       {foreach_int $elem 0 4 {do
          ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
          {push_back [options]
@@ -365,35 +390,29 @@
                (length
                   {sprintf {localize vote_obfuscate_song_by_length_fmt}
                      {localize
-                        {if_else {$offer has_data song_length}
-                           {do
-                              ($length {$offer get_data (song_length)})
-                              {cond
-                                 ({< $length 180001} short)
-                                  ; there is no medium length in rb4 as most songs are and this becomes repetitive. rewrite how filters are chosen so this can't happen.
-                                 ({< $length 300001} placeholder)
-                                 ({< $length 420001} long)
-                                 very_long
-                              }
+                        {do
+                           ($length {$offer get_data (song_length)})
+                           {cond
+                              ({<= $length 180000} short)
+                              ({<= $length 420000} long)
+                              very_long
                            }
-                           invalid
                         }
                      }
                   }
                )
                (year
                   {sprintf {localize vote_obfuscate_song_by_year_fmt}
-                     {if_else {$offer has_data year_released}
-                        {$offer get_data (year_released)}
-                        1969
-                     }
+                     {$offer get_data (year_released)}
                   }
                )
                {fail {elem [current_filters] $elem} " isn't a valid filter\n"}
             }
          }
       }}
+      #ifndef _SHIP
       {print "hacky option stuff done\n"}
+      #endif
 
       {push_back [options] moreinfo}
       {songs.lst set_data [options]}
@@ -404,11 +423,13 @@
       {{sprintf "song%d.lbl" {- {size [current_set]} 1}} set_localized
          {{song_offer_provider get_song_offer {elem [songs] $elem}} get_data (name)}
       }
+      #ifndef _SHIP
       {print_array [current_set]}
       {do
          ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
          {cheat_display show {sprint "added " {$offer get_data (name)} " by " {$offer artist} " to setlist :3"}}
       }
+      #endif
       {if_else {== {size [current_set]} {max 2 {user_mgr get_num_participants}}}
          {thread_task kTaskSeconds (script
             {$this iterate BandList $lst {$lst set_showing FALSE}}
