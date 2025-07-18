@@ -1603,6 +1603,17 @@
             (legs reindeerlegs)
          )
       )
+      (batman
+         (unlocked TRUE)
+         (cost 5000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads RogerTaylorHead)
+            (torso batman_torso)
+            (legs KnightLegs (colors 2 0))
+            (hats batman_mask)
+         )
+      )
       #endif
    )
 )

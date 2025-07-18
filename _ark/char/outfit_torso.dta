@@ -1182,5 +1182,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (batman_torso
+         (ui_name batman_torso)
+         (genre lrb_shop_other)
+         (unlocked FALSE)
+      )
    )
 )

@@ -5924,6 +5924,38 @@
       (tattoo_prefab torso_tattoos_none)
       (selectable 1)
    )
+   (batman
+      (gender male)
+      (instrument guitar)
+      (attitude kGenreBanger)
+      (skin_color_index 3)
+      (eye_color_index 11)
+      (eyebrow_color_index 16)
+      (height 1.00)
+      (weight 0.75)
+      (outfit
+         (hats batman_mask)
+         (hair no_hair)
+         (heads RogerTaylorHead)
+         (torso batman_torso)
+         (legs KnightLegs (colors 2 0))
+
+         (guitar lightning_guitar (colors 3 3))
+         (bass jackson_bass_kelly (colors 2 0))
+         (mic mic (colors 0 0))
+         (drum electronic_drumkit (colors 7 0))
+
+         (eyes Eyes08)
+         (mouth Mouth08)
+         (brow Brow02)
+         (beard no_beard)
+         (glasses no_glasses)
+         (wrists no_wrist)
+      )
+      (tattoo)
+      (tattoo_prefab torso_tattoos_none)
+      (selectable 0)
+   )
    #endif
    #ifndef _SHIP
       #ifdef HX_XBOX
