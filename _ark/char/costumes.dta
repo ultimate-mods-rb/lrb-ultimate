@@ -1605,7 +1605,7 @@
       )
       (batman
          (unlocked TRUE)
-         (cost 5000000)
+         (cost 100000000)
          (genre lrb_shop_other)
          (outfit
             (heads RogerTaylorHead)
