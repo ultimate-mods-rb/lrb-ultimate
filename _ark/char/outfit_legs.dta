@@ -760,5 +760,11 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (skye_legs
+         (cost 500000)
+         (ui_name skye)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

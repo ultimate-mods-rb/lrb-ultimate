@@ -481,6 +481,12 @@
          (genre lrb_shop_other)
          (unlocked FALSE)
       )
+      (skye_hat
+         (cost 500000)
+         (ui_name skye)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
       #endif
    )
 )

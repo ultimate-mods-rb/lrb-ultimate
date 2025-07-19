@@ -1614,6 +1614,17 @@
             (hats batman_mask)
          )
       )
+      (skye
+         (unlocked TRUE)
+         (cost 2000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads skye_head)
+            (torso skye_torso)
+            (legs skye_legs)
+            (hats skye_hat)
+         )
+      )
       #endif
    )
 )
