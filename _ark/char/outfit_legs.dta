@@ -766,5 +766,11 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (miku_legs
+         (cost 1250000)
+         (ui_name miku)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )
