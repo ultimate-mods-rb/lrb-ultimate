@@ -349,7 +349,15 @@
                {ui goto_screen qp_difficulty_screen}
             }
             {do
-               ($venue {tour get_venue $selected})
+               ($custom {> {venue.lst selected_pos} 18})
+               ($venue
+                  {tour get_venue 
+                     {if_else $custom
+                        ven_lego_city_central
+                        $selected
+                     }
+                  }
+               )
                {if_else
                   {'||'
                      {! {gamemode get is_tour}}
@@ -357,8 +365,8 @@
                      {$venue is_unlocked}
                   }
                   {do
-                     {$this set_venue $selected}
-                     {if {gamemode get is_tour_quickplay}
+                     {$this set_venue $selected $custom}
+                     {if {&& {gamemode get is_tour_quickplay} {! $custom}}
                         {do
                            ($band {tour band})
                            {if {$band is_venue_new $selected}
@@ -384,11 +392,17 @@
       {$this set selection_memory {venue.lst selected_pos}}
    )
    (set_venue
-      ($venue)
+      ($venue $custom)
       {challenge_mgr clear_current_challenge}
       #ifndef KIOSK_DEMO
       {synth play button_select}
       #endif
+      {tour set_venue 
+         {if_else $custom
+            ven_lego_city_central
+            $venue
+         }
+      }
       {tour set_qp_venue
          {switch $venue
             (ven_crystal_mine big_club/powerminer/powerminer.milo)
@@ -486,9 +500,13 @@
                {symbol "big_club/skeletonbattle/copy of skeleton_battle.milo"}
             )
             (ven_ufobreakdown_alt big_club/ufobreakdown/ufobreakdown.milo)
+            #ifdef _SHIP
+            small_club/train_station/train_station.milo
+            #else
+            {fail $venue " venue doesn't have a file entry"}
+            #endif
          }
       }
-      {tour set_venue $venue}
    )
    (go_back
       {if {gamemode get is_tour_quickplay}
