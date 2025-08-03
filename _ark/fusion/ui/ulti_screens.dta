@@ -275,13 +275,16 @@
       #ifndef _SHIP
       {print "play a show panel enter\n"}
       #endif
-      ;move any stuff like this to the objects before merging
       {songs.lst set_local_pos 90.00 0.00 97.53}
       {subtitle.btn set_local_pos -74.62 -4.86 172.76}
       {icons.lst set_local_pos -440.00 0.00 97.53}
       {icons.lst set_data ("" "" "" "" "")}
       {buttons.lst set_local_pos -395.00 0.00 97.53}
+      #ifdef HX_WII
+      {buttons.lst set_data ("gA" "rB" "yY" "bX" "ys")}
+      #else
       {buttons.lst set_data ("gA" "rB" "yY" "bX" "yR")}
+      #endif
       {song0.lbl set alignment kMiddleLeft}
       {song0.lbl set text_size 18.00}
       {song0.lbl set fixed_length 21}
@@ -510,7 +513,7 @@
       }
    )
    (BUTTON_DOWN_MSG
-      {if {&& {$player is_participating} {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_L1 kPad_R1) $raw_button} [can_vote]} {do
+      {if {&& {$player is_participating} {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) $raw_button} [can_vote]} {do
          ($inst
             {if_else {&& {== {$player get_controller_sym} guitar} {!= {$player slot_num} 0}}
                bass
@@ -523,7 +526,7 @@
                (kPad_Circle 1)
                (kPad_Tri 2)
                (kPad_Square 3)
-               ((kPad_L1 kPad_R1) 4)
+               ((kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) 4)
             }
          }
          {unless {find_elem [voted] $inst}
@@ -560,9 +563,7 @@
    play_a_show_screen
    (panels
       meta
-      #ifndef HX_EE
       song_sync_panel
-      #endif
       postsong_sfx_panel
       movie_panel
       song_select_details_panel
