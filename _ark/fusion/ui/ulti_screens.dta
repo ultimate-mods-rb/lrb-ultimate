@@ -437,8 +437,11 @@
          {thread_task kTaskSeconds (script
             {$this iterate BandList $lst {$lst set_showing FALSE}}
             {$task sleep 3}
+            {foreach $song [current_set]
+               {push_back [played_songs] $song}
+            }
             {meta_performer set_songs [current_set]}
-            {song_select_panel move_on}   
+            {song_select_panel move_on}
          )}
          {$this do_stuff}
       }
