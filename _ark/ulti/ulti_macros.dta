@@ -118,7 +118,8 @@
    }
 )
 #define OVERSHELL_DISALLOWED_SCREENS (
-   (autosave_wait_screen
+   (
+      autosave_wait_screen
       save_screen
       song_select_screen
       test_game_screen
@@ -135,5 +136,6 @@
       tutorials_guitar_main_screen
       tutorials_drums_main_screen
       tutorials_vocals_main_screen
+      play_a_show_screen
    )
 )
