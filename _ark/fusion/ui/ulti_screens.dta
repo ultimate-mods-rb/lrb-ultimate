@@ -247,7 +247,7 @@
 }
 {new UIPanel
    play_a_show_panel
-   (file "play_a_show.milo")
+   (file "../../ulti/play_a_show.milo")
    (filters
       (
          song_and_artist
