@@ -194,6 +194,9 @@
                      {set [exit_destination] exit_gig_screen}
                   }
                }
+               {if {gamemode get play_a_show}
+                  {set [exit_destination] exit_play_a_show}
+               }
                {if_else {'||' {gamemode get is_practice} {gamemode get is_jukebox}}
                   {$this on_quit}
                   {ui goto_screen {gamemode get confirm_quit_screen}}
@@ -448,6 +451,9 @@
                   {post_game_loading_panel set next_screen main_screen}
                }
             }
+         )
+         (exit_play_a_show
+            {post_game_loading_panel set next_screen play_a_show_screen}
          )
       }
    )

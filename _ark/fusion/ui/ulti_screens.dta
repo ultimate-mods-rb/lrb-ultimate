@@ -9,7 +9,9 @@
          {delete Venue_BG_Border.mesh}
          {set $band_sel_mode 0}
          {venue.lst set_data
-            (theatre
+            (
+               play_a_show
+               theatre
                cutsceneviewer
                framerate
                #ifdef HX_NG
@@ -77,6 +79,11 @@
             }
          )
          (framerate {ui goto_screen frame_rate_screen})
+         (play_a_show
+            {gamemode set_mode play_a_show}
+            {play_a_show_panel set played_songs {array 0}}
+            {ui goto_screen {gamemode get matchmaking_screen}}
+         )
          (musicstore
             {do
                #ifdef HX_XBOX
@@ -237,4 +244,352 @@
    (helpbar ((confirm helpbar_select)))
    (enter {dialog_panel set_ok {localize [message]}})
    (SELECT_MSG {ui pop_screen})
+}
+{new UIPanel
+   play_a_show_panel
+   (file "../../ulti/play_a_show.milo")
+   (filters
+      (
+         song_and_artist
+         artist
+         gender
+         genre
+         length
+         year
+      )
+   )
+   (played_songs)
+   (songs)
+   (options)
+   (current_set)
+   (current_filters)
+   (voted)
+   (counting)
+   (wait_time)
+   (can_vote)
+   (guitar_vote)
+   (bass_vote)
+   (drum_vote)
+   (vocals_vote)
+   (enter
+      #ifndef _SHIP
+      {print "play a show panel enter\n"}
+      #endif
+      {songs.lst set_local_pos 90.00 0.00 97.53}
+      {subtitle.btn set_local_pos -74.62 -4.86 172.76}
+      {icons.lst set_local_pos -440.00 0.00 97.53}
+      {icons.lst set_data ("" "" "" "" "")}
+      {buttons.lst set_local_pos -395.00 0.00 97.53}
+      #ifdef HX_WII
+      {buttons.lst set_data ("gA" "rB" "yY" "bX" "ys")}
+      #else
+      {buttons.lst set_data ("gA" "rB" "yY" "bX" "yR")}
+      #endif
+      {song0.lbl set alignment kMiddleLeft}
+      {song0.lbl set text_size 18.00}
+      {song0.lbl set fixed_length 21}
+      {song0.lbl set_local_pos -195.00 0.00 159}
+      {song2.lbl set alignment kMiddleLeft}
+      {song2.lbl set text_size 18.00}
+      {song2.lbl set fixed_length 21}
+      {song2.lbl set_local_pos -195.00 0.00 139}
+
+
+      {song1.lbl set alignment kMiddleRight}
+      {song1.lbl set text_size 18.00}
+      {song1.lbl set fixed_length 21}
+      {song1.lbl set_local_pos 195.00 0.00 159}
+      {song3.lbl set alignment kMiddleRight}
+      {song3.lbl set text_size 18.00}
+      {song3.lbl set fixed_length 21}
+      {song3.lbl set_local_pos 195.00 0.00 139}
+
+      {StudBG_04.mesh set_local_pos 161.36 -3.13 185.43}
+
+      {timer.lbl set_localized ""}
+      {timer.lbl set text_size 18.00}
+      {timer.lbl set_local_pos 160.50 0.00 185.76}
+
+      {set [current_set] {array 0}}
+      {$this do_stuff}
+   )
+   (exit
+      {set [current_set] {array 0}}
+   )
+   (do_stuff
+      #ifndef _SHIP
+      {print "resetting stuff\n"}
+      #endif
+      {set [songs] {array 0}}
+      {set [options] {array 0}}
+      {set [current_filters] {array 0}}
+      {set [voted] {array 0}}
+      {set [counting] FALSE}
+      {set [can_vote] TRUE}
+      {icons.lst set_data ("" "" "" "" "")}
+      #ifndef _SHIP
+      {print "doing song stuff\n"}
+      #endif
+      ; this will lock up the game if it runs out of songs. fix at some point. maybe if it fails like 100 times?
+      {while {!= {size [songs]} 4} {do
+         ($song {random_int 0 {song_offer_provider num_data}})
+         ($song_sym {song_offer_provider data_symbol $song})
+         {unless
+            {||
+               {find_elem [played_songs] $song_sym}
+               {find_elem [current_set] $song_sym}
+               {find_elem [songs] $song}
+               {! {song_offer_provider is_song $song}}
+               {song_mgr has_missing_parts $song_sym {gamemode get missing_part_type}}
+            }
+            {push_back [songs] $song}
+         }
+      }}
+      #ifndef _SHIP
+      {print "doing filter stuff\n"}
+      #endif
+      {foreach_int $elem 0 4 {do
+         ($filters {array [filters]}) ; something is fucked with how arrays work. just doing ($filters [filters]) results in it not resetting properly.
+         ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
+         {unless
+            {&&
+               {$offer has_data song_length}
+               {||
+                  {<= {$offer get_data (song_length)} 180000}
+                  {> {$offer get_data (song_length)} 300000}
+               }
+            }
+            {remove_elem $filters length}
+         }
+         {unless {$offer has_data year_released}
+            {remove_elem $filters year}
+         }
+         {foreach $filter [current_filters]
+            {if {find_elem $filters $filter}
+               {remove_elem $filters $filter}
+            }
+         }
+         {push_back [current_filters] {random_elem $filters}}
+      }}
+      #ifndef _SHIP
+      {print "doing hacky option stuff\n"}
+      #endif
+      {foreach_int $elem 0 4 {do
+         ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
+         {push_back [options]
+            {switch {elem [current_filters] $elem}
+               (song_and_artist
+                  {sprintf {localize vote_song_and_artist_fmt} {$offer get_data (name)} {$offer artist}}
+               )
+               (artist
+                  {sprintf {localize vote_obfuscate_song_by_artist_fmt} {$offer artist}}
+               )
+               (gender
+                  {sprintf {localize vote_obfuscate_song_by_gender_fmt} {$offer get_data (vocal_gender)}}
+               )
+               (genre
+                  {sprintf {localize vote_obfuscate_song_by_genre_fmt} {localize {$offer get_data (genre)}}}
+               )
+               (length
+                  {sprintf {localize vote_obfuscate_song_by_length_fmt}
+                     {localize
+                        {do
+                           ($length {$offer get_data (song_length)})
+                           {cond
+                              ({<= $length 180000} short)
+                              ({<= $length 420000} long)
+                              very_long
+                           }
+                        }
+                     }
+                  }
+               )
+               (year
+                  {sprintf {localize vote_obfuscate_song_by_year_fmt}
+                     {$offer get_data (year_released)}
+                  }
+               )
+               {fail {elem [current_filters] $elem} " isn't a valid filter\n"}
+            }
+         }
+      }}
+      #ifndef _SHIP
+      {print "hacky option stuff done\n"}
+      #endif
+
+      {push_back [options] moreinfo}
+      {songs.lst set_data [options]}
+   )
+   (add_song
+      ($elem)
+      {push_back [current_set] {song_offer_provider data_symbol {elem [songs] $elem}}}
+      {{sprintf "song%d.lbl" {- {size [current_set]} 1}} set_localized
+         {{song_offer_provider get_song_offer {elem [songs] $elem}} get_data (name)}
+      }
+      #ifndef _SHIP
+      {print_array [current_set]}
+      {do
+         ($offer {song_offer_provider get_song_offer {elem [songs] $elem}})
+         {cheat_display show {sprint "added " {$offer get_data (name)} " by " {$offer artist} " to setlist :3"}}
+      }
+      #endif
+      {if_else {== {size [current_set]} {max 2 {user_mgr get_num_participants}}}
+         {thread_task kTaskSeconds (script
+            {$this iterate BandList $lst {$lst set_showing FALSE}}
+            {$task sleep 3}
+            {foreach $song [current_set]
+               {push_back [played_songs] $song}
+            }
+            {meta_performer set_songs [current_set]}
+            {song_select_panel move_on}
+         )}
+         {$this do_stuff}
+      }
+   )
+   (start_timer
+      {set [counting] TRUE}
+      {set [wait_time]
+         {if_else {== {user_mgr get_num_participants} 1} 0.33 1}
+      }
+      {thread_task kTaskSeconds (script
+         {timer.lbl set_localized "9"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "8"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "7"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "6"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "5"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "4"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "3"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "2"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized "1"}
+         {$task sleep [wait_time]}
+         {timer.lbl set_localized " "}
+         {$this finalize_vote}
+      )}
+   )
+   (finalize_vote
+      {set [can_vote] FALSE}
+      {do
+         ($array {array (0 0 0 0 0)})
+         ($target 0)
+         ($not_done TRUE)
+         {foreach $voter [voted] {do
+            ($elem {$this get {symbol $voter "_vote"}})
+            {set_elem $array $elem {+ {elem $array $elem} 1}}
+         }}
+         {foreach $vote $array
+            {if {> $vote $target}
+               {set $target $vote}
+            }
+         }
+         {while $not_done {do
+            ($rand {random_int 0 5})
+            {if {== {elem $array $rand} $target}
+               {set $target $rand}
+               {set $not_done FALSE}
+            }
+         }}
+         {if {!= {user_mgr get_num_participants} 1} {do
+            ($array {array ("" "" "" "" "")})
+            {foreach $voter [voted] {do
+               ($elem {$this get {symbol $voter "_vote"}})
+               {if {== $target $elem}
+                  {set_elem $array $elem {sprint {elem $array $elem} {switch $voter (guitar "G") (bass "B") (vocals "V") (drum "D")}}}
+               }
+            }}
+            {icons.lst set_data $array}
+         }}
+         {thread_task kTaskSeconds (script
+            {$task sleep 1.2}
+            {if_else {== $target 4}
+               {$this do_stuff}
+               {$this add_song $target}
+            }
+         )}
+      }
+   )
+   (BUTTON_DOWN_MSG
+      {if {&& {$player is_participating} {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) $raw_button} [can_vote]} {do
+         ($inst
+            {if_else {&& {== {$player get_controller_sym} guitar} {!= {$player slot_num} 0}}
+               bass
+               {$player get_controller_sym}
+            }
+         )
+         {$this set {symbol $inst "_vote"}
+            {switch $raw_button
+               (kPad_X 0)
+               (kPad_Circle 1)
+               (kPad_Tri 2)
+               (kPad_Square 3)
+               ((kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) 4)
+            }
+         }
+         {unless {find_elem [voted] $inst}
+            {push_back [voted] $inst}
+         }
+         {do
+            ($array {array ("" "" "" "" "")})
+            {foreach $voter [voted] {do
+               ($elem {$this get {symbol $voter "_vote"}})
+               {set_elem $array $elem {sprint {elem $array $elem} {switch $voter (guitar "G") (bass "B") (vocals "V") (drum "D")}}}
+            }}
+            {icons.lst set_data $array}
+         }
+         {if {&& {! [counting]} {== {size [voted]} {user_mgr get_num_participants}}}
+            {$this start_timer}
+         }
+      }}
+      {if [can_vote]
+         {switch $action
+            (kAction_Start
+               {taskmgr clear_tasks}
+               {ui goto_screen {song_select_get_back_screen}}
+            )
+         }
+      }
+   )
+   (unload
+      {foreach $panel {play_a_show_screen get unused_panels}
+         {$panel set_showing TRUE}
+      }
+   )
+}
+{new BandScreen
+   play_a_show_screen
+   (panels
+      meta
+      song_sync_panel
+      postsong_sfx_panel
+      movie_panel
+      song_select_details_panel
+      song_select_panel
+      song_select_lower3rd_panel
+      play_a_show_panel
+   )
+   (focus play_a_show_panel)
+   (helpbar ((state_confirm option_exit)))
+   (unused_panels
+      (
+         song_sync_panel
+         postsong_sfx_panel
+         movie_panel
+         song_select_details_panel
+         song_select_panel
+         song_select_lower3rd_panel
+      )
+   )
+   (enter
+      {foreach $panel [unused_panels]
+         {$panel set_showing FALSE}
+      }
+   )
+   (exit {reset_random_selection})
 }

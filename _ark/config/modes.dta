@@ -161,6 +161,8 @@
    (keep_movie_loaded TRUE)
    (leave_if_connection_lost FALSE)
    (is_tour_quickplay FALSE)
+   (song_select song_select_screen)
+   (play_a_show FALSE)
 )
 (init
    #ifndef HX_EE
@@ -617,4 +619,12 @@
    (enable_streak FALSE)
    (enable_star_power FALSE)
    (allow_overdrive_phrases FALSE)
+)
+(play_a_show
+   QP_COOP_MODE_PROPERTIES
+   (play_a_show TRUE)
+   (main_mode_screen bonus_menuscreen)
+   (continue_screen play_a_show_screen)
+   (pause_new_song_screen play_a_show_screen)
+   (song_select play_a_show_screen)
 )

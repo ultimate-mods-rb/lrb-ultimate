@@ -333,8 +333,8 @@
             }
          }
          {$this set_venue_image}
-         {$this set normal_exit_screen song_select_screen}
-         {qp_difficulty_screen set cancel_screen song_select_screen}
+         {$this set normal_exit_screen {gamemode get song_select}}
+         {qp_difficulty_screen set cancel_screen {gamemode get song_select}}
          {$this set_venue_image}
       }
    )
