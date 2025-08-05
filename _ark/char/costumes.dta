@@ -1603,6 +1603,39 @@
             (legs reindeerlegs)
          )
       )
+      (batman
+         (unlocked TRUE)
+         (cost 100000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads RogerTaylorHead)
+            (torso batman_torso)
+            (legs KnightLegs (colors 2 0))
+            (hats batman_mask)
+         )
+      )
+      (miku
+         (unlocked TRUE)
+         (cost 5000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads miku_head)
+            (torso miku_torso)
+            (legs miku_legs)
+            (hair miku_hair)
+         )
+      )
+      (skye
+         (unlocked TRUE)
+         (cost 2000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads skye_head)
+            (torso skye_torso)
+            (legs skye_legs)
+            (hats skye_hat)
+         )
+      )
       #endif
    )
 )

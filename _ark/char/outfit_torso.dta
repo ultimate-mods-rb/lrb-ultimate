@@ -1182,5 +1182,22 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (batman_torso
+         (ui_name batman_torso)
+         (genre lrb_shop_other)
+         (unlocked FALSE)
+      )
+      (skye_torso
+         (cost 500000)
+         (ui_name skye)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (miku_torso
+         (cost 1250000)
+         (ui_name miku)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

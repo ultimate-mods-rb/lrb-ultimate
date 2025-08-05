@@ -1249,5 +1249,14 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      ;custom
+      #ifdef HX_NG
+      (miku_hair
+         (cost 1250000)
+         (ui_name miku)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      #endif
    )
 )

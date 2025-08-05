@@ -693,5 +693,18 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      ;custom
+      (skye_head
+         (cost 500000)
+         (ui_name skye)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (miku_head
+         (cost 1250000)
+         (ui_name miku)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

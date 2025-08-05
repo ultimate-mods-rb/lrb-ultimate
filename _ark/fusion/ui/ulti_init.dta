@@ -63,4 +63,22 @@
 {set $drms3 3}
 {set $drms4 0}
 
+{set $gems lrb}
+
 {set $pad_inst kControllerVocals}
+
+#ifdef HX_WII
+{set $cnt_slot1 kPad_Circle}
+{set $cnt_slot2 kPad_DRight}
+{set $cnt_slot3 kPad_X}
+{set $cnt_slot4 kPad_Square}
+{set $cnt_slot5 kPad_Tri}
+{set $cnt_star kPad_DLeft}
+#else
+{set $cnt_slot1 kPad_L2}
+{set $cnt_slot2 kPad_L1}
+{set $cnt_slot3 kPad_R1}
+{set $cnt_slot4 kPad_R2}
+{set $cnt_slot5 kPad_X}
+{set $cnt_star kPad_Select}
+#endif

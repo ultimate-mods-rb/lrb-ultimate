@@ -51,6 +51,13 @@
    (animate_track_out_fast)
    (animate_track_in_fast)
    (finish_load
+      {if {!= $gems lrb} {do
+         ($gems_dir {new RndDir gems_dir})
+         {switch $gems
+            #include ../ulti/track/gems/gems_scripting.dta
+         }
+      }}
+      {set $custom_ts {load_objects "ulti/gems.milo"}} ; gems stolen from rb3dx
       {$this set_showing FALSE}
       {$this set_track_out}
    )

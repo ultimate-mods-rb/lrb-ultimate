@@ -760,5 +760,17 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (skye_legs
+         (cost 500000)
+         (ui_name skye)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (miku_legs
+         (cost 1250000)
+         (ui_name miku)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

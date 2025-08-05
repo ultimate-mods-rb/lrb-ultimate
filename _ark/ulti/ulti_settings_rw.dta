@@ -95,6 +95,8 @@
                         $trackspeed
                         " "
                         $hwlength
+                        " "
+                        $gems
                      })
                      {unless {== $new_motto {$band band_motto}}
                         {$band set_band_motto $new_motto}
@@ -199,6 +201,8 @@
                            {set $trackspeed {sftf {elem $array 2}}}
 
                            {set $hwlength {sftf {elem $array 3}}}
+
+                           {set $gems {elem $array 4}}
 
                            {set_pad_map $pad_map}
                            {set [loaded] TRUE}
