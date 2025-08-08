@@ -267,3 +267,4 @@
 (ghwor "Guitar Hero Warriors of Rock")
 (amp "Amplitude")
 (freq "Frequency")
+#include locale_sources.dta

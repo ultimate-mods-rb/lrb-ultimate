@@ -91,11 +91,49 @@
    (by_origin
       (cmp_song_to_song
          ($lhs $rhs)
-         {$this cmp $lhs $rhs (kSTOrigin) (kSTName)}
+         {do
+            ($origin_cmp
+               {badcmp
+                  {sprint
+                     {if_else
+                        {&&
+                           {$lhs has_data game_origin}
+                           {!= {$lhs get_data (game_origin)} rb2}
+                        }
+                        {$lhs get_data (game_origin)}
+                        {$lhs get_icon}
+                     }
+                  }
+                  {sprint
+                     {if_else
+                        {&&
+                           {$rhs has_data game_origin}
+                           {!= {$rhs get_data (game_origin)} rb2}
+                        }
+                        {$rhs get_data (game_origin)}
+                        {$rhs get_icon}
+                     }
+                  }
+               }
+            )
+            {if_else $origin_cmp
+               $origin_cmp
+               {$this cmp $lhs $rhs (kSTName)}
+            }
+         }
       )
       (browser_group
          ($offer)
-         {sprint {$offer get_icon}}
+         {sprint
+            {if_else
+               {&&
+                  {$offer has_data game_origin}
+                  {!= {$offer get_data (game_origin)} rb2}
+               }
+               {$offer get_data (game_origin)}
+               {$offer get_icon}
+            }
+         }
       )
    )
 )

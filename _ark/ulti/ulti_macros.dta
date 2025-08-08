@@ -1,3 +1,4 @@
+#define CUSTOMSOURCE (1)
 #define SMASHER_COLORS ((green red yellow blue orange))
 #define NORMALGEM_SET (
    gem_green.wid
