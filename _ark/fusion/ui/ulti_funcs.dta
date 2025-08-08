@@ -1,3 +1,33 @@
+{func tolower ; fuck you harmonix
+   ($string)
+   {search_replace $string "A" "a" $string}
+   {search_replace $string "B" "b" $string}
+   {search_replace $string "C" "c" $string}
+   {search_replace $string "D" "d" $string}
+   {search_replace $string "E" "e" $string}
+   {search_replace $string "F" "f" $string}
+   {search_replace $string "G" "g" $string}
+   {search_replace $string "H" "h" $string}
+   {search_replace $string "I" "i" $string}
+   {search_replace $string "J" "j" $string}
+   {search_replace $string "K" "k" $string}
+   {search_replace $string "L" "l" $string}
+   {search_replace $string "M" "m" $string}
+   {search_replace $string "N" "n" $string}
+   {search_replace $string "O" "o" $string}
+   {search_replace $string "P" "p" $string}
+   {search_replace $string "Q" "q" $string}
+   {search_replace $string "R" "r" $string}
+   {search_replace $string "S" "s" $string}
+   {search_replace $string "T" "t" $string}
+   {search_replace $string "U" "u" $string}
+   {search_replace $string "V" "v" $string}
+   {search_replace $string "W" "w" $string}
+   {search_replace $string "X" "x" $string}
+   {search_replace $string "Y" "y" $string}
+   {search_replace $string "Z" "z" $string}
+   $string
+}
 {func sti
    ($str)
    {switch $str

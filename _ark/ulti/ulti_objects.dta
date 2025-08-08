@@ -241,5 +241,49 @@
             )
          )
       )
+      (song_select_search
+         (resource_file "../fusion/ui/resource/list_song_select_browser.milo")
+         (vertical TRUE)
+         (enter_anim "song_list_top_BONE_ON.tnm")
+         (anim_fps 10)
+         (anim_delay_frac 3.0e-2)
+         (back_arrow "back.mesh")
+         (next_arrow "next.mesh")
+         (highlight
+            "highlight.mesh"
+            (colors
+               (selecting 1 1 1)
+               (normal 0.9 0.9 0.9)
+               (disabled 0.5 0.5 0.5)
+               (unfocused 0.5 0.5 0.5)
+            )
+         )
+         (element
+            (song
+               (object text "song.lbl")
+               (colors
+                  (normal
+                     (normal 0.8 0.8 0.8)
+                     (focused 0.8 0.8 0.8)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.8 0.8 0.8)
+                  )
+                  (highlight
+                     (normal 0 0 0)
+                     (focused 0 0 0)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0 0 0)
+                  )
+                  (disabled
+                     (normal 0.5 0.5 0.5)
+                     (focused 0.5 0.5 0.5)
+                     (disabled 0.5 0.5 0.5)
+                     (selecting 0.5 0.5 0.5)
+                  )
+               )
+               (dummy '')
+            )
+         )
+      )
    )
 )

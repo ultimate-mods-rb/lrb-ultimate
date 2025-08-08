@@ -57,7 +57,6 @@
             #include ../ulti/track/gems/gems_scripting.dta
          }
       }}
-      {set $custom_ts {load_objects "ulti/gems.milo"}} ; gems stolen from rb3dx
       {$this set_showing FALSE}
       {$this set_track_out}
    )
