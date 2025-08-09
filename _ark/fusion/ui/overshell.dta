@@ -620,9 +620,7 @@
       {sel_section.lst set_data
          (
             lrb
-            #ifdef HX_NG
             gh2
-            #endif
          )
       }
       {title.lbl set text_token {localize os_gems}}
