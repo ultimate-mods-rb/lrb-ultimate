@@ -1603,6 +1603,7 @@
             (legs reindeerlegs)
          )
       )
+      #endif
       (batman
          (unlocked TRUE)
          (cost 100000000)
@@ -1636,6 +1637,5 @@
             (hats skye_hat)
          )
       )
-      #endif
    )
 )

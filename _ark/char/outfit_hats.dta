@@ -470,7 +470,6 @@
       )
       #endif
       ;custom
-      #ifdef HX_NG
       (stevehead
          (ui_name stevehead)
          (genre lrb_shop_other)
@@ -487,6 +486,5 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
-      #endif
    )
 )

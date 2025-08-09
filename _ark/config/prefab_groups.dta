@@ -209,10 +209,10 @@
          dlc_santa
          dlc_snowman
          dlc_riendeer
+         #endif
          batman
          miku
          skye
-         #endif
          Jimmy_Hendrix
          kt_tunstall
       #else

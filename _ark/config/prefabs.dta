@@ -5924,6 +5924,7 @@
       (tattoo_prefab torso_tattoos_none)
       (selectable 1)
    )
+   #endif
    (batman
       (gender male)
       (instrument guitar)
@@ -6020,7 +6021,6 @@
       (tattoo_prefab torso_tattoos_none)
       (selectable 1)
    )
-   #endif
    #ifndef _SHIP
       #ifdef HX_XBOX
       #include ../fusion/ui/framerate/chars/expensive_cpu_male_xbox.dta
