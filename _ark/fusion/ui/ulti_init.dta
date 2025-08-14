@@ -67,6 +67,8 @@
 
 {set $pad_inst kControllerVocals}
 
+{set $video_bgs TRUE}
+
 #ifdef HX_WII
 {set $cnt_slot1 kPad_Circle}
 {set $cnt_slot2 kPad_DRight}

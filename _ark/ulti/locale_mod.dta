@@ -122,6 +122,8 @@
 (os_colorshuffle0 "Note Color Shuffle: OFF")
 (os_countdown1 "Countdown: ON")
 (os_countdown0 "Countdown: OFF")
+(os_videobgs1 "Video Backgrounds: ON")
+(os_videobgs0 "Video Backgrounds: OFF")
 (os_trk "Appearance")
 (os_spotlight "Overdrive")
 (ugc_section_5_0 "0% - 5%")

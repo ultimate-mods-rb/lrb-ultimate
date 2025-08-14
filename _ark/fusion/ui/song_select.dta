@@ -535,7 +535,9 @@
       #endif
    )
    (unload
+      #ifndef HX_NG ;this could cause memory issues. however probably not
       {song_offer_provider unload}
+      #endif
       {song_offer_provider set is_leaderboards FALSE}
    )
    (is_user_local

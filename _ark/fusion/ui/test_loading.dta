@@ -5,10 +5,62 @@
 {content_loading_panel load TRUE}
 #endif
 {passive_messages_panel load TRUE}
+#ifdef HX_NG
+{new UIPanel
+   world_movie_panel
+   (file "../../ulti/world_movie.milo")
+   (has_video FALSE)
+   (video_delay 0)
+   (video_path "")
+   (enter {game add_sink $this (intro_start intro_end game_lost)})
+   (exit {game remove_sink $this})
+   (intro_end
+      {if [has_video]
+         {$this set_showing TRUE}
+         {script_task kTaskSeconds
+            (delay [video_delay])
+            (script
+               {$this show_video TRUE}
+               {TexMovie.tmov set movie_file [video_path]}
+            )
+         }
+      }
+   )
+   (intro_start
+      {set [has_video] FALSE}
+      {set [video_delay] 0}
+      {if $video_bgs {do
+         ($song {meta_performer song})
+         ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
+         {if {$offer has_data has_video}
+            {set [has_video] {$offer get_data (has_video)}}
+            {set [video_path] {sprint {song_mgr song_path $song} "_video.bik"}}
+            {if {$offer has_data video_delay}
+               {set [video_delay] {$offer get_data (video_delay)}}
+            }
+         }
+      }}
+      {$this show_video FALSE}
+      {world_panel set_showing {! {|| $blackbg [has_video]}}}
+   )
+   (game_lost {$this show_video FALSE})
+   (show_video
+      ($showing)
+      {background_vingetted.mesh set_showing $showing}
+   )
+   (poll
+      {if [has_video]
+         {if {game paused}
+            {game set_paused FALSE}
+         }
+      }
+   )
+}
+#endif
 {new BandScreen
    test_game_screen
    (bad_data_reset FALSE)
-   (panels game world_panel coop_track_panel sync_audio_net_panel)
+   (panels game world_panel #ifdef HX_NG world_movie_panel #endif coop_track_panel sync_audio_net_panel)
    GAME_SCREEN_HANDLERS
    #ifdef HX_XBOX
    (my_enter

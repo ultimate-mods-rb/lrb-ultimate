@@ -145,6 +145,10 @@
          os_countdown1
          os_countdown0
       }
+      {if_else $video_bgs
+         os_videobgs1
+         os_videobgs0
+      }
    )
 )
 {new UIPanel
@@ -180,6 +184,10 @@
          (
             (os_countdown1 os_countdown0)
             {set $countdown {! $countdown}}
+         )
+         (
+            (os_videobgs1 os_videobgs0)
+            {set $video_bgs {! $video_bgs}}
          )
       }
       {$this lst_reset}
