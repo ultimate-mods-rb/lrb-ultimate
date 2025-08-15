@@ -1312,6 +1312,10 @@
                      {||
                         {has_substr {tolower {strip_syms {$offer get_data (name)}}} $string}
                         {has_substr {tolower {strip_syms {$offer artist}}} $string}
+                        {&&
+                           {$offer has_data album_name}
+                           {has_substr {tolower {strip_syms {$offer get_data (album_name)}}} $string}
+                        }
                      }
                   }
                   {push_back $array {array ({$offer get_data (name)} $song_sym)}}
@@ -1401,6 +1405,7 @@
    }
    ; after removing syms double spaces will cause search to fail for something like "Undone - The Sweater Song"
    {search_replace $string "  " " " $string}
+   {search_replace $string "&" "and" $string}
    $string
 }
 #ifdef HX_OG
