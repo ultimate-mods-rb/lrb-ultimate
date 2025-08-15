@@ -5,14 +5,16 @@
 {content_loading_panel load TRUE}
 #endif
 {passive_messages_panel load TRUE}
-#ifdef HX_NG
 {new UIPanel
    world_movie_panel
    (file "../../ulti/world_movie.milo")
    (has_video FALSE)
    (video_delay 0)
    (video_path "")
-   (enter {game add_sink $this (intro_start intro_end game_lost)})
+   (enter
+      {$this set_aspect_ratio}
+      {game add_sink $this (intro_start intro_end game_lost)}
+   )
    (exit {game remove_sink $this})
    (intro_end
       {if [has_video]
@@ -34,7 +36,11 @@
          ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
          {if {$offer has_data has_video}
             {set [has_video] {$offer get_data (has_video)}}
+            #ifdef HX_WII
+            {set [video_path] {sprintf "../../videos/%s_video.bik" $song}}
+            #else
             {set [video_path] {sprint {song_mgr song_path $song} "_video.bik"}}
+            #endif
             {if {$offer has_data video_delay}
                {set [video_delay] {$offer get_data (video_delay)}}
             }
@@ -48,17 +54,30 @@
       ($showing)
       {background_vingetted.mesh set_showing $showing}
    )
+   (set_aspect_ratio
+      {if_else {== {rnd aspect} kWidescreenAspect}
+         #ifdef HX_NG
+         {background_vingetted.mesh set_local_scale 0.60 0.60 0.60}
+         {background_vingetted.mesh set_local_scale 0.40 0.40 0.40}
+         #else
+         {background_vingetted.mesh set_local_scale 0.60 0.80 0.60}
+         {background_vingetted.mesh set_local_scale 0.40 0.46 0.40}
+         #endif
+      }
+      #ifdef HX_WII
+      {background_vingetted.mesh set_local_pos 0.00 0.00 -25.00}
+      #endif
+   )
    (poll
       {if {&& [has_video] {game paused}}
          {game set_paused FALSE}
       }
    )
 }
-#endif
 {new BandScreen
    test_game_screen
    (bad_data_reset FALSE)
-   (panels game world_panel #ifdef HX_NG world_movie_panel #endif coop_track_panel sync_audio_net_panel)
+   (panels game world_panel world_movie_panel coop_track_panel sync_audio_net_panel)
    GAME_SCREEN_HANDLERS
    #ifdef HX_XBOX
    (my_enter
