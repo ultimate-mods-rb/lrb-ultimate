@@ -59,7 +59,7 @@ echo "Moving back Wii song folder"
 mv "$PWD/_ark/songs" "$PWD/_songs/songs_wii"
 
 # Extract ISO using wit
-"$WIT_PATH" copy "$PWD/_build/wii" "$PWD/iso/TBRB Ultimate.wbfs"
+"$WIT_PATH" copy "$PWD/_build/wii" "$PWD/iso/LRB Ultimate.wbfs"
 
 # Check if the ARK build failed and provide appropriate message
 echo
