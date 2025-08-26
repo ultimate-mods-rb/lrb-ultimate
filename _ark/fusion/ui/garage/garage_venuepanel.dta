@@ -284,6 +284,7 @@
                #ifdef HX_NG ; meshes need to be generated differently for wii
                ven_wikker
                #endif
+               ven_z_newyork
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -443,6 +444,7 @@
             (ven_battle small_club/battle/battle.milo)
             (ven_small2 small_club/small2/small2.milo)
             (ven_wikker big_club/wikker/wikker.milo)
+            (ven_z_newyork small_club/z_newyork/z_newyork.milo)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
