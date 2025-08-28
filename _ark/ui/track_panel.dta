@@ -79,6 +79,7 @@
       {{$this loaded_dir} reset}
    )
    (on_extend
+      {force_drum_freestyle FALSE}
       {beatmatch foreach_active_player $player ;handle adding the appropriate callbacks to each player
          {do
             ($obj {sprint {$player instrument} "_track_callback"})

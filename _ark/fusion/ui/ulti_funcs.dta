@@ -1,3 +1,13 @@
+{func force_drum_freestyle
+   ($bool)
+   {unless {gamemode get is_drum_trainer}
+      {game foreach_local_player $p
+         {if {&& $p {== {$p instrument} drum}}
+            {$p force_fill $bool}
+         }
+      }
+   }
+}
 {func tolower ; fuck you harmonix
    ($string)
    {search_replace $string "A" "a" $string}
