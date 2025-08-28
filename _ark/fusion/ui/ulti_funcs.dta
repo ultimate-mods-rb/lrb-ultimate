@@ -1,3 +1,15 @@
+{func set_var
+   ($var $in)
+   {eval {` {set {, {var $var}} $in}}}
+}
+{func eval_var
+   ($var)
+   {eval {var $var}}
+}
+{func toggle_var
+   ($var)
+   {eval {` {set {, {var $var}} {! {eval_var $var}}}}}
+}
 {func force_drum_freestyle
    ($bool)
    {unless {gamemode get is_drum_trainer}
