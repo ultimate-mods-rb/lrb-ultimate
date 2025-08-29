@@ -20,6 +20,12 @@
       }
    }
 }
+{func clear_array
+   ($obj $name)
+   {while {size {$obj get_array $name}}
+      {$obj remove ($name 0)}
+   }
+}
 {func tolower ; fuck you harmonix
    ($string)
    {search_replace $string "A" "a" $string}
