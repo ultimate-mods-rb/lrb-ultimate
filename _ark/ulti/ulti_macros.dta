@@ -1,3 +1,6 @@
+#define uNormal (0)
+#define uOnOFF (1)
+#define OS_LIST (sel_section.lst)
 #define CUSTOMSOURCE (1)
 #define SMASHER_COLORS ((green red yellow blue orange))
 #define NORMALGEM_SET (

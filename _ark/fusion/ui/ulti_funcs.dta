@@ -16,7 +16,7 @@
       {if_else {== {type $entry} kDataArray} ; just return whatever was passed if not array
          {switch {elem {find $entry type} 1}
             (uNormal
-               {push_back $array {elem $entry 0}}
+               {push_back $array {eval {elem $entry 0}}}
             )
             (uOnOFF
                {push_back $array
@@ -33,7 +33,7 @@
             {fail {sprint {elem {find $entry type} 1} " is an unknown type"}}
             #endif
          }
-         {push_back $array $entry}
+         {push_back $array {eval $entry}}
       }
    }
    {OS_LIST set_data $array}
