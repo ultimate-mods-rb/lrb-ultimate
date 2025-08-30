@@ -53,6 +53,7 @@
 }
 {func os_clear_pos
    {set [pos] 0}
+}
 {func force_drum_freestyle
    ($bool)
    {unless {gamemode get is_drum_trainer}
