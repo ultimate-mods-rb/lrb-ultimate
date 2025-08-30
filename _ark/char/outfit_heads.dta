@@ -706,5 +706,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (ivystub_head
+         (ui_name ivystub)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

@@ -28,4 +28,36 @@
          {star_hopo.wid insert (meshes 0) {$gems_dir find hopo_style.mesh}}
       }
    }
+   {with {coop_track_panel find drum}
+      {foreach $color (red yellow blue green)
+         {do
+            ($wid {sprintf "drum_%s.wid" $color})
+            {while {size {$wid get_array meshes}}
+               {$wid remove (meshes 0)}
+            }
+            {$wid insert (meshes 0) {$gems_dir find {sprintf "tom_%s_gem.mesh" $color}}}
+         }
+      }
+
+      {clear_array drum_miss.wid meshes}
+      {drum_miss.wid insert (meshes 0) {$gems_dir find tom_red_gem.mesh}}
+
+      {clear_array drum_star.wid meshes}
+      {drum_star.wid insert (meshes 0) {$gems_dir find tom_style_gem.mesh}}
+
+      {clear_array gem_kick.wid meshes}
+      {gem_kick.wid insert (meshes 0) {$gems_dir find kick_gem.mesh}}
+
+      {clear_array star_kick.wid meshes}
+      {star_kick.wid insert (meshes 0) {$gems_dir find kick_style.mesh}}
+
+      {clear_array kick_miss.wid meshes}
+      {kick_miss.wid insert (meshes 0) {$gems_dir find kick_miss.mesh}}
+
+      {clear_array dynamic_crash_gem.wid meshes}
+      {dynamic_crash_gem.wid insert (meshes 0) {$gems_dir find tom_green_gem.mesh}}
+
+      {clear_array dynamic_crash_gem_lefty.wid meshes}
+      {dynamic_crash_gem_lefty.wid insert (meshes 0) {$gems_dir find tom_red_gem.mesh}}
+   }
 )

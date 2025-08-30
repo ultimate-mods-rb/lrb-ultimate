@@ -53,6 +53,21 @@
 }
 {func os_clear_pos
    {set [pos] 0}
+{func force_drum_freestyle
+   ($bool)
+   {unless {gamemode get is_drum_trainer}
+      {game foreach_local_player $p
+         {if {&& $p {== {$p instrument} drum}}
+            {$p force_fill $bool}
+         }
+      }
+   }
+}
+{func clear_array
+   ($obj $name)
+   {while {size {$obj get_array $name}}
+      {$obj remove ($name 0)}
+   }
 }
 {func tolower ; fuck you harmonix
    ($string)

@@ -42,6 +42,9 @@
                   {set [remaining] {int {/ {elem {elem [event_array] [current_event]} 1} 4}}}
                   {set [active] TRUE}
                   {{[track] find retract.trig} trigger}
+                  {if {== [track] drum}
+                     {force_drum_freestyle TRUE}
+                  }
                }
                {if [active]
                   {-- [remaining]}
@@ -52,6 +55,9 @@
                      }
                      {do
                         {$this set_lbl " "}
+                        {if {== [track] drum}
+                           {force_drum_freestyle FALSE}
+                        }
                         {set [active] FALSE}
                         {if_else {== {[track] name} vocals}
                            {{[track] find play_intro.trig} trigger}

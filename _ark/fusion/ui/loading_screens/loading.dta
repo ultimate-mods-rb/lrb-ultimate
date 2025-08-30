@@ -594,12 +594,31 @@
       {animatic_movie_panel unload}
    )
 }
+
+{set $guitar_notes (96 97 98 99 100)}
+{set $bass_notes (96 97 98 99 100)}
+{set $drum_notes (96 97 98 99 100)}
+
 {new PreloadPanel
    preload_panel
    (content_name "")
    (corrupt FALSE)
    (enter
       ;#ifdef IGNORE_PRELOAD_OK
+      {gamecfg foreach_local_user $user
+         {if {!= {$user get_track_sym} vocals}
+            ; i fucking hate using global vars but like there isn't really a better way to save this
+            {set_var {sprint {$user get_track_sym} "_notes"}
+               {switch {$user get_difficulty_sym}
+                  (expert (96 97 98 99 100))
+                  (hard (84 85 86 87 88))
+                  (medium (72 73 74 75 76))
+                  (easy (60 61 62 63 64))
+                  {fail "invalid user diff? how the hell did you get this far???"}
+               }
+            }
+         }
+      }
       {if_else {challenge_mgr has_challenge}
          {ui goto_screen challenge_real_pre_songs_loading_screen}
          {ui goto_screen real_pre_songs_loading_screen}

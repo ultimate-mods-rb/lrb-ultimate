@@ -1637,5 +1637,16 @@
             (hats skye_hat)
          )
       )
+      (ivystub
+         (unlocked TRUE)
+         (cost 5000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads ivystub_head)
+            (torso ivystub_torso)
+            (legs ivystub_legs)
+            (hair ivystub_hair)
+         )
+      )
    )
 )
