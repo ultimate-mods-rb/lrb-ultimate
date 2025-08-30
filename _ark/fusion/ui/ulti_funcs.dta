@@ -10,6 +10,50 @@
    ($var)
    {eval {` {set {, {var $var}} {! {eval_var $var}}}}}
 }
+{func lst_reset {do
+   ($array {array 0})
+   {foreach $entry {$this get data}
+      {if_else {== {type $entry} kDataArray} ; just return whatever was passed if not array
+         {switch {elem {find $entry type} 1}
+            (uNormal
+               {push_back $array {eval {elem $entry 0}}}
+            )
+            (uOnOFF
+               {push_back $array
+                  {sprintf
+                     {localize os_onoff_fmt}
+                     {localize {elem $entry 0}}
+                     {localize {if_else {eval {elem {find $entry bool} 1}} on off}}
+                  }
+               }
+            )
+            #ifdef _SHIP
+            {exit}
+            #else
+            {fail {sprint {elem {find $entry type} 1} " is an unknown type"}}
+            #endif
+         }
+         {push_back $array {eval $entry}}
+      }
+   }
+   {OS_LIST set_data $array}
+}}
+{func os_setup_common
+   {title.lbl set text_token [title]}
+   {lst_reset}
+}
+{func os_sel_common
+   {foreach $cmd {find {elem [data] {OS_LIST selected_pos}} sel_script}
+      {eval $cmd}
+   }
+   {lst_reset}
+}
+{func os_fix_pos
+   {OS_LIST set_selected [pos]}
+}
+{func os_clear_pos
+   {set [pos] 0}
+}
 {func force_drum_freestyle
    ($bool)
    {unless {gamemode get is_drum_trainer}
