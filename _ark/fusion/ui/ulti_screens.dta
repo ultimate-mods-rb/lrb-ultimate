@@ -14,6 +14,9 @@
                theatre
                cutsceneviewer
                framerate
+               #ifndef _SHIP
+               camera_debug
+               #endif
                #ifdef HX_NG
                musicstore
                #endif
@@ -62,6 +65,31 @@
                   }
                   {do
                      {gamemode set_mode theatre $player_num}
+                     {ui goto_screen {gamemode get matchmaking_screen}}
+                     {fx fade_out}
+                  }
+               }
+            }
+         )
+         (camera_debug
+            {if_else {gamecfg is_missing_mic $player_num FALSE}
+               {do
+                  #ifdef KIOSK_DEMO
+                  {vocalist_must_have_mic_screen set message demo_solo_vocalist_needs_mic}
+                  #else
+                  {vocalist_must_have_mic_screen set message solo_vocalist_needs_mic}
+                  #endif
+                  {ui push_screen vocalist_must_have_mic_screen}
+               }
+               {if_else {{profile_mgr get_profile $player_num} num_bands}
+                  {do
+                     {set $band_sel_mode 1}
+                     {gamemode set_mode camera_debug $player_num}
+                     {ui goto_screen tour_band_sel_screen}
+                     {fx fade_out}
+                  }
+                  {do
+                     {gamemode set_mode camera_debug $player_num}
                      {ui goto_screen {gamemode get matchmaking_screen}}
                      {fx fade_out}
                   }
@@ -593,3 +621,129 @@
    )
    (exit {reset_random_selection})
 }
+#ifndef _SHIP
+{new UIPanel
+   camera_debug_game_panel
+   (enter
+      {print "######################\n"}
+      {print "# CAMERA DEBUG ENTER #\n"}
+      {print "######################\n"}
+      {set $camera.disable_picking 1}
+      {camera_debug_game_screen set shot 1}
+      {camera_debug_game_screen set bad_shot 0}
+      {do
+         ($array {array 0})
+         {$world iterate BandCamShot $bcs
+            {push_back $array {$bcs name}}
+         }
+         {camera_debug_game_screen set shots $array}
+      }
+      {camera_debug_game_screen set good_shots {array 0}}
+      {camera_debug_game_screen update_shot}
+   )
+   (exit
+      {print "#####################\n"}
+      {print "# CAMERA DEBUG EXIT #\n"}
+      {print "#####################\n"}
+   )
+}
+{new BandScreen
+   camera_debug_game_screen
+   (panels
+      game
+      world_panel
+      coop_track_panel
+      camera_debug_game_panel
+      sync_audio_net_panel
+   )
+   GAME_SCREEN_HANDLERS
+   (back splash_screen)
+   (shot 1)
+   (bad_shot 0)
+   (shots ())
+   (good_shots ())
+   (BUTTON_DOWN_MSG
+      {switch $raw_button
+         (kPad_X
+            {set [bad_shot] 1}
+            {while {== [bad_shot] 1}
+               {'++' [shot]}
+               {if {== [shot] {size [shots]}}
+                  {set [shot] 1}
+               }
+               {$this update_shot}
+            }
+         )
+         (kPad_Circle
+            {set [bad_shot] 1}
+            {while {== [bad_shot] 1}
+               {-- [shot]}
+               {if {== [shot] 0}
+                  {set [shot] {- {size [shots]} 1}}
+               }
+               {$this update_shot}
+            }
+         )
+         (kPad_Tri {toggle_time_paused})
+         (kPad_Square {ulti_cycle_free_camera})
+         (kPad_L1
+            {if {size [good_shots]}
+               {resize [good_shots]
+                  {- {size [good_shots]} 1}
+               }
+            }
+         )
+         (kPad_R1
+            {unless {find_elem [good_shots] {elem [shots] [shot]}}
+               {push_back [good_shots] {elem [shots] [shot]}}
+            }
+         )
+         (kPad_R2 {print_array [good_shots]})
+         kDataUnhandled
+      }
+   )
+   (update_shot
+      {do
+         ($i {elem [shots] [shot]})
+         {if_else {$world exists $i}
+            {do
+               ($world_shot {$world find $i})
+               {cond
+                  ({!
+                        {$world_shot platform_ok}}
+                     {cheat_display show {sprint "wrong platform: " $i}}
+                     {set [bad_shot] 1}
+                  )
+                  ({!
+                        {$world_shot get enabled}}
+                     {cheat_display show {sprint "shot disabled: " $i}}
+                     {set [bad_shot] 1}
+                  )
+                  ;({find_elem
+                  ;      (LOSE WIN WIN_PRE WIN_POST WIN_P1 WIN_P2 WIN_TIE WIN_QUICK INTRO INTRO_VENUE INTRO_QUICK INTRO_MULTI OUTRO OUTRO_MULTI)
+                  ;      {$world_shot get category}}
+                  ;   {cheat_display show
+                  ;      {sprint
+                  ;         "skipping shot category "
+                  ;         {$world_shot get category}
+                  ;         " "
+                  ;         $world_shot
+                  ;      }
+                  ;   }
+                  ;   {set [bad_shot] 1}
+                  ;)
+                  {handle ($world start)}
+                  {handle ($world intro_start)}
+                  {$world force_shot $world_shot}
+                  {cheat_display show
+                     {sprint [shot] ": " $i}
+                  }
+                  {set [bad_shot] 0}
+               }
+            }
+            {cheat_display show {sprint "couldn't find: " $i}}
+         }
+      }
+   )
+}
+#endif
