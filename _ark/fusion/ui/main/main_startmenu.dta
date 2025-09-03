@@ -54,6 +54,9 @@
          }
          #endif
       }
+      #ifdef HX_NG
+      {content_mgr start_refresh}
+      #endif
    )
    (TRANSITION_COMPLETE_MSG {set [enter_time] {taskmgr ui_seconds}})
    (poll
