@@ -323,6 +323,17 @@
                big_club_15
                big_club_16
                big_club_17
+               theater_01
+               theater_02
+               theater_03
+               theater_04
+               theater_05
+               theater_06
+               theater_07
+               theater_08
+               theater_09
+               theater_10
+               theater_11
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -521,6 +532,17 @@
             (big_club_15 rb2/big_club_15/big_club_15.milo)
             (big_club_16 rb2/big_club_16/big_club_16.milo)
             (big_club_17 rb2/big_club_17/big_club_17.milo)
+            (theater_01 rb2/theater_01/theater_01.milo)
+            (theater_02 rb2/theater_02/theater_02.milo)
+            (theater_03 rb2/theater_03/theater_03.milo)
+            (theater_04 rb2/theater_04/theater_04.milo)
+            (theater_05 rb2/theater_05/theater_05.milo)
+            (theater_06 rb2/theater_06/theater_06.milo)
+            (theater_07 rb2/theater_07/theater_07.milo)
+            (theater_08 rb2/theater_08/theater_08.milo)
+            (theater_09 rb2/theater_09/theater_09.milo)
+            (theater_10 rb2/theater_10/theater_10.milo)
+            (theater_11 rb2/theater_11/theater_11.milo)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
