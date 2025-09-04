@@ -286,6 +286,10 @@
                #endif
                ven_z_newyork
                ; rb1/rb2 venue ports
+               video_01
+               video_02
+               video_03
+               video_04
                small_club_01
                small_club_02
                small_club_03
@@ -480,6 +484,10 @@
             (ven_wikker big_club/wikker/wikker.milo)
             (ven_z_newyork small_club/z_newyork/z_newyork.milo)
             ;rb1/rb2
+            (video_01 rb2/video_01/video_01.milo)
+            (video_02 rb2/video_02/video_02.milo)
+            (video_03 rb2/video_03/video_03.milo)
+            (video_04 rb2/video_04/video_04.milo)
             (small_club_01 rb2/small_club_01/small_club_01.milo)
             (small_club_02 rb2/small_club_02/small_club_02.milo)
             (small_club_03 rb2/small_club_03/small_club_03.milo)
