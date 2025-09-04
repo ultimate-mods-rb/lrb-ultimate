@@ -243,6 +243,7 @@
          ;   #else
          ;   {tour qp_venue_provider}
          ;   #endif}
+         {venue.lst set scroll_time 0}
          {venue.lst ;no need for providers here
             set_data
             (
