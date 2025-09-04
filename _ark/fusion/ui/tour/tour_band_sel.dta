@@ -114,6 +114,9 @@
                      {if_else {[band_provider] is_band_local $pos}
                         {do
                            {tour set_band {[band_provider] get_band $pos}}
+                           {if $band_sel_mode
+                              {gamemode set band_name {{tour band} band_name}}
+                           }
                            {fx fade_out}
                            {ui goto_screen
                               {switch ;don't ask just fix
