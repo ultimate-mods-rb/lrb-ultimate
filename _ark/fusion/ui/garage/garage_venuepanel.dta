@@ -334,6 +334,18 @@
                theater_09
                theater_10
                theater_11
+               arena_01
+               arena_02
+               arena_03
+               arena_04
+               arena_05
+               arena_06
+               arena_07
+               arena_08
+               arena_09
+               arena_10
+               arena_11
+               arena_12
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -543,6 +555,18 @@
             (theater_09 rb2/theater_09/theater_09.milo)
             (theater_10 rb2/theater_10/theater_10.milo)
             (theater_11 rb2/theater_11/theater_11.milo)
+            (arena_01 rb2/arena_01/arena_01)
+            (arena_02 rb2/arena_02/arena_02)
+            (arena_03 rb2/arena_03/arena_03)
+            (arena_04 rb2/arena_04/arena_04)
+            (arena_05 rb2/arena_05/arena_05)
+            (arena_06 rb2/arena_06/arena_06)
+            (arena_07 rb2/arena_07/arena_07)
+            (arena_08 rb2/arena_08/arena_08)
+            (arena_09 rb2/arena_09/arena_09)
+            (arena_10 rb2/arena_10/arena_10)
+            (arena_11 rb2/arena_11/arena_11)
+            (arena_12 rb2/arena_12/arena_12)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
