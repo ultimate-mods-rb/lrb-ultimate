@@ -742,7 +742,7 @@
                #endif
             #endif
             ; hack
-            {$world iterate WorldDir $wd {with $wd
+            {with $world
                {if {exists player_guitar0}
                   {do ($x) ($y) ($z)
                      {player_guitar0 get_local_pos $x $y $z}
@@ -758,7 +758,7 @@
                      {player_vocal set_local_pos $x $y $z}
                   }
                }
-            }}
+            }
             {if [play_anim]
                {[play_anim] animate}
             }
@@ -823,14 +823,12 @@
             {if {&& {exists game} {== {$this name} "coop_final_win13.shot"}}
                {game disable_all_controllers}
             }
-            {unless {has_substr {game get_venue} "rb2"} ; fixes a crash
-               {if [crowd]
-                  {[crowd] override_anim [crowd_anim]}
-                  {[crowd] crowd_update}
-                  {[crowd] set rotate [crowd_face_camera]}
-                  {[crowd] set_fullness [crowd_density] [crowd_density]}
-                  {[crowd] set lod [crowd_lod]}
-               }
+            {if {&& {! {has_substr {game get_venue} "rb2/"}} [crowd]} ; fixes a crash
+               {[crowd] override_anim [crowd_anim]}
+               {[crowd] crowd_update}
+               {[crowd] set rotate [crowd_face_camera]}
+               {[crowd] set_fullness [crowd_density] [crowd_density]}
+               {[crowd] set lod [crowd_lod]}
             }
          )
          (stop_shot
