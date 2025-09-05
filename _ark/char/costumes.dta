@@ -1648,5 +1648,16 @@
             (hair ivystub_hair)
          )
       )
+      (shaggy
+         (unlocked TRUE)
+         (cost 10000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads shaggy_head)
+            (torso shaggy_torso)
+            (legs shaggy_legs)
+            (hair shaggy_hair)
+         )
+      )
    )
 )

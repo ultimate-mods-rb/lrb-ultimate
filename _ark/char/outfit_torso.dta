@@ -1204,5 +1204,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (shaggy_torso
+         (ui_name ivystub)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

@@ -777,5 +777,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (shaggy_legs
+         (ui_name shaggy)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

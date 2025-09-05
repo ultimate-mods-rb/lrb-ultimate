@@ -1261,5 +1261,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (shaggy_hair
+         (ui_name shaggy)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )
