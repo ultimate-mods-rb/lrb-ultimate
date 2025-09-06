@@ -353,6 +353,22 @@
       }
    }
 }
+{func get_song_metadata
+   ($song $data)
+   {do
+      ($return)
+      {if_else {exists song_offer_provider}
+         {do
+            ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
+            {if {$offer has_data $data}
+               {set $return {$offer get_data ($data)}}
+            }
+         }
+         {fail "song_offer_provider doesn't exist. can't get metadata now!"}
+      }
+      $return
+   }
+}
 {func ulti_cycle_free_camera
    {if $world
       {do

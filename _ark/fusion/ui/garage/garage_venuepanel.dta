@@ -243,6 +243,7 @@
          ;   #else
          ;   {tour qp_venue_provider}
          ;   #endif}
+         {venue.lst set scroll_time 0}
          {venue.lst ;no need for providers here
             set_data
             (
@@ -285,6 +286,67 @@
                ven_wikker
                #endif
                ven_z_newyork
+               ; rb1/rb2 venue ports
+               video_01
+               video_02
+               video_03
+               video_04
+               small_club_01
+               small_club_02
+               small_club_03
+               small_club_04
+               small_club_05
+               small_club_06
+               small_club_07
+               small_club_08
+               small_club_09
+               small_club_10
+               small_club_11
+               small_club_12
+               small_club_13
+               small_club_14
+               small_club_15
+               small_club_16
+               big_club_01
+               big_club_02
+               big_club_03
+               big_club_04
+               big_club_05
+               big_club_06
+               big_club_07
+               big_club_08
+               big_club_09
+               big_club_10
+               big_club_11
+               big_club_12
+               big_club_13
+               big_club_14
+               big_club_15
+               big_club_16
+               big_club_17
+               theater_01
+               theater_02
+               theater_03
+               theater_04
+               theater_05
+               theater_06
+               theater_07
+               theater_08
+               theater_09
+               theater_10
+               theater_11
+               arena_01
+               arena_02
+               arena_03
+               arena_04
+               arena_05
+               arena_06
+               arena_07
+               arena_08
+               arena_09
+               arena_10
+               arena_11
+               arena_12
                ;etc venues
                ven_blank
                ven_blank_arena
@@ -445,6 +507,67 @@
             (ven_small2 small_club/small2/small2.milo)
             (ven_wikker big_club/wikker/wikker.milo)
             (ven_z_newyork small_club/z_newyork/z_newyork.milo)
+            ;rb1/rb2
+            (video_01 rb2/video_01/video_01.milo)
+            (video_02 rb2/video_02/video_02.milo)
+            (video_03 rb2/video_03/video_03.milo)
+            (video_04 rb2/video_04/video_04.milo)
+            (small_club_01 rb2/small_club_01/small_club_01.milo)
+            (small_club_02 rb2/small_club_02/small_club_02.milo)
+            (small_club_03 rb2/small_club_03/small_club_03.milo)
+            (small_club_04 rb2/small_club_04/small_club_04.milo)
+            (small_club_05 rb2/small_club_05/small_club_05.milo)
+            (small_club_06 rb2/small_club_06/small_club_06.milo)
+            (small_club_07 rb2/small_club_07/small_club_07.milo)
+            (small_club_08 rb2/small_club_08/small_club_08.milo)
+            (small_club_09 rb2/small_club_09/small_club_09.milo)
+            (small_club_10 rb2/small_club_10/small_club_10.milo)
+            (small_club_11 rb2/small_club_11/small_club_11.milo)
+            (small_club_12 rb2/small_club_12/small_club_12.milo)
+            (small_club_13 rb2/small_club_13/small_club_13.milo)
+            (small_club_14 rb2/small_club_14/small_club_14.milo)
+            (small_club_15 rb2/small_club_15/small_club_15.milo)
+            (small_club_16 rb2/small_club_16/small_club_16.milo)
+            (big_club_01 rb2/big_club_01/big_club_01.milo)
+            (big_club_02 rb2/big_club_02/big_club_02.milo)
+            (big_club_03 rb2/big_club_03/big_club_03.milo)
+            (big_club_04 rb2/big_club_04/big_club_04.milo)
+            (big_club_05 rb2/big_club_05/big_club_05.milo)
+            (big_club_06 rb2/big_club_06/big_club_06.milo)
+            (big_club_07 rb2/big_club_07/big_club_07.milo)
+            (big_club_08 rb2/big_club_08/big_club_08.milo)
+            (big_club_09 rb2/big_club_09/big_club_09.milo)
+            (big_club_10 rb2/big_club_10/big_club_10.milo)
+            (big_club_11 rb2/big_club_11/big_club_11.milo)
+            (big_club_12 rb2/big_club_12/big_club_12.milo)
+            (big_club_13 rb2/big_club_13/big_club_13.milo)
+            (big_club_14 rb2/big_club_14/big_club_14.milo)
+            (big_club_15 rb2/big_club_15/big_club_15.milo)
+            (big_club_16 rb2/big_club_16/big_club_16.milo)
+            (big_club_17 rb2/big_club_17/big_club_17.milo)
+            (theater_01 rb2/theater_01/theater_01.milo)
+            (theater_02 rb2/theater_02/theater_02.milo)
+            (theater_03 rb2/theater_03/theater_03.milo)
+            (theater_04 rb2/theater_04/theater_04.milo)
+            (theater_05 rb2/theater_05/theater_05.milo)
+            (theater_06 rb2/theater_06/theater_06.milo)
+            (theater_07 rb2/theater_07/theater_07.milo)
+            (theater_08 rb2/theater_08/theater_08.milo)
+            (theater_09 rb2/theater_09/theater_09.milo)
+            (theater_10 rb2/theater_10/theater_10.milo)
+            (theater_11 rb2/theater_11/theater_11.milo)
+            (arena_01 rb2/arena_01/arena_01)
+            (arena_02 rb2/arena_02/arena_02)
+            (arena_03 rb2/arena_03/arena_03)
+            (arena_04 rb2/arena_04/arena_04)
+            (arena_05 rb2/arena_05/arena_05)
+            (arena_06 rb2/arena_06/arena_06)
+            (arena_07 rb2/arena_07/arena_07)
+            (arena_08 rb2/arena_08/arena_08)
+            (arena_09 rb2/arena_09/arena_09)
+            (arena_10 rb2/arena_10/arena_10)
+            (arena_11 rb2/arena_11/arena_11)
+            (arena_12 rb2/arena_12/arena_12)
             ;etc
             (ven_blank small_club/blank/blank.milo)
             (ven_blank_arena big_club/arena.milo)
