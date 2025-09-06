@@ -710,7 +710,7 @@
 {new UIPanel
    overshell_gtr_gems_panel
    OVERSHELL_LIST_FILE
-   (title {symbol os_slot_ {overshell_gtr_gem_color_panel get pos}})
+   (title {sprint os_slot_ {overshell_gtr_gem_color_panel get pos}})
    (data (os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem os_overdrive_gem))
    (enter {os_setup_common})
    (SELECT_MSG
@@ -762,7 +762,7 @@
 {new UIPanel
    overshell_gtr_sus_panel
    OVERSHELL_LIST_FILE
-   (title {symbol os_slot_ {overshell_gtr_sus_color_panel get pos}})
+   (title {sprint os_slot_ {overshell_gtr_sus_color_panel get pos}})
    (data (os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem))
    (enter {os_setup_common})
    (SELECT_MSG
@@ -890,7 +890,7 @@
 {new UIPanel
    overshell_gtr_smasher_panel
    OVERSHELL_LIST_FILE
-   (title {symbol os_slot_ {overshell_gtr_smasher_color_panel get pos}})
+   (title {sprint os_slot_ {overshell_gtr_smasher_color_panel get pos}})
    (data (os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem))
    (enter {os_setup_common})
    (SELECT_MSG
@@ -915,7 +915,7 @@
 {new UIPanel
    overshell_drm_smasher_panel
    OVERSHELL_LIST_FILE
-   (title {symbol os_slot_ {overshell_drm_smasher_color_panel get pos}})
+   (title {sprint os_slot_ {overshell_drm_smasher_color_panel get pos}})
    (data (os_red_gem os_yellow_gem os_blue_gem os_green_gem os_orange_gem))
    (enter {os_setup_common})
    (SELECT_MSG
@@ -985,7 +985,7 @@
 {new UIPanel
    overshell_cnt_slot_panel
    OVERSHELL_LIST_FILE
-   (title {symbol os_slot_ {overshell_remap_cnt_panel get pos}})
+   (title {sprint os_slot_ {overshell_remap_cnt_panel get pos}})
    (data
       #ifdef HX_NG
       (
@@ -1024,9 +1024,9 @@
       {set_var
          {do
             ($pos {overshell_remap_cnt_panel get pos})
-            {if_else ({!= $pos 6})
-               {sprint cnt_slot $pos}
+            {if_else {== $pos 6}
                cnt_star
+               {sprint cnt_slot $pos}
             }
          }
          {switch {$component selected_sym}
