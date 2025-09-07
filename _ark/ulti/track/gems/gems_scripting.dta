@@ -51,6 +51,110 @@
       {dynamic_crash_gem_lefty.wid insert (meshes 0) {$gems_dir find tom_red_gem.mesh}}
    }
 )
+(rb2
+   {$gems_dir insert (subdirs 0) {sprintf "ulti/track/gems/%s/gems.milo" $gems}}
+   {foreach $gtr (guitar bass)
+      {with {{get_track_panel} find $gtr}
+         {foreach $color (green red yellow blue orange miss)
+            {do
+               ($wid {sprintf "gem_%s.wid" $color})
+               ($hopo_wid {sprintf "gem_%s_hopo.wid" $color})
+               {clear_array $wid meshes}
+               {clear_array $hopo_wid meshes}
+               {$wid insert (meshes 0) {$gems_dir find {sprintf "prism_gem_stepped_%s.mesh" $color}}}
+               {$hopo_wid insert (meshes 0) {$gems_dir find {sprintf "prism_gem_hopo_%s.mesh" $color}}}
+            }
+         }
+
+         {clear_array star_gem.wid meshes}
+         {star_gem.wid insert (meshes 0) {$gems_dir find prism_gem_stepped_style.mesh}}
+
+         {clear_array star_hopo.wid meshes}
+         {star_hopo.wid insert (meshes 0) {$gems_dir find prism_gem_hopo_style.mesh}}
+      }
+   }
+   {with {coop_track_panel find drum}
+      {foreach $color (red yellow blue green miss)
+         {do
+            ($wid {sprintf "drum_%s.wid" $color})
+            {while {size {$wid get_array meshes}}
+               {$wid remove (meshes 0)}
+            }
+            {$wid insert (meshes 0) {$gems_dir find {sprintf "prism_gem_drum_%s.mesh" $color}}}
+         }
+      }
+
+      {clear_array gem_kick.wid meshes}
+      {gem_kick.wid insert (meshes 0) {$gems_dir find prism_gem_kick.mesh}}
+
+      {clear_array drum_star.wid meshes}
+      {drum_star.wid insert (meshes 0) {$gems_dir find prism_gem_drum_style.mesh}}
+
+      {clear_array star_kick.wid meshes}
+      {star_kick.wid insert (meshes 0) {$gems_dir find prism_gem_kick_style.mesh}}
+
+      {clear_array kick_miss.wid meshes}
+      {kick_miss.wid insert (meshes 0) {$gems_dir find prism_gem_kick_miss.mesh}}
+
+      {clear_array dynamic_crash_gem.wid meshes}
+      {dynamic_crash_gem.wid insert (meshes 0) {$gems_dir find dynamic_crash_green.mesh}}
+
+      {clear_array dynamic_crash_gem_lefty.wid meshes}
+      {dynamic_crash_gem_lefty.wid insert (meshes 0) {$gems_dir find dynamic_crash_red.mesh}}
+   }
+)
+(tbrb
+   {$gems_dir insert (subdirs 0) ulti/track/gems/tbrb/gems.milo}
+   {foreach $gtr (guitar bass)
+      {with {{get_track_panel} find $gtr}
+         {foreach $color (green red yellow blue orange miss)
+            {do
+               ($wid {sprintf "gem_%s.wid" $color})
+               ($hopo_wid {sprintf "gem_%s_hopo.wid" $color})
+               {clear_array $wid meshes}
+               {clear_array $hopo_wid meshes}
+               {$wid insert (meshes 0) {$gems_dir find {sprintf "prism_gem_stepped_%s.mesh" $color}}}
+               {$hopo_wid insert (meshes 0) {$gems_dir find {sprintf "prism_gem_hopo_%s.mesh" $color}}}
+            }
+         }
+
+         {clear_array star_gem.wid meshes}
+         {star_gem.wid insert (meshes 0) {$gems_dir find prism_gem_stepped_style.mesh}}
+
+         {clear_array star_hopo.wid meshes}
+         {star_hopo.wid insert (meshes 0) {$gems_dir find prism_gem_hopo_style.mesh}}
+      }
+   }
+   {with {coop_track_panel find drum}
+      {foreach $color (red yellow blue green miss)
+         {do
+            ($wid {sprintf "drum_%s.wid" $color})
+            {while {size {$wid get_array meshes}}
+               {$wid remove (meshes 0)}
+            }
+            {$wid insert (meshes 0) {$gems_dir find {sprintf "prism_gem_drum_%s.mesh" $color}}}
+         }
+      }
+
+      {clear_array drum_star.wid meshes}
+      {drum_star.wid insert (meshes 0) {$gems_dir find prism_gem_drum_style.mesh}}
+
+      {clear_array gem_kick.wid meshes}
+      {gem_kick.wid insert (meshes 0) {$gems_dir find prism_gem_kick.mesh}}
+
+      {clear_array star_kick.wid meshes}
+      {star_kick.wid insert (meshes 0) {$gems_dir find prism_gem_kick_style.mesh}}
+
+      {clear_array kick_miss.wid meshes}
+      {kick_miss.wid insert (meshes 0) {$gems_dir find prism_gem_kick_miss.mesh}}
+
+      {clear_array dynamic_crash_gem.wid meshes}
+      {dynamic_crash_gem.wid insert (meshes 0) {$gems_dir find drum_green_deploy.mesh}}
+
+      {clear_array dynamic_crash_gem_lefty.wid meshes}
+      {dynamic_crash_gem_lefty.wid insert (meshes 0) {$gems_dir find drum_red_deploy.mesh}}
+   }
+)
 (rb3
    {$gems_dir insert (subdirs 0) "ulti/track/gems/rb3/gems.milo"}
    {foreach $gtr (guitar bass)
