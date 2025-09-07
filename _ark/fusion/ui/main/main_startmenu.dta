@@ -36,7 +36,6 @@
       {main_rblogo.mat set alpha_threshold {int [alpha_threshold]}}
    )
    (enter
-      {main_rblogo.tex set_bitmap "ulti/tex/ulti_logo.png"}
       {do
          {meta fade_meta_music -10}
          {set [alpha_threshold_fading] FALSE}
