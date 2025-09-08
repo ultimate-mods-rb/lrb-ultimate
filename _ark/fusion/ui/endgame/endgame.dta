@@ -234,6 +234,19 @@
       }
    }
 )
+#define RECOLOR_STUFF (
+   {foreach $mat (TopBorder.mat BottomBorder.mat)
+      {$mat set color {pack_color 1 0 0}}
+   }
+   {$this iterate BandLabel $lbl
+      {$lbl set color_normal {pack_color 1 1 1}}
+   }
+   {$this iterate PanelDir $dir
+      {$dir iterate BandLabel $lbl
+         {$lbl set color_normal {pack_color 1 1 1}}
+      }
+   }
+)
 {new UIPanel
    coop_endgame_panel
    (file "coop_endgame.milo")
@@ -241,6 +254,7 @@
    ENDGAME_PANEL_PERCENTAGE_HANDLERS
    (enter
       {platform_mgr set_notify_ui_location kOSNotifyBottomCenter}
+      RECOLOR_STUFF
       {$this set_results}
       #ifndef HX_OG
       {$this submit_achievements}
@@ -324,6 +338,7 @@
    ENDGAME_PANEL_HANDLERS
    ENDGAME_PANEL_PERCENTAGE_HANDLERS
    (enter
+      RECOLOR_STUFF
       {$this set_results}
       #ifndef HX_WII
       {$this submit_achievements}
