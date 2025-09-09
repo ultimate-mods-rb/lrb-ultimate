@@ -51,6 +51,35 @@
       {dynamic_crash_gem_lefty.wid insert (meshes 0) {$gems_dir find tom_red_gem.mesh}}
    }
 )
+((gh3 ghwt ghwor)
+   {$gems_dir insert (subdirs 0) {sprintf "ulti/track/gems/%s/gems.milo" $gems}}
+   {foreach $gtr (guitar bass)
+      {with {{get_track_panel} find $gtr}
+         {foreach $color (green red yellow blue orange)
+            {do
+               ($wid {sprintf "gem_%s.wid" $color})
+               ($hopo_wid {sprintf "gem_%s_hopo.wid" $color})
+               {clear_array $wid meshes}
+               {clear_array $hopo_wid meshes}
+               {$wid insert (meshes 0) {$gems_dir find {sprintf "gem_%s.mesh" $color}}}
+               {$hopo_wid insert (meshes 0) {$gems_dir find {sprintf "gem_%s_hopo.mesh" $color}}}
+            }
+         }
+
+         {clear_array star_gem.wid meshes}
+         {star_gem.wid insert (meshes 0) {$gems_dir find gem_style.mesh}}
+
+         {clear_array star_hopo.wid meshes}
+         {star_hopo.wid insert (meshes 0) {$gems_dir find gem_style_hopo.mesh}}
+
+         {clear_array gem_miss.wid meshes}
+         {gem_miss.wid insert (meshes 0) {$gems_dir find gem_red.mesh}}
+
+         {clear_array gem_miss_hopo.wid meshes}
+         {gem_miss_hopo.wid insert (meshes 0) {$gems_dir find gem_red_hopo.mesh}}
+      }
+   }
+)
 (rb2
    {$gems_dir insert (subdirs 0) {sprintf "ulti/track/gems/%s/gems.milo" $gems}}
    {foreach $gtr (guitar bass)
