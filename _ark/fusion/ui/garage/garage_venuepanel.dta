@@ -198,37 +198,31 @@
    (finish_load {content_loading_panel allowed_to_show FALSE})
    (is_loaded {content_mgr refresh_done})
    (set_venue_image
-      {do
-         {if [current_grp]
-            {[current_grp] set_showing FALSE}
+      {if [current_grp]
+         {[current_grp] set_showing FALSE}
+      } {do
+      ($newgrp {sprint {venue.lst selected_sym} .grp})
+      {if_else {$this exists $newgrp}
+         {do
+            ($newgrp_obj {$this find $newgrp})
+            {$newgrp_obj set_showing TRUE}
+            {$this set current_grp $newgrp_obj}
          }
          {do
-            ($provider
-               #ifndef _SHIP
-               {if_else {tour is_all_unlocked}
-                  {tour qp_dbg_venue_provider}
-                  {tour qp_venue_provider}
+            ; consider rewriting this with a uipicture.
+            ; i couldnt get it working but it could've been that i was creating it with scripting
+            ($newgrp_obj {$this find challenge_castle.grp})
+            ($tex {sprint {venue.lst selected_sym} .tex})
+            {challenge_castle.mat set diffuse_tex
+               {if_else {exists $tex}
+                 $tex
+                 Tex.tex ; fallback
                }
-               #else
-               {tour qp_venue_provider}
-               #endif
-            )
-            ($newgrp
-               {if_else {&& {> {$provider num_data} 1} {== {venue.lst selected_pos} 0}}
-                  ven_random.grp
-                  {sprint {venue.lst selected_sym} .grp}
-               }
-            )
-            {if_else {$this exists $newgrp}
-               {do
-                  ($newgrp_obj {$this find $newgrp})
-                  {$newgrp_obj set_showing TRUE}
-                  {$this set current_grp $newgrp_obj}
-               }
-               {$this set current_grp FALSE}
             }
+            {$newgrp_obj set_showing TRUE}
+            {$this set current_grp $newgrp_obj}
          }
-      }
+      }}
    )
    (enter
       {input_mgr set_limit kLimitSession}
