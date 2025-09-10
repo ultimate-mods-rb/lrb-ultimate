@@ -415,21 +415,25 @@
       #else
       {do
          ($songname {meta_performer song})
+         ($phrase {get_song_metadata $songname loading_phrase})
          {if {== [is_really_up] TRUE}
             {do
-               {if_else {&& {== [pre_game] TRUE} {== {song_mgr is_download $songname} 0}}
-                  {do
-                     {$this set hint_text {get_text_token}}
-                  }
-                  {do
-                     {if_else {&& {exists tour} {tour band}}
-                        {if_else {== {{tour band} shown_first_load_hint} FALSE}
-                           {$this set hint_text loading_important_help09}
-                           {$this set hint_text {random_elem [lego_tokens]}}
-                        }
-                        {if_else {== {get_if_likeness} ""}
-                           {$this set hint_text {random_elem [lego_tokens]}}
-                           {$this set hint_text matchmaking_char_override}
+               {if_else $phrase
+                  {$this set hint_text $phrase}
+                  {if_else {&& {== [pre_game] TRUE} {== {song_mgr is_download $songname} 0}}
+                     {do
+                        {$this set hint_text {get_text_token}}
+                     }
+                     {do
+                        {if_else {&& {exists tour} {tour band}}
+                           {if_else {== {{tour band} shown_first_load_hint} FALSE}
+                              {$this set hint_text loading_important_help09}
+                              {$this set hint_text {random_elem [lego_tokens]}}
+                           }
+                           {if_else {== {get_if_likeness} ""}
+                              {$this set hint_text {random_elem [lego_tokens]}}
+                              {$this set hint_text matchmaking_char_override}
+                           }
                         }
                      }
                   }
@@ -523,10 +527,14 @@
    (pick_new_hint
       {do
          ($songname {meta_performer song})
+         ($phrase {get_song_metadata $songname loading_phrase})
          {if {== [is_really_up] TRUE}
-            {if_else {== {song_mgr is_download $songname} 0}
-               {Loading_Info.lbl set text_token {get_text_token}}
-               {Loading_Info.lbl set text_token {localize {random_elem [lego_tokens]}}}
+            {if_else $phrase
+               {Loading_Info.lbl set text_token $phrase}
+               {if_else {== {song_mgr is_download $songname} 0}
+                  {Loading_Info.lbl set text_token {get_text_token}}
+                  {Loading_Info.lbl set text_token {localize {random_elem [lego_tokens]}}}
+               }
             }
          }
       }
