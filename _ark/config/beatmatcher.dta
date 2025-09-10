@@ -42,7 +42,19 @@
    (slop 100)
    (cheat_error 0)
    (autoplay_accuracy (100 100 100 100))
+   #ifdef HX_PS3
+   ; yeah so whammying sometimes mutes the guitar/bass audio until you whammy again in rb2 venues on ps3 only
+   ; i have no clue what could be causing this other than some silly fuckup by harmonix
+   ; thankfully just setting the range to 0 "fixes" it :3
+   (pitch_bend_range
+      {if_else {has_substr {game get_venue} "rb2/"}
+         0
+         $whammypb
+      }
+   )
+   #else
    (pitch_bend_range $whammypb)
+   #endif
    (ms_to_full_pitch_bend 1000)
 )
 (parser
