@@ -8,6 +8,7 @@
    (file "../../world/hub/hub_create.milo")
    (postprocess hub_video.pp)
    (enter
+      {apply_gfx_settings}
       {rnd reset_postproc}
       {$this refresh}
       {meta music_stop}

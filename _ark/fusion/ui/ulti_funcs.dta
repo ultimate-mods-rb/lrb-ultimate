@@ -70,6 +70,36 @@
       {$obj remove ($name 0)}
    }
 }
+{func apply_gfx_settings
+   {$world iterate PostProc $p
+      #ifdef HX_NG
+      {$p set emulate_fps 60}
+      {unless $scrnoise
+         {$p set noise_intensity 0}
+      }
+      {unless $mbblend
+         {$p set motion_blur_blend 0}
+         {$p set motion_blur_weight 0}
+      }
+      #endif
+      {unless $scrbloom
+         {$p set bloom_intensity 0}
+      }
+   }
+   {$world iterate CamShot $cs
+      {unless $fxdof
+         {$cs set use_depth_of_field FALSE}
+      }
+      {unless $camerashake
+         {foreach_int $i 0 {$cs size (keyframes)}
+            {$cs set (keyframes $i shake_noisefreq) 0}
+            {$cs set (keyframes $i shake_noiseamp) 0}
+            {$cs set (keyframes $i shake_maxangle x) 0}
+            {$cs set (keyframes $i shake_maxangle y) 0}
+         }
+      }
+   }
+}
 {func tolower ; fuck you harmonix
    ($string)
    {search_replace $string "A" "a" $string}
