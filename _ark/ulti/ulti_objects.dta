@@ -102,9 +102,15 @@
             }
          )
          (miss
-            {++ [gems_miss]}
-            {set [gems_combo] 0}
-            {$this on_miss}
+            {unless
+               {||
+                  {[player] current_streak}
+                  {== {+ [gems_hit] [gems_pass]} 0}
+               }
+               {++ [gems_miss]}
+               {set [gems_combo] 0}
+               {$this on_miss}
+            }
          )
          (pass
             {unless {[player] current_streak}
