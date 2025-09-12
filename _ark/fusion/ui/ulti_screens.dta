@@ -303,6 +303,10 @@
       #ifndef _SHIP
       {print "play a show panel enter\n"}
       #endif
+      {if {gamemode get is_tour}
+         {Title.lbl set_showing FALSE}
+         {set [played_songs] {array 0}}
+      }
       {songs.lst set_local_pos 90.00 0.00 97.53}
       {subtitle.btn set_local_pos -74.62 -4.86 172.76}
       {icons.lst set_local_pos -440.00 0.00 97.53}
@@ -451,8 +455,25 @@
    (add_song
       ($elem)
       {push_back [current_set] {song_offer_provider data_symbol {elem [songs] $elem}}}
-      {{sprintf "song%d.lbl" {- {size [current_set]} 1}} set_localized
-         {{song_offer_provider get_song_offer {elem [songs] $elem}} get_data (name)}
+      {if_else {gamemode get is_tour}
+         ; what do you mean you can't read this
+         {foreach_int $i {max 0 {- {size [current_set]} 4}} {size [current_set]}
+            {{sprintf "song%d.lbl" {- $i {max 0 {- {size [current_set]} 4}}}} set_localized
+               {sprintf
+                  "%d. %s"
+                  {+ $i 1}
+                  {
+                     {song_offer_provider get_song_offer
+                        {song_offer_provider data_index {elem [current_set] $i}}
+                     }
+                     get_data (name)
+                  }
+               }
+            }
+         }
+         {{sprintf "song%d.lbl" {- {size [current_set]} 1}} set_localized
+            {{song_offer_provider get_song_offer {elem [songs] $elem}} get_data (name)}
+         }
       }
       #ifndef _SHIP
       {print_array [current_set]}
@@ -461,7 +482,11 @@
          {cheat_display show {sprint "added " {$offer get_data (name)} " by " {$offer artist} " to setlist :3"}}
       }
       #endif
-      {if_else {== {size [current_set]} {max 2 {user_mgr get_num_participants}}}
+      {if_else
+         {if_else {gamemode get is_tour}
+            {== {size [current_set]} {{{tour band} gig} num_songs}}
+            {== {size [current_set]} {max 2 {user_mgr get_num_participants}}}
+         }
          {thread_task kTaskSeconds (script
             {$this iterate BandList $lst {$lst set_showing FALSE}}
             {$task sleep 3}
@@ -585,8 +610,18 @@
       }
    )
    (unload
-      {foreach $panel {play_a_show_screen get unused_panels}
+      {foreach $panel
+         {
+            {if_else {gamemode get is_tour}
+               play_a_show_tour_screen
+               play_a_show_screen
+            }
+            get unused_panels
+         }
          {$panel set_showing TRUE}
+      }
+      {if {gamemode get is_tour}
+         {difficulty_screen set cancel_screen garage_gigscreen}
       }
    )
 }
@@ -614,6 +649,36 @@
          song_select_lower3rd_panel
       )
    )
+   (enter
+      {foreach $panel [unused_panels]
+         {$panel set_showing FALSE}
+      }
+   )
+   (exit {reset_random_selection})
+}
+{new BandScreen
+   play_a_show_tour_screen
+   (panels
+      meta
+      postsong_sfx_panel
+      song_select_details_panel
+      song_select_panel
+      tour_world_lower3rd_panel
+      song_sync_panel
+      play_a_show_panel
+   )
+   (unused_panels
+      (
+         meta
+         postsong_sfx_panel
+         song_select_details_panel
+         song_select_panel
+         tour_world_lower3rd_panel
+         song_sync_panel
+      )
+   )
+   (focus play_a_show_panel)
+   (helpbar ((state_confirm option_exit)))
    (enter
       {foreach $panel [unused_panels]
          {$panel set_showing FALSE}

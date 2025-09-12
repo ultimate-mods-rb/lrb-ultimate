@@ -70,6 +70,18 @@
       {$obj remove ($name 0)}
    }
 }
+{func is_gig_random
+   ($gig)
+   {do
+      ($random TRUE)
+      {foreach_int $i 0 {$gig num_songs}
+         {if {!= {$gig get_song $i} random}
+            {set $random FALSE}
+         }
+      }
+      $random
+   }
+}
 {func apply_gfx_settings
    {$world iterate PostProc $p
       #ifdef HX_NG
