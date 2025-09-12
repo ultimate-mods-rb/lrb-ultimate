@@ -387,15 +387,21 @@
    ($song $data)
    {do
       ($return)
-      {if {song_mgr has_song $song}
-         {if_else {exists song_offer_provider}
-            {do
-               ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
-               {if {$offer has_data $data}
-                  {set $return {$offer get_data ($data)}}
+      {if_else {challenge_mgr has_challenge}
+         {print "unable to get metadata now\n"}
+         {do
+            {print "metadata " $song " " $data "\n"}
+            {if {song_mgr has_song $song}
+               {if_else {exists song_offer_provider}
+                  {do
+                     ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
+                     {if {$offer has_data $data}
+                        {set $return {$offer get_data ($data)}}
+                     }
+                  }
+                  {fail "song_offer_provider doesn't exist. can't get metadata now!"}
                }
             }
-            {fail "song_offer_provider doesn't exist. can't get metadata now!"}
          }
       }
       $return

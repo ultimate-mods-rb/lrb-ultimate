@@ -31,7 +31,7 @@
    (intro_start
       {set [has_video] FALSE}
       {set [video_delay] 0}
-      {if {&& $video_bgs {== $speedmod 1.0}} {do
+      {if {&& $video_bgs {== $speedmod 1.0} {! {challenge_mgr has_challenge}}} {do
          ($song {meta_performer song})
          ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
          {if {$offer has_data has_video}

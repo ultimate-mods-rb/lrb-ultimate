@@ -415,11 +415,17 @@
       #else
       {do
          ($songname {meta_performer song})
-         ($phrase {get_song_metadata $songname loading_phrase})
          {if {== [is_really_up] TRUE}
             {do
-               {if_else $phrase
-                  {$this set hint_text $phrase}
+               {if_else
+                  {&&
+                     {||
+                        {== {gamemode get game_mode_context} CONTEXT_GAME_MODE_TYPE_BAND_QUICKPLAY}
+                        {gamemode get is_tour_quickplay}
+                     }
+                     {get_song_metadata $songname loading_phrase}
+                  }
+                  {$this set hint_text {get_song_metadata $songname loading_phrase}}
                   {if_else {&& {== [pre_game] TRUE} {== {song_mgr is_download $songname} 0}}
                      {do
                         {$this set hint_text {get_text_token}}
@@ -529,8 +535,15 @@
          ($songname {meta_performer song})
          ($phrase {get_song_metadata $songname loading_phrase})
          {if {== [is_really_up] TRUE}
-            {if_else $phrase
-               {Loading_Info.lbl set text_token $phrase}
+            {if_else
+               {&&
+                  {||
+                     {== {gamemode get game_mode_context} CONTEXT_GAME_MODE_TYPE_BAND_QUICKPLAY}
+                     {gamemode get is_tour_quickplay}
+                  }
+                  {get_song_metadata $songname loading_phrase}
+               }
+               {Loading_Info.lbl set text_token {get_song_metadata $songname loading_phrase}}
                {if_else {== {song_mgr is_download $songname} 0}
                   {Loading_Info.lbl set text_token {get_text_token}}
                   {Loading_Info.lbl set text_token {localize {random_elem [lego_tokens]}}}
