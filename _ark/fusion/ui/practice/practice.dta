@@ -50,24 +50,8 @@
    practice_pre_sel_section_screen
    (panels meta movie_panel practice_sel_movie_mask_panel)
    (enter
-      {switch {{session_mgr get_leader_user} get_controller_type}
-         (kControllerVocals {practice_panel set_in_vocal_mode TRUE})
-         (kControllerDrum {practice_panel set_in_vocal_mode FALSE})
-         (kControllerGuitar {practice_panel set_in_vocal_mode FALSE})
-      }
-      {if_else {practice_panel in_vocal_mode}
-         {do
-            {gamecfg set_section 0 -1}
-            {gamecfg set_section 1 -1}
-            {practice_section_provider set_start_section -1}
-            {practice_section_provider init_sections}
-            {gamecfg set practice_speed 0}
-            {ui goto_screen practice_loading_screen}
-         }
-         {do
-            {ui goto_screen practice_sel_section_screen}
-         }
-      }
+      {practice_panel set_in_vocal_mode FALSE}
+      {ui goto_screen practice_sel_section_screen}
    )
 }
 {new MultiSelectListPanel
