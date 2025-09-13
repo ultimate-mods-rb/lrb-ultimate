@@ -782,5 +782,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (joker_legs
+         (ui_name joker)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

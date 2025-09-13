@@ -1615,6 +1615,17 @@
             (hats batman_mask)
          )
       )
+      (joker
+         (unlocked TRUE)
+         (cost 250000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads joker_head)
+            (torso joker_torso)
+            (legs joker_legs)
+            (hair joker_hair)
+         )
+      )
       (miku
          (unlocked TRUE)
          (cost 5000000)

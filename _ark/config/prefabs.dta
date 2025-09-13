@@ -6085,6 +6085,38 @@
       (tattoo_prefab torso_tattoos_none)
       (selectable 1)
    )
+   (joker
+      (gender male)
+      (instrument guitar)
+      (attitude kGenreBanger)
+      (skin_color_index 3)
+      (eye_color_index 11)
+      (eyebrow_color_index 16)
+      (height 1.00)
+      (weight 0.75)
+      (outfit
+         (hats no_hat)
+         (hair joker_hair)
+         (heads joker_head)
+         (torso joker_torso)
+         (legs joker_legs)
+
+         (guitar fender_stratacaster (colors 9 3))
+         (bass fender_jazz_bass1 (colors 9 2))
+         (mic mic (colors 0 0))
+         (drum neon_drumkit (colors 9 0))
+
+         (eyes Eyes08)
+         (mouth Mouth08)
+         (brow Brow02)
+         (beard no_beard)
+         (glasses no_glasses)
+         (wrists no_wrist)
+      )
+      (tattoo)
+      (tattoo_prefab torso_tattoos_none)
+      (selectable 1)
+   )
    #ifndef _SHIP
       #ifdef HX_XBOX
       #include ../fusion/ui/framerate/chars/expensive_cpu_male_xbox.dta
