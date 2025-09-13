@@ -45,8 +45,8 @@
 {func in_video_venue
    {if_else {exists game}
       {&&
-         {get_song_metadata {meta_performer song} video_venues}
          {has_substr {game get_venue} "video"}
+         {get_song_metadata {meta_performer song} video_venues}
       }
       FALSE
    }
