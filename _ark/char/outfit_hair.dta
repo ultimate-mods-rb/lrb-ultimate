@@ -1271,5 +1271,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (hpotter_hair
+         (ui_name hpotter)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

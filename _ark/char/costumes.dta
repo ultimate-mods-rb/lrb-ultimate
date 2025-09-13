@@ -1670,5 +1670,16 @@
             (hair shaggy_hair)
          )
       )
+      (hpotter
+         (unlocked TRUE)
+         (cost 5000000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads hpotter_head)
+            (torso hpotter_torso)
+            (legs hpotter_legs)
+            (hair hpotter_hair)
+         )
+      )
    )
 )

@@ -1214,5 +1214,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (hpotter_torso
+         (ui_name hpotter)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

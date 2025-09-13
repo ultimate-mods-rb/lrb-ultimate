@@ -721,5 +721,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (hpotter_head
+         (ui_name hpotter)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

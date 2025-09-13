@@ -787,5 +787,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (hpotter_legs
+         (ui_name hpotter)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )
