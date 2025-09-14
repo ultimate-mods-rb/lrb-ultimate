@@ -64,6 +64,7 @@
 {set $drms4 0}
 
 {set $gems lrb}
+{set $smashers lrb}
 
 {set $pad_inst kControllerVocals}
 

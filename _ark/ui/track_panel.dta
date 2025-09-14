@@ -57,6 +57,11 @@
             #include ../ulti/track/gems/gems_scripting.dta
          }
       }}
+      {if {!= $smashers lrb}
+         {smasher_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s.png" $smashers}}
+         {smasher_color_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s_color.png" $smashers}}
+         {square_smasher_bright.tex set_bitmap {sprintf "ulti/track/smashers/%s_square.png" $smashers}}
+      }
       {$this set_showing FALSE}
       {$this set_track_out}
    )

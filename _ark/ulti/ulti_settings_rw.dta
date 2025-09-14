@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (1) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (2) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -98,6 +98,8 @@
                         $hwlength
                         " "
                         $gems
+                        " "
+                        $smashers
                      })
                      {unless {== $new_motto {$band band_motto}}
                         {$band set_band_motto $new_motto}
@@ -205,6 +207,10 @@
                            {set $hwlength {sftf {elem $array 3}}}
 
                            {set $gems {elem $array 4}}
+
+                           {if {>= $version 2}
+                              {set $smashers {elem $array 5}}
+                           }
 
                            {set_pad_map $pad_map}
                            {set [loaded] TRUE}
