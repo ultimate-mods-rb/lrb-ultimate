@@ -51,7 +51,7 @@
       {dynamic_crash_gem_lefty.wid insert (meshes 0) {$gems_dir find tom_red_gem.mesh}}
    }
 )
-((gh3 ghwt ghwor)
+((gh3 ghwt ghwor ghl)
    {$gems_dir insert (subdirs 0) {sprintf "ulti/track/gems/%s/gems.milo" $gems}}
    {foreach $gtr (guitar bass)
       {with {{get_track_panel} find $gtr}
