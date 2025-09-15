@@ -1219,5 +1219,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (emmet_torso
+         (ui_name emmet)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

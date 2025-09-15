@@ -1604,6 +1604,17 @@
          )
       )
       #endif
+      (emmet
+         (unlocked TRUE)
+         (cost 10000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads BobHead)
+            (torso emmet_torso)
+            (legs emmet_legs)
+            (hair emmet_hair (colors 15 0))
+         )
+      )
       (batman
          (unlocked TRUE)
          (cost 100000000)

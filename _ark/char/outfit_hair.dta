@@ -1276,5 +1276,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (emmet_hair
+         (ui_name emmet)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

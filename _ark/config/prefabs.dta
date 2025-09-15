@@ -5925,6 +5925,38 @@
       (selectable 1)
    )
    #endif
+   (emmet
+      (gender male)
+      (instrument guitar)
+      (attitude kGenreBanger)
+      (skin_color_index 3)
+      (eye_color_index 11)
+      (eyebrow_color_index 16)
+      (height 1.00)
+      (weight 0.75)
+      (outfit
+         (hats no_hat)
+         (hair emmet_hair (colors 15 0))
+         (heads BobHead)
+         (torso emmet_torso)
+         (legs emmet_legs)
+
+         (guitar fender_stratacaster (colors 6 12))
+         (bass fender_jazz_bass1 (colors 6 12))
+         (mic mic (colors 0 0))
+         (drum molded_drumkit (colors 23 0))
+
+         (eyes Eyes08)
+         (mouth Mouth08)
+         (brow Brow02)
+         (beard no_beard)
+         (glasses no_glasses)
+         (wrists no_wrist)
+      )
+      (tattoo)
+      (tattoo_prefab torso_tattoos_none)
+      (selectable 1)
+   )
    (batman
       (gender male)
       (instrument guitar)
