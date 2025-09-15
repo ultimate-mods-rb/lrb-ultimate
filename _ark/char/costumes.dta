@@ -1615,6 +1615,17 @@
             (hair emmet_hair (colors 15 0))
          )
       )
+      (lucy
+         (unlocked TRUE)
+         (cost 250000)
+         (genre lrb_shop_other)
+         (outfit
+            (heads lucy_head)
+            (torso lucy_torso)
+            (legs lucy_legs)
+            (hair lucy_hair)
+         )
+      )
       (batman
          (unlocked TRUE)
          (cost 100000000)

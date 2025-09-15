@@ -726,5 +726,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (lucy_head
+         (ui_name lucy)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

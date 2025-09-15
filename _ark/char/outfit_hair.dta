@@ -1281,5 +1281,10 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (lucy_hair
+         (ui_name lucy)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )
