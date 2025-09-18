@@ -619,6 +619,7 @@
    (enable_streak FALSE)
    (enable_star_power FALSE)
    (allow_overdrive_phrases FALSE)
+   (game_screen jukebox_game_screen)
 )
 (camera_debug
    QP_COOP_MODE_PROPERTIES

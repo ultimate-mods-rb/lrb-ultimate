@@ -630,14 +630,6 @@
          }
       }
    )
-   (BUTTON_UP_MSG ;we don't use down for a reason
-      {if {gamemode get is_jukebox}
-         {switch $raw_button
-            (kPad_Square {ulti_cycle_free_camera})
-            (kPad_Tri {toggle_time_paused})
-         }
-      }
-   )
 )
 {new BandScreen
    game_screen

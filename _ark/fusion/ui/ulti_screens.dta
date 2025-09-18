@@ -686,6 +686,18 @@
    )
    (exit {reset_random_selection})
 }
+{new BandScreen
+   jukebox_game_screen
+   (panels game world_panel coop_track_panel sync_audio_net_panel)
+   GAME_SCREEN_HANDLERS
+   (BUTTON_DOWN_MSG
+      {switch $raw_button
+         (kPad_Square {ulti_cycle_free_camera})
+         (kPad_Tri {toggle_time_paused})
+         kDataUnhandled
+      }
+   )
+}
 #ifndef _SHIP
 {new UIPanel
    camera_debug_game_panel
