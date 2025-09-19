@@ -25,7 +25,11 @@
 ;motion blur
 {set $mbblend TRUE}
 
+#ifdef HX_NG
 {set $emulatefps 60}
+#else
+{set $emulatefps 15}
+#endif
 
 {set $trkmuting TRUE}
 

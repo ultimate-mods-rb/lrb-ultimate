@@ -176,11 +176,11 @@
    OVERSHELL_SAVE_POS
    (title os_gfx)
    (data (
-      #ifndef HX_WII
       (os_venuefps
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_venuefps_screen})
       )
+      #ifndef HX_WII
       (os_vsync
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_vsync_screen})
@@ -271,7 +271,11 @@
    overshell_venuefps_panel
    OVERSHELL_LIST_FILE
    (title os_venuefps)
+   #ifdef HX_NG
    (data (60fps 30fps 24fps 15fps 12fps 6fps 1fps))
+   #else
+   (data (15fps 30fps))
+   #endif
    (enter {os_setup_common})
    (SELECT_MSG
       {set $emulatefps 

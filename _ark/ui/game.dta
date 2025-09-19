@@ -417,7 +417,11 @@
       {$this set_showing TRUE}
       {fx set_showing FALSE}
       {set [delayed_mic_check] FALSE}
+      #ifdef HX_NG
       {rnd set_in_game TRUE}
+      #else
+      {rnd set_in_game {!= $emulatefps 30}}
+      #endif
       {platform_mgr add_sink $this (ui_changed)}
       #ifdef HX_WII
       {platform_mgr add_sink $this (wii_disc_error)}
