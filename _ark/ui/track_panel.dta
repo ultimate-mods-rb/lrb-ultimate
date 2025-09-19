@@ -62,6 +62,43 @@
          {smasher_color_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s_color.png" $smashers}}
          {square_smasher_bright.tex set_bitmap {sprintf "ulti/track/smashers/%s_square.png" $smashers}}
       }
+      ; apply custom colors to lanes. this is hacky as FUCK however it actually works perfectly. i'm really proud of this.
+      ; however like i'm really tired so i might be dumb and am overlooking a sane way of doing this.
+      {foreach $gtr (guitar bass)
+         {with {{get_track_panel} find $gtr}
+            {foreach_int $i 0 5
+               {{new PropAnim {sprintf "gem_bak%d.anim" $i}} copy {sprintf "gem_mash%d.anim" $i} 0}
+            }
+            {foreach_int $i 0 5 {do
+               ($wid {sprintf "gem_mash%d.wid" $i})
+               ($color {eval_var {sprint gtrsm {+ $i 1}}})
+               {clear_array $wid meshes}
+               {$wid insert (meshes 0) {sprintf "gem_mash%d.mesh" $color}}
+               {$wid insert (meshes 0) {sprintf "gem_mash%d.1.mesh" $color}}
+               {{sprintf "gem_mash%d.anim" $i} copy {sprintf "gem_bak%d.anim" $color} 0}
+            }}
+         }
+      }
+      {with {{get_track_panel} find drum}
+         {foreach_int $i 1 5
+            {{new PropAnim {sprintf "drum_bak%d.anim" $i}} copy {sprintf "drum_mash%d.anim" $i} 0}
+            {{new PropAnim {sprintf "drum_bak%d_BRE.anim" $i}} copy {sprintf "drum_mash%d_BRE.anim" $i} 0}
+         }
+         {foreach_int $i 1 5 {do
+            ($wid {sprintf "drum_mash%d.wid" $i})
+            ($color
+               {switch {eval_var {sprint drms $i}}
+                  (0 4)
+                  {eval_var {sprint drms $i}}
+               }
+            )
+            {clear_array $wid meshes}
+            {$wid insert (meshes 0) {sprintf "drum_mash%d.mesh" $color}}
+            {$wid insert (meshes 0) {sprintf "drum_mash%d.1.mesh" $color}}
+            {{sprintf "drum_mash%d.anim" $i} copy {sprintf "drum_bak%d.anim" $color} 0}
+            {{sprintf "drum_mash%d_BRE.anim" $i} copy {sprintf "drum_bak%d_BRE.anim" $color} 0}
+         }}
+      }
       {$this set_showing FALSE}
       {$this set_track_out}
    )

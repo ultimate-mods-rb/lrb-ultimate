@@ -885,7 +885,7 @@
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_drm_smasher_color)
-   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
+   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4))
    (enter
       {os_setup_common}
       {os_fix_pos}
