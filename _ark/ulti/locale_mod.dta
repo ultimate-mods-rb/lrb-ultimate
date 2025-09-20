@@ -101,6 +101,7 @@
 (os_perfmode "Performance Mode")
 (os_whammypb "Whammy Pitch Bending")
 (os_legacybass "Legacy Bass Streak")
+(os_kickbounce "Kick Bounce")
 (os_padtar "Pad is Guitar")
 (os_paddrum "Pad is Drums")
 (os_syncdifspeeds "Sync Dificulty Speeds")

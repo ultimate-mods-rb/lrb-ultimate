@@ -80,6 +80,9 @@
          }
       }
       {with {{get_track_panel} find drum}
+         {unless $kickbounce
+            {clear_array kick_drummer.trig anims}
+         }
          {foreach_int $i 1 5
             {{new PropAnim {sprintf "drum_bak%d.anim" $i}} copy {sprintf "drum_mash%d.anim" $i} 0}
             {{new PropAnim {sprintf "drum_bak%d_BRE.anim" $i}} copy {sprintf "drum_mash%d_BRE.anim" $i} 0}

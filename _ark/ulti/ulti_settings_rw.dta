@@ -92,6 +92,7 @@
                         {its $cnt_star}
                         $countdown
                         $video_bgs
+                        $kickbounce
                         " "
                         $trackspeed
                         " "
@@ -201,6 +202,7 @@
                            {set $cnt_star {sti {str_elem $pool 47}}}
                            {set $countdown {sti {str_elem $pool 48}}}
                            {set $video_bgs {sti {str_elem $pool 49}}}
+                           {set $kickbounce {sti {str_elem $pool 50}}}
 
                            {set $trackspeed {sftf {elem $array 2}}}
 

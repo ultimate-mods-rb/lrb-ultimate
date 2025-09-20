@@ -41,6 +41,8 @@
 
 {set $countdown TRUE}
 
+{set $kickbounce FALSE}
+
 ;default gem/smasher/sustain colors
 {set $gtrgem1 1}
 {set $gtrgem2 4}

@@ -136,6 +136,11 @@
          (bool $legacybass)
          (sel_script {toggle_var legacybass})
       )
+      (os_kickbounce
+         (type uOnOFF)
+         (bool $kickbounce)
+         (sel_script {toggle_var kickbounce})
+      )
       (os_colorshuffle
          (type uOnOFF)
          (bool $colorshuffle)
