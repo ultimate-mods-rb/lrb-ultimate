@@ -1182,6 +1182,30 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (inabaimis_shirt
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (sae_shirt
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (tttc_shirt
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (dotc_shirt
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (ultired_shirt
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (ultiblack_shirt
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
       (batman_torso
          (ui_name batman_torso)
          (genre lrb_shop_other)
