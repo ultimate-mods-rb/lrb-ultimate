@@ -102,6 +102,28 @@
             {{sprintf "drum_mash%d_BRE.anim" $i} copy {sprintf "drum_bak%d_BRE.anim" $color} 0}
          }}
       }
+      ; song timer stuff
+      {with scoreboard
+         ; just creating a new label results in "File: z:/LEGORockBand/Code/System/ui/Label.cpp Line: 115 Error: f"
+         ; i assume this is due to a property it's not initalizing so consider looking into it at some point.
+         {{new BandLabel timer.lbl} copy {endgame_feedback_01 find end_game_vox.lbl} 0}
+         {timer.lbl set_local_scale 0.022 0.021 0.021}
+         {if_else {is_vocals_on_top}
+            {timer.lbl set_local_pos 9.3 0 -3.3}
+            {timer.lbl set_local_pos 9.7 0 6.8}
+         }
+         {timer.lbl set alignment kMiddleRight}
+         {timer.lbl set_localized
+            {sprint
+               "0:00/"
+               {seconds_to_time {beat_to_seconds {end_of_song get end}}}
+            }
+         }
+         {timer.lbl set_trans_parent $this}
+         {if $songtimer
+            {$this sync_objects}
+         }
+      }
       {$this set_showing FALSE}
       {$this set_track_out}
    )

@@ -7,6 +7,16 @@
 )
 (callbacks
    (sixteenth_note
+      {do
+         ($lbl {{{get_track_panel} find scoreboard} find timer.lbl})
+         {$lbl set_localized
+            {sprint
+               {seconds_to_time {/ {beatmatch get_song_ms} 1000}}
+               "/"
+               {seconds_to_time {beat_to_seconds {end_of_song get end}}}
+            }
+         }
+      }
       {if_else $world
          {handle_type ($world quarterbeat)}
          {handle (game quarterbeat)}

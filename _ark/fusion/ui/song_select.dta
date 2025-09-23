@@ -138,18 +138,7 @@
             }
             {if_else {&& {$offer has_data song_length} {== {type {$offer get_data (song_length)}} kDataInt}}
                {subheader_song_count.lbl set_localized
-                  {do
-                     ($song_length {/ {$offer get_data (song_length)} 1000})
-                     ($minutes {int {/ $song_length 60}})
-                     ($seconds {int {mod $song_length 60}})
-                     {sprintf "%d:%s"
-                        $minutes
-                        {if_else {< $seconds 10}
-                           {sprintf "0%d" $seconds}
-                           {sprint $seconds}
-                        }
-                     }
-                  }
+                  {seconds_to_time {/ {$offer get_data (song_length)} 1000}}
                }
                {subheader_song_count.lbl set_localized ""}
             }

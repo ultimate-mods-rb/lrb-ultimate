@@ -107,6 +107,7 @@
 (os_syncdifspeeds "Sync Dificulty Speeds")
 (os_colorshuffle "Note Color Shuffle")
 (os_countdown "Countdown")
+(os_songtimer "Song Timer")
 (os_videobgs "Video Backgrounds")
 (os_trk "Appearance")
 (os_spotlight "Overdrive")

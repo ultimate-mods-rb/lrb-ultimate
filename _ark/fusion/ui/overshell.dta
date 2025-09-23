@@ -156,6 +156,11 @@
          (bool $countdown)
          (sel_script {toggle_var countdown})
       )
+      (os_songtimer
+         (type uOnOFF)
+         (bool $songtimer)
+         (sel_script {toggle_var songtimer})
+      )
       (os_videobgs
          (type uOnOFF)
          (bool $video_bgs)
@@ -471,6 +476,9 @@
       {vocal_track.sld set_num_steps 41}
    )
    (hide_unused_sliders
+      {if {exists beatmatch}
+         {$this disable background_music.btn}
+      }
       {$this disable sfx.btn}
       {$this disable crowd.btn}
       {sfx.btn set_showing FALSE}

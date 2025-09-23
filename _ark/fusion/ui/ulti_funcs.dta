@@ -82,6 +82,36 @@
       $random
    }
 }
+{func seconds_to_time
+   ($float)
+   {do
+      ($minutes {int {/ $float 60}})
+      ($seconds {int {mod $float 60}})
+      {sprintf "%d:%s"
+         $minutes
+         {if_else {< $seconds 10}
+            {sprintf "0%d" $seconds}
+            {sprint $seconds}
+         }
+      }
+   }
+}
+{func is_vocals_on_top
+   {if_else {exists beatmatch}
+      {do
+         ($size 0)
+         ($bool 0)
+         {beatmatch foreach_active_player $player
+            {if {== {$player instrument} vocals}
+               {set $bool TRUE}
+            }
+            {++ $size}
+         }
+         {&& {>= $size 2} $bool}
+      }
+      {fail "considering beatmatch doesn't exist it's safe to say vocals isn't on top"}
+   }
+}
 {func apply_gfx_settings
    {$world iterate PostProc $p
       #ifdef HX_NG
