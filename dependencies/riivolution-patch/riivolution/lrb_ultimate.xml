@@ -15,11 +15,19 @@
         <!-- checksum patch -->
         <memory offset="0x801D3908" value="60000000" original="4BFFFF71" />
         <memory offset="0x801D3998" value="60000000" original="4BFFFEE1" />
+
         <!-- strum limit patch -->
         <memory offset="0x80706978" value="00000000" original="42500000" />
-        <!-- unk patch -->
+
+        <!-- something related to checking if a song is downloaded. iirc this patch is written very unsafe. -->
         <memory offset="0x801BD448" value="60000000" original="389B0180" />
-        <!-- unk patch 2 -->
         <memory offset="0x801BFEB0" value="60000000" original="388402C0" />
+
+        <!-- song version check in SongMgr::CheckVersion -->
+        <memory offset="0x801BCDFC" value="3800000B" original="3800000A" />
+        <!-- song version check in SongMgr::ResetSharedSongs -->
+        <memory offset="0x801BDE64" value="2C03000B" original="2C03000A" />
+        <!-- song version check in SongMgr::GetValidSongs -->
+        <memory offset="0x801BB8F8" value="2C03000B" original="2C03000A" />
     </patch>
 </wiidisc>

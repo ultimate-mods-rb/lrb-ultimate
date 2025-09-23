@@ -1147,11 +1147,11 @@
                {ui push_screen invalid_license_screen}
                FALSE
             )
-            ;({!
-            ;      {song_mgr is_song_shared $song}}
-            ;   {do
-            ;      {ui push_screen invalid_selection_screen}
-            ;      FALSE})
+            ({!
+                  {song_mgr is_song_shared $song}}
+               {do
+                  {ui push_screen invalid_selection_screen}
+                  FALSE})
             ({song_mgr
                   has_missing_parts
                   $song
@@ -1162,10 +1162,10 @@
                   FALSE
                }
             )
-            ;({!
-            ;      {song_mgr check_version $song}}
-            ;   {ui push_screen invalid_version_screen}
-            ;   FALSE)
+            ({!
+                  {song_mgr check_version $song}}
+               {ui push_screen invalid_version_screen}
+               FALSE)
             (TRUE
                {do
                   {switch {gamemode get song_select_mode}
