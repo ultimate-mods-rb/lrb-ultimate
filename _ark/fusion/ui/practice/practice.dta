@@ -26,14 +26,10 @@
    (content_name "")
    (corrupt FALSE)
    (enter
-      {ui goto_screen practice_pre_sel_section_screen}
-      ;{if_else
-      ;   [preload_ok]
-      ;   {ui goto_screen practice_pre_sel_section_screen}
-      ;   {band_ui
-      ;      content_file_read_failed
-      ;      [content_name]
-      ;      [corrupt]}}
+      {if_else #ifdef HX_XBOX TRUE #else [preload_ok] #endif
+         {ui goto_screen practice_pre_sel_section_screen}
+         {band_ui content_file_read_failed [content_name] [corrupt]}
+      }
    )
 }
 {new BandScreen

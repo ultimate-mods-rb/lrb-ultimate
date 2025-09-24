@@ -612,7 +612,6 @@
    (content_name "")
    (corrupt FALSE)
    (enter
-      ;#ifdef IGNORE_PRELOAD_OK
       {gamecfg foreach_local_user $user
          {if {!= {$user get_track_sym} vocals}
             ; i fucking hate using global vars but like there isn't really a better way to save this
@@ -627,22 +626,21 @@
             }
          }
       }
+      ; the assembly msvc generated is way too fucking weird to patch.
+      #ifdef HX_XBOX
       {if_else {challenge_mgr has_challenge}
          {ui goto_screen challenge_real_pre_songs_loading_screen}
          {ui goto_screen real_pre_songs_loading_screen}
       }
-      ;#else
-      ;{if_else
-      ;   [preload_ok]
-      ;   {if_else
-      ;      {challenge_mgr has_challenge}
-      ;      {ui goto_screen challenge_real_pre_songs_loading_screen}
-      ;      {ui goto_screen real_pre_songs_loading_screen}}
-      ;   {band_ui
-      ;      content_file_read_failed
-      ;      [content_name]
-      ;      [corrupt]}}
-      ;#endif
+      #else
+      {if_else [preload_ok]
+         {if_else {challenge_mgr has_challenge}
+            {ui goto_screen challenge_real_pre_songs_loading_screen}
+            {ui goto_screen real_pre_songs_loading_screen}
+         }
+         {band_ui content_file_read_failed [content_name] [corrupt]}
+      }
+      #endif
    )
 }
 {new BandScreen

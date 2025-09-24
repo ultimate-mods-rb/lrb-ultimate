@@ -372,12 +372,9 @@
    (content_name "")
    (corrupt FALSE)
    (enter
-      {if_else [preload_ok]
+      {if_else #ifdef HX_XBOX TRUE #else [preload_ok] #endif
          {ui goto_screen {gamemode get load_nextsong_screen}}
-         {script_task kTaskUISeconds ; i don't get how this fixes crashes but it does
-            (delay 3)
-            (script {ui goto_screen {gamemode get load_nextsong_screen}})
-         }
+         {band_ui content_file_read_failed [content_name] [corrupt]}
       }
    )
 }

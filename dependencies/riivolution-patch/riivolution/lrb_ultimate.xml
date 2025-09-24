@@ -29,5 +29,10 @@
         <memory offset="0x801BDE64" value="2C03000B" original="2C03000A" />
         <!-- song version check in SongMgr::GetValidSongs -->
         <memory offset="0x801BB8F8" value="2C03000B" original="2C03000A" />
+
+        <!-- patches to skip loading vocals pan data -->
+        <memory offset="0x801BAF28" value="4E800020" original="9421FFF0" />
+        <memory offset="0x8028C1E0" value="60000000" original="4BF2ED49" />
+        <memory offset="0x8028C1EC" value="60000000" original="483014B5" />
     </patch>
 </wiidisc>
