@@ -1,5 +1,92 @@
-#define uNormal (0)
-#define uOnOFF (1)
+#define uNormal    (0)
+#define uOnOFF     (1)
+#define uFakeSld   (2)
+
+#define uColor     (1)
+#define uDrumColor (2)
+#define uCunt      (3)
+#define uSync      (4)
+#define uInst      (5)
+#define uMapping   (6)
+#define uSpeed     (7)
+
+#define COLOR_DATA_COMMON (
+   (type uFakeSld)
+   (fmt_type uColor)
+   (array (0 1 2 3 4))
+)
+#define DCOLOR_DATA_COMMON (
+   (type uFakeSld)
+   (fmt_type uDrumColor)
+   (array (0 1 2 3 4))
+)
+#define PAD_DATA_COMMON (
+   (type uFakeSld)
+   (fmt_type uCunt)
+   (array
+      #ifdef HX_NG
+      (
+         kPad_L2
+         kPad_L1
+         kPad_R1
+         kPad_R2
+         kPad_X
+         kPad_Circle
+         kPad_Square
+         kPad_Tri
+         kPad_DUp
+         kPad_DDown
+         kPad_DLeft
+         kPad_DRight
+         kPad_L3
+         kPad_R3
+         kPad_Select
+      )
+      #else
+      (
+         kPad_X
+         kPad_Circle
+         kPad_Square
+         kPad_Tri
+         kPad_DUp
+         kPad_DDown
+         kPad_DLeft
+         kPad_DRight
+         kPad_Select
+      )
+      #endif
+   )
+
+)
+; this is bad but i don't care because it's easy to add stuff now
+#define 50_TO_250 (
+   (array (
+      0.50 0.55 0.60 0.65
+      0.70 0.75 0.80 0.85
+      0.90 0.95 1.00 1.05
+      1.10 1.15 1.20 1.25
+      1.30 1.35 1.40 1.45
+      1.50 1.55 1.60 1.65
+      1.70 1.75 1.80 1.85
+      1.90 1.95 2.00 2.05
+      2.10 2.15 2.20 2.25
+      2.30 2.35 2.40 2.45
+      2.50
+   ))
+)
+#define 100_TO_250 (
+   (array (
+      1.00 1.05 1.10 1.15
+      1.20 1.25 1.30 1.35
+      1.40 1.45 1.50 1.55
+      1.60 1.65 1.70 1.75
+      1.80 1.85 1.90 1.95
+      2.00 2.05 2.10 2.15
+      2.20 2.25 2.30 2.35
+      2.40 2.45 2.50
+   ))
+)
+
 #define OS_LIST (sel_section.lst)
 #define CUSTOMSOURCE (1)
 #define SMASHER_COLORS ((green red yellow blue orange))

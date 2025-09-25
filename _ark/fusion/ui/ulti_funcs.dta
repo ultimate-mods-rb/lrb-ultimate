@@ -27,6 +27,96 @@
                   }
                }
             )
+            (uFakeSld
+               {push_back $array
+                  {sprintf
+                     {localize {elem $entry 0}}
+                     {switch {elem {find $entry fmt_type} 1}
+                        (uNormal {eval_var {elem {find $entry var} 1}})
+                        (uColor
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (0 color_green)
+                                 (1 color_red)
+                                 (2 color_yellow)
+                                 (3 color_blue)
+                                 (4 color_orange)
+                                 invalid
+                              }
+                           }
+                        )
+                        (uDrumColor
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (0 kick)
+                                 (1 color_red)
+                                 (2 color_yellow)
+                                 (3 color_blue)
+                                 (4 color_green)
+                                 invalid
+                              }
+                           }
+                        )
+                        (uCunt
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (kPad_L2 os_pad_l2)
+                                 (kPad_L1 os_pad_l1)
+                                 (kPad_R1 os_pad_r1)
+                                 (kPad_R2 os_pad_r2)
+                                 (kPad_X os_pad_x)
+                                 (kPad_Circle os_pad_circle)
+                                 (kPad_Square os_pad_square)
+                                 (kPad_Tri os_pad_tri)
+                                 (kPad_DUp os_pad_dup)
+                                 (kPad_DDown os_pad_ddown)
+                                 (kPad_DLeft os_pad_dleft)
+                                 (kPad_DRight os_pad_dright)
+                                 (kPad_L3 os_pad_l3)
+                                 (kPad_R3 os_pad_r3)
+                                 (kPad_Select os_pad_select)
+                                 invalid
+                              }
+                           }
+                        )
+                        (uSync
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (0 infinite)
+                                 (1 full)
+                                 (2 half)
+                                 (4 quarter)
+                                 invalid
+                              }
+                           }
+                        )
+                        (uInst
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (kControllerGuitar guitar_sym)
+                                 (kControllerDrum drum_sym)
+                                 (kControllerVocals vocals_sym)
+                                 invalid
+                              }
+                           }
+                        )
+                        (uMapping
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (0 custom)
+                                 (1 guitar_sym)
+                                 (2 gh_guitar)
+                                 (3 ps2_guitar)
+                                 (4 drum_sym)
+                                 invalid
+                              }
+                           }
+                        )
+                        (uSpeed {int {+ {* {eval_var {elem {find $entry var} 1}} 100} 0.5}})
+                     }
+                  }
+               }
+            )
             #ifdef _SHIP
             {exit}
             #else
@@ -37,22 +127,123 @@
       }
    }
    {OS_LIST set_data $array}
+   {if {$this has (pos)}
+      {OS_LIST set_selected [pos]}
+   }
 }}
 {func os_setup_common
    {title.lbl set text_token [title]}
    {lst_reset}
 }
-{func os_sel_common
-   {foreach $cmd {find {elem [data] {OS_LIST selected_pos}} sel_script}
-      {eval $cmd}
-   }
+{func os_sel_common {do
+   ($entry {elem [data] {OS_LIST selected_pos}})
+   {if {== {type $entry} kDataArray}
+      {switch {elem {find $entry type} 1}
+         ((uNormal uOnOFF)
+            {foreach $cmd {find $entry sel_script}
+               {eval $cmd}
+            }
+         )
+         (uFakeSld
+            {$this set focused TRUE}
+            {$this set store {eval_var {elem {find $entry var} 1}}}
+         )
+      }
+   }}
    {lst_reset}
 }
-{func os_fix_pos
-   {OS_LIST set_selected [pos]}
+{func os_down_common {do
+   ($entry {elem [data] {OS_LIST selected_pos}})
+   {if_else {== {type $entry} kDataArray}
+      {switch {elem {find $entry type} 1}
+         (uFakeSld
+            {if_else {&& {$this has (focused)} [focused]}
+               {switch $action
+                  (kAction_Confirm
+                     {synth play button_select}
+                     {$this set focused FALSE}
+                     {set [store] 0}
+                  )
+                  (kAction_Cancel
+                     {synth play button_back}
+                     {$this set focused FALSE}
+                     {set_var {elem {find $entry var} 1} [store]}
+                     {set [store] 0}
+                     {lst_reset}
+                  )
+                  ((kAction_Up kAction_Left)
+                     {synth play button_focus}
+                     {set_var {elem {find $entry var} 1}
+                        {prev_elem
+                           {elem {find $entry array} 1}
+                           {eval_var {elem {find $entry var} 1}}
+                        }
+                     }
+                     {lst_reset}
+                  )
+                  ((kAction_Down kAction_Right)
+                     {synth play button_focus}
+                     {set_var {elem {find $entry var} 1}
+                        {next_elem
+                           {elem {find $entry array} 1}
+                           {eval_var {elem {find $entry var} 1}}
+                        }
+                     }
+                     {lst_reset}
+                  )
+               }
+               {os_unhandled_down}
+            }
+         )
+         {os_unhandled_down}
+      }
+      {os_unhandled_down}
+   }}
 }
-{func os_clear_pos
-   {set [pos] 0}
+{func os_unhandled_down
+   {if {&& {== $action kAction_Cancel} {$this has (pos)}}
+      {set [pos] 0}
+   }
+   kDataUnhandled
+}
+{func get_elem
+    ($array $data)
+    {do
+        ($elem)
+        ($notfound TRUE)
+        ($size {- {size $array} 1})
+        {while {&& $notfound {<= $elem $size}}
+            {if_else {== {elem $array $elem} $data}
+               {set $notfound FALSE}
+               {++ $elem}
+            }
+        }
+        $elem
+    }
+}
+{func next_elem
+   ($array $data)
+   {elem $array
+      {max
+         {min
+            {+ {get_elem $array $data} 1}
+            {- {size $array} 1}
+         }
+         0
+      }
+   }
+}
+{func prev_elem
+   ($array $data)
+   {elem $array
+      {max
+         {min
+            {- {get_elem $array $data} 1}
+            {- {size $array} 1}
+         }
+         0
+      }
+   }
 }
 {func force_drum_freestyle
    ($bool)

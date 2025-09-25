@@ -44,7 +44,6 @@
    ))
    (enter
       {os_setup_common}
-      {os_fix_pos}
       {set $overshell_up TRUE}
    )
    (SELECT_MSG {os_sel_common})
@@ -53,7 +52,7 @@
          {if {mod_settings_rw save_settings}
             {passive_messages_panel queue_message {localize no_bands}}
          }
-         {os_clear_pos}
+         {set [pos] 0}
          {ui pop_screen}
          {set $overshell_up FALSE}
       }
@@ -103,11 +102,8 @@
       )
    ))
    (enter {os_setup_common})
-   (exit {os_clear_pos})
-   (SELECT_MSG
-      {os_sel_common}
-      {os_fix_pos}
-   )
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_modifier_screen
@@ -168,11 +164,8 @@
       )
    ))
    (enter {os_setup_common})
-   (exit {os_clear_pos})
-   (SELECT_MSG
-      {os_sel_common}
-      {os_fix_pos}
-   )
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_visual_screen
@@ -186,14 +179,24 @@
    OVERSHELL_SAVE_POS
    (title os_gfx)
    (data (
-      (os_venuefps
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_venuefps_screen})
+      (os_fps_fmt
+         (type uFakeSld)
+         (fmt_type uNormal)
+         (var emulatefps)
+         (array
+            #ifdef HX_NG
+            (1 6 12 15 24 30 60)
+            #else
+            (15 30)
+            #endif
+         )
       )
       #ifndef HX_WII
-      (os_vsync
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_vsync_screen})
+      (os_vsync_fmt
+         (type uFakeSld)
+         (fmt_type uSync)
+         (var vsyncrate)
+         (array (0 1 2 4))
       )
       #endif
       (os_blackbg
@@ -231,82 +234,15 @@
       )
       #endif
    ))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {os_sel_common}
-      {os_fix_pos}
-   )
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_graphics_screen
    (back overshell_main_screen)
    (panels overshell_graphics_panel practice_lower3rd_panel)
    (focus overshell_graphics_panel)
-}
-{new UIPanel
-   overshell_vsync_panel
-   OVERSHELL_LIST_FILE
-   (title os_vsync)
-   (data (infinite full half quarter))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set $vsyncrate
-         {switch {$component selected_sym}
-            (infinite 0)
-            (full 1)
-            (half 2)
-            (quarter 4)
-         }
-      }
-      {rnd set_sync $vsyncrate}
-      {pop_and_goto_screen overshell_graphics_screen}
-   )
-}
-{new UIScreen
-   overshell_vsync_screen
-   (back overshell_graphics_screen)
-   (panels overshell_vsync_panel practice_lower3rd_panel)
-   (focus overshell_vsync_panel)
-}
-{new UIPanel
-   overshell_venuefps_panel
-   OVERSHELL_LIST_FILE
-   (title os_venuefps)
-   #ifdef HX_NG
-   (data (60fps 30fps 24fps 15fps 12fps 6fps 1fps))
-   #else
-   (data (15fps 30fps))
-   #endif
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set $emulatefps 
-         {switch {$component selected_sym}
-            (60fps 60)
-            (30fps 30)
-            (24fps 24)
-            (15fps 15)
-            (12fps 12)
-            (6fps 6)
-            (1fps 1)
-         }
-      }
-      {pop_and_goto_screen overshell_graphics_screen}
-   )
-}
-{new UIScreen
-   overshell_venuefps_screen
-   (back overshell_graphics_screen)
-   (panels overshell_venuefps_panel practice_lower3rd_panel)
-   (focus overshell_venuefps_panel)
 }
 {new UIPanel
    overshell_cnt_panel
@@ -316,53 +252,35 @@
    (data (
       (os_remap_cnt
          (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_remap_cnt_screen})
-      )
-      #ifndef HX_WII
-      (os_cnt_map
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_cnt_map_screen})
-      )
-      #endif
-      (os_padtar
-         (type uOnOFF)
-         (bool {== $pad_inst kControllerGuitar})
          (sel_script
-            {set $pad_inst
-               {if_else {== $pad_inst kControllerGuitar}
-                  kControllerVocals
-                  kControllerGuitar
-               }
-            }
+            {set $pad_map 0}
+            {pop_and_goto_screen overshell_remap_cnt_screen}
          )
       )
-      (os_paddrum
-         (type uOnOFF)
-         (bool {== $pad_inst kControllerDrum})
-         (sel_script
-            {set $pad_inst
-               {if_else {== $pad_inst kControllerDrum}
-                  kControllerVocals
-                  kControllerDrum
-               }
-            }
+      #ifndef HX_WII
+      (os_cnt_map_fmt
+         (type uFakeSld)
+         (fmt_type uMapping)
+         (var pad_map)
+         (array (0 1 2 3 4))
+      )
+      #endif
+      (os_padinst_fmt
+         (type uFakeSld)
+         (fmt_type uInst)
+         (var pad_inst)
+         (array
+            (
+               kControllerVocals
+               kControllerGuitar
+               kControllerDrum
+            )
          )
       )
    ))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {os_sel_common}
-      {os_fix_pos}
-   )
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_cnt_screen
@@ -370,164 +288,39 @@
    (panels overshell_cnt_panel practice_lower3rd_panel)
    (focus overshell_cnt_panel)
 }
-;could probably clean up a bit more at some point
 {new UIPanel
    overshell_speed_panel
-   (file "options/options_audio.milo")
-   (focus instruments.btn)
-   (enter
-      {audio_options.lbl set text_token os_spd}
-      {$this set_slider_steps}
-      {$this hide_unused_sliders}
-      {$this update_btn_ints}
-      {$this update_all_sliders}
-   )
-   (TRANSITION_COMPLETE_MSG
-      {$this update_helpbar {$this focus_name}}
-      kDataUnhandled
-   )
-   (FOCUS_MSG {$this update_helpbar $new_focus})
-   (SCROLL_SELECT_MSG {$this set_speeds})
-   (SCROLL_MSG {$this set_speeds})
-   (SELECT_MSG
-      {switch $component
-         (instruments.btn
-            {instruments.sld store}
-            {$this set_focus instruments.sld}
-         )
-         (background_music.btn
-            {background.sld store}
-            {$this set_focus background.sld}
-         )
-         (vocal_track.btn
-            {vocal_track.sld store}
-            {$this set_focus vocal_track.sld}
-         )
-      }
-   )
-   (BUTTON_DOWN_MSG
-      {switch {$this focus_name}
-         (instruments.sld
-            {switch $action
-               (kAction_Confirm
-                  {instruments.sld confirm}
-                  {$this set_focus instruments.btn}
-               )
-               (kAction_Cancel
-                  {instruments.sld undo $player}
-                  {$this set_focus instruments.btn}
-               )
-               kDataUnhandled
-            }
-         )
-         (background.sld
-            {switch $action
-               (kAction_Confirm
-                  {background.sld confirm}
-                  {$this set_focus background_music.btn}
-               )
-               (kAction_Cancel
-                  {background.sld undo $player}
-                  {$this set_focus background_music.btn}
-               )
-               kDataUnhandled
-            }
-         )
-         (vocal_track.sld
-            {switch $action
-               (kAction_Confirm
-                  {vocal_track.sld confirm}
-                  {$this set_focus vocal_track.btn}
-               )
-               (kAction_Cancel
-                  {vocal_track.sld undo $player}
-                  {$this set_focus vocal_track.btn}
-               )
-               kDataUnhandled
-            }
-         )
-         kDataUnhandled
-      }
-   )
-   (update_all_sliders {$this iterate UISlider $s {$this update_sliders $s}})
-   (update_sliders
-      ($component)
-      {switch $component
-         (instruments.sld
-            {$component set_current {int {+ 0.5 {/ {+ {- $trackspeed 1} 0.5} 0.05}}}}
-         )
-         (background.sld
-            {$component set_current {int {+ 0.5 {/ {- $speedmod 1} 0.05}}}}
-         )
-         (vocal_track.sld
-            {$component set_current {int {+ 0.5 {/ {+ {- $hwlength 1} 0.5} 0.05}}}}
-         )
-      }
-   )
-   (set_speeds
-      {set $trackspeed {- {+ 1 {* {instruments.sld current} 0.05}} 0.5}}
-      {set $speedmod {+ 1 {* {background.sld current} 0.05}}}
-      {set $hwlength {- {+ 1 {* {vocal_track.sld current} 0.05}} 0.5}}
-      {$this update_btn_ints}
-   )
-   (set_slider_steps
-      {instruments.sld set_num_steps 41}
-      {background.sld set_num_steps 31}
-      {vocal_track.sld set_num_steps 41}
-   )
-   (hide_unused_sliders
-      {if {exists beatmatch}
-         {$this disable background_music.btn}
-      }
-      {$this disable sfx.btn}
-      {$this disable crowd.btn}
-      {sfx.btn set_showing FALSE}
-      {crowd.btn set_showing FALSE}
-      {sfx.sld set_showing FALSE}
-      {crowd.sld set_showing FALSE}
-   )
-   (update_btn_ints
-      {instruments.btn set
-         text_token
-         {sprintf {localize trackspeed_msg} {int {+ 0.5 {* $trackspeed 100}}}}
-      }
-      {background_music.btn set
-         text_token
-         {sprintf {localize speed_msg} {int {+ 0.5 {* $speedmod 100}}}}
-      }
-      {vocal_track.btn set
-         text_token
-         {sprintf {localize hwlength_msg} {int {+ 0.5 {* $hwlength 100}}}}
-      }
-   )
-   (update_helpbar
-      ($new_focus)
-      {switch $new_focus
-         (
-            (instruments.btn background_music.btn vocal_track.btn)
-            {helpbar set_config
-               (
-                  (cancel helpbar_back)
-                  (confirm helpbar_changesetting)
-               )
-            }
-         )
-         (
-            (instruments.sld background.sld vocal_track.sld)
-            {helpbar set_config
-               (
-                  (cancel helpbar_cancel)
-                  (confirm helpbar_confirmsetting)
-               )
-            }
-         )
-      }
-   )
+   OVERSHELL_LIST_FILE
+   OVERSHELL_SAVE_POS
+   (title os_spd)
+   (data (
+      (trackspeed_msg
+         (type uFakeSld)
+         (fmt_type uSpeed)
+         (var trackspeed)
+         50_TO_250
+      )
+      (speed_msg
+         (type uFakeSld)
+         (fmt_type uSpeed)
+         (var speedmod)
+         100_TO_250
+      )
+      (hwlength_msg
+         (type uFakeSld)
+         (fmt_type uSpeed)
+         (var hwlength)
+         50_TO_250
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_speed_screen
    (back overshell_main_screen)
-   (panels options_background_panel overshell_speed_panel)
+   (panels overshell_speed_panel practice_lower3rd_panel)
    (focus overshell_speed_panel)
 }
 {new UIPanel
@@ -553,16 +346,8 @@
          (sel_script {pop_and_goto_screen overshell_smasher_color_screen})
       )
    ))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
    (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
@@ -607,16 +392,8 @@
          (sel_script {pop_and_goto_screen overshell_drm_gem_color_screen})
       )
    ))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
    (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
@@ -630,29 +407,41 @@
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_gtr_gems_color)
-   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {if_else {== {$component selected_sym} os_reset}
-         {do
-            {set $gtrgem1 0}
-            {set $gtrgem2 1}
+   (data (
+      (os_reset
+         (type uNormal)
+         (sel_script
+            {set $gtrgem1 1}
+            {set $gtrgem2 4}
             {set $gtrgem3 2}
-            {set $gtrgem4 3}
-            {set $gtrgem5 4}
-         }
-         {pop_and_goto_screen overshell_gtr_gems_screen}
-      }
-   )
+            {set $gtrgem4 0}
+            {set $gtrgem5 3}
+         )
+      )
+      (os_slot_1_fmt
+         COLOR_DATA_COMMON
+         (var gtrgem1)
+      )
+      (os_slot_2_fmt
+         COLOR_DATA_COMMON
+         (var gtrgem2)
+      )
+      (os_slot_3_fmt
+         COLOR_DATA_COMMON
+         (var gtrgem3)
+      )
+      (os_slot_4_fmt
+         COLOR_DATA_COMMON
+         (var gtrgem4)
+      )
+      (os_slot_5_fmt
+         COLOR_DATA_COMMON
+         (var gtrgem5)
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_gtr_gem_color_screen
@@ -665,29 +454,41 @@
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_drm_gems_color)
-   (data (os_reset os_kick_gem os_slot_1 os_slot_2 os_slot_3 os_slot_4))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {if_else {== {$component selected_sym} os_reset}
-         {do
+   (data (
+      (os_reset
+         (type uNormal)
+         (sel_script
             {set $drmgem1 0}
             {set $drmgem2 1}
             {set $drmgem3 2}
             {set $drmgem4 3}
             {set $drmgem5 4}
-         }
-         {pop_and_goto_screen overshell_drm_gems_screen}
-      }
-   )
+         )
+      )
+      (os_slot_1_fmt
+         DCOLOR_DATA_COMMON
+         (var drmgem2)
+      )
+      (os_slot_2_fmt
+         DCOLOR_DATA_COMMON
+         (var drmgem3)
+      )
+      (os_slot_3_fmt
+         DCOLOR_DATA_COMMON
+         (var drmgem4)
+      )
+      (os_slot_4_fmt
+         DCOLOR_DATA_COMMON
+         (var drmgem5)
+      )
+      (os_slot_kick_fmt
+         DCOLOR_DATA_COMMON
+         (var drmgem1)
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_drm_gem_color_screen
@@ -700,113 +501,47 @@
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_gtr_sus_color)
-   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {if_else {== {$component selected_sym} os_reset}
-         {do
-            {set $gtrsus1 0}
-            {set $gtrsus2 1}
+   (data (
+      (os_reset
+         (type uNormal)
+         (sel_script
+            {set $gtrsus1 1}
+            {set $gtrsus2 4}
             {set $gtrsus3 2}
-            {set $gtrsus4 3}
-            {set $gtrsus5 4}
-         }
-         {pop_and_goto_screen overshell_gtr_sus_screen}
-      }
-   )
+            {set $gtrsus4 0}
+            {set $gtrsus5 3}
+         )
+      )
+      (os_slot_1_fmt
+         COLOR_DATA_COMMON
+         (var gtrsus1)
+      )
+      (os_slot_2_fmt
+         COLOR_DATA_COMMON
+         (var gtrsus2)
+      )
+      (os_slot_3_fmt
+         COLOR_DATA_COMMON
+         (var gtrsus3)
+      )
+      (os_slot_4_fmt
+         COLOR_DATA_COMMON
+         (var gtrsus4)
+      )
+      (os_slot_5_fmt
+         COLOR_DATA_COMMON
+         (var gtrsus5)
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_gtr_sus_color_screen
    (back overshell_gem_color_screen)
    (panels overshell_gtr_sus_color_panel practice_lower3rd_panel)
    (focus overshell_gtr_sus_color_panel)
-}
-{new UIPanel
-   overshell_gtr_gems_panel
-   OVERSHELL_LIST_FILE
-   (title {sprint os_slot_ {overshell_gtr_gem_color_panel get pos}})
-   (data (os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem os_overdrive_gem))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set_var {sprint gtrgem {overshell_gtr_gem_color_panel get pos}}
-         {switch {$component selected_sym}
-            (os_green_gem 0)
-            (os_red_gem 1)
-            (os_yellow_gem 2)
-            (os_blue_gem 3)
-            (os_orange_gem 4)
-            (os_overdrive_gem 5)
-         }
-      }
-      {pop_and_goto_screen overshell_gtr_gem_color_screen}
-   )
-}
-{new UIScreen
-   overshell_gtr_gems_screen
-   (back overshell_gtr_gem_color_screen)
-   (panels overshell_gtr_gems_panel practice_lower3rd_panel)
-   (focus overshell_gtr_gems_panel)
-}
-{new UIPanel
-   overshell_drm_gems_panel
-   OVERSHELL_LIST_FILE
-   (title os_drm_gems_color)  ; intentional. accounting for kick is annoying
-   (data (os_red_gem os_yellow_gem os_blue_gem os_green_gem os_kick_gem os_overdrive_gem))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set_var {sprint drmgem {overshell_drm_gem_color_panel get pos}}
-         {switch {$component selected_sym}
-            (os_kick_gem 0)
-            (os_red_gem 1)
-            (os_yellow_gem 2)
-            (os_blue_gem 3)
-            (os_green_gem 4)
-            (os_overdrive_gem 5)
-         }
-      }
-      {pop_and_goto_screen overshell_drm_gem_color_screen}
-   )
-}
-{new UIScreen
-   overshell_drm_gems_screen
-   (back overshell_drm_gem_color_screen)
-   (panels overshell_drm_gems_panel practice_lower3rd_panel)
-   (focus overshell_drm_gems_panel)
-}
-{new UIPanel
-   overshell_gtr_sus_panel
-   OVERSHELL_LIST_FILE
-   (title {sprint os_slot_ {overshell_gtr_sus_color_panel get pos}})
-   (data (os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set_var {sprint gtrsus {overshell_gtr_sus_color_panel get pos}}
-         {switch {$component selected_sym}
-            (os_green_gem 0)
-            (os_red_gem 1)
-            (os_yellow_gem 2)
-            (os_blue_gem 3)
-            (os_orange_gem 4)
-            (os_overdrive_gem 5)
-         }
-      }
-      {pop_and_goto_screen overshell_gtr_sus_color_screen}
-   )
-}
-{new UIScreen
-   overshell_gtr_sus_screen
-   (back overshell_gtr_sus_color_screen)
-   (panels overshell_gtr_sus_panel practice_lower3rd_panel)
-   (focus overshell_gtr_sus_panel)
 }
 {new UIPanel
    overshell_smashers_panel
@@ -840,16 +575,8 @@
          (sel_script {pop_and_goto_screen overshell_drm_smasher_color_screen})
       )
    ))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
    (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
@@ -863,29 +590,41 @@
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_gtr_smasher_color)
-   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {if_else {== {$component selected_sym} os_reset}
-         {do
-            {set $gtrsm1 0}
-            {set $gtrsm2 1}
+   (data (
+      (os_reset
+         (type uNormal)
+         (sel_script
+            {set $gtrsm1 1}
+            {set $gtrsm2 4}
             {set $gtrsm3 2}
-            {set $gtrsm4 3}
-            {set $gtrsm5 4}
-         }
-         {pop_and_goto_screen overshell_gtr_smasher_screen}
-      }
-   )
+            {set $gtrsm4 0}
+            {set $gtrsm5 3}
+         )
+      )
+      (os_slot_1_fmt
+         COLOR_DATA_COMMON
+         (var gtrsm1)
+      )
+      (os_slot_2_fmt
+         COLOR_DATA_COMMON
+         (var gtrsm2)
+      )
+      (os_slot_3_fmt
+         COLOR_DATA_COMMON
+         (var gtrsm3)
+      )
+      (os_slot_4_fmt
+         COLOR_DATA_COMMON
+         (var gtrsm4)
+      )
+      (os_slot_5_fmt
+         COLOR_DATA_COMMON
+         (var gtrsm5)
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_gtr_smasher_color_screen
@@ -898,28 +637,36 @@
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_drm_smasher_color)
-   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {if_else {== {$component selected_sym} os_reset}
-         {do
+   (data (
+      (os_reset
+         (type uNormal)
+         (sel_script
             {set $drms1 1}
             {set $drms2 2}
             {set $drms3 3}
             {set $drms4 0}
-         }
-         {pop_and_goto_screen overshell_drm_smasher_screen}
-      }
-   )
+         )
+      )
+      (os_slot_1_fmt
+         COLOR_DATA_COMMON
+         (var drms1)
+      )
+      (os_slot_2_fmt
+         COLOR_DATA_COMMON
+         (var drms2)
+      )
+      (os_slot_3_fmt
+         COLOR_DATA_COMMON
+         (var drms3)
+      )
+      (os_slot_4_fmt
+         COLOR_DATA_COMMON
+         (var drms4)
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_drm_smasher_color_screen
@@ -928,74 +675,14 @@
    (focus overshell_drm_smasher_color_panel)
 }
 {new UIPanel
-   overshell_gtr_smasher_panel
-   OVERSHELL_LIST_FILE
-   (title {sprint os_slot_ {overshell_gtr_smasher_color_panel get pos}})
-   (data (os_green_gem os_red_gem os_yellow_gem os_blue_gem os_orange_gem))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set_var {sprint gtrsm {overshell_gtr_smasher_color_panel get pos}}
-         {switch {$component selected_sym}
-            (os_green_gem 0)
-            (os_red_gem 1)
-            (os_yellow_gem 2)
-            (os_blue_gem 3)
-            (os_orange_gem 4)
-         }
-      }
-      {pop_and_goto_screen overshell_gtr_smasher_color_screen}
-   )
-}
-{new UIScreen
-   overshell_gtr_smasher_screen
-   (back overshell_gtr_smasher_color_screen)
-   (panels overshell_gtr_smasher_panel practice_lower3rd_panel)
-   (focus overshell_gtr_smasher_panel)
-}
-{new UIPanel
-   overshell_drm_smasher_panel
-   OVERSHELL_LIST_FILE
-   (title {sprint os_slot_ {overshell_drm_smasher_color_panel get pos}})
-   (data (os_red_gem os_yellow_gem os_blue_gem os_green_gem os_orange_gem))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set_var {sprint drms {overshell_drm_smasher_color_panel get pos}}
-         {switch {$component selected_sym}
-            (os_red_gem 1)
-            (os_yellow_gem 2)
-            (os_blue_gem 3)
-            (os_green_gem 0)
-            (os_orange_gem 4)
-         }
-      }
-      {pop_and_goto_screen overshell_drm_smasher_color_screen}
-   )
-}
-{new UIScreen
-   overshell_drm_smasher_screen
-   (back overshell_drm_smasher_color_screen)
-   (panels overshell_drm_smasher_panel practice_lower3rd_panel)
-   (focus overshell_drm_smasher_panel)
-}
-{new UIPanel
    overshell_remap_cnt_panel
    OVERSHELL_LIST_FILE
    OVERSHELL_SAVE_POS
    (title os_remap_cnt)
-   (data (os_reset os_slot_1 os_slot_2 os_slot_3 os_slot_4 os_slot_5 os_spotlight))
-   (enter
-      {os_setup_common}
-      {os_fix_pos}
-   )
-   (BUTTON_DOWN_MSG
-      {if {== $action kAction_Cancel}
-         {os_clear_pos}
-      }
-      kDataUnhandled
-   )
-   (SELECT_MSG
-      {if_else {== {$component selected_sym} os_reset}
-         {do
+   (data (
+      (os_reset
+         (type uNormal)
+         (sel_script
             #ifdef HX_NG
             {set $cnt_slot1 kPad_L2}
             {set $cnt_slot2 kPad_L1}
@@ -1011,114 +698,40 @@
             {set $cnt_slot5 kPad_Tri}
             {set $cnt_star kPad_DLeft}
             #endif
-         }
-         {pop_and_goto_screen overshell_cnt_slot_screen}
-      }
-   )
+         )
+      )
+      (os_slot_1_fmt
+         PAD_DATA_COMMON
+         (var cnt_slot1)
+      )
+      (os_slot_2_fmt
+         PAD_DATA_COMMON
+         (var cnt_slot2)
+      )
+      (os_slot_3_fmt
+         PAD_DATA_COMMON
+         (var cnt_slot3)
+      )
+      (os_slot_4_fmt
+         PAD_DATA_COMMON
+         (var cnt_slot4)
+      )
+      (os_slot_5_fmt
+         PAD_DATA_COMMON
+         (var cnt_slot5)
+      )
+      (os_slot_od_fmt
+         PAD_DATA_COMMON
+         (var cnt_star)
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
    overshell_remap_cnt_screen
    (back overshell_cnt_screen)
    (panels overshell_remap_cnt_panel practice_lower3rd_panel)
    (focus overshell_remap_cnt_panel)
-}
-{new UIPanel
-   overshell_cnt_slot_panel
-   OVERSHELL_LIST_FILE
-   (title {sprint os_slot_ {overshell_remap_cnt_panel get pos}})
-   (data
-      #ifdef HX_NG
-      (
-         os_pad_l2
-         os_pad_l1
-         os_pad_r1
-         os_pad_r2
-         os_pad_x
-         os_pad_circle
-         os_pad_square
-         os_pad_tri
-         os_pad_dup
-         os_pad_ddown
-         os_pad_dleft
-         os_pad_dright
-         os_pad_l3
-         os_pad_r3
-         os_pad_select
-      )
-      #else
-      (
-         os_pad_x
-         os_pad_circle
-         os_pad_square
-         os_pad_tri
-         os_pad_dup
-         os_pad_ddown
-         os_pad_dleft
-         os_pad_dright
-         os_pad_select
-      )
-      #endif
-   )
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set_var
-         {do
-            ($pos {overshell_remap_cnt_panel get pos})
-            {if_else {== $pos 6}
-               cnt_star
-               {sprint cnt_slot $pos}
-            }
-         }
-         {switch {$component selected_sym}
-            (os_pad_l2 kPad_L2)
-            (os_pad_l1 kPad_L1)
-            (os_pad_r1 kPad_R1)
-            (os_pad_r2 kPad_R2)
-            (os_pad_x kPad_X)
-            (os_pad_circle kPad_Circle)
-            (os_pad_square kPad_Square)
-            (os_pad_tri kPad_Tri)
-            (os_pad_dup kPad_DUp)
-            (os_pad_ddown kPad_DDown)
-            (os_pad_dleft kPad_DLeft)
-            (os_pad_dright kPad_DRight)
-            (os_pad_l3 kPad_L3)
-            (os_pad_r3 kPad_R3)
-            (os_pad_select kPad_Select)
-         }
-      }
-      {pop_and_goto_screen overshell_remap_cnt_screen}
-   )
-}
-{new UIScreen
-   overshell_cnt_slot_screen
-   (back overshell_remap_cnt_screen)
-   (panels overshell_cnt_slot_panel practice_lower3rd_panel)
-   (focus overshell_cnt_slot_panel)
-}
-{new UIPanel
-   overshell_cnt_map_panel
-   OVERSHELL_LIST_FILE
-   (title os_cnt_map)
-   (data (custom guitar gh_guitar ps2_guitar drum))
-   (enter {os_setup_common})
-   (SELECT_MSG
-      {set $pad_map
-         {switch {$component selected_sym}
-            (custom 0)
-            (guitar 1)
-            (gh_guitar 2)
-            (ps2_guitar 3)
-            (drum 4)
-         }
-      }
-      {set_pad_map $pad_map}
-      {pop_and_goto_screen overshell_cnt_screen}
-   )
-}
-{new UIScreen
-   overshell_cnt_map_screen
-   (back overshell_cnt_screen)
-   (panels overshell_cnt_map_panel practice_lower3rd_panel)
-   (focus overshell_cnt_map_panel)
 }
