@@ -1253,5 +1253,25 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (es_torso
+         (ui_name es)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (pv_torso
+         (ui_name pv)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (rs_torso
+         (ui_name rysz)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (wz_torso
+         (ui_name wz)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

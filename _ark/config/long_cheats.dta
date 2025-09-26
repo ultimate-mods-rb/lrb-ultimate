@@ -76,3 +76,23 @@
       {ui push_screen overshell_main_screen}
    }
 )
+(
+   (
+      kPad_Square
+      kPad_Circle
+      kPad_Square
+      kPad_Circle
+      kPad_DUp
+      kPad_DRight
+      kPad_DLeft
+      kPad_DDown
+      kPad_DDown
+      kPad_DRight
+      kPad_DLeft
+      kPad_DUp
+   )
+   {if {shop_money_panel is_up}
+      {{tour band} add_studs 100000000}
+      {shop_money_panel refresh}
+   }
+)

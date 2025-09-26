@@ -802,5 +802,9 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (ghostbusters_legs
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

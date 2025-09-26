@@ -731,5 +731,25 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (es_head
+         (ui_name es)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (pv_head
+         (ui_name pv)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (rs_head
+         (ui_name rysz)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (wz_head
+         (ui_name wz)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )

@@ -1286,5 +1286,25 @@
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
+      (es_hair
+         (ui_name es)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (pv_hair
+         (ui_name pv)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (rs_hair
+         (ui_name rysz)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      (wz_hair
+         (ui_name wz)
+         (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
    )
 )
