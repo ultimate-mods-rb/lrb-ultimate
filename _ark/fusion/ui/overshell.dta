@@ -1,10 +1,17 @@
 #define OVERSHELL_LIST_FILE (
    (file overshell.milo)
    (focus OS_LIST)
+   (TRANSITION_COMPLETE_MSG {os_update_helpbar})
+   (SCROLL_MSG
+      {synth play button_focus}
+      {os_update_helpbar}
+      {if {$this has (pos)}
+         {set [pos] {OS_LIST selected_pos}}
+      }
+   )
 )
 #define OVERSHELL_SAVE_POS (
    (pos 0)
-   (SCROLL_MSG {set [pos] {OS_LIST selected_pos}})
 )
 {func pop_and_goto_screen
    ($gotoscreen)
@@ -52,6 +59,7 @@
          {if {mod_settings_rw save_settings}
             {passive_messages_panel queue_message {localize no_bands}}
          }
+         {synth play button_back}
          {set [pos] 0}
          {ui pop_screen}
          {set $overshell_up FALSE}

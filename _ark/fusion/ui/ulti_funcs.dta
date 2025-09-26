@@ -130,6 +130,7 @@
    {if {$this has (pos)}
       {OS_LIST set_selected [pos]}
    }
+   {os_update_helpbar}
 }}
 {func os_setup_common
    {title.lbl set text_token [title]}
@@ -137,6 +138,7 @@
 }
 {func os_sel_common {do
    ($entry {elem [data] {OS_LIST selected_pos}})
+   {synth play button_select}
    {if {== {type $entry} kDataArray}
       {switch {elem {find $entry type} 1}
          ((uNormal uOnOFF)
@@ -201,11 +203,49 @@
    }}
 }
 {func os_unhandled_down
-   {if {&& {== $action kAction_Cancel} {$this has (pos)}}
+   {if
+      {&&
+         {== $action kAction_Cancel}
+         {do
+            {synth play button_back}
+            {$this has (pos)}
+         }
+      }
       {set [pos] 0}
    }
    kDataUnhandled
 }
+{func os_update_helpbar {do
+   ($entry {elem [data] {OS_LIST selected_pos}})
+   {helpbar set_config
+      {if_else {== {type $entry} kDataArray}
+         {cond
+            ({&& {$this has (focused)} [focused]}
+               (
+                  (cancel helpbar_cancel)
+                  (confirm helpbar_confirmsetting)
+               )
+            )
+            ({find_elem (uOnOFF uFakeSld) {elem {find $entry type} 1}}
+               (
+                  (cancel helpbar_back)
+                  (confirm helpbar_changesetting)
+               )
+            )
+            (TRUE
+               (
+                  (cancel helpbar_back)
+                  (confirm helpbar_select)
+               )
+            )
+         }
+         (
+            (cancel helpbar_back)
+            (confirm helpbar_select)
+         )
+      }
+   }
+}}
 {func get_elem
     ($array $data)
     {do
