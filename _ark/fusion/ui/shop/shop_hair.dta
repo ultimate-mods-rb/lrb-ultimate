@@ -36,15 +36,10 @@
                   {$this set current_list hair.lst}
                   {$this set current_btn 1hair.btn}
                   {toggle_buttons HAIR_BUTTONS FALSE}
-                  {if_else {== [closet] TRUE}
-                     {do
-                        {Categories.grp set_showing TRUE}
-                        {$this set_focus 02city.btn}
-                        {hide_invalid_genres $this hair [closet] FALSE}
-                     }
-                     {do
-                        {$this show_genre none}
-                     }
+                  {do
+                     {Categories.grp set_showing TRUE}
+                     {$this set_focus 02city.btn}
+                     {hide_invalid_genres $this hair [closet] FALSE}
                   }
                )
                (2hats.btn
@@ -52,15 +47,10 @@
                   {$this set current_list hats.lst}
                   {$this set current_btn 2hats.btn}
                   {toggle_buttons HAIR_BUTTONS FALSE}
-                  {if_else {== [closet] TRUE}
-                     {do
-                        {Categories.grp set_showing TRUE}
-                        {$this set_focus 02city.btn}
-                        {hide_invalid_genres $this hats [closet] FALSE}
-                     }
-                     {do
-                        {$this show_genre none}
-                     }
+                  {do
+                     {Categories.grp set_showing TRUE}
+                     {$this set_focus 02city.btn}
+                     {hide_invalid_genres $this hats [closet] FALSE}
                   }
                )
                (OUTFIT_GENRES_BUTTONS
@@ -84,37 +74,27 @@
          )
          (kAction_Cancel
             {switch {$this focus_name}
+               (OUTFIT_GENRES_BUTTONS
+                  {Categories.grp set_showing FALSE}
+                  {toggle_buttons HAIR_BUTTONS TRUE}
+                  {$this set_focus [current_btn]}
+               )
                (HAIR_BUTTONS
-                  ;{if_else {== [closet] TRUE}
-                  ;   {ui goto_screen shop_mycloset}
-                     {ui goto_screen shop_screen}
-                  ;}
+                  {ui goto_screen shop_screen}
                )
                (HAIR_LISTS
                   {if {!= {$this selected_outfit} ''}
                      {$this undo_outfit}
                   }
-                  {if_else {== [closet] TRUE}
-                     {do
-                        {$this set_focus [current_genre_btn]}
-                        {[current_grp] set_showing FALSE}
-                        {Categories.grp set_showing TRUE}
-                        {toggle_buttons OUTFIT_GENRES_BUTTONS TRUE}
-                     }
-                     {do
-                        {toggle_buttons HAIR_BUTTONS TRUE}
-                        {[current_grp] set_showing FALSE}
-                        {$this set_focus [current_btn]}
-                     }
+                  {do
+                     {$this set_focus [current_genre_btn]}
+                     {[current_grp] set_showing FALSE}
+                     {Categories.grp set_showing TRUE}
+                     {toggle_buttons OUTFIT_GENRES_BUTTONS TRUE}
                   }
                   {new.grp set_showing FALSE}
                   {$this update}
                )
-               {do
-                  {Categories.grp set_showing FALSE}
-                  {toggle_buttons HAIR_BUTTONS TRUE}
-                  {$this set_focus [current_btn]}
-               }
             }
             {[outfit_char] select_cam "idle"}
             {synth play button_back}
@@ -145,7 +125,7 @@
    )
    (setup {$this store_outfit})
 )
-{new OutfitPanel shop_hair_panel (closet TRUE) HAIR_HANDLERS}
+{new OutfitPanel shop_hair_panel (closet FALSE) HAIR_HANDLERS}
 {new OutfitPanel mycloset_hair_panel (closet TRUE) HAIR_HANDLERS}
 {new MainScreen
    shop_hair

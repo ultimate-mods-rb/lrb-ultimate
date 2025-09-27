@@ -9,15 +9,10 @@
       {$this set button_list OUTFIT_GENRES_BUTTONS}
       {$this set current_grp Costume.grp}
       {$this set current_list costumes.lst}
-      {if_else [closet]
-         {do
-            {hide_invalid_genres $this costumes [closet] [is_likeness]}
-            {Categories.grp set_showing TRUE}
-            {Costume.grp set_showing FALSE}
-            {toggle_buttons [button_list] TRUE}
-         }
-         {$this show_genre none}
-      }
+      {hide_invalid_genres $this costumes [closet] [is_likeness]}
+      {Categories.grp set_showing TRUE}
+      {Costume.grp set_showing FALSE}
+      {toggle_buttons [button_list] TRUE}
    )
    (setup {$this store_outfit})
    (show_genre
@@ -51,30 +46,18 @@
             kDataUnhandled
          )
          (kAction_Cancel
-            {if_else [closet]
-               {do
-                  {switch {$this focus_name}
-                     (OUTFIT_GENRES_BUTTONS
-                        ;{if_else {== [closet] TRUE}
-                        ;   {ui goto_screen shop_mycloset}
-                           {ui goto_screen shop_screen}
-                        ;}
-                     )
-                     (costumes.lst
-                        {$this undo_outfit}
-                        {toggle_buttons [button_list] TRUE}
-                        {$this set_focus [current_btn]}
-                        {[current_grp] set_showing FALSE}
-                        {new.grp set_showing FALSE}
-                        {$this update}
-                     )
-                  }
-               }
-               {do
-                  {$this undo_outfit}
-                  {new.grp set_showing FALSE}
+            {switch {$this focus_name}
+               (OUTFIT_GENRES_BUTTONS
                   {ui goto_screen shop_screen}
-               }
+               )
+               (costumes.lst
+                  {$this undo_outfit}
+                  {toggle_buttons [button_list] TRUE}
+                  {$this set_focus [current_btn]}
+                  {[current_grp] set_showing FALSE}
+                  {new.grp set_showing FALSE}
+                  {$this update}
+               )
             }
             {[outfit_char] select_cam "idle"}
             {synth play button_back}
@@ -94,7 +77,7 @@
 {new OutfitPanel
    shop_costumes_panel
    (file "shop_costumes.milo")
-   (closet TRUE)
+   (closet FALSE)
    (is_likeness FALSE)
    (focus 02city.btn)
    COSTUMES_HANDLERS

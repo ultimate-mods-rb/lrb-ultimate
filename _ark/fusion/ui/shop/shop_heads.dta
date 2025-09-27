@@ -11,14 +11,11 @@
       {$this set button_list OUTFIT_GENRES_BUTTONS}
       {$this set current_grp heads.grp}
       {$this set current_list heads.lst}
-      {if_else [closet]
-         {do
-            {heads.grp set_showing FALSE}
-            {Categories.grp set_showing TRUE}
-            {toggle_buttons [button_list] TRUE}
-            {hide_invalid_genres $this heads [closet] FALSE}
-         }
-         {$this show_genre none}
+      {do
+         {heads.grp set_showing FALSE}
+         {Categories.grp set_showing TRUE}
+         {toggle_buttons [button_list] TRUE}
+         {hide_invalid_genres $this heads [closet] FALSE}
       }
       OUTFIT_DEFAULT_ENTER
    )
@@ -54,32 +51,18 @@
             kDataUnhandled
          )
          (kAction_Cancel
-            {if_else [closet]
-               {do
-                  {switch {$this focus_name}
-                     (
-                        (heads.lst)
-                        {if {!= {$this selected_outfit} ''}
-                           {$this undo_outfit}
-                        }
-                        {toggle_buttons [button_list] TRUE}
-                        {$this set_focus [current_btn]}
-                        {[current_grp] set_showing FALSE}
-                        {$this update}
-                     )
-                     {do
-                        ;{if_else {== [closet] TRUE}
-                        ;   {ui goto_screen shop_mycloset}
-                           {ui goto_screen shop_screen}
-                        ;}
-                     }
+            {switch {$this focus_name}
+               (
+                  (heads.lst)
+                  {if {!= {$this selected_outfit} ''}
+                     {$this undo_outfit}
                   }
-               }
-               {do
-                  {$this undo_outfit}
-                  {new.grp set_showing FALSE}
-                  {ui goto_screen shop_screen}
-               }
+                  {toggle_buttons [button_list] TRUE}
+                  {$this set_focus [current_btn]}
+                  {[current_grp] set_showing FALSE}
+                  {$this update}
+               )
+               {ui goto_screen shop_screen}
             }
             {[outfit_char] select_cam "idle"}
             {synth play button_back}
@@ -107,7 +90,7 @@
    )
    (setup {$this store_outfit})
 )
-{new OutfitPanel shop_heads_panel (closet TRUE) HEADS_HANDLERS}
+{new OutfitPanel shop_heads_panel (closet FALSE) HEADS_HANDLERS}
 {new OutfitPanel mycloset_heads_panel (closet TRUE) HEADS_HANDLERS}
 {new MainScreen
    shop_heads

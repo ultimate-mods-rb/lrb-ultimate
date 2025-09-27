@@ -39,15 +39,10 @@
          {$this set current_list legs.lst}
          {$this set current_btn 3legs.btn}
          {toggle_buttons CLOTHING_BUTTONS FALSE}
-         {if_else {== [closet] TRUE}
-            {do
-               {Categories.grp set_showing TRUE}
-               {$this set_focus 02city.btn}
-               {hide_invalid_genres $this legs [closet] FALSE}
-            }
-            {do
-               {$this show_genre none}
-            }
+         {do
+            {Categories.grp set_showing TRUE}
+            {$this set_focus 02city.btn}
+            {hide_invalid_genres $this legs [closet] FALSE}
          }
       }
    )
@@ -57,15 +52,10 @@
          {$this set current_list torso.lst}
          {$this set current_btn 2tops.btn}
          {toggle_buttons CLOTHING_BUTTONS FALSE}
-         {if_else {== [closet] TRUE}
-            {do
-               {Categories.grp set_showing TRUE}
-               {$this set_focus 02city.btn}
-               {hide_invalid_genres $this torso [closet] FALSE}
-            }
-            {do
-               {$this show_genre none}
-            }
+         {do
+            {Categories.grp set_showing TRUE}
+            {$this set_focus 02city.btn}
+            {hide_invalid_genres $this torso [closet] FALSE}
          }
       }
    )
@@ -93,46 +83,22 @@
             kDataUnhandled
          )
          (kAction_Cancel
-            {if_else {'||' {== $this shop_tops_panel} {== $this shop_legs_panel}}
-               {do
-                  {$this undo_outfit}
-                  {new.grp set_showing FALSE}
+            {switch {$this focus_name}
+               (OUTFIT_GENRES_BUTTONS
                   {ui goto_screen shop_screen}
-               }
-               {do
-                  {switch {$this focus_name}
-                     (CLOTHING_BUTTONS
-                        {if_else {== [closet] TRUE}
-                           {ui goto_screen shop_mycloset}
-                           {ui goto_screen shop_screen}
-                        }
-                     )
-                     (CLOTHING_LISTS
-                        {if {!= {$this selected_outfit} ''}
-                           {$this undo_outfit}
-                        }
-                        {if_else [closet]
-                           {do
-                              {$this set_focus [current_genre_btn]}
-                              {[current_grp] set_showing FALSE}
-                              {Categories.grp set_showing TRUE}
-                              {toggle_buttons OUTFIT_GENRES_BUTTONS TRUE}
-                           }
-                           {do
-                              {toggle_buttons CLOTHING_BUTTONS TRUE}
-                              {[current_grp] set_showing FALSE}
-                              {$this set_focus [current_btn]}
-                           }
-                        }
-                        {$this update}
-                     )
-                     {do
-                        {Categories.grp set_showing FALSE}
-                        {toggle_buttons CLOTHING_BUTTONS TRUE}
-                        {$this set_focus [current_btn]}
-                     }
+               )
+               (CLOTHING_LISTS
+                  {if {!= {$this selected_outfit} ''}
+                     {$this undo_outfit}
                   }
-               }
+                  {do
+                     {$this set_focus [current_genre_btn]}
+                     {[current_grp] set_showing FALSE}
+                     {Categories.grp set_showing TRUE}
+                     {toggle_buttons OUTFIT_GENRES_BUTTONS TRUE}
+                  }
+                  {$this update}
+               )
             }
             {[outfit_char] select_cam "idle"}
             {synth play button_back}
@@ -165,7 +131,7 @@
 )
 {new OutfitPanel
    shop_clothing_panel
-   (closet TRUE)
+   (closet FALSE)
    (single_screen FALSE)
    CLOTHING_HANDLERS
 }
@@ -177,13 +143,13 @@
 }
 {new OutfitPanel
    shop_tops_panel
-   (closet TRUE)
+   (closet FALSE)
    (single_screen TRUE)
    CLOTHING_HANDLERS
 }
 {new OutfitPanel
    shop_legs_panel
-   (closet TRUE)
+   (closet FALSE)
    (single_screen TRUE)
    CLOTHING_HANDLERS
 }
