@@ -6,17 +6,44 @@
 }
 {new PracticeBackgroundPanel
    practice_background_panel
-   (file "practice_background.milo")
+   (file
+      {random_elem
+         (
+            #ifdef HX_NG
+            "../practice_space_rb1.milo"
+            #else
+            "practice_background_rb1.milo"
+            #endif
+            "practice_space_rb2.milo" ; think this is unused in rb2. milo is in lrb ark but missing textures.
+            "practice_background.milo"
+            "practice_background_tbrb.milo"
+            "practice_background_gdrb.milo"
+         )
+      }
+   )
+   (bg)
    (select_background
+      {apply_gfx_settings}
       {do
          ($pcfg {session_mgr get_leader_user})
-         {drum_trainer.mesh set_showing FALSE}
-         {vocal_trainer.mesh set_showing FALSE}
-         {guitar_trainer.mesh set_showing FALSE}
-         {switch {$pcfg get_controller_type}
-            (kControllerVocals {vocal_trainer.mesh set_showing TRUE})
-            (kControllerDrum {drum_trainer.mesh set_showing TRUE})
-            (kControllerGuitar {guitar_trainer.mesh set_showing TRUE})
+         {if_else {$world exists guitar.shot}
+            {do
+               {switch {$pcfg get_controller_type}
+                  (kControllerVocals {$this select_cam "vocals.shot"})
+                  (kControllerDrum {$this select_cam "drums.shot"})
+                  (kControllerGuitar {$this select_cam "guitar.shot"})
+               }
+            }
+            {do
+               {drum_trainer.mesh set_showing FALSE}
+               {vocal_trainer.mesh set_showing FALSE}
+               {guitar_trainer.mesh set_showing FALSE}
+               {switch {$pcfg get_controller_type}
+                  (kControllerVocals {vocal_trainer.mesh set_showing TRUE})
+                  (kControllerDrum {drum_trainer.mesh set_showing TRUE})
+                  (kControllerGuitar {guitar_trainer.mesh set_showing TRUE})
+               }
+            }
          }
       }
    )
