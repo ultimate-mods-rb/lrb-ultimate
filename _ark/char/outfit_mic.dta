@@ -86,23 +86,19 @@
       )
       ;unused
       (banjo_mic
-         (ui_name banjo_mic)
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (neon_mic_01
-         (ui_name neon_mic_01)
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
       #ifdef HX_WII
       (skull_mic
-         (ui_name skull_mic)
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (skullmic
-         (ui_name skullmic)
          (genre lrb_shop_other)
          (unlocked TRUE)
       )

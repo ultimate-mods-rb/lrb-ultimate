@@ -324,6 +324,7 @@
 (short "short")
 (long "long")
 (very_long "very long")
+(lrb_shop_custom "CUSTOM")
 (rb1 "Rock Band")
 (rb1_alt "Rock Band (alt)")
 (rb2 "Rock Band 2")

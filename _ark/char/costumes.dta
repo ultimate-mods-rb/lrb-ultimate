@@ -5,7 +5,7 @@
       (costume_heather_moonbeam
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shops_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads MoonbeamHead)
             (torso MoonbeamChest)
@@ -16,7 +16,7 @@
       (costume_buzzsaw
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads BuzzsawHead)
             (torso BuzzsawChest)
@@ -27,7 +27,7 @@
       (costume_sharkey
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads SharkeyHead)
             (torso SharkeyChest)
@@ -38,7 +38,7 @@
       (costume_moosejaw_boudreau
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads MoosejawHead)
             (torso MoosejawChest)
@@ -49,7 +49,7 @@
       (costume_nicky_overdrive
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads OverdriveHead)
             (torso OverdriveChest)
@@ -60,7 +60,7 @@
       (costume_penny_twilight
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads TwilightHead)
             (torso TwilightChest)
@@ -71,7 +71,7 @@
       (costume_megan_scott
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads ScottHead)
             (torso ScottChest)
@@ -82,7 +82,7 @@
       (costume_grace_williams
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads GraceHead)
             (torso GraceChest)
@@ -93,7 +93,7 @@
       (costume_mekon_gemini
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads GeminiHead)
             (torso GeminiChest)
@@ -104,7 +104,7 @@
       (costume_fritzi_kostopoulos
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads FritziHead)
             (torso FritziChest)
@@ -115,7 +115,7 @@
       (costume_duke_of_gravity
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads GravityHead)
             (torso GravityChest)
@@ -126,7 +126,7 @@
       (costume_quentin_lance
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads LanceHead)
             (torso LanceChest)
@@ -137,7 +137,7 @@
       (costume_maynard_winter
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads MaynardHead)
             (torso MaynardChest)
@@ -148,7 +148,7 @@
       (costume_sir_thomas
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads ThomasHead)
             (torso ThomasChest)
@@ -159,7 +159,7 @@
       (costume_ol_smokey
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads SmokeyHead)
             (torso SmokeyChest)
@@ -170,7 +170,7 @@
       (costume_dora_sullivan
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads DoraHead)
             (torso DoraChest)
@@ -181,7 +181,7 @@
       (costume_penelope_mcqueen
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads McqueenHead)
             (torso McqueenChest)
@@ -192,7 +192,7 @@
       (costume_mothership_q
          (is_likeness TRUE)
          (unlocked TRUE)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads MothershipHead)
             (torso MothershipChest)
@@ -203,7 +203,7 @@
       (costume_earl_stephens
          (is_likeness TRUE)
          (cost 500000)
-         (genre lrb_shop_familars)
+         (genre lrb_shop_rock)
          (outfit
             (heads EarlHead)
             (torso EarlChest)
@@ -1604,10 +1604,11 @@
          )
       )
       #endif
+      ; custom
       (emmet
          (unlocked TRUE)
          (cost 10000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads BobHead)
             (torso emmet_torso)
@@ -1618,7 +1619,7 @@
       (lucy
          (unlocked TRUE)
          (cost 250000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads lucy_head)
             (torso lucy_torso)
@@ -1629,7 +1630,7 @@
       (batman
          (unlocked TRUE)
          (cost 100000000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads RogerTaylorHead)
             (torso batman_torso)
@@ -1640,7 +1641,7 @@
       (joker
          (unlocked TRUE)
          (cost 250000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads joker_head)
             (torso joker_torso)
@@ -1651,7 +1652,7 @@
       (miku
          (unlocked TRUE)
          (cost 5000000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads miku_head)
             (torso miku_torso)
@@ -1662,7 +1663,7 @@
       (skye
          (unlocked TRUE)
          (cost 2000000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads skye_head)
             (torso skye_torso)
@@ -1673,7 +1674,7 @@
       (ivystub
          (unlocked TRUE)
          (cost 5000000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads ivystub_head)
             (torso ivystub_torso)
@@ -1684,7 +1685,7 @@
       (shaggy
          (unlocked TRUE)
          (cost 10000000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads shaggy_head)
             (torso shaggy_torso)
@@ -1695,7 +1696,7 @@
       (hpotter
          (unlocked TRUE)
          (cost 5000000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads hpotter_head)
             (torso hpotter_torso)
@@ -1706,7 +1707,7 @@
       (es
          (unlocked TRUE)
          (cost 250000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads es_head)
             (torso es_torso)
@@ -1717,7 +1718,7 @@
       (pv
          (unlocked TRUE)
          (cost 250000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads pv_head)
             (torso pv_torso)
@@ -1728,7 +1729,7 @@
       (rysz
          (unlocked TRUE)
          (cost 250000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads rs_head)
             (torso rs_torso)
@@ -1739,7 +1740,7 @@
       (wz
          (unlocked TRUE)
          (cost 250000)
-         (genre lrb_shop_other)
+         (genre lrb_shop_custom)
          (outfit
             (heads wz_head)
             (torso wz_torso)
