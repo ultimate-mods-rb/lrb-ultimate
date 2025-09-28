@@ -254,7 +254,9 @@
       (blur (Blur_Graham Blur_Dave Blur_Damon Blur_Alex))
       (iggy_pop (Ol_Smokey Fritzi_Kostopoulos Iggy_Pop Earl_Stephens_Jr))
       (david_bowie (Maynard_Winter Moosejaw_Boudreau David_Bowie Megan_Scott))
-      (Jimmy_Hendrix (none none Jimmy_Hendrix none))
+      (Jimmy_Hendrix (The_Duke_of_Gravity Penny_Twilight Jimmy_Hendrix Quentin_Lance))
+      (kt_tunstall (Grace_Williams Fritzi_Kostopoulos kt_tunstall Penelope_McQueen))
+      (miku (skye batman miku ivystub))
       (old_times_sake (Commuter TrainDriver Trainconductor TrainDriver))
       (lego_city_fundraiser
          (Construction Construction Construction Construction)

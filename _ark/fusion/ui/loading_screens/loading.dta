@@ -677,12 +677,7 @@
             {== {meta_performer num_songs} 1}
             {'||' {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
          }
-         {do
-            ($likeness {get_likeness_group {meta_performer song}})
-            {if {!= $likeness kDataUnhandled}
-               {gamecfg set_override_band $likeness}
-            }
-         }
+         {data_override_band}
          {if_else {&& {gamemode get is_tour} {{tour band} playing_special_gig}}
             {do
                ($gig {{tour band} special_gig})
@@ -696,7 +691,7 @@
                   )
                )
                {if_else {find_elem $likeness_gigs {$gig name}}
-                  {gamecfg set_override_band {get_likeness_group {meta_performer song}}}
+                  {data_override_band}
                   {do
                      ($costume {$gig get_costume})
                      {if {!= $costume ''}
@@ -706,12 +701,7 @@
                }
             }
             {if {&& {gamemode get is_tour} {== {meta_performer num_songs} 1}}
-               {do
-                  ($likeness {get_likeness_group {meta_performer song}})
-                  {if {!= $likeness kDataUnhandled}
-                     {gamecfg set_override_band $likeness}
-                  }
-               }
+               {data_override_band}
             }
          }
       }
