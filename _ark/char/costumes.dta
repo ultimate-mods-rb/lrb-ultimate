@@ -1693,6 +1693,17 @@
             (hair shaggy_hair)
          )
       )
+      (tb3
+         (unlocked TRUE)
+         (cost 500000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads empty_head)
+            (torso dp_torso (colors 1 0))
+            (legs dp_legs)
+            (hats tb3_hat (colors 1 0))
+         )
+      )
       (hpotter
          (unlocked TRUE)
          (cost 5000000)
@@ -1702,6 +1713,17 @@
             (torso hpotter_torso)
             (legs hpotter_legs)
             (hair hpotter_hair)
+         )
+      )
+      (gm08
+         (unlocked TRUE)
+         (cost 500000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads empty_head)
+            (torso dp_torso (colors 23 0))
+            (legs dp_legs)
+            (hats gm08_hat (colors 23 0))
          )
       )
       (es

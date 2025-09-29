@@ -1273,5 +1273,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (dp_torso
+         (ui_name dp)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

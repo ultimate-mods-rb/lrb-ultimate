@@ -486,5 +486,15 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (tb3_hat
+         (ui_name tb3)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
+      (gm08_hat
+         (ui_name gm08)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

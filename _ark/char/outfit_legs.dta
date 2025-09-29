@@ -807,5 +807,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (dp_legs
+         (ui_name dp)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
