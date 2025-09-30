@@ -376,7 +376,7 @@
    overshell_gems_panel
    OVERSHELL_LIST_FILE
    (title os_gems)
-   (data (lrb rb3 rb2 rb1 tbrb gh2 gh3 ghwor ghl))
+   (data (lrb rb3 rb2 rb1 tbrb gh2 gh3 ghwt ghwor ghl))
    (enter {os_setup_common})
    (SELECT_MSG
       {set $gems {$component selected_sym}}
