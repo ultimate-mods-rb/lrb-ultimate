@@ -48,6 +48,10 @@
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_cnt_screen})
       )
+      (os_other
+         (type uNormal)
+         (sel_script {pop_and_goto_screen overshell_other_screen})
+      )
    ))
    (enter
       {os_setup_common}
@@ -337,6 +341,10 @@
    OVERSHELL_SAVE_POS
    (title os_trk)
    (data (
+      (os_reset
+         (type uNormal)
+         (sel_script {run ulti/ulti_init_apperance.dta})
+      )
       (os_gems
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_gems_screen})
@@ -742,4 +750,28 @@
    (back overshell_cnt_screen)
    (panels overshell_remap_cnt_panel practice_lower3rd_panel)
    (focus overshell_remap_cnt_panel)
+}
+{new UIPanel
+   overshell_other_panel
+   OVERSHELL_LIST_FILE
+   OVERSHELL_SAVE_POS
+   (title os_other)
+   (data (
+      (os_reset_all
+         (type uNormal)
+         (sel_script
+            {run ulti/ulti_init.dta}
+            {run ulti/ulti_init_apperance.dta}
+         )
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
+}
+{new UIScreen
+   overshell_other_screen
+   (back overshell_main_screen)
+   (panels overshell_other_panel practice_lower3rd_panel)
+   (focus overshell_other_panel)
 }

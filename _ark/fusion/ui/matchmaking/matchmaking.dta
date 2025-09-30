@@ -416,7 +416,7 @@
       {gamecfg set coop_intro_category INTRO}
       {presence_mgr set_assembling_band}
       {input_mgr set_limit kLimitNone}
-      {song_offer_provider set_highlighted_ix -1}
+      ;{song_offer_provider set_highlighted_ix -1}
       {char_cache cache_update}
       #ifdef HX_XBOX
       {platform_mgr check_signin_state_msg}

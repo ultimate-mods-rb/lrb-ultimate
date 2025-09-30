@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (3) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (4) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -193,7 +193,9 @@
                            {set $drms4 {sti {str_elem $pool 37}}}
                            {set $pad_inst {sti {str_elem $pool 38}}}
                            {set $pad_map {sti {str_elem $pool 39}}}
-                           {set $vsyncrate {sti {str_elem $pool 40}}}
+                           {if {>= $version 4} ; i had accidentally been inintalizng this to 0 
+                              {set $vsyncrate {sti {str_elem $pool 40}}}
+                           }
                            {set $emulatefps {sti {str_elem $pool 41}}}
                            {set $cnt_slot1 {sti {str_elem $pool 42}}}
                            {set $cnt_slot2 {sti {str_elem $pool 43}}}

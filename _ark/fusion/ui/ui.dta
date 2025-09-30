@@ -93,7 +93,10 @@
    #endif
    #include ../../ui/main_dialogs.dta
    #include overshell.dta
-   #include ulti_init.dta
+   #autorun {do
+      {run ulti/ulti_init.dta}
+      {run ulti/ulti_init_apperance.dta}
+   }
    #include ulti_funcs.dta
    #include ulti_screens.dta
    #ifdef HX_WII

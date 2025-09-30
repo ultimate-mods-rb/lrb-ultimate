@@ -406,13 +406,10 @@
       }
    )
    (BUTTON_DOWN_MSG
-      {if {! {$this in_vocal_mode}}
-         {if {== $action kAction_Right}
-            {$this inc_speed}
-         }
-         {if {== $action kAction_Left}
-            {$this dec_speed}
-         }
+      {switch $action
+         (kAction_Right {$this inc_speed})
+         (kAction_Left {$this dec_speed})
+         (kAction_ViewModify {game restart_mid_game})
       }
    )
    (inc_speed

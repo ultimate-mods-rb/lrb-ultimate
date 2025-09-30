@@ -67,13 +67,6 @@
    )
    (intro_start
       {world_panel set_showing {! $blackbg}}
-      {if $blackbg
-         {$world iterate
-            PostProc
-            $p
-            {$p set emulate_fps 1}
-         }
-      }
       {script_task kTaskSeconds
          (delay {- 0 {taskmgr seconds}})
          (script {handle ($this on_extend)})
@@ -86,13 +79,6 @@
    )
    (intro_skip
       {world_panel set_showing {! $blackbg}}
-      {if $blackbg
-         {$world iterate
-            PostProc
-            $p
-            {$p set emulate_fps 1}
-         }
-      }
       {if {'||' $skip_intro {gamemode get is_framerate_test}}
          {beatmatch set_intro_real_time 0}
       }
@@ -380,6 +366,7 @@
       }
    )
    (enter
+      {rnd set_sync $vsyncrate}
       {$world iterate PostProc $p
          {$p set emulate_fps $emulatefps}
          {unless $scrnoise
