@@ -138,19 +138,35 @@
 }
 {func os_sel_common {do
    ($entry {elem [data] {OS_LIST selected_pos}})
-   {synth play button_select}
-   {if {== {type $entry} kDataArray}
-      {switch {elem {find $entry type} 1}
-         ((uNormal uOnOFF)
-            {foreach $cmd {find $entry sel_script}
-               {eval $cmd}
+   {if_else
+      {&&
+         {== {type $entry} kDataArray}
+         {!
+            {do
+               ($block {find_exists $entry block_ingame})
+               ($bool)
+               {if {&& $block {exists beatmatch}}
+                  {set $bool {elem $block 1}}
+               }
+               $bool
             }
-         )
-         (uFakeSld
-            {$this set focused TRUE}
-            {$this set store {eval_var {elem {find $entry var} 1}}}
-         )
+         }
       }
+      {do
+         {synth play button_select}
+         {switch {elem {find $entry type} 1}
+            ((uNormal uOnOFF)
+               {foreach $cmd {find $entry sel_script}
+                  {eval $cmd}
+               }
+            )
+            (uFakeSld
+               {$this set focused TRUE}
+               {$this set store {eval_var {elem {find $entry var} 1}}}
+            )
+         }
+      }
+      {synth play button_error}
    }}
    {lst_reset}
 }

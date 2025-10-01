@@ -55,7 +55,15 @@
                ($artist_text {song_mgr song_artist $song})
                ($author {get_song_metadata $song author})
                {if {exists song.lbl}
-                  {song.lbl set_localized $song_text}
+                  {song.lbl set_localized
+                     {if_else {> $speedmod 1.00}
+                        {sprintf "%s (%d%)"
+                           $song_text
+                           {int {* 100 $speedmod}}
+                        }
+                        $song_text
+                     }
+                  }
                }
                {if {exists artist.lbl}
                   {artist.lbl set_localized
