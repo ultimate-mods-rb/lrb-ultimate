@@ -108,6 +108,7 @@
 (os_autokick "Auto Kick")
 (os_breakneck "Breakneck Speed")
 (os_perfmode "Performance Mode")
+(os_tiltsensor "Tilt Sensor")
 (os_whammypb "Whammy Pitch Bending")
 (os_legacybass "Legacy Bass Streak")
 (os_kickbounce "Kick Bounce")

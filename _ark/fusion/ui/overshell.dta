@@ -98,6 +98,11 @@
          (bool $syncdifspeeds)
          (sel_script {toggle_var syncdifspeeds})
       )
+      (os_tiltsensor
+         (type uOnOFF)
+         (bool $tiltsensor)
+         (sel_script {toggle_var tiltsensor})
+      )
       (os_whammypb
          (type uOnOFF)
          (bool $whammypb)
