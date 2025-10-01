@@ -415,7 +415,10 @@
       #else
       {do
          ($songname {meta_performer song})
-         ($phrase {get_song_metadata $songname loading_phrase})
+         ($phrase)
+         {if {|| {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
+            {set $phrase {get_song_metadata $songname loading_phrase}}
+         }
          {if {== [is_really_up] TRUE}
             {do
                {if_else $phrase
@@ -527,7 +530,10 @@
    (pick_new_hint
       {do
          ($songname {meta_performer song})
-         ($phrase {get_song_metadata $songname loading_phrase})
+         ($phrase)
+         {if {|| {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
+            {set $phrase {get_song_metadata $songname loading_phrase}}
+         }
          {if {== [is_really_up] TRUE}
             {if_else $phrase
                {Loading_Info.lbl set text_token $phrase}
