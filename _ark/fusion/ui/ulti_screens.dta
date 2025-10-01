@@ -346,7 +346,11 @@
       {$this do_stuff}
    )
    (exit
-      {set [current_set] {array 0}}
+      {set [current_set] 0}
+      {set [songs] 0}
+      {set [options] 0}
+      {set [current_filters] 0}
+      {set [voted] 0}
    )
    (do_stuff
       #ifndef _SHIP
@@ -362,7 +366,10 @@
       #ifndef _SHIP
       {print "doing song stuff\n"}
       #endif
-      ; this will lock up the game if it runs out of songs. fix at some point. maybe if it fails like 100 times?
+      ; clear played songs if almost out so it doesn't lock up
+      {if {>= {size [played_songs]} {- {song_offer_provider num_data} 5}}
+         {set [played_songs] {array 0}}
+      }
       {while {!= {size [songs]} 4} {do
          ($song {random_int 0 {song_offer_provider num_data}})
          ($song_sym {song_offer_provider data_symbol $song})
