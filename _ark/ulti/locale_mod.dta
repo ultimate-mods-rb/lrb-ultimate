@@ -5,6 +5,7 @@
 (main_store "BONUS")
 (musicstore "Music Store")
 (theatre "Jukebox Mode")
+(autoplay "Autoplay Mode")
 (cutsceneviewer "Cutscene Viewer")
 (framerate "frame_rate_screen")
 (the10s "The 10s")

@@ -163,6 +163,7 @@
    (is_tour_quickplay FALSE)
    (song_select song_select_screen)
    (play_a_show FALSE)
+   (is_autoplay FALSE)
 )
 (init
    #ifndef HX_EE
@@ -650,4 +651,18 @@
    (continue_screen play_a_show_screen)
    (pause_new_song_screen play_a_show_screen)
    (song_select play_a_show_screen)
+)
+(autoplay
+   QP_COOP_MODE_PROPERTIES
+   (is_tour $band_sel_mode)
+   (is_tour_quickplay $band_sel_mode)
+   (player_arrangement kArrangeBand)
+   (intro_category INTRO_VENUE)
+   (game_mode_context CONTEXT_GAME_MODE_TYPE_JUKEBOX)
+   (confirm_restart_screen '')
+   (update_leaderboards FALSE)
+   (is_autoplay TRUE)
+   (disable_score_saving TRUE)
+   (disable_achivements TRUE)
+   (game_screen jukebox_game_screen)
 )
