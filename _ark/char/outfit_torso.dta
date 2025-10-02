@@ -1278,5 +1278,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (desdemona_torso
+         (ui_name desdemona)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

@@ -1770,5 +1770,16 @@
             (hair wz_hair)
          )
       )
+      (desdemona
+         (unlocked TRUE)
+         (cost 5000000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads desdemona_head)
+            (torso desdemona_torso)
+            (legs desdemona_legs)
+            (hats desdemona_hat (colors 24 0))
+         )
+      )
    )
 )
