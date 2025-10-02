@@ -111,13 +111,17 @@
       )
       ;unused
       (drumkit
-         (ui_name drumkit)
          (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (no_drum
-         (ui_name no_drum)
          (genre lrb_shop_other)
+         (unlocked TRUE)
+      )
+      ; custom
+      (custom_drumkit
+         (genre lrb_shop_custom)
+         (cost 1000000)
          (unlocked TRUE)
       )
    )
