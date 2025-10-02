@@ -730,6 +730,18 @@
    (rating 2)
    (short_version 0)
    (song_length 128181)
+   #ifdef HX_NG
+   (song
+      (tracks
+         (
+            (drum (0 1 2 3))
+            (bass (4 5))
+            (guitar (6 7))
+            (vocals (10 11))
+         )
+      )
+   )
+   #endif
 )
 (brassinpocket
    (version 1)
