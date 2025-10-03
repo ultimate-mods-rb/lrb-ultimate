@@ -94,25 +94,21 @@
          {do
             ($origin_cmp
                {badcmp
-                  {sprint
-                     {if_else
-                        {&&
-                           {$lhs has_data game_origin}
-                           {!= {$lhs get_data (game_origin)} rb2}
-                        }
-                        {$lhs get_data (game_origin)}
-                        {$lhs get_icon}
+                  {if_else
+                     {&&
+                        {$lhs has_data game_origin}
+                        {!= {$lhs get_data (game_origin)} rb2}
                      }
+                     {$lhs get_data (game_origin)}
+                     {$lhs get_icon}
                   }
-                  {sprint
-                     {if_else
-                        {&&
-                           {$rhs has_data game_origin}
-                           {!= {$rhs get_data (game_origin)} rb2}
-                        }
-                        {$rhs get_data (game_origin)}
-                        {$rhs get_icon}
+                  {if_else
+                     {&&
+                        {$rhs has_data game_origin}
+                        {!= {$rhs get_data (game_origin)} rb2}
                      }
+                     {$rhs get_data (game_origin)}
+                     {$rhs get_icon}
                   }
                }
             )
