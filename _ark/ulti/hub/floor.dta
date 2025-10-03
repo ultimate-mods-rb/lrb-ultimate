@@ -1,0 +1,10 @@
+(pepper
+   (file "ulti/hub/pepper.milo")
+   (size big)
+   (cost 0)
+)
+(waluigi
+   (file "ulti/hub/waluigi.milo")
+   (size big)
+   (cost 0)
+)

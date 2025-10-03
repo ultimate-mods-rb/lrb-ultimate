@@ -1,0 +1,10 @@
+(junkopic
+   (file "ulti/hub/junkopic.milo")
+   (size small)
+   (cost 0)
+)
+(star
+   (file "ulti/hub/star.milo")
+   (size small)
+   (cost 0)
+)
