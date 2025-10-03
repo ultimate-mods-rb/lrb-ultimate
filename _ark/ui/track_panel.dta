@@ -124,6 +124,9 @@
             {$this sync_objects}
          }
       }
+      {if {gamemode get is_autoplay}
+         {multiplier_meter.tex set_bitmap ulti/track/blue.png}
+      }
       {$this set_showing FALSE}
       {$this set_track_out}
    )
@@ -152,12 +155,7 @@
       {force_drum_freestyle FALSE}
       {beatmatch foreach_active_player $player ;handle adding the appropriate callbacks to each player
          {if_else {gamemode get is_autoplay}
-            {do
-               {$player set_auto_play TRUE}
-               {with {{$player track} find streak_meter}
-                  {meter_wipe.mat set color {pack_color 0 0.5 1}}
-               }
-            }
+            {$player set_auto_play TRUE}
             {do
                ($obj {sprint {$player instrument} "_track_callback"})
                {if {exists $obj} {delete $obj}}
