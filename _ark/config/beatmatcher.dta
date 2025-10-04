@@ -45,7 +45,16 @@
          {handle (game downbeat)}
       }
    )
-   (reset {handle ($world start)})
+   (reset
+      {handle ($world start)}
+      {foreach $inst (guitar drum vocals bass)
+         {with coop_track_panel
+            {if {exists {sprint $inst "_countdown"}}
+               {{sprint $inst "_countdown"} reset}
+            }
+         }
+      }
+   )
 )
 (watcher
    (can_switch_tracks FALSE)

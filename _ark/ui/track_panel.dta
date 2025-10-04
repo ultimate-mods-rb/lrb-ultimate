@@ -1,10 +1,8 @@
 #define TRACK_END_FRAME (1920)
 #define TRACK_PANEL_HANDLERS (
    (enter
-      {foreach $obj {draw_order.grp get_array objects}
-         {if {$obj is_a BandLabel}
-            {draw_order.grp remove_object $obj}
-         }
+      {if {exists ulti_objects.grp}
+         {clear_array ulti_objects.grp objects}
       }
       {game add_sink $this}
       {with {$this loaded_dir}
@@ -51,6 +49,8 @@
    (animate_track_out_fast)
    (animate_track_in_fast)
    (finish_load
+      {new Group ulti_objects.grp}
+      {draw_order.grp add_object ulti_objects.grp}
       {if {!= $gems lrb} {do
          ($gems_dir {new RndDir gems_dir})
          {switch $gems
@@ -181,11 +181,7 @@
                {if {exists $obj} {delete $obj}}
                {new Object $obj}
                {$obj set_type countdown}
-               {$obj init
-                  {$player instrument}
-                  {$dir find end_game_drum.lbl}
-                  {$dir find end_game_drum.tnm}
-               }
+               {$obj init {$player instrument} $dir}
             }
          }
       }

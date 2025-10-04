@@ -9,15 +9,34 @@
          (event_array 0)
          (target 0)
          (track 0)
+         (parent 0)
          (anim 0)
          (init
-            ($track $target $anim)
+            ($track $dir)
             {set [track] {coop_track_panel find $track}}
-            {set [target] $target}
-            {set [anim] $anim}
+            {with $dir
+               {unless {$dir exists streak_meter.grp}
+                  ; i had to duplicate the milo as it wouldn't load if inserting it as a subdir multiple times. idk why i don't trust this engine.
+                  ; also maybe like move most of this to the objects one day. maybe if wii wasn't special (le) i'd do it now :<
+                  {$this insert (subdirs 0) {sprintf "ulti/track/countdown_%s.milo" $track}}
+                  {{streak_meter.grp dir} set_trans_parent end_game_drum.grp}
+                  {{streak_meter.grp dir} set_local_scale 35 35 35}
+                  {LegoStud.mesh set_showing FALSE}
+                  {multi_meter_anim.grp set_showing FALSE}
+                  {end_game_drum.lbl set_local_scale 0.014 0.014 0.014}
+                  {end_game_drum.lbl set_local_pos -0.08 0 0}
+                  {end_game_drum.lbl set_trans_parent streak_meter.grp}
+                  {$this sync_objects}
+               }
+               {{coop_track_panel find ulti_objects.grp} add_object {streak_meter.grp dir}}
+               {{coop_track_panel find ulti_objects.grp} add_object end_game_drum.lbl}
+            }
+            {set [target] {$dir find end_game_drum.lbl}}
+            {set [anim] {$dir find meter_wipe.mnm}}
+            {set [parent] {$dir find streak_meter.grp}}
+            {[parent] set_showing FALSE}
             {$this set_lbl " "}
-            {{coop_track_panel find draw_order.grp} add_object [target]}
-            {unless {== [track] vocals} {[target] set_local_pos 0 0 -335}}
+            {unless {== [track] vocals} {[parent] set_local_pos 0 0 -12}}
             {set [event_array] {{sprint $this "_mp"} get event_array}}
             {do
                ($pos {{sprint $this "_mp"} get final_note_pos})
@@ -41,6 +60,12 @@
                   }
                   {set [remaining] {int {/ {elem {elem [event_array] [current_event]} 1} 4}}}
                   {set [active] TRUE}
+                  {[anim] animate
+                     (units kTaskBeats)
+                     (period {* {- [remaining] 1} 4})
+                     (range 0 1)
+                  }
+                  {[parent] set_showing TRUE}
                   {{[track] find retract.trig} trigger}
                   {if {== [track] drum}
                      {force_drum_freestyle TRUE}
@@ -49,12 +74,10 @@
                {if [active]
                   {-- [remaining]}
                   {if_else [remaining]
-                     {do
-                        {$this set_lbl [remaining]}
-                        {[anim] animate (range 2.5 8)}
-                     }
+                     {$this set_lbl [remaining]}
                      {do
                         {$this set_lbl " "}
+                        {[parent] set_showing FALSE}
                         {if {== [track] drum}
                            {force_drum_freestyle FALSE}
                         }
@@ -71,6 +94,10 @@
                   }
                }
             }
+         )
+         (reset
+            {$this set_lbl " "}
+            {[parent] set_showing FALSE}
          )
       )
       (track_callback
