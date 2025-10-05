@@ -632,6 +632,14 @@
             }
          }
       }
+      {if
+         {&&
+            {gamemode get is_tour}
+            {{tour band} playing_special_gig}
+            {== {{{tour band} special_gig} name} gig_spf_special_03}
+         }
+         {tour set_qp_venue rb2/arena_09/arena_09.milo}
+      }
       ; the assembly msvc generated is way too fucking weird to patch.
       #ifdef HX_XBOX
       {if_else {challenge_mgr has_challenge}
