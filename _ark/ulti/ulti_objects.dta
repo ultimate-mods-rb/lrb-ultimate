@@ -35,7 +35,15 @@
             {set [parent] {$dir find streak_meter.grp}}
             {[parent] set_showing FALSE}
             {$this set_lbl " "}
-            {unless {== [track] vocals} {[parent] set_local_pos 0 0 -12}}
+            {cond
+               ({!= [track] vocals}
+                  {[parent] set_local_pos 0 0 -14}
+               )
+               ({! {is_vocals_on_top}}
+                  {[parent] set_local_pos 0 0 -6}
+               )
+               kDataUnhandled
+            }
             {set [event_array] {{sprint $this "_mp"} get event_array}}
             {do
                ($pos {{sprint $this "_mp"} get final_note_pos})

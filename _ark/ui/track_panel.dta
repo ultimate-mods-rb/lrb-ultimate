@@ -109,7 +109,7 @@
          {{new BandLabel timer.lbl} copy {endgame_feedback_01 find end_game_vox.lbl} 0}
          {timer.lbl set_local_scale 0.022 0.021 0.021}
          {if_else {is_vocals_on_top}
-            {timer.lbl set_local_pos 9.3 0 -3.3}
+            {timer.lbl set_local_pos 9.3 0 -3.0}
             {timer.lbl set_local_pos 9.7 0 6.8}
          }
          {timer.lbl set alignment kMiddleRight}
