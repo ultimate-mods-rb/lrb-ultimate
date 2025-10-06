@@ -764,6 +764,10 @@
    OVERSHELL_SAVE_POS
    (title os_other)
    (data (
+      (os_cheats
+         (type uNormal)
+         (sel_script {pop_and_goto_screen overshell_cheats_screen})
+      )
       (os_reset_all
          (type uNormal)
          (sel_script
@@ -781,4 +785,83 @@
    (back overshell_main_screen)
    (panels overshell_other_panel practice_lower3rd_panel)
    (focus overshell_other_panel)
+}
+{new UIPanel
+   overshell_cheats_panel
+   OVERSHELL_LIST_FILE
+   OVERSHELL_SAVE_POS
+   (bands)
+   (title os_cheats)
+   (data (
+      (os_freecam
+         (type uNormal)
+         (sel_script {ulti_cycle_free_camera})
+      )
+      (os_smallworld
+         (type uOnOFF)
+         (bool $smallworld)
+         (sel_script {toggle_var smallworld})
+      )
+      (os_bigmode
+         (type uOnOFF)
+         (bool $bigmode)
+         (sel_script {toggle_var bigmode})
+      )
+      (os_honestmode
+         (type uOnOFF)
+         (bool $honestmode)
+         (sel_script
+            {unless $honestmilo
+               {set $honestmilo {load_objects ulti/honestbob.milo}}
+               {$honestmilo delete_loader}
+            }
+            {toggle_var honestmode}
+         )
+      )
+      (os_hidechars
+         (type uOnOFF)
+         (bool $hidechars)
+         (sel_script {toggle_var hidechars})
+      )
+      (os_forceband_fmt
+         (type uFakeSld)
+         (fmt_type uNormal)
+         (var forceband)
+         (array [bands])
+      )
+      (os_flashbang
+         (type uOnOFF)
+         (bool $flashbang)
+         (sel_script {toggle_var flashbang})
+      )
+      (os_fakecheat
+         (type uNormal)
+         (sel_script
+            {passive_messages_panel queue_message
+               "to claim your monies you need to play every Honest Bob song. try again once finished."
+            }
+         )
+      )
+   ))
+   (enter
+      {do
+         ($array {array (none)})
+         {foreach $band {find $syscfg characters prefab_groups bands}
+            {if {== {type $band} kDataArray}
+               {push_back $array {elem $band 0}}
+            }
+         }
+         {set [bands] $array}
+      }
+      {os_setup_common}
+   )
+   (exit {set [bands] 0})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
+}
+{new UIScreen
+   overshell_cheats_screen
+   (back overshell_other_screen)
+   (panels overshell_cheats_panel practice_lower3rd_panel)
+   (focus overshell_cheats_panel)
 }

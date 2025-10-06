@@ -65,6 +65,18 @@
 
 {set $tiltsensor TRUE}
 
+{set $smallworld FALSE}
+
+{set $bigmode FALSE}
+
+{set $honestmode FALSE}
+
+{set $hidechars FALSE}
+
+{set $forceband none}
+
+{set $flashbang FALSE}
+
 #ifdef HX_WII
 {set $cnt_slot1 kPad_Circle}
 {set $cnt_slot2 kPad_DRight}

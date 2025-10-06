@@ -686,38 +686,41 @@
             }
          }
       }
-      {if_else
-         {&&
-            {== {meta_performer num_songs} 1}
-            {'||' {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
-         }
-         {data_override_band}
-         {if_else {&& {gamemode get is_tour} {{tour band} playing_special_gig}}
-            {do
-               ($gig {{tour band} special_gig})
-               ($likeness_gigs
-                  (gig_lcr_special_03
-                     gig_sf_special_02
-                     gig_wnrb_special_02
-                     gig_lcc_special_a
-                     gig_lcz_special_01
-                     gig_spf_special_02
+      {if_else {== $forceband none}
+         {if_else
+            {&&
+               {== {meta_performer num_songs} 1}
+               {'||' {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
+            }
+            {data_override_band}
+            {if_else {&& {gamemode get is_tour} {{tour band} playing_special_gig}}
+               {do
+                  ($gig {{tour band} special_gig})
+                  ($likeness_gigs
+                     (gig_lcr_special_03
+                        gig_sf_special_02
+                        gig_wnrb_special_02
+                        gig_lcc_special_a
+                        gig_lcz_special_01
+                        gig_spf_special_02
+                     )
                   )
-               )
-               {if_else {find_elem $likeness_gigs {$gig name}}
-                  {data_override_band}
-                  {do
-                     ($costume {$gig get_costume})
-                     {if {!= $costume ''}
-                        {gamecfg set_override_band $costume}
+                  {if_else {find_elem $likeness_gigs {$gig name}}
+                     {data_override_band}
+                     {do
+                        ($costume {$gig get_costume})
+                        {if {!= $costume ''}
+                           {gamecfg set_override_band $costume}
+                        }
                      }
                   }
                }
-            }
-            {if {&& {gamemode get is_tour} {== {meta_performer num_songs} 1}}
-               {data_override_band}
+               {if {&& {gamemode get is_tour} {== {meta_performer num_songs} 1}}
+                  {data_override_band}
+               }
             }
          }
+         {gamecfg set_override_band $forceband}
       }
       {ui goto_screen post_songs_loading_screen}
    )
@@ -737,6 +740,9 @@
                }
             }
          }
+      }
+      {if {!= $forceband none}
+         {gamecfg set_override_band $forceband}
       }
       {ui goto_screen challenge_post_songs_loading_screen}
    )

@@ -245,6 +245,7 @@
             }
          }
       }
+      {apply_gfx_settings}
    )
    (script_ran FALSE)
    (enter
@@ -366,37 +367,6 @@
       }
    )
    (enter
-      {rnd set_sync $vsyncrate}
-      {$world iterate PostProc $p
-         {$p set emulate_fps $emulatefps}
-         {unless $scrnoise
-            {$p set noise_intensity 0}
-         }
-         #ifndef HX_WII ;wii doesn't have motion blur (citation needed)
-         {unless $mbblend
-            {$p set motion_blur_blend 0}
-            {$p set motion_blur_weight 0}
-         }
-         #endif
-         {unless $scrbloom
-            {$p set bloom_intensity 0}
-         }
-      }
-      {$world iterate WorldDir $wd
-         {$wd iterate  BandCamShot $bcs
-            {unless $fxdof
-               {$bcs set use_depth_of_field FALSE}
-            }
-            {unless $camerashake
-               {foreach_int $i 0 {$bcs size (keyframes)}
-                  {$bcs set (keyframes $i shake_noisefreq) 0}
-                  {$bcs set (keyframes $i shake_noiseamp) 0}
-                  {$bcs set (keyframes $i shake_maxangle x) 0}
-                  {$bcs set (keyframes $i shake_maxangle y) 0}
-               }
-            }
-         }
-      }
       {if {gamemode get load_chars}
          {char_cache lip_sync}
       }

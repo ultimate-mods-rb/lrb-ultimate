@@ -193,7 +193,7 @@
                      {synth play button_focus}
                      {set_var {elem {find $entry var} 1}
                         {prev_elem
-                           {elem {find $entry array} 1}
+                           {eval {elem {find $entry array} 1}}
                            {eval_var {elem {find $entry var} 1}}
                         }
                      }
@@ -203,7 +203,7 @@
                      {synth play button_focus}
                      {set_var {elem {find $entry var} 1}
                         {next_elem
-                           {elem {find $entry array} 1}
+                           {eval {elem {find $entry array} 1}}
                            {eval_var {elem {find $entry var} 1}}
                         }
                      }
@@ -360,17 +360,21 @@
    }
 }
 {func apply_gfx_settings
+   {rnd set_sync $vsyncrate}
    {$world iterate PostProc $p
       #ifdef HX_NG
-      {$p set emulate_fps 60}
-      {unless $scrnoise
-         {$p set noise_intensity 0}
+      {if_else {game is_up}
+         {$p set emulate_fps $emulatefps}
+         {$p set emulate_fps 60}
       }
       {unless $mbblend
          {$p set motion_blur_blend 0}
          {$p set motion_blur_weight 0}
       }
       #endif
+      {unless $scrnoise
+         {$p set noise_intensity 0}
+      }
       {unless $scrbloom
          {$p set bloom_intensity 0}
       }
@@ -386,6 +390,63 @@
             {$cs set (keyframes $i shake_maxangle x) 0}
             {$cs set (keyframes $i shake_maxangle y) 0}
          }
+      }
+   }
+   {if $bigmode {do
+      ($x) ($y) ($z)
+      {$world iterate Character $c
+         {$c iterate Mesh $m
+            {$m get_local_scale $x $y $z}
+            {$m set_local_scale
+               {* $x 2}
+               {* $y 2}
+               {* $z 2}
+            }
+         }
+      }
+   }}
+   {if $smallworld {do
+      ($x) ($y) ($z)
+      {$world iterate Mesh $m
+         {$m get_local_scale $x $y $z}
+         {$m set_local_scale
+            {/ $x 2}
+            {/ $y 2}
+            {/ $z 2}
+         }
+      }
+      {$world iterate RndDir $dir
+         {unless {$dir is_a Character}
+            {$dir iterate Mesh $m
+               {$m get_local_scale $x $y $z}
+               {$m set_local_scale
+                  {/ $x 2}
+                  {/ $y 2}
+                  {/ $z 2}
+               }
+            }
+         }
+      }
+   }}
+   {if $honestmode {do
+      ($array {array 0})
+      {$honestmilo iterate Tex $t
+         {push_back $array $t}
+      }
+      {$world iterate Mat $m
+         {$m set diffuse_tex {random_elem $array}}
+      }
+      {$world iterate RndDir $dir
+         {unless {$dir is_a Character}
+            {$dir iterate Mat $m
+               {$m set diffuse_tex {random_elem $array}}
+            }
+         }
+      }
+   }}
+   {if $hidechars
+      {$world iterate Character $c
+         {$c set_showing FALSE}
       }
    }
 }
