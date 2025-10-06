@@ -664,5 +664,5 @@
    (is_autoplay TRUE)
    (disable_score_saving TRUE)
    (disable_achivements TRUE)
-   (game_screen jukebox_game_screen)
+   (game_screen autoplay_game_screen)
 )
