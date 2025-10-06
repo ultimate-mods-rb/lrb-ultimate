@@ -179,7 +179,12 @@
    (panels meta movie_panel tour_band_sel_panel tourworld_lower3rd_panel)
    (focus tour_band_sel_panel)
    (ignore_activated_button_press FALSE)
-   (back main_screen)
+   (back
+      {if_else $band_sel_mode
+         bonus_menuscreen
+         main_screen
+      }
+   )
    (enter
       {presence_mgr set_assembling_band}
       {char_cache cache_update}

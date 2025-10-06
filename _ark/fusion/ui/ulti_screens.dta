@@ -3,29 +3,36 @@
    (file "quickplay/quickplay_venue.milo")
    (selection_memory 0)
    (enter
-      {do
-         {choosevenue.lbl set text_token "bonus"}
-         {delete Venue_BG_BG.mesh}
-         {delete Venue_BG_Border.mesh}
-         {set $band_sel_mode 0}
-         {venue.lst set_data
-            (
-               play_a_show
-               theatre
-               autoplay
-               cutsceneviewer
-               framerate
-               #ifndef _SHIP
-               camera_debug
-               #endif
-               #ifdef HX_NG
-               musicstore
-               #endif
-            )
-         }
-         {$this set_focus venue.lst}
-         {venue.lst set_selected [selection_memory]}
+      {gamemode set_practice 0}
+      {gamemode set_mode init}
+      {user_mgr clear_users}
+      {gamecfg reset_config}
+      {tour clear_band}
+      {meta music_load_and_start}
+      {meta fade_meta_music 0}
+      {input_mgr clear_ui_leader}
+
+      {choosevenue.lbl set text_token "bonus"}
+      {delete Venue_BG_BG.mesh}
+      {delete Venue_BG_Border.mesh}
+      {set $band_sel_mode 0}
+      {venue.lst set_data
+         (
+            play_a_show
+            theatre
+            autoplay
+            cutsceneviewer
+            framerate
+            #ifndef _SHIP
+            camera_debug
+            #endif
+            #ifdef HX_NG
+            musicstore
+            #endif
+         )
       }
+      {$this set_focus venue.lst}
+      {venue.lst set_selected [selection_memory]}
    )
    (BUTTON_DOWN_MSG
       {if {== $action kAction_Cancel}
@@ -122,6 +129,7 @@
          )
       }
    )
+   (poll {meta music_ensure_playing})
 }
 {new MainScreen
    bonus_menuscreen
@@ -202,26 +210,27 @@
       kDataUnhandled
    )
    (SELECT_MSG
-      {do
-         {set $fake_cut_enter TRUE}
-         {cutscene set_current_cutscene {venue.lst selected_sym}}
-         {cutscene set replay 1}
-         {$this setup_users}
-         {if {== {cutscene get_current_cutscene} auditions}
-            {cutscene set_required_driver
-               {switch {$player get_track_type}
-                  (kTrackGuitar guitar.cutdrv)
-                  (kTrackDrum drum.cutdrv)
-                  (kTrackVocals vocal.cutdrv)
-                  (kTrackBass bass.cutdrv)
-                  guitar.cutdrv
-               }
+      {meta music_stop}
+      {meta delete_meta_music}
+
+      {set $fake_cut_enter TRUE}
+      {cutscene set_current_cutscene {venue.lst selected_sym}}
+      {cutscene set replay 1}
+      {$this setup_users}
+      {if {== {cutscene get_current_cutscene} auditions}
+         {cutscene set_required_driver
+            {switch {$player get_track_type}
+               (kTrackGuitar guitar.cutdrv)
+               (kTrackDrum drum.cutdrv)
+               (kTrackVocals vocal.cutdrv)
+               (kTrackBass bass.cutdrv)
                guitar.cutdrv
             }
+            guitar.cutdrv
          }
-         {synth play button_select}
-         {ui goto_screen cutscene_loading_screen_1}
       }
+      {synth play button_select}
+      {ui goto_screen cutscene_loading_screen_1}
    )
    (SCROLL_MSG
       {synth play button_focus}
@@ -230,7 +239,12 @@
 }
 {new MainScreen
    cutscene_menuscreen
-   (back bonus_menuscreen)
+   (back
+      {if_else $band_sel_mode
+         tour_band_sel_screen
+         bonus_menuscreen
+      }
+   )
    (panels meta movie_panel cutscene_menupanel tour_lower3rd_panel)
    (focus cutscene_menupanel)
    (helpbar

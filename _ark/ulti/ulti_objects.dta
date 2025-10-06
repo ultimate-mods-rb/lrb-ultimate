@@ -53,6 +53,7 @@
                }
             }
             {set [total_events] {max 0 {- {size [event_array]} 1}}}
+            {game add_sink $this (intro_start game_outro)}
          )
          (set_lbl
             ($text)
@@ -102,9 +103,12 @@
                }
             }
          )
+         (intro_start {$this reset})
+         (game_outro {$this reset})
          (reset
             {$this set_lbl " "}
             {[parent] set_showing FALSE}
+            {set [done] TRUE}
          )
       )
       (track_callback

@@ -232,5 +232,7 @@
       jukebox_game_screen
       camera_debug_game_screen
       autoplay_game_screen
+      main_startscreen
+      attract_screen
    )
 )

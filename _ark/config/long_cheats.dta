@@ -72,7 +72,7 @@
          {ui in_transition}
          {find_elem OVERSHELL_DISALLOWED_SCREENS {ui current_screen}}
       }
-      {cheat_display show "overshell blocked from opening"}
+      {print "overshell blocked from opening\n"}
       {ui push_screen overshell_main_screen}
    }
 )

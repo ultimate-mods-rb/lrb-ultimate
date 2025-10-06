@@ -601,6 +601,12 @@
    (uisink_signout_screen main_community_screen)
 )
 (theatre
+   (main_mode_screen
+      {if_else $band_sel_mode
+         tour_band_sel_screen
+         bonus_menuscreen
+      }
+   )
    QP_COOP_MODE_PROPERTIES
    (is_tour $band_sel_mode)
    (is_tour_quickplay $band_sel_mode)
@@ -623,6 +629,12 @@
    (game_screen jukebox_game_screen)
 )
 (camera_debug
+   (main_mode_screen
+      {if_else $band_sel_mode
+         tour_band_sel_screen
+         bonus_menuscreen
+      }
+   )
    QP_COOP_MODE_PROPERTIES
    (is_tour $band_sel_mode)
    (is_tour_quickplay $band_sel_mode)
@@ -645,14 +657,20 @@
    (game_screen camera_debug_game_screen)
 )
 (play_a_show
+   (main_mode_screen bonus_menuscreen)
    QP_COOP_MODE_PROPERTIES
    (play_a_show TRUE)
-   (main_mode_screen bonus_menuscreen)
    (continue_screen play_a_show_screen)
    (pause_new_song_screen play_a_show_screen)
    (song_select play_a_show_screen)
 )
 (autoplay
+   (main_mode_screen
+      {if_else $band_sel_mode
+         tour_band_sel_screen
+         bonus_menuscreen
+      }
+   )
    QP_COOP_MODE_PROPERTIES
    (is_tour $band_sel_mode)
    (is_tour_quickplay $band_sel_mode)
