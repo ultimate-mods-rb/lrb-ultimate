@@ -270,6 +270,8 @@
          ven_z_newyork
          ven_dojo
          ven_school
+         rooftop
+         americanidiot
       )
    )
    (rb2_venues
@@ -537,6 +539,8 @@
             (ven_z_newyork small_club/z_newyork/z_newyork.milo)
             (ven_dojo small_club/dojo/dojo.milo)
             (ven_school small_club/school/school.milo)
+            (americanidiot big_club/americanidiot/americanidiot.milo)
+            (rooftop small_club/rooftop/rooftop.milo)
             ;rb1/rb2
             (video_01 rb2/video_01/video_01.milo)
             (video_02 rb2/video_02/video_02.milo)

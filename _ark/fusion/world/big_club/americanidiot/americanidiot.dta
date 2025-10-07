@@ -1,0 +1,11 @@
+{$this iterate BandCamShot $bcs
+   {foreach_int $i 0 {$bcs size (targets)}
+      {if {== {$bcs get (targets $i target)} player_drum}
+         {$bcs set (targets $i teleport) FALSE}
+      }
+   }
+}
+{player_drum set_local_pos -2.47 214.91 26}
+{$this iterate Spotlight $l
+   {$l set_showing FALSE}
+}

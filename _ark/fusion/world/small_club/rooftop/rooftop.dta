@@ -1,0 +1,3 @@
+{$this iterate Spotlight $l
+   {$l set_showing FALSE}
+}
