@@ -281,6 +281,7 @@
                #endif
                ven_z_newyork
                ven_dojo
+               ven_school
                ; rb1/rb2 venue ports
                video_01
                video_02
@@ -503,6 +504,7 @@
             (ven_wikker big_club/wikker/wikker.milo)
             (ven_z_newyork small_club/z_newyork/z_newyork.milo)
             (ven_dojo small_club/dojo/dojo.milo)
+            (ven_school small_club/school/school.milo)
             ;rb1/rb2
             (video_01 rb2/video_01/video_01.milo)
             (video_02 rb2/video_02/video_02.milo)
