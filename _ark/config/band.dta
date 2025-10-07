@@ -98,6 +98,7 @@
    (trophies TRUE)
    (np_communication_id "NPWR00856_00")
    (titles
+      #ifdef _LRB_REGION_US
       (lrb
          (title_id
             (live "BLUS30382")
@@ -118,6 +119,28 @@
             (test "UP0006-NPXX00360_00")
          )
       )
+      #else
+      (lrb
+         (title_id
+            (live "BLES00636")
+            (test "NPXX00360")
+         )
+         (service_id
+            (live "EP1018-BLES00636_00")
+            (test "UP0006-NPXX00360_00")
+         )
+      )
+      (lrb_us
+         (title_id
+            (live "BLUS30382")
+            (test "NPXX00360")
+         )
+         (service_id
+            (live "UP1018-BLUS30382_00")
+            (test "UP0006-NPXX00360_00")
+         )
+      )
+      #endif
       ; this game can't decrypt ugc moggs
       ;(rb2
       ;   (title_id
