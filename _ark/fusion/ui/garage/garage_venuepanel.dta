@@ -224,164 +224,177 @@
          }
       }}
    )
+   (normal_venues
+      (
+         ven_lego_city_central
+         ven_bill_ditt_construction_co
+         ven_blockton_manor
+         ven_crystal_mine
+         ven_the_jolly_rocker
+         ven_the_parrot_n_pegleg
+         ven_wreck_n_roll_bowl
+         ven_lego_city_rooftop
+         ven_stud_farm
+         ven_lego_city_zoo
+         ven_the_cavern
+         ven_volcanic_rock
+         ven_sub_zero_research_facility
+         ven_the_abyss
+         ven_blockingham_castle
+         ven_wembrick_stadium
+         ven_ufo
+         ven_the_moon
+         ven_space_rock_festival
+      )
+   )
+   (challenge_venues
+      (
+         ven_demolition
+         ven_ghostbusters
+         ven_octopusattack
+         ven_farmrain
+         ven_icebreaker
+         ven_dinochase
+         ven_skeleton_battle
+         ven_ufobreakdown
+         ven_asteroid
+      )
+   )
+   (custom_venues
+      (
+         ven_battle
+         ven_small2
+         #ifdef HX_NG ; meshes need to be generated differently for wii
+         ven_wikker
+         #endif
+         ven_z_newyork
+         ven_dojo
+         ven_school
+      )
+   )
+   (rb2_venues
+      (
+         video_01
+         video_02
+         video_03
+         video_04
+         small_club_01
+         small_club_02
+         small_club_03
+         small_club_04
+         small_club_05
+         small_club_06
+         small_club_07
+         small_club_08
+         small_club_09
+         small_club_10
+         small_club_11
+         small_club_12
+         small_club_13
+         small_club_14
+         small_club_15
+         small_club_16
+         big_club_01
+         big_club_02
+         big_club_03
+         big_club_04
+         big_club_05
+         big_club_06
+         big_club_07
+         big_club_08
+         big_club_09
+         big_club_10
+         big_club_11
+         big_club_12
+         big_club_13
+         big_club_14
+         big_club_15
+         big_club_16
+         big_club_17
+         theater_01
+         theater_02
+         theater_03
+         theater_04
+         theater_05
+         theater_06
+         theater_07
+         theater_08
+         theater_09
+         theater_10
+         theater_11
+         arena_01
+         arena_02
+         arena_03
+         arena_04
+         arena_05
+         arena_06
+         arena_07
+         arena_08
+         arena_09
+         arena_10
+         arena_11
+         arena_12
+      )
+   )
+   (unused_venues
+      (
+         ven_blank
+         ven_blank_arena
+         ven_denpracticestage
+         ven_robotattack ;wii crash
+         ven_skatepark ;wii crash
+         ven_skatepark_early
+         ven_alienplanet_old
+         ven_barnyard_continued
+         ven_barnyard_revised
+         ven_barnyard_steve
+         ven_barnyard_blue_sky
+         ven_barnyard_proj_light
+         ven_barnyard_red_sky
+         ven_bonecave_old
+         ven_carsmash_1
+         ven_carsmash_copy
+         ven_carsmash_wnrb
+         #ifdef HX_WII
+         ven_carsmash_wnrb_david
+         ven_carsmash_wnrb_david_1
+         #endif
+         ven_castlegardens_wiicrowd ;wii crash (wii too much for wii)
+         ven_demolition_luke
+         ven_demolition_redux
+         ven_demolition_wc
+         ven_demolition_wiz
+         ven_farmrain_barnyard_g
+         ven_farmrain_temp
+         ven_farmrain_tm
+         ven_farmrain_tsc
+         ven_haunted_10842
+         ven_icebreaker_temp ;wii crash
+         ven_icebreaker01 ;wii crash
+         ven_icebreaker02 ;wii crash
+         ven_skeleton_battle_copy
+         ven_ufobreakdown_alt
+         ven_ovalrace
+      )
+   )
    (enter
       {input_mgr set_limit kLimitSession}
       {do
-         ;{venue.lst
-         ;   set_provider
-         ;   #ifndef _SHIP
-         ;   {if_else
-         ;      {tour is_all_unlocked}
-         ;      {tour qp_dbg_venue_provider}
-         ;      {tour qp_venue_provider}}
-         ;   #else
-         ;   {tour qp_venue_provider}
-         ;   #endif}
-         {venue.lst set scroll_time 0}
-         {venue.lst ;no need for providers here
-            set_data
+         ($array {array (ven_random)})
+         {foreach $group
             (
-               ;normal venues
-               ;ven_random reimplement at some point
-               ven_lego_city_central
-               ven_bill_ditt_construction_co
-               ven_blockton_manor
-               ven_crystal_mine
-               ven_the_jolly_rocker
-               ven_the_parrot_n_pegleg
-               ven_wreck_n_roll_bowl
-               ven_lego_city_rooftop
-               ven_stud_farm
-               ven_lego_city_zoo
-               ven_the_cavern
-               ven_volcanic_rock
-               ven_sub_zero_research_facility
-               ven_the_abyss
-               ven_blockingham_castle
-               ven_wembrick_stadium
-               ven_ufo
-               ven_the_moon
-               ven_space_rock_festival
-               ;challenge venues (honestly suprised how these work as normal venues)
-               ven_demolition
-               ven_ghostbusters
-               ven_octopusattack
-               ven_farmrain
-               ven_icebreaker
-               ven_dinochase
-               ven_skeleton_battle
-               ven_ufobreakdown
-               ven_asteroid
-               ven_ovalrace ;techically not a challenge venue as it's unused but its in a challenge dta
-               ;custom venues
-               ven_battle
-               ven_small2
-               #ifdef HX_NG ; meshes need to be generated differently for wii
-               ven_wikker
-               #endif
-               ven_z_newyork
-               ven_dojo
-               ven_school
-               ; rb1/rb2 venue ports
-               video_01
-               video_02
-               video_03
-               video_04
-               small_club_01
-               small_club_02
-               small_club_03
-               small_club_04
-               small_club_05
-               small_club_06
-               small_club_07
-               small_club_08
-               small_club_09
-               small_club_10
-               small_club_11
-               small_club_12
-               small_club_13
-               small_club_14
-               small_club_15
-               small_club_16
-               big_club_01
-               big_club_02
-               big_club_03
-               big_club_04
-               big_club_05
-               big_club_06
-               big_club_07
-               big_club_08
-               big_club_09
-               big_club_10
-               big_club_11
-               big_club_12
-               big_club_13
-               big_club_14
-               big_club_15
-               big_club_16
-               big_club_17
-               theater_01
-               theater_02
-               theater_03
-               theater_04
-               theater_05
-               theater_06
-               theater_07
-               theater_08
-               theater_09
-               theater_10
-               theater_11
-               arena_01
-               arena_02
-               arena_03
-               arena_04
-               arena_05
-               arena_06
-               arena_07
-               arena_08
-               arena_09
-               arena_10
-               arena_11
-               arena_12
-               ;etc venues
-               ven_blank
-               ven_blank_arena
-               ven_denpracticestage
-               ven_robotattack ;wii crash
-               ven_skatepark ;wii crash
-               ven_skatepark_early
-               ven_alienplanet_old
-               ven_barnyard_continued
-               ven_barnyard_revised
-               ven_barnyard_steve
-               ven_barnyard_blue_sky
-               ven_barnyard_proj_light
-               ven_barnyard_red_sky
-               ven_bonecave_old
-               ven_carsmash_1
-               ven_carsmash_copy
-               ven_carsmash_wnrb
-               #ifdef HX_WII
-               ven_carsmash_wnrb_david
-               ven_carsmash_wnrb_david_1
-               #endif
-               ven_castlegardens_wiicrowd ;wii crash (wii too much for wii)
-               ven_demolition_luke
-               ven_demolition_redux
-               ven_demolition_wc
-               ven_demolition_wiz
-               ven_farmrain_barnyard_g
-               ven_farmrain_temp
-               ven_farmrain_tm
-               ven_farmrain_tsc
-               ven_haunted_10842
-               ven_icebreaker_temp ;wii crash
-               ven_icebreaker01 ;wii crash
-               ven_icebreaker02 ;wii crash
-               ven_skeleton_battle_copy
-               ven_ufobreakdown_alt
+               [normal_venues]
+               [challenge_venues]
+               [custom_venues]
+               [rb2_venues]
+               [unused_venues]
             )
+            {foreach $venue $group
+               {push_back $array $venue}
+            }
          }
+         {venue.lst set scroll_time 0}
+         {venue.lst set_data $array}
          {$this set_focus venue.lst}
          {venue.lst set_selected [selection_memory]}
          {$this set
@@ -400,6 +413,25 @@
    (SELECT_MSG
       {do
          ($selected {venue.lst selected_sym})
+         {if {== $selected ven_random}
+            {set $selected
+               ; i know too much
+               {eval {`
+                  {random_elem {,
+                     {random_elem
+                        (
+                           [normal_venues]
+                           [challenge_venues]
+                           [custom_venues]
+                           #ifdef _SHIP
+                           [rb2_venues]
+                           #endif
+                        )
+                     }
+                  }}
+               }}
+            }
+         }
          {if_else {!= {find_exists [challenge_map] $selected} kDataUnhandled}
             {do
                {challenge_mgr set_current_challenge $selected}
@@ -408,7 +440,7 @@
                {ui goto_screen qp_difficulty_screen}
             }
             {do
-               ($custom {> {venue.lst selected_pos} 18})
+               ($custom {! {find_elem [normal_venues] $selected}})
                ($venue
                   {tour get_venue 
                      {if_else $custom
