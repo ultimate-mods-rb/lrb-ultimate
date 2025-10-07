@@ -127,6 +127,7 @@
       }
    }
    {OS_LIST set_data $array}
+   {OS_LIST set max_display {if_else {> {size $array} 4} 0 3}}
    {if {$this has (pos)}
       {OS_LIST set_selected [pos]}
    }

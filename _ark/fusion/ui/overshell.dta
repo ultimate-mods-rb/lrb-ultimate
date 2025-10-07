@@ -227,13 +227,11 @@
          (bool $fxdof)
          (sel_script {toggle_var fxdof})
       )
-      #ifndef HX_WII
       (os_scrnoise
          (type uOnOFF)
          (bool $scrnoise)
          (sel_script {toggle_var scrnoise})
       )
-      #endif
       (os_scrbloom
          (type uOnOFF)
          (bool $scrbloom)

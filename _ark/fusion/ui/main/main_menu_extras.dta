@@ -17,7 +17,7 @@
             {ui goto_screen credits_screen}
          )
          (modifygame.btn
-            {set $modifier_exit {ui current_screen}}
+            {passive_messages_panel queue_message {localize os_anywhere_info}}
             {ui push_screen overshell_main_screen}
          )
          (leaderboards.btn

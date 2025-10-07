@@ -11,7 +11,16 @@
 (the10s "The 10s")
 (the20s "The 20s")
 (the50s "The 50s")
-(os_ultisettings "Settings")
+(os_ultisettings "Mod Settings")
+#ifdef HX_WII
+(os_anywhere_info "You can press - twice almost everywhere to open this menu")
+#endif
+#ifdef HX_PS3
+(os_anywhere_info "You can press select twice almost everywhere to open this menu")
+#endif
+#ifdef HX_XBOX
+(os_anywhere_info "You can press back twice almost everywhere to open this menu")
+#endif
 (os_mod "Gameplay Modifiers")
 (os_vis "Visual Modifiers")
 (os_gfx "Graphics Settings")
@@ -165,6 +174,23 @@
 (ugc_section_20_60 "60% - 80%")
 (ugc_section_20_80 "80% - 100%")
 (funk "Funk")
+(folkrock "Folk Rock")
+(pop "Pop")
+(power "Power")
+(hardrock "Hard Rock")
+(jrock "J-Rock")
+(fusion "Fusion")
+(latin "Latin")
+(classical "Classical")
+(inspirational "Inspirational")
+(world "World")
+(hiphop "Hip Hop")
+(hiphoprap "Hip-Hop/Rap")
+(reggaeska "Reggae/Ska")
+(rbsoulfunk "R&B/Soul/Funk")
+(popdanceelectronic "Pop/Dance/Electronic")
+(rhythmandblues "R&B")
+(rockabilly "Rockabilly")
 (dlc_elf "Elf")
 (dlc_santa "Santa")
 (dlc_snowman "Snowman")
