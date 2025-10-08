@@ -371,6 +371,8 @@
 (search_for_song "Search for a song")
 (search_for_song_desc "Search for a song by name or artist")
 (no_songs_error "No songs found")
+(choke_solo "AWESOME CHOKE!")
+(tamb_rating_choke "AWESOME CHOKE")
 (invalid "invalid")
 (short "short")
 (long "long")
