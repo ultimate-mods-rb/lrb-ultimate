@@ -403,13 +403,17 @@
          {set $p_speed {gamecfg get practice_speed}}
          {beatmatch set_music_speed {elem [speed_modifier] $p_speed}}
          #endif
+         {script_task kTaskUISeconds
+            (delay 0.5)
+            (script {coop_track_panel do_stuff})
+         }
       }
    )
    (BUTTON_DOWN_MSG
       {switch $action
          (kAction_Right {$this inc_speed})
          (kAction_Left {$this dec_speed})
-         (kAction_ViewModify {game restart_mid_game})
+         (kAction_ViewModify {$this jump_to_start})
       }
    )
    (inc_speed
