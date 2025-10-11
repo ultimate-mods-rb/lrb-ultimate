@@ -182,6 +182,7 @@
                      {synth play button_select}
                      {$this set focused FALSE}
                      {set [store] 0}
+                     {os_update_helpbar}
                   )
                   (kAction_Cancel
                      {synth play button_back}
