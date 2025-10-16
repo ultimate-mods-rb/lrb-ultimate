@@ -66,10 +66,12 @@
       lrb_shop_other
       lrb_shop_rock
       lrb_shop_custom
+      lrb_shop_unused
    )
 )
 #define OUTFIT_GENRES_BUTTONS (
-   (01rockstars.btn
+   (
+      01rockstars.btn
       02city.btn
       03adventure.btn
       04spooky.btn
@@ -78,10 +80,26 @@
       07other.btn
       08rock.btn
       09faces.btn
+      10unused.btn
    )
 )
 {func hide_invalid_genres
    ($panel $category $is_closet $is_likeness)
+   {unless {exists 10unused.btn}
+      {new BandButton 10unused.btn}
+      {10unused.btn copy 09faces.btn 0}
+      {09faces.btn set_local_pos 86.92 0.00 65.06}
+      {09faces.btn set nav_down 10unused.btn}
+      {10unused.btn set_local_pos 86.92 0.00 48.06}
+      {10unused.btn set nav_down 08rock.btn}
+      {10unused.btn set text_token lrb_shop_unused}
+      {08rock.btn set_local_pos 86.92 0.00 31.06}
+      {Categories.grp add_object 10unused.btn}
+      {$this sync_objects}
+   }
+   {if {exists 09faces.btn}
+      {09faces.btn set text_token lrb_shop_custom}
+   }
    {do
       ($index 0)
       {foreach $button OUTFIT_GENRES_BUTTONS
@@ -105,9 +123,6 @@
    }
 }
 #define OUTFIT_DEFAULT_ENTER (
-   {if {exists 09faces.btn}
-      {09faces.btn set text_token lrb_shop_custom}
-   }
    {$this set can_change_member {[outfit_char] can_change_member}}
    {$this update}
 )

@@ -7,119 +7,119 @@
    (outfits
       (MoonbeamHead
          (ui_name Heather_Moonbeam)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (BuzzsawHead
          (ui_name Buzzsaw)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (SharkeyHead
          (ui_name Sharkey)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (MoosejawHead
          (ui_name Moosejaw_Boudreau)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (OverdriveHead
          (ui_name Nicky_Overdrive)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (TwilightHead
          (ui_name Penny_Twilight)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (ScottHead
          (ui_name Megan_Scott)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (GraceHead
          (ui_name Grace_Williams)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (GeminiHead
          (ui_name Mekon_Gemini)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (FritziHead
          (ui_name Fritzi_Kostopoulos)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (GravityHead
          (ui_name The_Duke_of_Gravity)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (LanceHead
          (ui_name Quentin_Lance)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (MaynardHead
          (ui_name Maynard_Winter)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (ThomasHead
          (ui_name Sir_Thomas)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (SmokeyHead
          (ui_name Ol_Smokey)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (DoraHead
          (ui_name Dora_Sullivan)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (McqueenHead
          (ui_name Penelope_McQueen)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (MothershipHead
          (ui_name Mothership_Q)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
          (creator TRUE)
       )
       (EarlHead
          (ui_name Earl_Stephens_Jr)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock)
          (unlocked TRUE)
       )
       (RoadieGlamHead
          (ui_name Glam_Roadie)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (RoadieOldHead
          (ui_name Old_Roadie)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (ManagerHead
          (ui_name Manager)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (SoundEngineerHead
@@ -129,7 +129,7 @@
       )
       (MvpHead
          (ui_name Music_Video_Producer)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (GuruHead
@@ -144,17 +144,17 @@
       )
       (AlienHead
          (ui_name Alien)
-         (genre lrb_shop_heads_set_1)
+         (genre lrb_shop_secret)
          (unlocked TRUE)
       )
       (AlienBalaclavaHead
          (ui_name Alien_Balaclava)
-         (genre lrb_shop_heads_set_1)
+         (genre lrb_shop_secret)
          (unlocked TRUE)
       )
       (AlienIslanderHead
          (ui_name Alien_islander)
-         (genre lrb_shop_heads_set_1)
+         (genre lrb_shop_secret)
          (unlocked TRUE)
       )
       (AstronautHead
@@ -462,7 +462,7 @@
       )
       (Head01
          (ui_name no_blends)
-         (genre lrb_shop_heads_set_1)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (DavidBowieHead
@@ -537,62 +537,62 @@
       )
       (HubDinoHunterHead
          (ui_name Hub_Dino_Hunter_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubQueenHead
          (ui_name Hub_Queen_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubJesterHead
          (ui_name Hub_Jester_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubDamselHead
          (ui_name Hub_Damsel_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubNinjaHead
          (ui_name Hub_Ninja_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubForemanHead
          (ui_name Hub_Foreman_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubCowboyHead
          (ui_name Hub_Cowboy_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (PirateHead01
          (ui_name Hub_Pirate01_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (PirateHead02
          (ui_name Hub_Pirate02_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubNativeAmericanHead
          (ui_name Hub_Native_American_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubOrcHead
          (ui_name Hub_Orc_Head)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HubKingHead
          (ui_name King)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (BobHead
@@ -603,31 +603,31 @@
       )
       (SingerHead
          (ui_name Singer)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (BassistHead
          (ui_name Bassist)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (GuitaristHead
          (ui_name Guitarist)
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (DrummerHead
-         (genre lrb_shop_exclude)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       (HendrixHead
          (ui_name Jimmy_Hendrix)
-         (genre lrb_shop_heads_set_4)
+         (genre lrb_shop_rock_stars)
          (unlocked TRUE)
       )
       (Head02
          (ui_name Skeleton)
-         (genre lrb_shop_heads_set_1)
+         (genre lrb_shop_other)
          (unlocked TRUE)
       )
       #ifdef HX_NG
@@ -645,57 +645,57 @@
       ;unused
       (kttunstallhead
          (ui_name kt_tunstall)
-         (genre lrb_shop_other)
+         (genre lrb_shop_rock_stars)
          (unlocked TRUE)
       )
       (blank_head
          (ui_name blank_head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (captjackhead
          (ui_name captjackhead)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (head03
          (ui_name head03)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (head05
          (ui_name head05)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (head06
          (ui_name head06)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (head07
          (ui_name head07)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (head09
          (ui_name head09)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (headbeardtest
          (ui_name headbeardtest)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (plain
          (ui_name plain)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (empty_head
          (ui_name blank)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       ;custom

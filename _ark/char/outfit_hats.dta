@@ -389,83 +389,83 @@
       ;unused
       (alien01
          (ui_name alien01)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (alien02
          (ui_name alien02)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (alien03
          (ui_name alien03)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (alien04
          (ui_name alien04)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (americanheaddress
          (ui_name americanheaddress)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (frankenstienhead
          (ui_name frankenstienhead)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (hat01
          (ui_name hat01)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (hat02
          (ui_name hat02)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (hat_captainjack
          (ui_name hat_captainjack)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (hat_leatherguy
          (ui_name hat_leatherguy)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (hat_schoolboyhat
          (ui_name hat_schoolboyhat)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (hat_traindriver
          (ui_name hat_traindriver)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (imperial_gaurd
          (ui_name imperial_gaurd)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (orchelmet
          (ui_name orchelmet)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (soldierhelmet
          (ui_name soldierhelmet)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       #ifdef HX_WII
       (soundengineerhair
          (ui_name soundengineerhair)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       #endif
