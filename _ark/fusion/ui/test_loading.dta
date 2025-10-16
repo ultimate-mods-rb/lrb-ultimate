@@ -7,25 +7,16 @@
 {passive_messages_panel load TRUE}
 {new UIPanel
    world_movie_panel
-   #ifdef HX_NG
-   (file "../../ulti/world_movie.milo")
-   #else
-   ; attempts to help with memory issues on wii
    (file
       {if_else {|| {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
          "../../ulti/world_movie.milo"
          "../../ui/np_bg.milo"
       }
    )
-   #endif
    (has_video FALSE)
    (video_delay 0)
    (video_path "")
    (enter
-      #ifdef HX_NG
-      {$this set_aspect_ratio}
-      {game add_sink $this (intro_start intro_end game_lost)}
-      #else
       {if_else {|| {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
          {do
             {$this set_aspect_ratio}
@@ -33,7 +24,6 @@
          }
          {$this set_showing FALSE}
       }
-      #endif
    )
    (exit {game remove_sink $this})
    (intro_end
