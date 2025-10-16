@@ -332,6 +332,19 @@
       {timer.lbl set text_size 18.00}
       {timer.lbl set_local_pos 160.50 0.00 185.76}
 
+      {new Group loading.grp}
+      {loading.grp add_object loading.btn}
+      {loading.grp add_object Star_Icon.mesh}
+      {loading.grp set_showing FALSE}
+
+      {loading.btn set_trans_parent loading.grp}
+      {Star_Icon.mesh set_trans_parent loading.grp}
+      {Star_Icon.mesh set_local_pos 0 0 25}
+      {loading.btn set_local_pos 0 0 0}
+      {loading.grp set_local_pos 0 0 -160}
+      {loading.btn set alignment kMiddleCenter}
+
+      {$this sync_objects}
       {set [current_set] {array 0}}
       {$this do_stuff}
    )
@@ -486,7 +499,9 @@
          }
          {thread_task kTaskSeconds (script
             {$this iterate BandList $lst {$lst set_showing FALSE}}
-            {$task sleep 3}
+            {loading.grp set_showing TRUE}
+            {loading.trig trigger}
+            {$task sleep 1}
             {foreach $song [current_set]
                {push_back [played_songs] $song}
             }
