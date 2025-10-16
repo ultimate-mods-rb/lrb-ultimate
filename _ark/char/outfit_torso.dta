@@ -994,22 +994,22 @@
          (unlocked TRUE)
       )
       (Naked_Chest_Brown
-         (genre lrb_shop_rock)
+         (genre lrb_shop_unused)
          (cost 7)
          (unlocked TRUE)
       )
       (Naked_Chest_Green
-         (genre lrb_shop_rock)
+         (genre lrb_shop_unused)
          (cost 7)
          (unlocked TRUE)
       )
       (Naked_Chest_Pink
-         (genre lrb_shop_rock)
+         (genre lrb_shop_unused)
          (cost 7)
          (unlocked TRUE)
       )
       (Naked_Chest_Yellow
-         (genre lrb_shop_rock)
+         (genre lrb_shop_unused)
          (cost 7)
          (unlocked TRUE)
       )

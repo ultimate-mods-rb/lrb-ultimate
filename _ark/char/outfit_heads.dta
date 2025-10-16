@@ -527,12 +527,12 @@
       )
       (HubSoldierHead
          (ui_name Hub_Solder_Head)
-         (genre lrb_shop_castle)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubZookeeperHead
          (ui_name Hub_Zookeeper_Head)
-         (genre lrb_shop_city)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubDinoHunterHead
@@ -542,57 +542,57 @@
       )
       (HubQueenHead
          (ui_name Hub_Queen_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubJesterHead
          (ui_name Hub_Jester_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubDamselHead
          (ui_name Hub_Damsel_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubNinjaHead
          (ui_name Hub_Ninja_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubForemanHead
          (ui_name Hub_Foreman_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubCowboyHead
          (ui_name Hub_Cowboy_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (PirateHead01
          (ui_name Hub_Pirate01_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (PirateHead02
          (ui_name Hub_Pirate02_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubNativeAmericanHead
          (ui_name Hub_Native_American_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubOrcHead
          (ui_name Hub_Orc_Head)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (HubKingHead
          (ui_name King)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (BobHead
@@ -603,17 +603,17 @@
       )
       (SingerHead
          (ui_name Singer)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (BassistHead
          (ui_name Bassist)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (GuitaristHead
          (ui_name Guitarist)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       (DrummerHead
@@ -627,7 +627,7 @@
       )
       (Head02
          (ui_name Skeleton)
-         (genre lrb_shop_other)
+         (genre lrb_shop_unused)
          (unlocked TRUE)
       )
       #ifdef HX_NG
