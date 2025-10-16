@@ -53,7 +53,7 @@
          }
          #endif
       }
-      #ifdef HX_NG
+      #ifdef HX_PS3
       {content_mgr start_refresh}
       #endif
    )

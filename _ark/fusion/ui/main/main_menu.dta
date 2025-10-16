@@ -110,13 +110,6 @@
    (poll {meta music_ensure_playing})
    (SELECT_MSG
       {synth play button_select}
-      #ifdef HX_XBOX
-      {unless {$this has (fake_refresh)}
-         ; fixes dlc being broken due to scanning too early
-         {content_mgr remove_content kDataUnhandled}
-         {$this set fake_refresh TRUE}
-      }
-      #endif
       {switch $component
          #ifdef KIOSK_DEMO
          (challenge.btn
