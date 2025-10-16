@@ -5,10 +5,12 @@
    (file "")
    (held_buttons
       (kAction_Start
-         {if_else {modifier_mgr is_modifier_active mod_demomode}
-            1.0
-            0.1
-         }
+         #ifdef HX_XBOX
+         ; workaround for nova
+         0.00001
+         #else
+         0.1
+         #endif
       )
    )
    (load {set_loader_period 14})
