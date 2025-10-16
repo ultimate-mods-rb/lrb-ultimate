@@ -308,23 +308,23 @@
       {buttons.lst set_data ("gA" "rB" "yY" "bX" "yR")}
       #endif
       {song0.lbl set alignment kMiddleLeft}
-      {song0.lbl set text_size 18.00}
-      {song0.lbl set fixed_length 21}
       {song0.lbl set_local_pos -195.00 0.00 159}
       {song2.lbl set alignment kMiddleLeft}
-      {song2.lbl set text_size 18.00}
-      {song2.lbl set fixed_length 21}
       {song2.lbl set_local_pos -195.00 0.00 139}
 
 
       {song1.lbl set alignment kMiddleRight}
-      {song1.lbl set text_size 18.00}
-      {song1.lbl set fixed_length 21}
       {song1.lbl set_local_pos 195.00 0.00 159}
       {song3.lbl set alignment kMiddleRight}
-      {song3.lbl set text_size 18.00}
-      {song3.lbl set fixed_length 21}
       {song3.lbl set_local_pos 195.00 0.00 139}
+
+      {foreach $lbl (song0.lbl song1.lbl song2.lbl song3.lbl)
+         {$lbl set text_size 18.00}
+         {$lbl set fixed_length 0}
+         {$lbl set width 185}
+         {$lbl set height 22}
+         {$lbl set fit_type kFitJust}
+      }
 
       {StudBG_04.mesh set_local_pos 161.36 -3.13 185.43}
 
