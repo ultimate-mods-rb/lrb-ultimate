@@ -698,6 +698,10 @@
          (genre lrb_shop_unused)
          (unlocked TRUE)
       )
+      (no_head
+         (genre lrb_shop_unused)
+         (unlocked TRUE)
+      )
       ;custom
       (skye_head
          (cost 500000)

@@ -760,6 +760,10 @@
          (genre lrb_shop_unused)
          (unlocked TRUE)
       )
+      (no_legs
+         (genre lrb_shop_unused)
+         (unlocked TRUE)
+      )
       ; custom
       (skye_legs
          (cost 500000)

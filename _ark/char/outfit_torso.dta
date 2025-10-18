@@ -1176,6 +1176,10 @@
          (genre lrb_shop_unused)
          (unlocked TRUE)
       )
+      (no_torso
+         (genre lrb_shop_unused)
+         (unlocked TRUE)
+      )
       ;custom
       (knuckles_shirt
          (ui_name knuckles_shirt)
