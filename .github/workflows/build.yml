@@ -55,7 +55,6 @@ jobs:
           move "dependencies\ta_pkg_repacker_tools\usa\PARAM.SFO" "_build\ps3"
           $sha_short="$(git rev-parse --short HEAD)".ToUpper()
           $content="UP0006-BLUS30382_00-LRBULTIMA"
-          $packageversion="1.01"
           dependencies/ta_pkg_repacker_tools/make_package_npdrm_retail.exe --k-licensee 0x00000000000000000000000000000000 --drm-type Local --package-version $packageversion --content-type GameData --content-id ($content + $sha_short) dependencies/ta_pkg_repacker_tools/usa/package.conf _build/ps3
 
       - name: Upload result
@@ -86,7 +85,6 @@ jobs:
           move "dependencies\ta_pkg_repacker_tools\eur\PARAM.SFO" "_build\ps3"
           $sha_short="$(git rev-parse --short HEAD)".ToUpper()
           $content="UP0006-BLES00636_00-LRBULTIMA"
-          $packageversion="1.02"
           dependencies/ta_pkg_repacker_tools/make_package_npdrm_retail.exe --k-licensee 0x00000000000000000000000000000000 --drm-type Local --package-version $packageversion --content-type GameData --content-id ($content + $sha_short) dependencies/ta_pkg_repacker_tools/eur/package.conf _build/ps3
 
       - name: Upload result
