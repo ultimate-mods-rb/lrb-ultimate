@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (5) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (6) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -95,6 +95,7 @@
                         $kickbounce
                         $songtimer
                         $tiltsensor
+                        $prodrums
                         " "
                         $trackspeed
                         " "
@@ -212,6 +213,9 @@
                            }
                            {if {>= $version 5}
                               {set $tiltsensor {sti {str_elem $pool 52}}}
+                           }
+                           {if {>= $version 6}
+                              {set $prodrums {sti {str_elem $pool 53}}}
                            }
 
                            {set $trackspeed {sftf {elem $array 2}}}

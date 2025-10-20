@@ -155,6 +155,13 @@
          (bool $kickbounce)
          (sel_script {toggle_var kickbounce})
       )
+      #ifdef HX_PS3 ; will work on other consoles. just need to hax the other execs.
+      (os_prodrums
+         (type uOnOFF)
+         (bool $prodrums)
+         (sel_script {toggle_var prodrums})
+      )
+      #endif
       (os_colorshuffle
          (type uOnOFF)
          (bool $colorshuffle)

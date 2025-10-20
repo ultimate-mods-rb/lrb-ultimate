@@ -114,6 +114,14 @@
    drum_green.wid
    drum_star.wid
 )
+#define DRUMCYM_SET (
+   gem_kick.wid
+   cymbal_gem_red.wid
+   cymbal_gem_yellow.wid
+   cymbal_gem_blue.wid
+   cymbal_gem_green.wid
+   cymbal_gem_star.wid
+)
 #define GTR_SUSTAIN_COLORS (green red yellow blue orange star)
 #define COLOR_SHUFFLE_SLOT_1 (
    {if_else $colorshuffle

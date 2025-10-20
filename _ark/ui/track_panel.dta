@@ -51,21 +51,10 @@
    (finish_load
       {new Group ulti_objects.grp}
       {draw_order.grp add_object ulti_objects.grp}
-      {if {!= $gems lrb} {do
-         ($gems_dir {new RndDir gems_dir})
-         {switch $gems
-            #include ../ulti/track/gems/gems_scripting.dta
-         }
-      }}
-      {if {!= $smashers lrb}
-         {smasher_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s.png" $smashers}}
-         {smasher_color_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s_color.png" $smashers}}
-         {square_smasher_bright.tex set_bitmap {sprintf "ulti/track/smashers/%s_square.png" $smashers}}
-      }
       ; apply custom colors to lanes. this is hacky as FUCK however it actually works perfectly. i'm really proud of this.
       ; however like i'm really tired so i might be dumb and am overlooking a sane way of doing this.
       {foreach $gtr (guitar bass)
-         {with {{get_track_panel} find $gtr}
+         {with $gtr
             {foreach_int $i 0 5
                {{new PropAnim {sprintf "gem_bak%d.anim" $i}} copy {sprintf "gem_mash%d.anim" $i} 0}
             }
@@ -79,7 +68,7 @@
             }}
          }
       }
-      {with {{get_track_panel} find drum}
+      {with drum
          {unless $kickbounce
             {clear_array kick_drummer.trig anims}
          }
@@ -101,6 +90,53 @@
             {{sprintf "drum_mash%d.anim" $i} copy {sprintf "drum_bak%d.anim" $color} 0}
             {{sprintf "drum_mash%d_BRE.anim" $i} copy {sprintf "drum_bak%d_BRE.anim" $color} 0}
          }}
+         {$this set cymbal_wids {array 0}}
+         {$this insert (subdirs 0) "ulti/track/pro_drums.milo"}
+         {foreach $wid
+            (
+               dynamic_crash_gem_cymbal.wid
+               dynamic_crash_gem_cymbal_lefty.wid
+               cymbal_gem_star.wid
+               cymbal_gem_red.wid
+               cymbal_gem_yellow.wid
+               cymbal_gem_blue.wid
+               cymbal_gem_green.wid
+               cymbal_gem_orange.wid
+            )
+            {{new TrackWidget $wid} copy drum_red.wid 0}
+            {drum_gems.grp add_object $wid}
+            {push_back [cymbal_wids] $wid}
+            #ifdef HX_NG
+            {$wid set multi_mesh FALSE}
+            #endif
+         }
+         {foreach $color (red yellow blue green orange) {do
+            ($wid {sprintf "cymbal_gem_%s.wid" $color})
+            {clear_array $wid meshes}
+            {$wid insert (meshes 0) {sprintf "cymbal_gem_%s.mesh" $color}}
+         }}
+
+         {clear_array cymbal_gem_star.wid meshes}
+         {cymbal_gem_star.wid insert (meshes 0) cymbal_gem_style.mesh}
+
+         {clear_array dynamic_crash_gem_cymbal.wid meshes}
+         {dynamic_crash_gem_cymbal.wid insert (meshes 0) cymbal_gem_green.mesh}
+
+         {clear_array dynamic_crash_gem_cymbal_lefty.wid meshes}
+         {dynamic_crash_gem_cymbal_lefty.wid insert (meshes 0) cymbal_gem_red.mesh}
+
+         {$this sync_objects}
+      }
+      {if {!= $gems lrb} {do
+         ($gems_dir {new RndDir gems_dir})
+         {switch $gems
+            #include ../ulti/track/gems/gems_scripting.dta
+         }
+      }}
+      {if {!= $smashers lrb}
+         {smasher_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s.png" $smashers}}
+         {smasher_color_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s_color.png" $smashers}}
+         {square_smasher_bright.tex set_bitmap {sprintf "ulti/track/smashers/%s_square.png" $smashers}}
       }
       ; song timer stuff
       {with scoreboard

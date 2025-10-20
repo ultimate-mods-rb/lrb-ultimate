@@ -122,6 +122,7 @@
 (os_legacybass "Legacy Bass Streak")
 (os_kickbounce "Kick Bounce")
 (os_syncdifspeeds "Sync Difficulty Speeds")
+(os_prodrums "Pro Drums")
 (os_colorshuffle "Note Color Shuffle")
 (os_countdown "Countdown")
 (os_songtimer "Song Timer")

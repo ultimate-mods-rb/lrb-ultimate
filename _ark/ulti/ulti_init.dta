@@ -65,6 +65,8 @@
 
 {set $tiltsensor TRUE}
 
+{set $prodrums FALSE}
+
 {set $smallworld FALSE}
 
 {set $bigmode FALSE}
