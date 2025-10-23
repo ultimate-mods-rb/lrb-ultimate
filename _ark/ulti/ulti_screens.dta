@@ -1,6 +1,7 @@
+#include overshell.dta
 {new UIPanel
    bonus_menupanel
-   (file "quickplay/quickplay_venue.milo")
+   (file "../fusion/ui/quickplay/quickplay_venue.milo")
    (selection_memory 0)
    (enter
       {gamemode set_practice 0}
@@ -22,7 +23,6 @@
             theatre
             autoplay
             cutsceneviewer
-            framerate
             #ifndef _SHIP
             camera_debug
             #endif
@@ -89,7 +89,6 @@
                {ui goto_screen cutscene_menuscreen}
             }
          )
-         (framerate {ui goto_screen frame_rate_screen})
          (play_a_show
             {gamemode set_mode play_a_show}
             {play_a_show_panel set played_songs {array 0}}
@@ -145,7 +144,7 @@
 }
 {new UIPanel
    cutscene_menupanel
-   (file "quickplay/quickplay_venue.milo")
+   (file "../fusion/ui/quickplay/quickplay_venue.milo")
    (selection_memory 0)
    (enter
       {do
@@ -265,7 +264,7 @@
 }
 {new UIPanel
    play_a_show_panel
-   (file "../../ulti/play_a_show.milo")
+   (file "play_a_show.milo")
    (filters
       (
          song_and_artist
@@ -700,7 +699,7 @@
 }
 {new UIPanel
    jukebox_mtv
-   (file "../../ui/jukebox_mtv_overlay.milo")
+   (file "../ui/jukebox_mtv_overlay.milo")
    (enter {mtv_overlay set_local_scale 1.45 1.45 1.45})
 }
 {new BandScreen

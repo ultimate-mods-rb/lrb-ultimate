@@ -92,13 +92,12 @@
    #include ../../ui/network_connect.dta
    #endif
    #include ../../ui/main_dialogs.dta
-   #include overshell.dta
    #autorun {do
       {run ulti/ulti_init.dta}
       {run ulti/ulti_init_apperance.dta}
    }
-   #include ulti_funcs.dta
-   #include ulti_screens.dta
+   #include ../../ulti/ulti_funcs.dta
+   #include ../../ulti/ulti_screens.dta
    #ifdef HX_WII
    {overflow_dialog_panel load TRUE}
    #endif
