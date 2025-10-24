@@ -70,7 +70,7 @@
       }
       {with drum
          {unless $kickbounce
-            {clear_array kick_drummer.trig anims}
+            {set [kick_drummer_trig] {new EventTrigger empty}}
          }
          {foreach_int $i 1 5
             {{new PropAnim {sprintf "drum_bak%d.anim" $i}} copy {sprintf "drum_mash%d.anim" $i} 0}
@@ -168,6 +168,9 @@
       {endgame_feedback_02 insert (subdirs 0) ulti/track/countdown_drum.milo}
       {endgame_feedback_03 insert (subdirs 0) ulti/track/countdown_bass.milo}
       {endgame_feedback_vox insert (subdirs 0) ulti/track/countdown_vocals.milo}
+      {if $flashbang
+         {replace_object flare_light_can_star.tex plain.tex FALSE}
+      }
       {$this set_showing FALSE}
       {$this set_track_out}
    )

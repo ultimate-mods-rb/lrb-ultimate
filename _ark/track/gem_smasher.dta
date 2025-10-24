@@ -133,9 +133,19 @@
             }
          )
          (hit_3p {hit_3p.trig trigger})
-         (hit_cymbal {hit_cymbals.trig trigger})
+         (hit_cymbal
+            {if_else $flashbang
+               {$this flashbang}
+               {hit_cymbals.trig trigger}
+            }
+         )
          (hit_cymbal_3p {hit_cymbals_3p.trig trigger})
-         (hit_drum {hit_drums.trig trigger})
+         (hit_drum
+            {if_else $flashbang
+               {$this flashbang}
+               {hit_drums.trig trigger}
+            }
+         )
          (hit_drum_3p {hit_drums_3p.trig trigger})
          (coda_hit
             {$this hit}
@@ -261,8 +271,12 @@
          )
          (flashbang {do
             ($i)
+            {{{{$this dir} dir} find kick_drummer.trig} trigger}
             {while {<= $i 6}
-               {++ $i} 
+               {++ $i}
+               {$this iterate BandMeshLauncher $o
+                  {$o launch_particles}
+               }
                {$this iterate EventTrigger $trig
                   {unless
                      {find_elem
