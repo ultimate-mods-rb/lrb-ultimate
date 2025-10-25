@@ -155,7 +155,7 @@
          (bool $kickbounce)
          (sel_script {toggle_var kickbounce})
       )
-      #ifdef HX_PS3 ; will work on other consoles. just need to hax the other execs.
+      #ifdef HX_NG ; will work on potato. just need to hax the exec.
       (os_prodrums
          (type uOnOFF)
          (bool $prodrums)
