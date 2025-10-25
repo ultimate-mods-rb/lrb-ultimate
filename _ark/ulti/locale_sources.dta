@@ -135,6 +135,7 @@
 (ssdlc "SingStar DLC")
 (ssg "SingStar Guitar")
 (ssgdlc "SingStar Guitar DLC")
+(psg "PopStar Guitar")
 
 ; Fan-Made games
 (ch "Clone Hero")
