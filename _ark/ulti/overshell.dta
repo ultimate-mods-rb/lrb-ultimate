@@ -302,6 +302,7 @@
       )
    ))
    (enter {os_setup_common})
+   (exit {set_pad_map $pad_map})
    (BUTTON_DOWN_MSG {os_down_common})
    (SELECT_MSG {os_sel_common})
 }
