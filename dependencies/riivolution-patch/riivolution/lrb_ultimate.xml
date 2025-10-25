@@ -41,5 +41,27 @@
         <memory offset="0x806164DC" value="78787878" original="5370696E" />
         <memory offset="0x806164E8" value="78787878" original="44617669" />
         <memory offset="0x806164F4" value="78787878" original="426C7572" />
+
+        <!-- start of pro drums patches --> 
+        <memory offset="0x800943a8" value="4845C898" />
+        <memory offset="0x80094430" value="4845C834" />
+        <memory offset="0x80094438" value="4845C810" />
+        <memory offset="0x804f0c40" value="39c00007" />
+        <memory offset="0x804f0c44" value="4BBA378C" />
+        <memory offset="0x804f0c48" value="2c0e0007" />
+        <memory offset="0x804f0c4c" value="4182000C" />
+        <memory offset="0x804f0c50" value="806db6b4" />
+        <memory offset="0x804f0c54" value="4BBA37E8" />
+        <memory offset="0x804f0c58" value="39c00000" />
+        <memory offset="0x804f0c5c" value="806db6bc" />
+        <memory offset="0x804f0c60" value="4BBA37DC" />
+        <memory offset="0x804f0c64" value="2c0e0007" />
+        <memory offset="0x804f0c68" value="4182000C" />
+        <memory offset="0x804f0c6c" value="806db6dc" />
+        <memory offset="0x804f0c70" value="4BBA37CC" />
+        <memory offset="0x804f0c74" value="39c00000" />
+        <memory offset="0x804f0c78" value="806db6c4" />
+        <memory offset="0x804f0c7c" value="4BBA37C0" />
+        <!-- end of pro drums patches --> 
     </patch>
 </wiidisc>
