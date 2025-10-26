@@ -258,7 +258,7 @@
             {with {$this loaded_dir} {run $str}}
          }
          ; hack
-         {if {has_substr {game get_venue} "rb2/"}
+         {if {startswith {game get_venue} "rb2/"}
             {$world iterate WorldCrowd $wc {do
                ($m {$wc get placement_mesh})
                {if $m {$m set_local_scale 0 0 0}}

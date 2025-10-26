@@ -230,6 +230,7 @@
 
                            {set_pad_map $pad_map}
                            {set [loaded] TRUE}
+                           {memcardmgr remove_sink $this}
                            {passive_messages_panel queue_message {localize mod_settings_loaded}}
                            #ifndef _SHIP
                            {print "Mod settings loaded successfully!"}

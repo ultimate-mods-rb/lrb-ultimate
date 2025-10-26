@@ -823,7 +823,7 @@
             {if {&& {exists game} {== {$this name} "coop_final_win13.shot"}}
                {game disable_all_controllers}
             }
-            {if {&& {! {has_substr {game get_venue} "rb2/"}} [crowd]} ; fixes a crash
+            {if {&& {! {startswith {game get_venue} "rb2/"}} [crowd]} ; fixes a crash
                {[crowd] override_anim [crowd_anim]}
                {[crowd] crowd_update}
                {[crowd] set rotate [crowd_face_camera]}

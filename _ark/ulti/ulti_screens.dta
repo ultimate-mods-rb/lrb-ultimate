@@ -852,3 +852,14 @@
    )
 }
 #endif
+#ifdef HX_NG
+{new Object
+   on_save_load
+   (save_load_all_complete_msg
+      {profile_mgr set_overscan TRUE}
+      {memcardmgr remove_sink $this}
+      {delete $this}
+   )
+}
+{memcardmgr add_sink on_save_load (save_load_all_complete_msg)}
+#endif
