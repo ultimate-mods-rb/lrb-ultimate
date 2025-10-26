@@ -108,6 +108,8 @@
             {push_back [cymbal_wids] $wid}
             #ifdef HX_NG
             {$wid set multi_mesh FALSE}
+            #else
+            {$wid set multi_mesh TRUE}
             #endif
          }
          {foreach $color (red yellow blue green orange) {do
