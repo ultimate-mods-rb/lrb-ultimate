@@ -272,6 +272,7 @@
          ven_school
          rooftop
          americanidiot
+         hospital_rooftop
       )
    )
    (rb2_venues
@@ -506,7 +507,7 @@
             (ven_blockton_manor big_club/haunted/haunted.milo)
             (ven_the_jolly_rocker big_club/pirateship/pirate_ship.milo)
             (ven_the_parrot_n_pegleg big_club/piratetavern/piratetavern.milo)
-            (ven_lego_city_rooftop {symbol "small_club/rooftop/roof_top 01.milo"})
+            (ven_lego_city_rooftop 'small_club/rooftop/roof_top 01.milo')
             (ven_the_cavern big_club/bonecave/bonecave.milo)
             (ven_stud_farm big_club/barnyard/barnyard.milo)
             (ven_sub_zero_research_facility big_club/dome/dome.milo)
@@ -530,7 +531,7 @@
             (ven_ufobreakdown big_club/stadium/ufobreakdown.milo)
             (ven_asteroid big_club/asteroid/destroy_asteroid_MASTER.milo)
             (ven_ovalrace
-               {symbol "big_club/carsmash/wreck n roll bowl/wrecknroll.milo"}
+               'big_club/carsmash/wreck n roll bowl/wrecknroll.milo'
             )
             ;custom
             (ven_battle small_club/battle/battle.milo)
@@ -541,6 +542,7 @@
             (ven_school small_club/school/school.milo)
             (americanidiot big_club/americanidiot/americanidiot.milo)
             (rooftop small_club/rooftop/rooftop.milo)
+            (hospital_rooftop small_club/hospital_rooftop/hospital_rooftop.milo)
             ;rb1/rb2
             (video_01 rb2/video_01/video_01.milo)
             (video_02 rb2/video_02/video_02.milo)
@@ -614,49 +616,45 @@
             (ven_barnyard_continued big_club/barnyard/barnyard_continued.milo)
             (ven_barnyard_revised big_club/barnyard/barnyard_revised.milo)
             (ven_barnyard_steve big_club/barnyard/barnyard_steveschanges.milo)
-            (ven_barnyard_blue_sky {symbol "big_club/barnyard/barnyard_blue sky.milo"})
+            (ven_barnyard_blue_sky 'big_club/barnyard/barnyard_blue sky.milo')
             (ven_barnyard_proj_light
-               {symbol "big_club/barnyard/barnyard_proj light.milo"}
+               'big_club/barnyard/barnyard_proj light.milo'
             )
             (ven_barnyard_red_sky
-               {symbol "big_club/barnyard/backup of barnyard red sky.milo"}
+               'big_club/barnyard/backup of barnyard red sky.milo'
             )
             (ven_bonecave_old big_club/bonecave/bonecave_old.milo)
-            (ven_carsmash_1 {symbol "big_club/carsmash/carsmash 1.milo"})
-            (ven_carsmash_copy {symbol "big_club/carsmash/copy of carsmash.milo"})
+            (ven_carsmash_1 'big_club/carsmash/carsmash 1.milo')
+            (ven_carsmash_copy 'big_club/carsmash/copy of carsmash.milo')
             (ven_carsmash_wnrb
-               {symbol "big_club/carsmash/wreck n roll bowl/wreck n roll bowl_01.milo"}
+               'big_club/carsmash/wreck n roll bowl/wreck n roll bowl_01.milo'
             )
             #ifdef HX_WII
             ;TODO find whoever this "david" is i would like to have a word with them
             (ven_carsmash_wnrb_david
-               {symbol
-                  "big_club/carsmash/wreck n roll bowl/wreck n roll bowl (david).milo"
-               }
+               'big_club/carsmash/wreck n roll bowl/wreck n roll bowl (david).milo'
             )
             (ven_carsmash_wnrb_david_1
-               {symbol
-                  "big_club/carsmash/wreck n roll bowl/davids wreck n roll bowl_01.milo"
-               }
+               'big_club/carsmash/wreck n roll bowl/davids wreck n roll bowl_01.milo'
             )
             #endif
             (ven_castlegardens_wiicrowd
                big_club/castlegardens/castlegardens_wiicrowd.milo
             )
-            (ven_demolition_luke {symbol "big_club/demolition/demolition luke.milo"})
+            (ven_demolition_luke 'big_club/demolition/demolition luke.milo')
             (ven_demolition_redux big_club/demolition/demolition_redux.milo)
             (ven_demolition_wc big_club/demolition/demolition_workingcopy.milo)
             (ven_demolition_wiz big_club/demolition/wiz_demolition.milo)
             (ven_farmrain_barnyard_g big_club/farmrain/barnyardgrouped.milo)
             (ven_farmrain_temp big_club/farmrain/temp.milo)
-            (ven_farmrain_tsc {symbol "big_club/farmrain/total scene combo.milo"})
+            (ven_farmrain_tsc 'big_club/farmrain/total scene combo.milo')
             (ven_farmrain_tm big_club/farmrain/farmrain_tm.milo)
             (ven_haunted_10842 big_club/haunted/haunted-10842.milo)
             (ven_icebreaker_temp big_club/icebreaker/icebreaker_temp.milo)
             (ven_icebreaker01 big_club/icebreaker/icebreaker01.milo)
             (ven_icebreaker02 big_club/icebreaker/icebreaker02.milo)
             (ven_skeleton_battle_copy
-               {symbol "big_club/skeletonbattle/copy of skeleton_battle.milo"}
+               'big_club/skeletonbattle/copy of skeleton_battle.milo'
             )
             (ven_ufobreakdown_alt big_club/ufobreakdown/ufobreakdown.milo)
             #ifdef _SHIP

@@ -1,0 +1,6 @@
+{$this iterate Spotlight $l
+   {$l set_showing FALSE}
+}
+{$this iterate WorldCrowd $crd
+   {$crd rebuild}
+}
