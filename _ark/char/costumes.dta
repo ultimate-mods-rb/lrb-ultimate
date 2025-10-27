@@ -1950,5 +1950,17 @@
             (hats desdemona_hat (colors 24 0))
          )
       )
+      (sonic
+         (unlocked TRUE)
+         (cost 500000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads sonic_head)
+            (torso sonic_torso)
+            (legs sonic_legs)
+            (hats no_hat)
+            (hair no_hair)
+         )
+      )
    )
 )

@@ -1287,5 +1287,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (sonic_torso
+         (ui_name sonic)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

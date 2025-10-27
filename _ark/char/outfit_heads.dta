@@ -765,5 +765,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (sonic_head
+         (ui_name sonic)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

@@ -821,5 +821,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (sonic_legs
+         (ui_name sonic)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
