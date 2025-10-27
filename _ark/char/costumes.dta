@@ -1820,7 +1820,7 @@
       )
       (miku
          (unlocked TRUE)
-         (cost 25000000)
+         (cost 2500000)
          (genre lrb_shop_custom)
          (outfit
             (heads miku_head)
@@ -1831,7 +1831,7 @@
       )
       (skye
          (unlocked TRUE)
-         (cost 2000000)
+         (cost 200000)
          (genre lrb_shop_custom)
          (outfit
             (heads skye_head)
@@ -1842,7 +1842,7 @@
       )
       (ivystub
          (unlocked TRUE)
-         (cost 5000000)
+         (cost 500000)
          (genre lrb_shop_custom)
          (outfit
             (heads ivystub_head)
@@ -1853,7 +1853,7 @@
       )
       (shaggy
          (unlocked TRUE)
-         (cost 10000000)
+         (cost 100000)
          (genre lrb_shop_custom)
          (outfit
             (heads shaggy_head)
@@ -1875,7 +1875,7 @@
       )
       (hpotter
          (unlocked TRUE)
-         (cost 5000000)
+         (cost 500000)
          (genre lrb_shop_custom)
          (outfit
             (heads hpotter_head)
@@ -1941,7 +1941,7 @@
       )
       (desdemona
          (unlocked TRUE)
-         (cost 5000000)
+         (cost 200000)
          (genre lrb_shop_custom)
          (outfit
             (heads desdemona_head)
