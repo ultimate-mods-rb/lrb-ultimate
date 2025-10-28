@@ -28,7 +28,7 @@
 )
 (hx_drums_xbox
    (dpad_for_navigation FALSE)
-   (slots 2 0 kPad_R1 0 5 1 4 2 7 3 6 4)
+   (slots 2 0 5 1 4 2 7 3 6 4)
    (velocity_axes
       (1 LX)
       (2 LY)
@@ -39,7 +39,7 @@
 )
 (hx_drums_ps3
    (dpad_for_navigation FALSE)
-   (slots kPad_L1 0 kPad_R1 0 kPad_Circle 1 kPad_Tri 2 kPad_Square 3 kPad_X 4)
+   (slots kPad_L1 0 kPad_Circle 1 kPad_Tri 2 kPad_Square 3 kPad_X 4)
    (velocity_pressures
       (1 kPad_Circle)
       (2 kPad_Tri)
@@ -72,7 +72,7 @@
 )
 (wii_drums
    (dpad_for_navigation FALSE)
-   (slots 2 0 kPad_R1 0 5 1 4 2 7 3 6 4)
+   (slots 2 0 5 1 4 2 7 3 6 4)
    (velocity_pressures
       (1 kPad_Circle)
       (2 kPad_Tri)
