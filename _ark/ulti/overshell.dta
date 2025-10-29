@@ -838,6 +838,11 @@
          (bool $flashbang)
          (sel_script {toggle_var flashbang})
       )
+      (os_studsounds
+         (type uOnOFF)
+         (bool $studsounds)
+         (sel_script {toggle_var studsounds})
+      )
       (os_fakecheat
          (type uNormal)
          (sel_script

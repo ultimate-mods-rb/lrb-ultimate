@@ -139,6 +139,7 @@
 (os_honestmode "Honest Mode")
 (os_hidechars "Hide Characters")
 (os_forceband_fmt "Ò Force Band: %s Ó")
+(os_studsounds "Stud Sound On Hit")
 (ugc_section_5_0 "0% - 5%")
 (ugc_section_5_5 "5% - 10%")
 (ugc_section_5_10 "10% - 15%")

@@ -138,6 +138,9 @@
                {set [groove_active] TRUE}
                {{[track] find BassSuperStreak_ON.trig} trigger}
             }
+            {if $studsounds
+               {synth play stud_counter_up.cue}
+            }
          )
          (miss
             {unless
