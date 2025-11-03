@@ -2,7 +2,11 @@
 {set $skipsplash TRUE}
 
 ;sets default track speed. 1.15 is 115%, 1.30 is 130% and so on.
-{set $trackspeed 1.0}
+{set $guitar_trackspeed 1.00}
+
+{set $bass_trackspeed 1.00}
+
+{set $drum_trackspeed 1.00}
 
 ;sets default song speed 1.15 is 115%, 1.30 is 130% and so on.
 {set $speedmod 1.0}

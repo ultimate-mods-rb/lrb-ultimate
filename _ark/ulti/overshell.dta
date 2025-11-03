@@ -93,11 +93,6 @@
          (bool {modifier_mgr is_modifier_active mod_doublespeed})
          (sel_script {modifier_mgr toggle_modifier_active mod_doublespeed})
       )
-      (os_syncdifspeeds
-         (type uOnOFF)
-         (bool $syncdifspeeds)
-         (sel_script {toggle_var syncdifspeeds})
-      )
       (os_tiltsensor
          (type uOnOFF)
          (bool $tiltsensor)
@@ -168,6 +163,7 @@
       (os_fcring
          (type uOnOFF)
          (bool $fcring)
+         (block_ingame TRUE)
          (sel_script {toggle_var fcring})
       )
       (os_countdown
@@ -316,10 +312,14 @@
    OVERSHELL_SAVE_POS
    (title os_spd)
    (data (
-      (trackspeed_msg
+      (os_trackspeed
+         (type uNormal)
+         (sel_script {pop_and_goto_screen overshell_trackspeed_screen})
+      )
+      (hwlength_msg
          (type uFakeSld)
          (fmt_type uSpeed)
-         (var trackspeed)
+         (var hwlength)
          50_TO_250
       )
       (speed_msg
@@ -328,12 +328,6 @@
          (var speedmod)
          (block_ingame TRUE)
          100_TO_250
-      )
-      (hwlength_msg
-         (type uFakeSld)
-         (fmt_type uSpeed)
-         (var hwlength)
-         50_TO_250
       )
    ))
    (enter {os_setup_common})
@@ -345,6 +339,46 @@
    (back overshell_main_screen)
    (panels overshell_speed_panel practice_lower3rd_panel)
    (focus overshell_speed_panel)
+}
+{new UIPanel
+   overshell_trackspeed_panel
+   OVERSHELL_LIST_FILE
+   OVERSHELL_SAVE_POS
+   (title os_trackspeed)
+   (data (
+      (os_syncdifspeeds
+         (type uOnOFF)
+         (bool $syncdifspeeds)
+         (sel_script {toggle_var syncdifspeeds})
+      )
+      (gtr_trackspeed_msg
+         (type uFakeSld)
+         (fmt_type uSpeed)
+         (var guitar_trackspeed)
+         50_TO_250
+      )
+      (bass_trackspeed_msg
+         (type uFakeSld)
+         (fmt_type uSpeed)
+         (var bass_trackspeed)
+         50_TO_250
+      )
+      (drum_trackspeed_msg
+         (type uFakeSld)
+         (fmt_type uSpeed)
+         (var drum_trackspeed)
+         50_TO_250
+      )
+   ))
+   (enter {os_setup_common})
+   (BUTTON_DOWN_MSG {os_down_common})
+   (SELECT_MSG {os_sel_common})
+}
+{new UIScreen
+   overshell_trackspeed_screen
+   (back overshell_speed_screen)
+   (panels overshell_trackspeed_panel practice_lower3rd_panel helpbar)
+   (focus overshell_trackspeed_panel)
 }
 {new UIPanel
    overshell_trk_panel

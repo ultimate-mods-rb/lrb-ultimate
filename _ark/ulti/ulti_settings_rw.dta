@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (6) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (7) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -97,13 +97,17 @@
                         $tiltsensor
                         $prodrums
                         " "
-                        $trackspeed
+                        $guitar_trackspeed
                         " "
                         $hwlength
                         " "
                         $gems
                         " "
                         $smashers
+                        " "
+                        $bass_trackspeed
+                        " "
+                        $drum_trackspeed
                      })
                      {unless {== $new_motto {$band band_motto}}
                         {$band set_band_motto $new_motto}
@@ -218,7 +222,7 @@
                               {set $prodrums {sti {str_elem $pool 53}}}
                            }
 
-                           {set $trackspeed {sftf {elem $array 2}}}
+                           {set $guitar_trackspeed {sftf {elem $array 2}}}
 
                            {set $hwlength {sftf {elem $array 3}}}
 
@@ -226,6 +230,12 @@
 
                            {if {>= $version 2}
                               {set $smashers {elem $array 5}}
+                           }
+
+                           {if {>= $version 7}
+                              {set $bass_trackspeed {sftf {elem $array 6}}}
+                              {set $drum_trackspeed {sftf {elem $array 7}}}
+
                            }
 
                            {set_pad_map $pad_map}

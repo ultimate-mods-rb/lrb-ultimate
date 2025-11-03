@@ -5,28 +5,6 @@
          {clear_array ulti_objects.grp objects}
       }
       {game add_sink $this}
-      {with {$this loaded_dir}
-         {do
-            ($hwss
-               {if_else {== $hwlength 1.0}
-                  1.0
-                  {if_else {> $hwlength 2.0}
-                     {/ $hwlength 1.4}
-                     {if_else {> $hwlength 1.0}
-                        {/ $hwlength {+ {* 0.4 $hwlength} 0.6}}
-                        {* $hwlength {+ {* -1.5 $hwlength} 2.5}}
-                     }
-                  }
-               }
-            )
-            {set [view_time_easy] 
-               {* {* {/ {if_else $syncdifspeeds 1.2 2.4} $hwss} $trackspeed} $speedmod}
-            }
-            {set [view_time_expert] 
-               {* {* {/ 1.2 $trackspeed} $hwss} $speedmod}
-            }
-         }
-      }
       {$this set_showing
          {if_else
             {'||'
@@ -180,6 +158,7 @@
       {$this reset}
       {$this set_showing {gamemode get show_track}}
       {$this set_track_in}
+      {$this update_track_speeds}
    )
    (intro_skip
       {$this reset}
@@ -207,6 +186,7 @@
          {{gems_dir find animate.trig} trigger}
       }
       {force_drum_freestyle FALSE}
+      {$this update_track_speeds}
       {beatmatch foreach_active_player $player ;handle adding the appropriate callbacks to each player
          {if_else {gamemode get is_autoplay}
             {do
@@ -249,6 +229,45 @@
       }
       {unless {&& {gamemode get is_practice} {gamecfg get practice_speed}}
          {beatmatch set_music_speed $speedmod}
+      }
+   )
+   (update_track_speeds
+      {beatmatch foreach_active_player $player
+         {do
+            ($obj {object {$player instrument}})
+            ($diff_view_time
+               {elem ;3 this is not written very poorly!
+                  {switch {{$this loaded_dir} get configuration}
+                     ((1_player_wide 1_player_regular) (43.75 52.50 65.63 87.50))
+                     (2_player_wide (59.13 70.96 88.70 118.27))
+                     (2_player_regular (66.20 79.44 99.30 132.40))
+                     (3_player_wide (77.87 93.44 116.81 155.74))
+                     (3_player_regular (95.19 114.22 142.78 190.37))
+                     {fail "Unknown track configuration"}
+                  }
+                  {if_else $syncdifspeeds
+                     kDifficultyExpert
+                     {$player difficulty}
+                  }
+               }
+            )
+            ($ts {eval_var {sprint {$player instrument} "_trackspeed"}})
+            ($hwss
+               {if_else {== $hwlength 1.0}
+                  1.0
+                  {if_else {> $hwlength 2.0}
+                     {/ $hwlength 1.4}
+                     {if_else {> $hwlength 1.0}
+                        {/ $hwlength {+ {* 0.4 $hwlength} 0.6}}
+                        {* $hwlength {+ {* -1.5 $hwlength} 2.5}}
+                     }
+                  }
+               }
+            )
+            ($view_time {* {* {/ $diff_view_time $hwss} $ts} $speedmod})
+            ;{print $obj " " $diff_view_time " " $ts " " $hwss " " $view_time "\n"}
+            {$obj set y_per_second $view_time}
+         }
       }
    )
 )
