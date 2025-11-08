@@ -1962,5 +1962,17 @@
             (hair no_hair)
          )
       )
+      (alex
+         (unlocked TRUE)
+         (cost 250000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads alex_head)
+            (torso alex_torso)
+            (legs alex_legs)
+            (hats no_hat)
+            (hair no_hair)
+         )
+      )
    )
 )

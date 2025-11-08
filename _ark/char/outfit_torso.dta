@@ -1292,5 +1292,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (alex_torso
+         (ui_name alex)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

@@ -826,5 +826,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (alex_legs
+         (ui_name alex)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
