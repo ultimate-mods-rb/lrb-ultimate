@@ -831,5 +831,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (steve_legs
+         (ui_name steve)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

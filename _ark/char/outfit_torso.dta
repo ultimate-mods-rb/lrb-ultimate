@@ -1297,5 +1297,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (steve_torso
+         (ui_name steve)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

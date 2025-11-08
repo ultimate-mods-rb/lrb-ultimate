@@ -1974,5 +1974,17 @@
             (hair no_hair)
          )
       )
+      (steve
+         (unlocked TRUE)
+         (cost 250000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads steve_head)
+            (torso steve_torso)
+            (legs steve_legs)
+            (hats no_hat)
+            (hair no_hair)
+         )
+      )
    )
 )

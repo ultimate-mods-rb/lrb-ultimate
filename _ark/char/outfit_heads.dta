@@ -775,5 +775,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (steve_head
+         (ui_name steve)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
