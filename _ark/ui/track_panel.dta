@@ -233,40 +233,42 @@
    )
    (update_track_speeds
       {beatmatch foreach_active_player $player
-         {do
-            ($obj {object {$player instrument}})
-            ($diff_view_time
-               {elem ;3 this is not written very poorly!
-                  {switch {{$this loaded_dir} get configuration}
-                     ((1_player_wide 1_player_regular) (43.75 52.50 65.63 87.50))
-                     (2_player_wide (59.13 70.96 88.70 118.27))
-                     (2_player_regular (66.20 79.44 99.30 132.40))
-                     (3_player_wide (77.87 93.44 116.81 155.74))
-                     (3_player_regular (95.19 114.22 142.78 190.37))
-                     {fail "Unknown track configuration"}
-                  }
-                  {if_else $syncdifspeeds
-                     kDifficultyExpert
-                     {$player difficulty}
-                  }
-               }
-            )
-            ($ts {eval_var {sprint {$player instrument} "_trackspeed"}})
-            ($hwss
-               {if_else {== $hwlength 1.0}
-                  1.0
-                  {if_else {> $hwlength 2.0}
-                     {/ $hwlength 1.4}
-                     {if_else {> $hwlength 1.0}
-                        {/ $hwlength {+ {* 0.4 $hwlength} 0.6}}
-                        {* $hwlength {+ {* -1.5 $hwlength} 2.5}}
+         {unless {== {$player instrument} vocals}
+            {do
+               ($obj {object {$player instrument}})
+               ($diff_view_time
+                  {elem ;3 this is not written very poorly!
+                     {switch {{$this loaded_dir} get configuration}
+                        ((1_player_wide 1_player_regular) (43.75 52.50 65.63 87.50))
+                        (2_player_wide (59.13 70.96 88.70 118.27))
+                        (2_player_regular (66.20 79.44 99.30 132.40))
+                        (3_player_wide (77.87 93.44 116.81 155.74))
+                        (3_player_regular (95.19 114.22 142.78 190.37))
+                        {fail "Unknown track configuration"}
+                     }
+                     {if_else $syncdifspeeds
+                        kDifficultyExpert
+                        {$player difficulty}
                      }
                   }
-               }
-            )
-            ($view_time {* {* {/ $diff_view_time $hwss} $ts} $speedmod})
-            ;{print $obj " " $diff_view_time " " $ts " " $hwss " " $view_time "\n"}
-            {$obj set y_per_second $view_time}
+               )
+               ($ts {eval_var {sprint {$player instrument} "_trackspeed"}})
+               ($hwss
+                  {if_else {== $hwlength 1.0}
+                     1.0
+                     {if_else {> $hwlength 2.0}
+                        {/ $hwlength 1.4}
+                        {if_else {> $hwlength 1.0}
+                           {/ $hwlength {+ {* 0.4 $hwlength} 0.6}}
+                           {* $hwlength {+ {* -1.5 $hwlength} 2.5}}
+                        }
+                     }
+                  }
+               )
+               ($view_time {/ {* {/ $diff_view_time $hwss} $ts} $speedmod})
+               ;{print $obj " " $diff_view_time " " $ts " " $hwss " " $view_time "\n"}
+               {$obj set y_per_second $view_time}
+            }
          }
       }
    )
