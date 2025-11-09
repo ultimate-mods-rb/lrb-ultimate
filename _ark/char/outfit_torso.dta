@@ -1302,5 +1302,11 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      #ifdef HX_NG
+      (noob
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
+      #endif
    )
 )

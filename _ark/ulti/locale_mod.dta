@@ -246,6 +246,8 @@
 (sonic "Sonic")
 (alex "Alex")
 (steve "Steve")
+(noob "Noob")
+(noob_prefab "Noob")
 (ven_demolition "demolition")
 (ven_ghostbusters "ghostbusters")
 (ven_octopusattack "octopusattack")

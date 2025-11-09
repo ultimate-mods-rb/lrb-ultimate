@@ -1986,5 +1986,19 @@
             (hair no_hair)
          )
       )
+      #ifdef HX_NG
+      (noob
+         (unlocked TRUE)
+         (cost 1000000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads no_head)
+            (torso noob (colors 49 50))
+            (legs no_legs)
+            (hair no_hair)
+            (hats no_hat)
+         )
+      )
+      #endif
    )
 )

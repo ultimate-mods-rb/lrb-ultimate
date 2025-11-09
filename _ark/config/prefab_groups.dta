@@ -165,6 +165,9 @@
       (Redindian costume_redindian)
       (Numbchuck costume_numbchuck)
       (Robinhood costume_robinhood)
+      #ifdef HX_NG
+      (noob_prefab noob)
+      #endif
    )
    (quickplay
       #ifndef KIOSK_DEMO
