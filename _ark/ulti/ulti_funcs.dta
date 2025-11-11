@@ -127,9 +127,8 @@
       }
    }
    {OS_LIST set_data $array}
-   {OS_LIST set max_display {if_else {> {size $array} 4} 0 3}}
    {if {$this has (pos)}
-      {OS_LIST set_selected [pos]}
+      {OS_LIST set_selected {elem [pos] 0} {elem [pos] 1}}
    }
    {os_update_helpbar}
 }}
@@ -229,7 +228,7 @@
             {$this has (pos)}
          }
       }
-      {set [pos] 0}
+      {set [pos] (0 0)}
    }
    kDataUnhandled
 }
