@@ -113,11 +113,12 @@
             #include ../ulti/track/gems/gems_scripting.dta
          }
       }}
-      {if {!= $smashers lrb}
-         {smasher_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s.png" $smashers}}
-         {smasher_color_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s_color.png" $smashers}}
-         {square_smasher_bright.tex set_bitmap {sprintf "ulti/track/smashers/%s_square.png" $smashers}}
-      }
+      {if {!= $smashers lrb} {do
+         ($smashers_dir {new RndDir smashers_dir})
+         {switch $smashers
+            #include ../ulti/track/smashers/smashers_scripting.dta
+         }
+      }}
       ; song timer stuff
       {with scoreboard
          ; just creating a new label results in "File: z:/LEGORockBand/Code/System/ui/Label.cpp Line: 115 Error: f"

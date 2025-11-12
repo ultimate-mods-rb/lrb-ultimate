@@ -113,6 +113,9 @@
          (set_glow
             ($in_state)
             {set [glow] $in_state}
+            {if {&& {$this has (custom)} {exists base_top.grp}}
+               {base_top.grp set_showing [glow]}
+            }
             {if {exists smasher_glow.anim}
                {if_else [glow]
                   {smasher_glow.anim animate

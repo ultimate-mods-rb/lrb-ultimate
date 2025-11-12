@@ -1,0 +1,43 @@
+((gh3 ghwor ghl)
+   {$smashers_dir insert (subdirs 0) {sprintf "ulti/track/smashers/%s_smashers.milo" $smashers}}
+   {foreach $inst (guitar bass) {do
+      ($dir {$smashers_dir find $inst})
+      {$dir iterate Mat $m
+         {$m set alpha_cut TRUE}
+         {$m set z_mode kZModeTransparent}
+      }
+      {{{$inst find smasher_plate_guitar} find smasher_plate.mesh} set_showing FALSE}
+      {foreach_int $i 0 5 {do
+         ($m {$dir find {sprintf "fret_%d.mesh" {+ $i 1}}})
+         ($l {$dir find {sprintf "fret_%d_l.mesh" {+ $i 1}}})
+         {$m set_mat {$dir find {sprintf "fret_%d.mat" {+ {eval_var {sprint gtrsm {+ $i 1}}} 1}}}}
+         {$l set_mat {$dir find {sprintf "fret_%d_l.mat" {+ {eval_var {sprint gtrsm {+ $i 1}}} 1}}}}
+         {with {{$inst find smasher_plate_guitar} find {sprint gem_smasher $i}}
+            {new Trans smashers_parent.trans}
+            {smashers_parent.trans set_trans_parent smasher_react.trans}
+            {smashers_parent.trans set_local_pos 0 0.4 0.34}
+            {smashers_parent.trans set_local_rot 2 0 0}
+            {smashers_parent.trans set_local_scale 1.07 1 1}
+
+            {$m set_trans_parent smashers_parent.trans}
+            {$l set_trans_parent smashers_parent.trans}
+
+            {clear_array base_bottom.grp objects}
+            {base_bottom.grp add_object $m}
+
+            {base_top.grp set_showing FALSE}
+            {clear_array base_top.grp objects}
+            {base_top.grp add_object $l}
+
+            {$this set custom TRUE}
+            {$this sync_objects}
+         }
+      }}
+   }}
+)
+; fallback case
+{do
+   {smasher_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s.png" $smashers}}
+   {smasher_color_ps2.tex set_bitmap {sprintf "ulti/track/smashers/%s_color.png" $smashers}}
+   {square_smasher_bright.tex set_bitmap {sprintf "ulti/track/smashers/%s_square.png" $smashers}}
+}
