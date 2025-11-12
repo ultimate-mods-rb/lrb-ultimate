@@ -1457,6 +1457,7 @@
             {$this add_message
                {switch $mp.val
                   (96 ProFilm_a.pp)
+                  (97 contrast_a.pp)
                   (98 film_16mm.pp)
                   (99 film_sepia_ink.pp)
                   (100 film_silvertone.pp)
