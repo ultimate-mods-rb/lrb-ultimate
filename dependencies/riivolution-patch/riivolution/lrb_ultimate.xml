@@ -63,5 +63,16 @@
         <memory offset="0x804f0c78" value="806db6c4" />
         <memory offset="0x804f0c7c" value="4BBA37C0" />
         <!-- end of pro drums patches --> 
+
+        <!-- get_song_offer weird crash fix -->
+        <memory offset="0x802b1bf8" value="4823F088" original="8003000c" /> <!-- b 0x804f0c80 -->
+
+        <memory offset="0x804f0c80" value="7c031040" /> <!-- cmplw r3, r2 | ensure r3 is pointing to valid memory -->
+        <memory offset="0x804f0c84" value="4180000c" /> <!-- blt 0xC  -->
+
+        <memory offset="0x804f0c88" value="8003000c" /> <!-- lwz r0,0xc(r3)  -->
+        <memory offset="0x804f0c8c" value="4BDC0F70" /> <!-- b 0x802b1bfc  -->
+
+        <memory offset="0x804f0c90" value="4BDC0F78" /> <!-- b 0x802b1c08  -->
     </patch>
 </wiidisc>

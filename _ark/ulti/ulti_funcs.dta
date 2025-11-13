@@ -739,14 +739,7 @@
    {do
       ($return)
       {if_else
-         #ifdef HX_NG
          {song_offer_provider num_data}
-         #else
-         {&&
-            {! {challenge_mgr has_challenge}}
-            {song_offer_provider num_data}
-         }
-         #endif
          {do
             {print "metadata " $song " " $data "\n"}
             {if {song_mgr has_song $song}
