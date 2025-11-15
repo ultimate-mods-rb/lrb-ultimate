@@ -67,23 +67,33 @@
             {do
                ($pos {band.lst selected_pos})
                {cond
-                  ({[band_provider]
-                        is_pos_create_band
-                        $pos}
-                     {if_else $band_sel_mode
-                        {ui push_screen cant_create_band_screen}
-                        {if_else {profile_mgr can_any_profile_own_a_new_band}
-                           {do
-                              #ifndef HX_XBOX
-                              {tour set_band {tour create_new_band $player}}
-                              {fx fade_out}
-                              {ui goto_screen {gamemode get matchmaking_screen}}
-                              #else
-                              {ui push_screen tour_band_choose_owner_screen}
-                              #endif
+                  ({[band_provider] is_pos_create_band $pos}
+                     {cond
+                        ({&& $band_sel_mode {!= $band_sel_mode 2}}
+                           {set $band_sel_mode 0}
+                           {fx fade_out}
+                           {ui goto_screen {gamemode get matchmaking_screen}}
+                        )
+                        ({== $band_sel_mode 2}
+                           {set $band_sel_mode 0}
+                           {gamemode set_mode init}
+                           {fx fade_out}
+                           {ui goto_screen cutscene_menuscreen}
+                        )
+                        (TRUE
+                           {if_else {profile_mgr can_any_profile_own_a_new_band}
+                              {do
+                                 #ifndef HX_XBOX
+                                 {tour set_band {tour create_new_band $player}}
+                                 {fx fade_out}
+                                 {ui goto_screen {gamemode get matchmaking_screen}}
+                                 #else
+                                 {ui push_screen tour_band_choose_owner_screen}
+                                 #endif
+                              }
+                              {ui push_screen tour_band_no_owner_screen}
                            }
-                           {ui push_screen tour_band_no_owner_screen}
-                        }
+                        )
                      }
                   )
                   ({[band_provider]
