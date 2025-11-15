@@ -1302,6 +1302,16 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (spiderman_torso
+         (ui_name spiderman)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
+      (spiderman2_torso
+         (ui_name spiderman2)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
       #ifdef HX_NG
       (noob
          (genre lrb_shop_custom)

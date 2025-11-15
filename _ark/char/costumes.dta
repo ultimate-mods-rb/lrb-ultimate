@@ -1986,6 +1986,30 @@
             (hair no_hair)
          )
       )
+      (spiderman
+         (unlocked TRUE)
+         (cost 200000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads spiderman_head)
+            (torso spiderman_torso)
+            (legs spiderman_legs)
+            (hats no_hat)
+            (hair no_hair)
+         )
+      )
+      (spiderman2
+         (unlocked TRUE)
+         (cost 250000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads spiderman2_head)
+            (torso spiderman2_torso)
+            (legs Blank (colors 0 0))
+            (hats no_hat)
+            (hair no_hair)
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

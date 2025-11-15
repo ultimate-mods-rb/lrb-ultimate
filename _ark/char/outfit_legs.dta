@@ -836,5 +836,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (spiderman_legs
+         (ui_name spiderman)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
