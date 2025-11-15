@@ -2010,6 +2010,18 @@
             (hair no_hair)
          )
       )
+      (ruby
+         (unlocked TRUE)
+         (cost 250000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads ruby_head)
+            (torso ruby_torso)
+            (legs ruby_legs)
+            (hats ruby_hat)
+            (hair no_hair)
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

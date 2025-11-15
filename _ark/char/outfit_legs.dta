@@ -841,5 +841,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (ruby_legs
+         (ui_name ruby)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

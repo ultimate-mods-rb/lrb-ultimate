@@ -1312,6 +1312,11 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (ruby_torso
+         (ui_name ruby)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
       #ifdef HX_NG
       (noob
          (genre lrb_shop_custom)

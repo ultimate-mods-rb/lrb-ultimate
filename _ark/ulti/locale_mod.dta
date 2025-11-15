@@ -250,6 +250,7 @@
 (noob_prefab "Noob")
 (spiderman "Spider-Man")
 (spiderman2 "Spider-Man (Miles)")
+(ruby "Ruby")
 (ven_demolition "demolition")
 (ven_ghostbusters "ghostbusters")
 (ven_octopusattack "octopusattack")

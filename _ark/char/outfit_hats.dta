@@ -501,5 +501,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (ruby_hat
+         (ui_name ruby)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
