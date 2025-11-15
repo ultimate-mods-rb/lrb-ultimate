@@ -1306,5 +1306,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (jules_hair
+         (ui_name jules)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

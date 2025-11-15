@@ -1317,6 +1317,11 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (jules_torso
+         (ui_name jules)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
       #ifdef HX_NG
       (noob
          (genre lrb_shop_custom)

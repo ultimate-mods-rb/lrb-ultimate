@@ -1986,6 +1986,18 @@
             (hair no_hair)
          )
       )
+      (jules
+         (unlocked TRUE)
+         (cost 175000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads jules_head)
+            (torso jules_torso)
+            (legs jules_legs)
+            (hats no_hat)
+            (hair jules_hair)
+         )
+      )
       (spiderman
          (unlocked TRUE)
          (cost 200000)
