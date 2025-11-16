@@ -2009,6 +2009,17 @@
             (hair nemia_hair (colors 50 49))
          )
       )
+      (catrin
+         (unlocked TRUE)
+         (cost 500000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads catrin_head)
+            (torso catrin_torso)
+            (legs catrin_legs)
+            (hair catrin_hair (colors 4 41))
+         )
+      )
       (spiderman
          (unlocked TRUE)
          (cost 200000)

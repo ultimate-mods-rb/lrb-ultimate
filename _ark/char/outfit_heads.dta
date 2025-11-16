@@ -805,5 +805,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (catrin_head
+         (ui_name catrin)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

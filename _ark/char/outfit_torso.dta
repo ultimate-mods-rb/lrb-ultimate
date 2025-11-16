@@ -1332,6 +1332,11 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (catrin_torso
+         (ui_name catrin)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
       #ifdef HX_NG
       (noob
          (genre lrb_shop_custom)

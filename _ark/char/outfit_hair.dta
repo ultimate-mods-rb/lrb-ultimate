@@ -1316,5 +1316,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (catrin_hair
+         (ui_name catrin)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
