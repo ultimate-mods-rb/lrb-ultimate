@@ -2034,6 +2034,17 @@
             (hair no_hair)
          )
       )
+      (spice
+         (unlocked TRUE)
+         (cost 300000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads empty_head)
+            (torso spice_torso)
+            (legs spice_legs)
+            (hats spice_hat (colors 20 23))
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

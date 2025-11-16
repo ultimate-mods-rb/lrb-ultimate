@@ -1322,6 +1322,11 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (spice_torso
+         (ui_name spice)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
       #ifdef HX_NG
       (noob
          (genre lrb_shop_custom)
