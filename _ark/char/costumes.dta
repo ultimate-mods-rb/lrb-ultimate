@@ -1998,6 +1998,17 @@
             (hair jules_hair)
          )
       )
+      (nemia
+         (unlocked TRUE)
+         (cost 200000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads nemia_head)
+            (torso nemia_torso)
+            (legs nemia_legs)
+            (hair nemia_hair (colors 50 49))
+         )
+      )
       (spiderman
          (unlocked TRUE)
          (cost 200000)

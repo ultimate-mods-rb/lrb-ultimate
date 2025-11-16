@@ -1311,5 +1311,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (nemia_hair
+         (ui_name nemia)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

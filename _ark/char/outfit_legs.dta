@@ -856,5 +856,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (nemia_legs
+         (ui_name nemia)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
