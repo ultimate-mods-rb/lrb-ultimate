@@ -71,6 +71,8 @@
 
 {set $prodrums FALSE}
 
+{set $micdeploy TRUE}
+
 {set $smallworld FALSE}
 
 {set $bigmode FALSE}

@@ -109,6 +109,11 @@
          (bool $misssounds)
          (sel_script {toggle_var misssounds})
       )
+      (os_micdeploy
+         (type uOnOFF)
+         (bool $micdeploy)
+         (sel_script {toggle_var micdeploy})
+      )
    ))
    (enter {os_setup_common})
    (BUTTON_DOWN_MSG {os_down_common})
