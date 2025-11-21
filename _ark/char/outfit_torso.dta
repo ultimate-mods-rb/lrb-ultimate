@@ -1339,7 +1339,7 @@
       )
       #ifdef HX_NG
       (noob
-         (genre lrb_shop_custom)
+         (genre lrb_shop_custom_odd)
          (unlocked TRUE)
       )
       #endif

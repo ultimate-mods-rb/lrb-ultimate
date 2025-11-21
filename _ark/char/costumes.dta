@@ -2071,7 +2071,7 @@
       (noob
          (unlocked TRUE)
          (cost 1000000)
-         (genre lrb_shop_custom)
+         (genre lrb_shop_custom_odd)
          (outfit
             (heads no_head)
             (torso noob (colors 49 50))

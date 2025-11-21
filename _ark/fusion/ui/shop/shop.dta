@@ -67,6 +67,7 @@
       lrb_shop_rock
       lrb_shop_custom
       lrb_shop_unused
+      lrb_shop_custom_odd
    )
 )
 #define OUTFIT_GENRES_BUTTONS (
@@ -81,6 +82,7 @@
       08rock.btn
       09faces.btn
       10unused.btn
+      11odd.btn
    )
 )
 {func hide_invalid_genres
@@ -94,7 +96,16 @@
       {10unused.btn set nav_down 08rock.btn}
       {10unused.btn set text_token lrb_shop_unused}
       {08rock.btn set_local_pos 86.92 0.00 31.06}
+
+      {new BandButton 11odd.btn}
+      {11odd.btn copy 07other.btn 0}
+      {11odd.btn set_local_pos 79.00 0.00 -104.50}
+      {11odd.btn set_local_scale 0.3 0.3 0.3}
+      {11odd.btn set text_token lrb_shop_custom_odd}
+      {07other.btn set nav_down 11odd.btn}
+
       {Categories.grp add_object 10unused.btn}
+      {Categories.grp add_object 11odd.btn}
       {$this sync_objects}
    }
    {if {exists 09faces.btn}

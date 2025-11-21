@@ -398,6 +398,7 @@
 (long "long")
 (very_long "very long")
 (lrb_shop_custom "CUSTOM")
+(lrb_shop_custom_odd "???")
 (lrb_shop_unused "EARLY/UNUSED")
 (rb1 "Rock Band")
 (rb1_alt "Rock Band (alt)")
