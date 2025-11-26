@@ -389,17 +389,13 @@
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_gems_screen})
       )
-      (os_gems_colors
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_gem_color_screen})
-      )
       (os_smashers
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_smashers_screen})
       )
-      (os_smashers_colors
+      (os_colors
          (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_smasher_color_screen})
+         (sel_script {pop_and_goto_screen overshell_colors_screen})
       )
    ))
    (enter {os_setup_common})
@@ -430,9 +426,9 @@
    (focus overshell_gems_panel)
 }
 {new UIPanel
-   overshell_gem_color_panel
+   overshell_colors_panel
    OVERSHELL_LIST_FILE
-   (title os_gems_colors)
+   (title os_colors)
    (data (
       (os_gtr_gems_color
          (type uNormal)
@@ -446,16 +442,24 @@
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_drm_gem_color_screen})
       )
+      (os_gtr_smasher_color
+         (type uNormal)
+         (sel_script {pop_and_goto_screen overshell_gtr_smasher_color_screen})
+      )
+      (os_drm_smasher_color
+         (type uNormal)
+         (sel_script {pop_and_goto_screen overshell_drm_smasher_color_screen})
+      )
    ))
    (enter {os_setup_common})
    (BUTTON_DOWN_MSG {os_down_common})
    (SELECT_MSG {os_sel_common})
 }
 {new UIScreen
-   overshell_gem_color_screen
+   overshell_colors_screen
    (back overshell_trk_screen)
-   (panels overshell_gem_color_panel practice_lower3rd_panel)
-   (focus overshell_gem_color_panel)
+   (panels overshell_colors_panel practice_lower3rd_panel)
+   (focus overshell_colors_panel)
 }
 {new UIPanel
    overshell_gtr_gem_color_panel
@@ -499,7 +503,7 @@
 }
 {new UIScreen
    overshell_gtr_gem_color_screen
-   (back overshell_gem_color_screen)
+   (back overshell_colors_screen)
    (panels overshell_gtr_gem_color_panel practice_lower3rd_panel)
    (focus overshell_gtr_gem_color_panel)
 }
@@ -545,7 +549,7 @@
 }
 {new UIScreen
    overshell_drm_gem_color_screen
-   (back overshell_gem_color_screen)
+   (back overshell_colors_screen)
    (panels overshell_drm_gem_color_panel practice_lower3rd_panel)
    (focus overshell_drm_gem_color_panel)
 }
@@ -591,7 +595,7 @@
 }
 {new UIScreen
    overshell_gtr_sus_color_screen
-   (back overshell_gem_color_screen)
+   (back overshell_colors_screen)
    (panels overshell_gtr_sus_color_panel practice_lower3rd_panel)
    (focus overshell_gtr_sus_color_panel)
 }
@@ -611,30 +615,6 @@
    (back overshell_trk_screen)
    (panels overshell_smashers_panel practice_lower3rd_panel)
    (focus overshell_smashers_panel)
-}
-{new UIPanel
-   overshell_smasher_color_panel
-   OVERSHELL_LIST_FILE
-   (title os_smashers_colors)
-   (data (
-      (os_gtr_smasher_color
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_gtr_smasher_color_screen})
-      )
-      (os_drm_smasher_color
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_drm_smasher_color_screen})
-      )
-   ))
-   (enter {os_setup_common})
-   (BUTTON_DOWN_MSG {os_down_common})
-   (SELECT_MSG {os_sel_common})
-}
-{new UIScreen
-   overshell_smasher_color_screen
-   (back overshell_trk_screen)
-   (panels overshell_smasher_color_panel practice_lower3rd_panel)
-   (focus overshell_smasher_color_panel)
 }
 {new UIPanel
    overshell_gtr_smasher_color_panel
@@ -678,7 +658,7 @@
 }
 {new UIScreen
    overshell_gtr_smasher_color_screen
-   (back overshell_smasher_color_screen)
+   (back overshell_colors_screen)
    (panels overshell_gtr_smasher_color_panel practice_lower3rd_panel)
    (focus overshell_gtr_smasher_color_panel)
 }
@@ -719,7 +699,7 @@
 }
 {new UIScreen
    overshell_drm_smasher_color_screen
-   (back overshell_smasher_color_screen)
+   (back overshell_colors_screen)
    (panels overshell_drm_smasher_color_panel practice_lower3rd_panel)
    (focus overshell_drm_smasher_color_panel)
 }

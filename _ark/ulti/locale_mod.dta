@@ -43,6 +43,7 @@
 (os_blackbg "Disable Venues")
 (os_songtitle "Song Title Always")
 (os_gems "Gems")
+(os_colors "Colors")
 (os_gems_colors "Gem Colors")
 (os_smashers "Smashers")
 (os_smashers_colors "Smasher Colors")
