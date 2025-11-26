@@ -6,6 +6,7 @@
          {$m set alpha_cut TRUE}
          {$m set z_mode kZModeTransparent}
       }
+      {{$inst find now_bar_rising_sun.mesh} set_local_pos 0 121444 1.39}
       {{{$inst find smasher_plate_guitar} find smasher_plate.mesh} set_showing FALSE}
       {foreach_int $i 0 5 {do
          ($m {$dir find {sprintf "fret_%d.mesh" {+ $i 1}}})
