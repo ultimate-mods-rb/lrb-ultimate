@@ -27,7 +27,7 @@
                   }
                }
             )
-            (uFakeSld
+            ((uSld uFakeSld)
                {push_back $array
                   {sprintf
                      {localize {elem $entry 0}}
@@ -160,7 +160,7 @@
                   {eval $cmd}
                }
             )
-            (uFakeSld
+            ((uSld uFakeSld)
                {$this set focused TRUE}
                {$this set store {eval_var {elem {find $entry var} 1}}}
             )
@@ -174,7 +174,7 @@
    ($entry {elem [data] {OS_LIST selected_pos}})
    {if_else {== {type $entry} kDataArray}
       {switch {elem {find $entry type} 1}
-         (uFakeSld
+         ((uSld uFakeSld)
             {if_else {&& {$this has (focused)} [focused]}
                {switch $action
                   (kAction_Confirm
@@ -193,9 +193,18 @@
                   ((kAction_Up kAction_Left)
                      {synth play button_focus}
                      {set_var {elem {find $entry var} 1}
-                        {prev_elem
-                           {eval {elem {find $entry array} 1}}
-                           {eval_var {elem {find $entry var} 1}}
+                        {if_else {== {elem {find $entry type} 1} uSld}
+                           {clamp
+                              {- {eval_var {elem {find $entry var} 1}}
+                                 {elem {find $entry step} 1}
+                              }
+                              {elem {find $entry range} 1}
+                              {elem {find $entry range} 2}
+                           }
+                           {prev_elem
+                              {eval {elem {find $entry array} 1}}
+                              {eval_var {elem {find $entry var} 1}}
+                           }
                         }
                      }
                      {lst_reset}
@@ -203,9 +212,18 @@
                   ((kAction_Down kAction_Right)
                      {synth play button_focus}
                      {set_var {elem {find $entry var} 1}
-                        {next_elem
-                           {eval {elem {find $entry array} 1}}
-                           {eval_var {elem {find $entry var} 1}}
+                        {if_else {== {elem {find $entry type} 1} uSld}
+                           {clamp
+                              {+ {eval_var {elem {find $entry var} 1}}
+                                 {elem {find $entry step} 1}
+                              }
+                              {elem {find $entry range} 1}
+                              {elem {find $entry range} 2}
+                           }
+                           {next_elem
+                              {eval {elem {find $entry array} 1}}
+                              {eval_var {elem {find $entry var} 1}}
+                           }
                         }
                      }
                      {lst_reset}
@@ -243,7 +261,7 @@
                   (confirm helpbar_confirmsetting)
                )
             )
-            ({find_elem (uOnOFF uFakeSld) {elem {find $entry type} 1}}
+            ({find_elem (uOnOFF uSld uFakeSld) {elem {find $entry type} 1}}
                (
                   (cancel helpbar_back)
                   (confirm helpbar_changesetting)

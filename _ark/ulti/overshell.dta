@@ -314,17 +314,19 @@
          (sel_script {pop_and_goto_screen overshell_trackspeed_screen})
       )
       (hwlength_msg
-         (type uFakeSld)
+         (type uSld)
          (fmt_type uSpeed)
          (var hwlength)
-         50_TO_250
+         (step 0.05)
+         (range 0.50 2.50)
       )
       (speed_msg
-         (type uFakeSld)
+         (type uSld)
          (fmt_type uSpeed)
          (var speedmod)
          (block_ingame TRUE)
-         100_TO_250
+         (step 0.05)
+         (range 0.50 2.50)
       )
    ))
    (enter {os_setup_common})
@@ -348,22 +350,25 @@
          (sel_script {toggle_var syncdifspeeds})
       )
       (gtr_trackspeed_msg
-         (type uFakeSld)
+         (type uSld)
          (fmt_type uSpeed)
          (var guitar_trackspeed)
-         50_TO_250
+         (step 0.05)
+         (range 0.50 2.50)
       )
       (bass_trackspeed_msg
-         (type uFakeSld)
+         (type uSld)
          (fmt_type uSpeed)
          (var bass_trackspeed)
-         50_TO_250
+         (step 0.05)
+         (range 0.50 2.50)
       )
       (drum_trackspeed_msg
-         (type uFakeSld)
+         (type uSld)
          (fmt_type uSpeed)
          (var drum_trackspeed)
-         50_TO_250
+         (step 0.05)
+         (range 0.50 2.50)
       )
    ))
    (enter {os_setup_common})
