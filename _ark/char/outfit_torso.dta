@@ -1342,6 +1342,18 @@
          (genre lrb_shop_custom_odd)
          (unlocked TRUE)
       )
+      (lammy
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (mario
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (rayman
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
       #endif
    )
 )

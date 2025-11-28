@@ -167,6 +167,9 @@
       (Robinhood costume_robinhood)
       #ifdef HX_NG
       (noob_prefab noob)
+      (lammy lammy)
+      (mario mario)
+      (rayman rayman)
       #endif
    )
    (quickplay
