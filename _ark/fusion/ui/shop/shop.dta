@@ -102,7 +102,7 @@
       {11odd.btn set_local_pos 79.00 0.00 -104.50}
       {11odd.btn set_local_scale 0.3 0.3 0.3}
       {11odd.btn set text_token lrb_shop_custom_odd}
-      {07other.btn set nav_down 11odd.btn}
+      {09faces.btn set nav_right 11odd.btn}
 
       {Categories.grp add_object 10unused.btn}
       {Categories.grp add_object 11odd.btn}
