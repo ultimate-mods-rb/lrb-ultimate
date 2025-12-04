@@ -73,6 +73,8 @@
 
 {set $micdeploy TRUE}
 
+{set $indvtrkspeeds TRUE}
+
 {set $smallworld FALSE}
 
 {set $bigmode FALSE}

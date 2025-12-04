@@ -239,24 +239,27 @@
       }
    )
    (update_track_speeds
-      {beatmatch foreach_active_player $player
-         {unless {== {$player instrument} vocals}
-            {do
+      {do
+         ($average_difficulty 0)
+         ($num_tracks 0)
+         {beatmatch foreach_active_player $player
+            {unless {|| {== {$player instrument} vocals} {$player is_net}}
+               {+= $average_difficulty {$player difficulty}}
+               {+= $num_tracks 1}
+            }
+         }
+         {if {> $num_tracks 0}
+            {/= $average_difficulty $num_tracks}
+            {/= $average_difficulty kDifficultyExpert}
+         }
+         {beatmatch foreach_active_player $player
+            {unless {== {$player instrument} vocals} {do
                ($obj {object {$player instrument}})
                ($diff_view_time
-                  {elem ;3 this is not written very poorly!
-                     {switch {{$this loaded_dir} get configuration}
-                        ((1_player_wide 1_player_regular) (43.75 52.50 65.63 87.50))
-                        (2_player_wide (59.13 70.96 88.70 118.27))
-                        (2_player_regular (66.20 79.44 99.30 132.40))
-                        (3_player_wide (77.87 93.44 116.81 155.74))
-                        (3_player_regular (95.19 114.22 142.78 190.37))
-                        {fail "Unknown track configuration"}
-                     }
-                     {if_else $syncdifspeeds
-                        kDifficultyExpert
-                        {$player difficulty}
-                     }
+                  {cond
+                     ($syncdifspeeds 1.2)
+                     ($indvtrkspeeds {elem (2.4 2.0 1.6 1.2) {$player difficulty}})
+                     (TRUE {+ 2.4 {* $average_difficulty -1.2}})
                   }
                )
                ($ts {eval_var {sprint {$player instrument} "_trackspeed"}})
@@ -272,10 +275,10 @@
                      }
                   }
                )
-               ($view_time {/ {* {/ $diff_view_time $hwss} $ts} $speedmod})
+               ($view_time {* {* {/ $diff_view_time $ts} $hwss} $speedmod})
                ;{print $obj " " $diff_view_time " " $ts " " $hwss " " $view_time "\n"}
-               {$obj set y_per_second $view_time}
-            }
+               {$obj set y_per_second {/ {$obj get top_y} $view_time}}
+            }}
          }
       }
    )

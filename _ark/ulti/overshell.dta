@@ -344,11 +344,6 @@
    OVERSHELL_LIST_FILE
    (title os_trackspeed)
    (data (
-      (os_syncdifspeeds
-         (type uOnOFF)
-         (bool $syncdifspeeds)
-         (sel_script {toggle_var syncdifspeeds})
-      )
       (gtr_trackspeed_msg
          (type uSld)
          (fmt_type uSpeed)
@@ -369,6 +364,16 @@
          (var drum_trackspeed)
          (step 0.05)
          (range 0.50 2.50)
+      )
+      (os_indvtrkspeeds
+         (type uOnOFF)
+         (bool $indvtrkspeeds)
+         (sel_script {toggle_var indvtrkspeeds})
+      )
+      (os_syncdifspeeds
+         (type uOnOFF)
+         (bool $syncdifspeeds)
+         (sel_script {toggle_var syncdifspeeds})
       )
    ))
    (enter {os_setup_common})
