@@ -2067,6 +2067,17 @@
             (hats spice_hat (colors 20 23))
          )
       )
+      (lisa
+         (unlocked TRUE)
+         (cost 500000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads lisa_head)
+            (torso lisa_torso)
+            (legs lisa_legs)
+            (hair lisa_hair (colors 0 0))
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

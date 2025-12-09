@@ -866,5 +866,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (lisa_legs
+         (ui_name lisa)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

@@ -1337,6 +1337,11 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (lisa_torso
+         (ui_name lisa)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
       #ifdef HX_NG
       (noob
          (genre lrb_shop_custom_odd)

@@ -810,5 +810,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (lisa_head
+         (ui_name lisa)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

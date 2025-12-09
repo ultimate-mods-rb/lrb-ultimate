@@ -777,8 +777,10 @@
 {func data_override_band
    {do
       ($song {meta_performer song})
+      ($name {song_mgr song_name $song})
+      ($artist {song_mgr song_artist $song})
       ($likeness
-         {switch {song_mgr song_artist $song}
+         {switch $artist
             ("Queen" queen)
             ("Iggy Pop" iggy_pop)
             ("Blur" blur)
@@ -788,15 +790,18 @@
                Jimmy_Hendrix
             )
             ("KT Tunstall" kt_tunstall)
+            {cond
+               (
+                  {||
+                     {has_substr {song_mgr song_name $song} "Hatsune Miku"}
+                     {has_substr {song_mgr song_artist $song} "Hatsune Miku"}
+                  }
+                  miku
+               )
+               ({startswith $artist "LISA"} lisa)
+            }
          }
       )
-      {if
-         {||
-            {has_substr {song_mgr song_name $song} "Hatsune Miku"}
-            {has_substr {song_mgr song_artist $song} "Hatsune Miku"}
-         }
-         {set $likeness miku}
-      }
       {if $likeness
          {gamecfg set_override_band $likeness}
       }
