@@ -793,8 +793,8 @@
             {cond
                (
                   {||
-                     {has_substr {song_mgr song_name $song} "Hatsune Miku"}
-                     {has_substr {song_mgr song_artist $song} "Hatsune Miku"}
+                     {has_substr $name "Hatsune Miku"}
+                     {has_substr $artist "Hatsune Miku"}
                   }
                   miku
                )

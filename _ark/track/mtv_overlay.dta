@@ -59,7 +59,7 @@
                      {if_else {> $speedmod 1.00}
                         {sprintf "%s (%d%)"
                            $song_text
-                           {int {* 100 $speedmod}}
+                           {int {+ {* $speedmod 100} 0.5}}
                         }
                         $song_text
                      }
