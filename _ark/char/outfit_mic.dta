@@ -103,5 +103,11 @@
          (unlocked TRUE)
       )
       #endif
+      ; custom
+      (revolver
+         (genre lrb_shop_custom)
+         (cost 1980)
+         (unlocked TRUE)
+      )
    )
 )
