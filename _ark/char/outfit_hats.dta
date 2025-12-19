@@ -472,7 +472,7 @@
       ;custom
       (stevehead
          (ui_name stevehead)
-         (genre lrb_shop_custom)
+         (genre lrb_shop_custom_odd)
          (unlocked TRUE)
       )
       (batman_mask
@@ -508,6 +508,11 @@
       )
       (spice_hat
          (ui_name spice)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
+      (santabrina_hat
+         (ui_name santabrina)
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )

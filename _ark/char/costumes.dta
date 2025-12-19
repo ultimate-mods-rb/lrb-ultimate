@@ -2078,6 +2078,17 @@
             (hair lisa_hair (colors 0 0))
          )
       )
+      (santabrina
+         (unlocked TRUE)
+         (cost 500000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads santabrina_head)
+            (torso santabrina_torso)
+            (legs santabrina_legs)
+            (hats santabrina_hat (colors 50 49))
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

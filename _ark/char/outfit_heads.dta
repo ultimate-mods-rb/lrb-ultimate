@@ -815,5 +815,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (santabrina_head
+         (ui_name santabrina)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
