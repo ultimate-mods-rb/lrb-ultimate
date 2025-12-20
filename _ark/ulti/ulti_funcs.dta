@@ -752,6 +752,14 @@
       }
    }
 }
+{func get_month
+   {do
+      ($year)
+      ($month)
+      {get_date_time $year $month}
+      $month
+   }
+}
 {func get_song_metadata
    ($song $data)
    {do
@@ -796,9 +804,19 @@
                      {has_substr $name "Hatsune Miku"}
                      {has_substr $artist "Hatsune Miku"}
                   }
-                  miku
+                  {if_else {== {get_month} 12}
+                     festive_miku
+                     miku
+                  }
                )
                ({startswith $artist "LISA"} lisa)
+               (
+                  {&&
+                     {== $artist "Sabrina Carpenter"}
+                     {== {get_month} 12}
+                  }
+                  festive_sabrina
+               )
             }
          }
       )

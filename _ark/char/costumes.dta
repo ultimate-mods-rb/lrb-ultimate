@@ -2089,6 +2089,17 @@
             (hats santabrina_hat (colors 50 49))
          )
       )
+      (snowmiku
+         (unlocked TRUE)
+         (cost 2000000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads snowmiku_head)
+            (torso snowmiku_torso)
+            (legs snowmiku_legs)
+            (hair snowmiku_hair)
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

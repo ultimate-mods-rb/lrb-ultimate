@@ -242,6 +242,7 @@
          catrin
          lisa
          santabrina
+         snowmiku
          es
          pv
          rysz
@@ -280,6 +281,13 @@
       (miku (desdemona batman miku ivystub))
       (ghostbusters (pv es wz rysz))
       (lisa (jules nemia lisa catrin))
+      #ifdef HX_NG
+      (festive_sabrina (snowmiku dlc_elf santabrina lisa))
+      (festive_miku (santabrina dlc_snowman snowmiku dlc_riendeer))
+      #else
+      (festive_sabrina (snowmiku batman santabrina lisa))
+      (festive_miku (santabrina emmet snowmiku lucy))
+      #endif
       (old_times_sake (Commuter TrainDriver Trainconductor TrainDriver))
       (lego_city_fundraiser
          (Construction Construction Construction Construction)

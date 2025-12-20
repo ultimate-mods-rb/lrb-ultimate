@@ -1326,5 +1326,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (snowmiku_hair
+         (ui_name snowmiku)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
