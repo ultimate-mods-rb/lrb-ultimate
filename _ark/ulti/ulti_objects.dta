@@ -36,6 +36,16 @@
             {[parent] set_showing FALSE}
             {$this set_lbl " "}
             {cond
+               (
+                  {&&
+                     {find_elem
+                        (2_player_wide 2_player_regular)
+                        {{coop_track_panel loaded_dir} get configuration}
+                     }
+                     {!= [track] vocals}
+                  }
+                  {[parent] set_local_pos 0 -2 -10}
+               )
                ({!= [track] vocals}
                   {[parent] set_local_pos 0 0 -14}
                )
