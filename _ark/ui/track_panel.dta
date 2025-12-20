@@ -149,9 +149,6 @@
       {endgame_feedback_02 insert (subdirs 0) ulti/track/countdown_drum.milo}
       {endgame_feedback_03 insert (subdirs 0) ulti/track/countdown_bass.milo}
       {endgame_feedback_vox insert (subdirs 0) ulti/track/countdown_vocals.milo}
-      {if $flashbang
-         {replace_object flare_light_can_star.tex plain.tex FALSE}
-      }
       {$this set_showing FALSE}
       {$this set_track_out}
    )
@@ -262,7 +259,12 @@
                      (TRUE {+ 2.4 {* $average_difficulty -1.2}})
                   }
                )
-               ($ts {eval_var {sprint {$player instrument} "_trackspeed"}})
+               ($ts
+                  {if_else {modifier_mgr is_modifier_active mod_doublespeed}
+                     {+ {eval_var {sprint {$player instrument} "_trackspeed"}} 0.5}
+                     {eval_var {sprint {$player instrument} "_trackspeed"}}
+                  }
+               )
                ($hwss
                   {if_else {== $hwlength 1.0}
                      1.0
