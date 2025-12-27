@@ -762,19 +762,29 @@
 }
 {func get_song_metadata
    ($song $data)
+   #ifdef HX_NG ; crash fixed in wii exec
+   {if {challenge_mgr has_challenge}
+      {print "unloading song_offer_provider\n"}
+      {song_offer_provider unload}
+   }
+   #endif
+   {print "requesting metadata " $song " " $data "\n"}
    {do
       ($return)
       {if_else
          {song_offer_provider num_data}
          {do
-            {print "metadata " $song " " $data "\n"}
-            {if {song_mgr has_song $song}
+            {print "getting metadata\n"}
+            {if_else {song_mgr has_song $song}
                {do
                   ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
                   {if {$offer has_data $data}
                      {set $return {$offer get_data ($data)}}
+                     {print "got metadata\n"}
                   }
+                  {print "done\n"}
                }
+               {print "invalid song!\n"}
             }
          }
          {print "unable to get metadata now. song_offer_provider isn't loaded :(\n"}
