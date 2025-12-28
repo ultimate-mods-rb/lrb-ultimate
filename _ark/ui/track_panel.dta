@@ -232,7 +232,7 @@
          }
       }
       {unless {&& {gamemode get is_practice} {gamecfg get practice_speed}}
-         {beatmatch set_music_speed $speedmod}
+         {beatmatch set_music_speed {max $speedmod 1.00}}
       }
    )
    (update_track_speeds

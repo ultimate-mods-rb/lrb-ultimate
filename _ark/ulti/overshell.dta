@@ -326,7 +326,7 @@
          (var speedmod)
          (block_ingame TRUE)
          (step 0.05)
-         (range 0.50 2.50)
+         (range 1.00 2.50)
       )
    ))
    (enter {os_setup_common})
