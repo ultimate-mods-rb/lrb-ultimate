@@ -380,24 +380,20 @@
 }
 {func apply_gfx_settings
    {rnd set_sync $vsyncrate}
-   {$world iterate PostProc $p
+   {$world iterate PostProc $p {with $p
       #ifdef HX_NG
       {if_else {game is_loaded}
-         {$p set emulate_fps $emulatefps}
-         {$p set emulate_fps 60}
-      }
-      {unless $mbblend
-         {$p set motion_blur_blend 0}
-         {$p set motion_blur_weight 0}
+         {set [emulate_fps] $emulatefps}
+         {set [emulate_fps] 60}
       }
       #endif
-      {unless $scrnoise
-         {$p set noise_intensity 0}
+      {if {&& {! $scrnoise} [noise_intensity]}
+         {set [noise_intensity] 0.0001}
       }
-      {unless $scrbloom
-         {$p set bloom_intensity 0}
+      {if {&& {! $scrbloom} [bloom_intensity]}
+         {set [bloom_intensity] 0.0001}
       }
-   }
+   }}
    {$world iterate CamShot $cs
       {unless $fxdof
          {$cs set use_depth_of_field FALSE}

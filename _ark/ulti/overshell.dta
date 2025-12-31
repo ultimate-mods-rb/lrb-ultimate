@@ -242,13 +242,6 @@
          (bool $camerashake)
          (sel_script {toggle_var camerashake})
       )
-      #ifndef HX_WII
-      (os_mbblend
-         (type uOnOFF)
-         (bool $mbblend)
-         (sel_script {toggle_var mbblend})
-      )
-      #endif
    ))
    (enter {os_setup_common})
    (BUTTON_DOWN_MSG {os_down_common})

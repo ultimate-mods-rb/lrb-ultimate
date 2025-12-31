@@ -55,7 +55,7 @@
                         $scrnoise
                         $scrbloom
                         $camerashake
-                        $mbblend
+                        0 ; free
                         $gtrgem1
                         $gtrgem2
                         $gtrgem3
@@ -137,7 +137,7 @@
                   ($str)
                   {if {> {strlen $settings} 5}
                      #ifndef _SHIP
-                     {print {sprintf "Attempting to load mod settings from \q%s\q\n" {$band band_name}}}
+                     {printf "Attempting to load mod settings from \q%s\q\n" {$band band_name}}
                      #endif
                      {foreach_int $elem 0 {strlen $settings} {do
                         ($char {str_elem $settings $elem})
@@ -174,7 +174,7 @@
                            {set $scrnoise {sti {str_elem $pool 10}}}
                            {set $scrbloom {sti {str_elem $pool 11}}}
                            {set $camerashake {sti {str_elem $pool 12}}}
-                           {set $mbblend {sti {str_elem $pool 13}}}
+                           ;{set $mbblend {sti {str_elem $pool 13}}}
                            {set $gtrgem1 {sti {str_elem $pool 14}}}
                            {set $gtrgem2 {sti {str_elem $pool 15}}}
                            {set $gtrgem3 {sti {str_elem $pool 16}}}
