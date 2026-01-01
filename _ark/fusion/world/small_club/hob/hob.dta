@@ -1,0 +1,25 @@
+{$this iterate BandCamShot $bcs
+   {foreach_int $i 0 {$bcs size (targets)}
+      {if {== {$bcs get (targets $i target)} player_drum}
+         {$bcs set (targets $i teleport) FALSE}
+      }
+   }
+}
+{player_drum set_local_pos -2.00 214.50 3.3}
+{$this iterate Spotlight $l
+   {$l set_showing FALSE}
+}
+{$this iterate WorldCrowd $crd
+   {$crd rebuild}
+}
+{foreach $shot
+   (
+      "coop_b_c03.shot"
+      "coop_bgv_n09.shot"
+      "coop_dir-g13.shot"
+      "coop_dir-lt02.shot"
+      "coop_bgv_n06.shot"
+      "coop_bgv_n10.shot"
+   )
+   {$shot set enabled FALSE}
+}

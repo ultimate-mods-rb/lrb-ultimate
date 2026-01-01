@@ -273,6 +273,7 @@
          rooftop
          americanidiot
          hospital_rooftop
+         hob
       )
    )
    (rb2_venues
@@ -543,6 +544,7 @@
             (americanidiot big_club/americanidiot/americanidiot.milo)
             (rooftop small_club/rooftop/rooftop.milo)
             (hospital_rooftop small_club/hospital_rooftop/hospital_rooftop.milo)
+            (hob small_club/hob/hob.milo)
             ;rb1/rb2
             (video_01 rb2/video_01/video_01.milo)
             (video_02 rb2/video_02/video_02.milo)
