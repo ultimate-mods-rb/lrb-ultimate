@@ -3,6 +3,7 @@
       (countdown
          (active FALSE)
          (done FALSE)
+         (hide_at_end FALSE)
          (current_event 0)
          (total_events 0)
          (remaining 0)
@@ -59,6 +60,7 @@
                ($pos {{sprint $this "_mp"} get final_note_pos})
                ($len {- {end_of_song get end} $pos})
                {if {>= $len 20}
+                  {set [hide_at_end] TRUE}
                   {push_back [event_array] {array ($pos {int {- $len 4}})}}
                }
             }
@@ -100,9 +102,11 @@
                            {force_drum_freestyle FALSE}
                         }
                         {set [active] FALSE}
-                        {if_else {== {[track] name} vocals}
-                           {{[track] find play_intro.trig} trigger}
-                           {{[track] find intro.trig} trigger}
+                        {unless {&& [hide_at_end] {== [current_event] [total_events]}}
+                           {if_else {== {[track] name} vocals}
+                              {{[track] find play_intro.trig} trigger}
+                              {{[track] find intro.trig} trigger}
+                           }
                         }
                         {if_else {== [current_event] [total_events]}
                            {set [done] TRUE}
