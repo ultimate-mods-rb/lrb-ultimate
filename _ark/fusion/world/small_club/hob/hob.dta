@@ -15,11 +15,13 @@
 {foreach $shot
    (
       "coop_b_c03.shot"
+      "coop_v_n07.shot"
       "coop_bgv_n09.shot"
       "coop_dir-g13.shot"
       "coop_dir-lt02.shot"
       "coop_bgv_n06.shot"
       "coop_bgv_n10.shot"
+      "coop_bgv_n19.shot"
    )
    {$shot set enabled FALSE}
 }
