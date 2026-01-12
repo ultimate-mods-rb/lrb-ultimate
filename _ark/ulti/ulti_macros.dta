@@ -10,6 +10,7 @@
 #define uInst      (5)
 #define uMapping   (6)
 #define uSpeed     (7)
+#define uTimer     (8)
 
 #define COLOR_DATA_COMMON (
    (type uFakeSld)

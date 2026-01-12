@@ -47,7 +47,7 @@
 
 {set $countdown TRUE}
 
-{set $songtimer TRUE}
+{set $songtimer 2}
 
 {set $kickbounce FALSE}
 

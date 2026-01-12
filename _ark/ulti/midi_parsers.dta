@@ -20,6 +20,7 @@
    (text
       {if {== $mp.val end}
          {set [end] $mp.start}
+         {set [end_ms] {beat_to_seconds $mp.start}}
       }
    )
 }

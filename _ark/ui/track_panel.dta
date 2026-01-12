@@ -137,9 +137,7 @@
             }
          }
          {timer.lbl set_trans_parent $this}
-         {if $songtimer
-            {$this sync_objects}
-         }
+         {$this sync_objects}
       }
       {if {gamemode get is_autoplay}
          {multiplier_meter.tex set_bitmap ulti/track/blue.png}

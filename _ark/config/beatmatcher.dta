@@ -10,10 +10,25 @@
       {do
          ($lbl {{{get_track_panel} find scoreboard} find timer.lbl})
          {$lbl set_localized
-            {sprint
-               {seconds_to_time {/ {beatmatch get_song_ms} 1000}}
-               "/"
-               {seconds_to_time {beat_to_seconds {end_of_song get end}}}
+            {switch $songtimer
+               (1
+                  {sprint
+                     {seconds_to_time {/ {beatmatch get_song_ms} 1000}}
+                     "/"
+                     {seconds_to_time {end_of_song get end_ms}}
+                  }
+               )
+               (2
+                  {sprint
+                     {seconds_to_time {max {- {end_of_song get end_ms} {/ {beatmatch get_song_ms} 1000}} 0}}
+                     "/"
+                     {seconds_to_time {end_of_song get end_ms}}
+                  }
+               )
+               (3 {seconds_to_time {max {- {end_of_song get end_ms} {/ {beatmatch get_song_ms} 1000}} 0}})
+               (4 {seconds_to_time {/ {beatmatch get_song_ms} 1000}})
+               (5 {seconds_to_time {end_of_song get end_ms}})
+               ""
             }
          }
       }

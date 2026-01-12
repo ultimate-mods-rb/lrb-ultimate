@@ -172,9 +172,10 @@
          (sel_script {toggle_var countdown})
       )
       (os_songtimer
-         (type uOnOFF)
-         (bool $songtimer)
-         (sel_script {toggle_var songtimer})
+         (type uFakeSld)
+         (fmt_type uTimer)
+         (var songtimer)
+         (array (0 1 2 3 4 5))
       )
       (os_videobgs
          (type uOnOFF)

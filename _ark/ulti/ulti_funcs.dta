@@ -113,6 +113,19 @@
                            }
                         )
                         (uSpeed {int {+ {* {eval_var {elem {find $entry var} 1}} 100} 0.5}})
+                        (uTimer
+                           {localize
+                              {switch {eval_var {elem {find $entry var} 1}}
+                                 (0 off)
+                                 (1 time_total)
+                                 (2 remaining_total)
+                                 (3 remaining)
+                                 (4 time)
+                                 (5 total)
+                                 invalid
+                              }
+                           }
+                        )
                      }
                   }
                }
