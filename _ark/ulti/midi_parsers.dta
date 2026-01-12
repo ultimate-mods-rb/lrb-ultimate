@@ -17,6 +17,7 @@
 {new MidiParser
    end_of_song
    (track_name EVENTS)
+   (init {set [end] 0} {set [end_ms] 0})
    (text
       {if {== $mp.val end}
          {set [end] $mp.start}
