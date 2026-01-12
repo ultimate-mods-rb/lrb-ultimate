@@ -37,6 +37,7 @@
 (os_misssounds "Miss Sounds")
 (os_trkmuting "Track Muting")
 (os_micdeploy "Deploy With Mic")
+(os_fillvelocity "Drum Fill Velocity")
 (os_venuefps "Venue FPS")
 (os_fps_fmt "Ò Venue FPS: %dFPS Ó")
 (os_vsync_fmt "Ò VBlank Rate: %s Ó")

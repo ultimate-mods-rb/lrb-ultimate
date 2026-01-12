@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (9) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (10) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -55,7 +55,7 @@
                         $scrnoise
                         $scrbloom
                         $camerashake
-                        0 ; free
+                        $fillvelocity
                         $gtrgem1
                         $gtrgem2
                         $gtrgem3
@@ -174,7 +174,9 @@
                            {set $scrnoise {sti {str_elem $pool 10}}}
                            {set $scrbloom {sti {str_elem $pool 11}}}
                            {set $camerashake {sti {str_elem $pool 12}}}
-                           ;{set $mbblend {sti {str_elem $pool 13}}}
+                           {if {>= $version 10}
+                              {set $fillvelocity {sti {str_elem $pool 13}}}
+                           }
                            {set $gtrgem1 {sti {str_elem $pool 14}}}
                            {set $gtrgem2 {sti {str_elem $pool 15}}}
                            {set $gtrgem3 {sti {str_elem $pool 16}}}

@@ -75,6 +75,8 @@
 
 {set $indvtrkspeeds TRUE}
 
+{set $fillvelocity TRUE}
+
 {set $smallworld FALSE}
 
 {set $bigmode FALSE}

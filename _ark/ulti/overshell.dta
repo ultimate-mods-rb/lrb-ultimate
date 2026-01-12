@@ -114,6 +114,11 @@
          (bool $micdeploy)
          (sel_script {toggle_var micdeploy})
       )
+      (os_fillvelocity
+         (type uOnOFF)
+         (bool $fillvelocity)
+         (sel_script {toggle_var fillvelocity})
+      )
    ))
    (enter {os_setup_common})
    (BUTTON_DOWN_MSG {os_down_common})

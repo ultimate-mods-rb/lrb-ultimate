@@ -113,7 +113,17 @@
    (background_attenuation 2.2)
    (cue_attenuation 0.0)
    (remote_attenuation 1.5)
-   (drum_velocity_to_db (0.0 -13.0 -7.0 -3.0 -2.0 -0.5 0.0))
+   (drum_velocity_to_db
+      (
+         0.0
+         {if_else $fillvelocity -13.0 0.0}
+         {if_else $fillvelocity -7.0 0.0}
+         {if_else $fillvelocity -3.0 0.0}
+         {if_else $fillvelocity -2.0 0.0}
+         {if_else $fillvelocity -0.5 0.0}
+         0.0
+      )
+   )
    #ifdef HX_WII
    (drum_sample_attenuation -10.0)
    #else
