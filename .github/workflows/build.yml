@@ -14,6 +14,8 @@ jobs:
           echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           chmod +x dependencies/linux/arkhelper
           chmod +x dependencies/linux/dtab
+      - name: Replace LOCALBUILD with commit SHA in locale
+        run: sed -i "s/LOCALBUILD/$(git rev-parse --short HEAD)/g" _ark/ulti/locale_mod.dta
       - name: Remove PS3 and Wii files
         run: |
           find . -name "*.*_ps3" -type f -delete
@@ -40,6 +42,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Replace LOCALBUILD with commit SHA in locale
+        run: |
+          $sha = git rev-parse --short HEAD
+          (Get-Content _ark/ulti/locale_mod.dta) -replace 'LOCALBUILD', $sha | Set-Content _ark/ulti/locale_mod.dta
       - name: Remove Xbox and Wii files
         run: |
           Get-ChildItem _ark/ -recurse -include *.*_xbox | remove-item
@@ -68,6 +74,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Replace LOCALBUILD with commit SHA in locale
+        run: |
+          $sha = git rev-parse --short HEAD
+          (Get-Content _ark/ulti/locale_mod.dta) -replace 'LOCALBUILD', $sha | Set-Content _ark/ulti/locale_mod.dta
       - name: Remove Xbox and Wii files
         run: |
           Get-ChildItem _ark/ -recurse -include *.*_xbox | remove-item
@@ -109,6 +119,8 @@ jobs:
           cp dependencies/wii_rebuild_file/main_wii.hdr dependencies/riivolution-patch/lrbul/main_wii.hdr
           truncate -s 1994575183 dependencies/riivolution-patch/lrbul/main_wii_0.ark
           truncate -s 1595018582 dependencies/riivolution-patch/lrbul/main_wii_1.ark
+      - name: Replace LOCALBUILD with commit SHA in locale
+        run: sed -i "s/LOCALBUILD/$(git rev-parse --short HEAD)/g" _ark/ulti/locale_mod.dta
       - name: Remove Xbox and PS3 files
         run: |
           find . -name "*.*_xbox" -type f -delete
@@ -146,6 +158,8 @@ jobs:
           echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           chmod +x dependencies/linux/arkhelper
           chmod +x dependencies/linux/dtab
+      - name: Replace LOCALBUILD with commit SHA in locale
+        run: sed -i "s/LOCALBUILD/$(git rev-parse --short HEAD)/g" _ark/ulti/locale_mod.dta
       - name: Remove Xbox and PS3 files
         run: |
           find . -name "*.*_xbox" -type f -delete

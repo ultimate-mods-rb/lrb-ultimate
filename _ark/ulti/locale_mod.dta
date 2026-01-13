@@ -432,5 +432,6 @@
 (ghwor "Guitar Hero Warriors of Rock")
 (amp "Amplitude")
 (freq "Frequency")
+(lrbu_version "LOCALBUILD")
 (mc_auto_warning_wii "LRB Ultimate BETA is a free and open source mod by Synchrony.\nIf you PAID for this/gave \qdevs\q MONEY you've been SCAMMED!\nthe only official download links are\ngithub.com/ultimate-mods-rb/lrb-ultimate\nsites.google.com/view/ultimods/downloads")
 #include locale_sources.dta
