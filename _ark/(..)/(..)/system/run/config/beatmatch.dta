@@ -43,7 +43,7 @@
 (mercury_switch_filter
    (any_sign_filter
       (window 0.5)
-      (num_frames {if_else $tiltsensor 12 -1})
+      (num_frames {if_else $tiltsensor 12 2147483647})
       (threshold 0.93)
    )
 )
