@@ -191,6 +191,17 @@
       {input_mgr set_splash_user {user_mgr get_band_user $player_num}}
       {ui goto_screen first_time_autoload_screen}
    )
+   (finish_load
+      {with {new BandLabel version.lbl}
+         {$this set_type bipolar}
+         {$this set_local_pos -320 50 -235}
+         {set [color] 16777215}
+         {set [alignment] kMiddleLeft}
+         {set [text_size] 20}
+         {set [text_token] lrbu_version}
+      }
+      {$this sync_objects}
+   )
 }
 {new UIScreen
    main_startscreen
