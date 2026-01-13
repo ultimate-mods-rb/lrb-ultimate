@@ -12,9 +12,11 @@
          (track 0)
          (parent 0)
          (anim 0)
+         (player 0)
          (init
-            ($track $dir)
-            {set [track] {coop_track_panel find $track}}
+            ($player $dir)
+            {set [player] $player}
+            {set [track] {coop_track_panel find {[player] instrument}}}
             {with $dir
                {unless {$this has (init)}
                   ; maybe like move most of this to the objects one day. maybe if wii wasn't special (le) i'd do it now :<
@@ -43,11 +45,11 @@
                         (2_player_wide 2_player_regular)
                         {{coop_track_panel loaded_dir} get configuration}
                      }
-                     {!= [track] vocals}
+                     {!= {[player] instrument} vocals}
                   }
                   {[parent] set_local_pos 0 -2 -10}
                )
-               ({!= [track] vocals}
+               ({!= {[player] instrument} vocals}
                   {[parent] set_local_pos 0 0 -14}
                )
                ({! {is_vocals_on_top}}
@@ -87,8 +89,8 @@
                   }
                   {[parent] set_showing TRUE}
                   {{[track] find retract.trig} trigger}
-                  {if {== [track] drum}
-                     {force_drum_freestyle TRUE}
+                  {if {!= {[player] instrument} vocals}
+                     {[player] force_fill TRUE}
                   }
                }
                {if [active]
@@ -98,12 +100,12 @@
                      {do
                         {$this set_lbl " "}
                         {[parent] set_showing FALSE}
-                        {if {== [track] drum}
-                           {force_drum_freestyle FALSE}
+                        {if {!= {[player] instrument} vocals}
+                           {[player] force_fill FALSE}
                         }
                         {set [active] FALSE}
                         {unless {&& [hide_at_end] {== [current_event] [total_events]}}
-                           {if_else {== {[track] name} vocals}
+                           {if_else {== {[player] instrument} vocals}
                               {{[track] find play_intro.trig} trigger}
                               {{[track] find intro.trig} trigger}
                            }

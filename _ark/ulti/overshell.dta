@@ -160,11 +160,6 @@
          (bool $prodrums)
          (sel_script {toggle_var prodrums})
       )
-      (os_colorshuffle
-         (type uOnOFF)
-         (bool $colorshuffle)
-         (sel_script {toggle_var colorshuffle})
-      )
       (os_fcring
          (type uOnOFF)
          (bool $fcring)
@@ -808,6 +803,11 @@
       (os_freecam
          (type uNormal)
          (sel_script {ulti_cycle_free_camera})
+      )
+      (os_colorshuffle
+         (type uOnOFF)
+         (bool $colorshuffle)
+         (sel_script {toggle_var colorshuffle})
       )
       (os_smallworld
          (type uOnOFF)
