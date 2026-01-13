@@ -80,14 +80,19 @@
                      {! [active]}
                      {>= {taskmgr beat} {elem {elem [event_array] [current_event]} 0}}
                   }
-                  {set [remaining] {int {/ {elem {elem [event_array] [current_event]} 1} 4}}}
-                  {set [active] TRUE}
-                  {[anim] animate
-                     (units kTaskBeats)
-                     (period {* {- [remaining] 1} 4})
-                     (range 0 1)
+                  {if_else {&& [hide_at_end] {== [current_event] [total_events]}}
+                     {set [done] TRUE}
+                     {do
+                        {set [remaining] {int {/ {elem {elem [event_array] [current_event]} 1} 4}}}
+                        {set [active] TRUE}
+                        {[anim] animate
+                           (units kTaskBeats)
+                           (period {* {- [remaining] 1} 4})
+                           (range 0 1)
+                        }
+                        {[parent] set_showing TRUE}
+                     }
                   }
-                  {[parent] set_showing TRUE}
                   {{[track] find retract.trig} trigger}
                   {if {!= {[player] instrument} vocals}
                      {[player] force_fill TRUE}
@@ -104,11 +109,9 @@
                            {[player] force_fill FALSE}
                         }
                         {set [active] FALSE}
-                        {unless {&& [hide_at_end] {== [current_event] [total_events]}}
-                           {if_else {== {[player] instrument} vocals}
-                              {{[track] find play_intro.trig} trigger}
-                              {{[track] find intro.trig} trigger}
-                           }
+                        {if_else {== {[player] instrument} vocals}
+                           {{[track] find play_intro.trig} trigger}
+                           {{[track] find intro.trig} trigger}
                         }
                         {if_else {== [current_event] [total_events]}
                            {set [done] TRUE}
