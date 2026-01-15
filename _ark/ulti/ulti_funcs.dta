@@ -391,10 +391,10 @@
       }
       #endif
       {if {&& {! $scrnoise} [noise_intensity]}
-         {set [noise_intensity] 0.0001}
+         {set [noise_intensity] #ifdef HX_NG 0.0001 #else 0 #endif}
       }
       {if {&& {! $scrbloom} [bloom_intensity]}
-         {set [bloom_intensity] 0.0001}
+         {set [bloom_intensity] #ifdef HX_NG 0.0001 #else 0 #endif}
       }
    }}
    {$world iterate CamShot $cs
