@@ -747,15 +747,23 @@
                   {do ($x) ($y) ($z)
                      {player_guitar0 get_local_pos $x $y $z}
                      {player_guitar set_local_pos $x $y $z}
+                     {player_guitar0 get_local_rot $x $y $z}
+                     {player_guitar set_local_rot $x $y $z}
 
                      {player_bass0 get_local_pos $x $y $z}
                      {player_bass set_local_pos $x $y $z}
+                     {player_bass0 get_local_rot $x $y $z}
+                     {player_bass set_local_rot $x $y $z}
 
                      {player_drum0 get_local_pos $x $y $z}
                      {player_drum set_local_pos $x $y $z}
+                     {player_drum0 get_local_rot $x $y $z}
+                     {player_drum set_local_rot $x $y $z}
 
                      {player_vocals0 get_local_pos $x $y $z}
                      {player_vocal set_local_pos $x $y $z}
+                     {player_vocals0 get_local_rot $x $y $z}
+                     {player_vocals set_local_rot $x $y $z}
                   }
                }
             }
