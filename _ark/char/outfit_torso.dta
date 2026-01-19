@@ -1391,6 +1391,45 @@
          (genre lrb_shop_custom_odd)
          (unlocked TRUE)
       )
+      (isabelle
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle1
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle2
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle3
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle4
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle5
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle6
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
+      (isabelle7
+         (ui_name isabelle)
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
       #endif
    )
 )
