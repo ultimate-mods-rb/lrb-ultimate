@@ -142,7 +142,6 @@
       {if {gamemode get is_autoplay}
          {multiplier_meter.tex set_bitmap ulti/track/blue.png}
       }
-      ; i had to duplicate the milo as it wouldn't load if inserting it as a subdir multiple times. idk why i don't trust this engine.
       {endgame_feedback_01 insert (subdirs 0) ulti/track/countdown_guitar.milo}
       {endgame_feedback_02 insert (subdirs 0) ulti/track/countdown_drum.milo}
       {endgame_feedback_03 insert (subdirs 0) ulti/track/countdown_bass.milo}
@@ -229,9 +228,6 @@
             }
          }
       }
-      {unless {&& {gamemode get is_practice} {gamecfg get practice_speed}}
-         {beatmatch set_music_speed {max $speedmod 1.00}}
-      }
    )
    (update_track_speeds
       {do
@@ -280,6 +276,11 @@
                {$obj set y_per_second {/ {$obj get top_y} $view_time}}
             }}
          }
+      }
+   )
+   (poll
+      {unless {&& {gamemode get is_practice} {gamecfg get practice_speed}}
+         {beatmatch set_music_speed {max $speedmod 1.00}}
       }
    )
 )
