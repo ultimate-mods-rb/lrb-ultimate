@@ -607,7 +607,7 @@
    overshell_smashers_panel
    OVERSHELL_LIST_FILE
    (title os_smashers)
-   (data (lrb rb2 rb1 rb1_alt gh3 ghwor))
+   (data (lrb rb2 rb1 rb1_alt gh3 ghwor ghl))
    (enter {os_setup_common})
    (SELECT_MSG
       {set $smashers {$component selected_sym}}
