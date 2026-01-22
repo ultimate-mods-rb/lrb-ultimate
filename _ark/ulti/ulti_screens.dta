@@ -588,12 +588,26 @@
             }
          )
          {$this set {symbol $inst "_vote"}
-            {switch $raw_button
-               (kPad_X 0)
-               (kPad_Circle 1)
-               (kPad_Tri 2)
-               (kPad_Square 3)
-               ((kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) 4)
+            {cond
+               ({== $raw_button kPad_X} 0)
+               ({== $raw_button kPad_Circle} 1)
+               (
+                  {&&
+                     {== {joypad_controller_type $pad_num} ro_guitar_ps3}
+                     {== $raw_button kPad_Tri}
+                  }
+                  3
+               )
+               (
+                  {&&
+                     {== {joypad_controller_type $pad_num} ro_guitar_ps3}
+                     {== $raw_button kPad_Square}
+                  }
+                  2
+               )
+               ({== $raw_button kPad_Tri} 2)
+               ({== $raw_button kPad_Square} 3)
+               ({find_elem (kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) $raw_button} 4)
             }
          }
          {unless {find_elem [voted] $inst}
