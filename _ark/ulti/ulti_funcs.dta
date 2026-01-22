@@ -386,7 +386,15 @@
    {$world iterate PostProc $p {with $p
       #ifdef HX_NG
       {if_else {game is_loaded}
-         {set [emulate_fps] $emulatefps}
+         {unless {$this has (p)}
+            {set [emulate_fps]
+               {if_else {>= $emulatefps 35}
+                  60
+                  {clamp {* [emulate_fps] {/ $emulatefps 24}} 1 30}
+               }
+            }
+            {$this set p 1}
+         }
          {set [emulate_fps] 60}
       }
       #endif
