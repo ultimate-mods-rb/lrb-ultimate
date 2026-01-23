@@ -82,7 +82,7 @@
                cymbal_gem_orange.wid
             )
             {{new TrackWidget $wid} copy drum_red.wid 0}
-            {drum_gems.grp add_object $wid}
+            {drum_gems.grp insert (objects 5) $wid}
             {push_back [cymbal_wids] $wid}
             #ifdef HX_NG
             {$wid set multi_mesh FALSE}
