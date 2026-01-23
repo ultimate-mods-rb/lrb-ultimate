@@ -1391,6 +1391,10 @@
          (genre lrb_shop_custom_odd)
          (unlocked TRUE)
       )
+      (ankha
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
       (isabelle
          (genre lrb_shop_custom_odd)
          (unlocked TRUE)

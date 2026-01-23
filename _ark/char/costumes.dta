@@ -2153,7 +2153,6 @@
          (unlocked TRUE)
          (cost 30)
          (genre lrb_shop_custom_odd)
-         (ui_name steve)
          (outfit
             (heads no_head)
             (torso steve)
@@ -2169,6 +2168,18 @@
          (outfit
             (heads no_head)
             (torso isabelle)
+            (legs no_legs)
+            (hair no_hair)
+            (hats no_hat)
+         )
+      )
+      (ankha
+         (unlocked TRUE)
+         (cost 80)
+         (genre lrb_shop_custom_odd)
+         (outfit
+            (heads no_head)
+            (torso ankha)
             (legs no_legs)
             (hair no_hair)
             (hats no_hat)

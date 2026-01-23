@@ -7046,6 +7046,38 @@
       (tattoo_prefab torso_tattoos_none)
       (selectable 1)
    )
+   (ankha
+      (gender male)
+      (instrument guitar)
+      (attitude kGenreBanger)
+      (skin_color_index 3)
+      (eye_color_index 11)
+      (eyebrow_color_index 16)
+      (height 1.00)
+      (weight 0.75)
+      (outfit
+         (hats no_hat)
+         (hair no_hair)
+         (heads no_head)
+         (torso ankha)
+         (legs no_legs)
+
+         (guitar gretsch_corvette (colors 11 7))
+         (bass fender_precision_bass (colors 11 7))
+         (mic mic (colors 0 0))
+         (drum custom_drumkit (colors 23 32))
+
+         (eyes Eyes08)
+         (mouth Mouth08)
+         (brow Brow02)
+         (beard no_beard)
+         (glasses no_glasses)
+         (wrists no_wrist)
+      )
+      (tattoo)
+      (tattoo_prefab torso_tattoos_none)
+      (selectable 1)
+   )
    #endif
    #ifndef _SHIP
       #ifdef HX_XBOX
