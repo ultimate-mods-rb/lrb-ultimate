@@ -1434,6 +1434,10 @@
          (genre lrb_shop_custom_odd)
          (unlocked TRUE)
       )
+      (monokuma
+         (genre lrb_shop_custom_odd)
+         (unlocked TRUE)
+      )
       #endif
    )
 )
