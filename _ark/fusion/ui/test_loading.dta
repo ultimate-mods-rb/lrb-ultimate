@@ -8,16 +8,16 @@
 {new UIPanel
    world_movie_panel
    (file
-      {if_else {|| {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
-         "../../ulti/world_movie.milo"
+      {if_else {&& {gamemode get is_tour} {! {gamemode get is_tour_quickplay}} {challenge_mgr has_challenge}}
          "../../ui/np_bg.milo"
+         "../../ulti/world_movie.milo"
       }
    )
    (has_video FALSE)
    (video_delay 0)
    (video_path "")
    (enter
-      {if_else {|| {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
+      {if_else {exists TexMovie.tmov}
          {do
             {$this set_aspect_ratio}
             {game add_sink $this (intro_start intro_end game_lost)}

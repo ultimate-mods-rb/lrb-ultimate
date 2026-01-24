@@ -27,6 +27,10 @@
    (animate_track_out_fast)
    (animate_track_in_fast)
    (finish_load
+      {if {&& {gamemode get is_tour} {! {gamemode get is_tour_quickplay}} {challenge_mgr has_challenge}}
+         {print "unloading song_offer_provider\n"}
+         {song_offer_provider unload}
+      }
       {new Group ulti_objects.grp}
       {draw_order.grp add_object ulti_objects.grp}
       ; apply custom colors to lanes. this is hacky as FUCK however it actually works perfectly. i'm really proud of this.

@@ -769,12 +769,6 @@
 }
 {func get_song_metadata
    ($song $data)
-   #ifdef HX_NG ; crash fixed in wii exec
-   {if {challenge_mgr has_challenge}
-      {print "unloading song_offer_provider\n"}
-      {song_offer_provider unload}
-   }
-   #endif
    {print "requesting metadata " $song " " $data "\n"}
    {do
       ($return)
