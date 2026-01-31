@@ -135,7 +135,7 @@
             ($player)
             {set [player] $player}
             {[player] add_sink $this (hit miss pass phrase_rating)}
-            {set [track] {coop_track_panel find {$player instrument}}}
+            {set [track] {get_dir_from_player $player}}
             {if $fcring
                {with {[track] get streak_meter}
                   {unless {exists fake.trig}
@@ -153,7 +153,7 @@
          (hit
             {++ [gems_hit]}
             {++ [gems_combo]}
-            {if {&& {! {|| $legacybass {== [track] bass}}} {> [gems_combo] 29} {! [groove_active]}}
+            {if {&& {! {|| $legacybass {== {[player] instrument} bass}}} {> [gems_combo] 29} {! [groove_active]}}
                {set [groove_active] TRUE}
                {{[track] find BassSuperStreak_ON.trig} trigger}
             }

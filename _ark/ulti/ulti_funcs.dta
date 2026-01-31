@@ -887,3 +887,12 @@
       }
    }
 }
+{func get_dir_from_player
+   ($player)
+   {{get_track_panel} find
+      {if_else {gamemode is_h2h_arrangement}
+         {sprint "track_" {str_elem {{$player track} name} 5}}
+         {$player instrument}
+      }
+   }
+}

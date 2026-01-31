@@ -61,10 +61,17 @@
       {waiting.grp set_showing FALSE}
       {waiting.tnm set_frame 0}
       {waiting.mnm set_frame 0}
-      {do
-         {band_only_slots.grp set_showing TRUE}
-         {h2h_slot0.tnm set_frame 0}
-         {h2h_slot1.tnm set_frame 0}
+      {if_else {gamemode get is_h2h_arrangement}
+         {do
+            {band_only_slots.grp set_showing FALSE}
+            {h2h_slot0.tnm set_frame 1}
+            {h2h_slot1.tnm set_frame 1}
+         }
+         {do
+            {band_only_slots.grp set_showing TRUE}
+            {h2h_slot0.tnm set_frame 0}
+            {h2h_slot1.tnm set_frame 0}
+         }
       }
    )
    (SCROLL_MSG CLICK_FOR_SCROLL_MSG kDataUnhandled)

@@ -33,123 +33,125 @@
       }
       {new Group ulti_objects.grp}
       {draw_order.grp add_object ulti_objects.grp}
-      ; apply custom colors to lanes. this is hacky as FUCK however it actually works perfectly. i'm really proud of this.
-      ; however like i'm really tired so i might be dumb and am overlooking a sane way of doing this.
-      {foreach $gtr (guitar bass)
-         {with $gtr
-            {foreach_int $i 0 5
-               {{new PropAnim {sprintf "gem_bak%d.anim" $i}} copy {sprintf "gem_mash%d.anim" $i} 0}
-            }
-            {foreach_int $i 0 5 {do
-               ($wid {sprintf "gem_mash%d.wid" $i})
-               ($color {eval_var {sprint gtrsm {+ $i 1}}})
-               {clear_array $wid meshes}
-               {$wid insert (meshes 0) {sprintf "gem_mash%d.mesh" $color}}
-               {$wid insert (meshes 0) {sprintf "gem_mash%d.1.mesh" $color}}
-               {{sprintf "gem_mash%d.anim" $i} copy {sprintf "gem_bak%d.anim" $color} 0}
-            }}
-         }
-      }
-      {with drum
-         {unless $kickbounce
-            {set [kick_drummer_trig] {new EventTrigger empty}}
-         }
-         {foreach_int $i 1 5
-            {{new PropAnim {sprintf "drum_bak%d.anim" $i}} copy {sprintf "drum_mash%d.anim" $i} 0}
-            {{new PropAnim {sprintf "drum_bak%d_BRE.anim" $i}} copy {sprintf "drum_mash%d_BRE.anim" $i} 0}
-         }
-         {foreach_int $i 1 5 {do
-            ($wid {sprintf "drum_mash%d.wid" $i})
-            ($color
-               {switch {eval_var {sprint drms $i}}
-                  (0 4)
-                  {eval_var {sprint drms $i}}
+      {unless {gamemode is_h2h_arrangement}
+         ; apply custom colors to lanes. this is hacky as FUCK however it actually works perfectly. i'm really proud of this.
+         ; however like i'm really tired so i might be dumb and am overlooking a sane way of doing this.
+         {foreach $gtr (guitar bass)
+            {with $gtr
+               {foreach_int $i 0 5
+                  {{new PropAnim {sprintf "gem_bak%d.anim" $i}} copy {sprintf "gem_mash%d.anim" $i} 0}
                }
-            )
-            {clear_array $wid meshes}
-            {$wid insert (meshes 0) {sprintf "drum_mash%d.mesh" $color}}
-            {$wid insert (meshes 0) {sprintf "drum_mash%d.1.mesh" $color}}
-            {{sprintf "drum_mash%d.anim" $i} copy {sprintf "drum_bak%d.anim" $color} 0}
-            {{sprintf "drum_mash%d_BRE.anim" $i} copy {sprintf "drum_bak%d_BRE.anim" $color} 0}
-         }}
-         {$this set cymbal_wids {array 0}}
-         {$this insert (subdirs 0) "ulti/track/pro_drums.milo"}
-         {foreach $wid
-            (
-               dynamic_crash_gem_cymbal.wid
-               dynamic_crash_gem_cymbal_lefty.wid
-               cymbal_gem_star.wid
-               cymbal_gem_red.wid
-               cymbal_gem_yellow.wid
-               cymbal_gem_blue.wid
-               cymbal_gem_green.wid
-               cymbal_gem_orange.wid
-            )
-            {{new TrackWidget $wid} copy drum_red.wid 0}
-            {drum_gems.grp insert (objects 5) $wid}
-            {push_back [cymbal_wids] $wid}
-            #ifdef HX_NG
-            {$wid set multi_mesh FALSE}
-            #else
-            {$wid set multi_mesh TRUE}
-            #endif
-         }
-         {foreach $color (red yellow blue green orange) {do
-            ($wid {sprintf "cymbal_gem_%s.wid" $color})
-            {clear_array $wid meshes}
-            {$wid insert (meshes 0) {sprintf "cymbal_gem_%s.mesh" $color}}
-         }}
-
-         {clear_array cymbal_gem_star.wid meshes}
-         {cymbal_gem_star.wid insert (meshes 0) cymbal_gem_style.mesh}
-
-         {clear_array dynamic_crash_gem_cymbal.wid meshes}
-         {dynamic_crash_gem_cymbal.wid insert (meshes 0) cymbal_gem_green.mesh}
-
-         {clear_array dynamic_crash_gem_cymbal_lefty.wid meshes}
-         {dynamic_crash_gem_cymbal_lefty.wid insert (meshes 0) cymbal_gem_red.mesh}
-
-         {$this sync_objects}
-      }
-      {if {!= $gems lrb} {do
-         ($gems_dir {new RndDir gems_dir})
-         {switch $gems
-            #include ../ulti/track/gems/gems_scripting.dta
-         }
-      }}
-      {if {!= $smashers lrb} {do
-         ($smashers_dir {new RndDir smashers_dir})
-         {switch $smashers
-            #include ../ulti/track/smashers/smashers_scripting.dta
-         }
-      }}
-      ; song timer stuff
-      {with scoreboard
-         ; just creating a new label results in "File: z:/LEGORockBand/Code/System/ui/Label.cpp Line: 115 Error: f"
-         ; i assume this is due to a property it's not initalizing so consider looking into it at some point.
-         {{new BandLabel timer.lbl} copy {endgame_feedback_01 find end_game_vox.lbl} 0}
-         {timer.lbl set_local_scale 0.022 0.021 0.021}
-         {if_else {is_vocals_on_top}
-            {timer.lbl set_local_pos 9.3 0 -3.0}
-            {timer.lbl set_local_pos 9.7 0 6.8}
-         }
-         {timer.lbl set alignment kMiddleRight}
-         {timer.lbl set_localized
-            {sprint
-               "0:00/"
-               {seconds_to_time {beat_to_seconds {end_of_song get end}}}
+               {foreach_int $i 0 5 {do
+                  ($wid {sprintf "gem_mash%d.wid" $i})
+                  ($color {eval_var {sprint gtrsm {+ $i 1}}})
+                  {clear_array $wid meshes}
+                  {$wid insert (meshes 0) {sprintf "gem_mash%d.mesh" $color}}
+                  {$wid insert (meshes 0) {sprintf "gem_mash%d.1.mesh" $color}}
+                  {{sprintf "gem_mash%d.anim" $i} copy {sprintf "gem_bak%d.anim" $color} 0}
+               }}
             }
          }
-         {timer.lbl set_trans_parent $this}
-         {$this sync_objects}
+         {with drum
+            {unless $kickbounce
+               {set [kick_drummer_trig] {new EventTrigger empty}}
+            }
+            {foreach_int $i 1 5
+               {{new PropAnim {sprintf "drum_bak%d.anim" $i}} copy {sprintf "drum_mash%d.anim" $i} 0}
+               {{new PropAnim {sprintf "drum_bak%d_BRE.anim" $i}} copy {sprintf "drum_mash%d_BRE.anim" $i} 0}
+            }
+            {foreach_int $i 1 5 {do
+               ($wid {sprintf "drum_mash%d.wid" $i})
+               ($color
+                  {switch {eval_var {sprint drms $i}}
+                     (0 4)
+                     {eval_var {sprint drms $i}}
+                  }
+               )
+               {clear_array $wid meshes}
+               {$wid insert (meshes 0) {sprintf "drum_mash%d.mesh" $color}}
+               {$wid insert (meshes 0) {sprintf "drum_mash%d.1.mesh" $color}}
+               {{sprintf "drum_mash%d.anim" $i} copy {sprintf "drum_bak%d.anim" $color} 0}
+               {{sprintf "drum_mash%d_BRE.anim" $i} copy {sprintf "drum_bak%d_BRE.anim" $color} 0}
+            }}
+            {$this set cymbal_wids {array 0}}
+            {$this insert (subdirs 0) "ulti/track/pro_drums.milo"}
+            {foreach $wid
+               (
+                  dynamic_crash_gem_cymbal.wid
+                  dynamic_crash_gem_cymbal_lefty.wid
+                  cymbal_gem_star.wid
+                  cymbal_gem_red.wid
+                  cymbal_gem_yellow.wid
+                  cymbal_gem_blue.wid
+                  cymbal_gem_green.wid
+                  cymbal_gem_orange.wid
+               )
+               {{new TrackWidget $wid} copy drum_red.wid 0}
+               {drum_gems.grp insert (objects 5) $wid}
+               {push_back [cymbal_wids] $wid}
+               #ifdef HX_NG
+               {$wid set multi_mesh FALSE}
+               #else
+               {$wid set multi_mesh TRUE}
+               #endif
+            }
+            {foreach $color (red yellow blue green orange) {do
+               ($wid {sprintf "cymbal_gem_%s.wid" $color})
+               {clear_array $wid meshes}
+               {$wid insert (meshes 0) {sprintf "cymbal_gem_%s.mesh" $color}}
+            }}
+
+            {clear_array cymbal_gem_star.wid meshes}
+            {cymbal_gem_star.wid insert (meshes 0) cymbal_gem_style.mesh}
+
+            {clear_array dynamic_crash_gem_cymbal.wid meshes}
+            {dynamic_crash_gem_cymbal.wid insert (meshes 0) cymbal_gem_green.mesh}
+
+            {clear_array dynamic_crash_gem_cymbal_lefty.wid meshes}
+            {dynamic_crash_gem_cymbal_lefty.wid insert (meshes 0) cymbal_gem_red.mesh}
+
+            {$this sync_objects}
+         }
+         {if {!= $gems lrb} {do
+            ($gems_dir {new RndDir gems_dir})
+            {switch $gems
+               #include ../ulti/track/gems/gems_scripting.dta
+            }
+         }}
+         {if {!= $smashers lrb} {do
+            ($smashers_dir {new RndDir smashers_dir})
+            {switch $smashers
+               #include ../ulti/track/smashers/smashers_scripting.dta
+            }
+         }}
+         ; song timer stuff
+         {with scoreboard
+            ; just creating a new label results in "File: z:/LEGORockBand/Code/System/ui/Label.cpp Line: 115 Error: f"
+            ; i assume this is due to a property it's not initalizing so consider looking into it at some point.
+            {{new BandLabel timer.lbl} copy {endgame_feedback_01 find end_game_vox.lbl} 0}
+            {timer.lbl set_local_scale 0.022 0.021 0.021}
+            {if_else {is_vocals_on_top}
+               {timer.lbl set_local_pos 9.3 0 -3.0}
+               {timer.lbl set_local_pos 9.7 0 6.8}
+            }
+            {timer.lbl set alignment kMiddleRight}
+            {timer.lbl set_localized
+               {sprint
+                  "0:00/"
+                  {seconds_to_time {beat_to_seconds {end_of_song get end}}}
+               }
+            }
+            {timer.lbl set_trans_parent $this}
+            {$this sync_objects}
+         }
+         {if {gamemode get is_autoplay}
+            {multiplier_meter.tex set_bitmap ulti/track/blue.png}
+         }
+         {endgame_feedback_01 insert (subdirs 0) ulti/track/countdown_guitar.milo}
+         {endgame_feedback_02 insert (subdirs 0) ulti/track/countdown_drum.milo}
+         {endgame_feedback_03 insert (subdirs 0) ulti/track/countdown_bass.milo}
+         {endgame_feedback_vox insert (subdirs 0) ulti/track/countdown_vocals.milo}
       }
-      {if {gamemode get is_autoplay}
-         {multiplier_meter.tex set_bitmap ulti/track/blue.png}
-      }
-      {endgame_feedback_01 insert (subdirs 0) ulti/track/countdown_guitar.milo}
-      {endgame_feedback_02 insert (subdirs 0) ulti/track/countdown_drum.milo}
-      {endgame_feedback_03 insert (subdirs 0) ulti/track/countdown_bass.milo}
-      {endgame_feedback_vox insert (subdirs 0) ulti/track/countdown_vocals.milo}
       {$this set_showing FALSE}
       {$this set_track_out}
    )
@@ -186,6 +188,10 @@
       }
       {$this update_track_speeds}
       {beatmatch foreach_active_player $player ;handle adding the appropriate callbacks to each player
+         {if {gamemode is_h2h_arrangement}
+            {$player set_crowd_rating_active FALSE}
+            ;{$player set_auto_play TRUE}
+         }
          {if_else {== {$player instrument} vocals}
             {if_else $micdeploy
                {$player set_scream_thresholds 0.1 0.39}
@@ -204,14 +210,14 @@
                }
             }
             {do
-               ($obj {sprint {$player instrument} "_track_callback"})
+               ($obj {sprint {$player track} "_track_callback"})
                {if {exists $obj} {delete $obj}}
                {new Object $obj}
                {$obj set_type track_callback}
                {$obj init $player}
             }
          }
-         {unless {|| {! $countdown} {gamemode get is_practice} {gamemode get is_drum_trainer} {challenge_mgr has_challenge}}
+         {unless {|| {! $countdown} {gamemode get is_practice} {gamemode get is_drum_trainer} {challenge_mgr has_challenge} {gamemode is_h2h_arrangement}}
             {do
                ($obj {sprint {$player instrument} "_countdown"})
                ($dir
@@ -249,7 +255,7 @@
          }
          {beatmatch foreach_active_player $player
             {unless {== {$player instrument} vocals} {do
-               ($obj {object {$player instrument}})
+               ($obj {get_dir_from_player $player})
                ($diff_view_time
                   {cond
                      ($syncdifspeeds 1.2)

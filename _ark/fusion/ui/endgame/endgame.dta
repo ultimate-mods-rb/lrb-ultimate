@@ -431,6 +431,10 @@
       {== $event disband}
    )
    (enter
+      {unless {gamemode get separate_parts}
+         {score0.lbl set_showing TRUE}
+         {score1.lbl set_showing TRUE}
+      }
       {platform_mgr set_notify_ui_location kOSNotifyBottomCenter}
       {$this set_results}
       #ifndef HX_WII
@@ -452,6 +456,51 @@
       ENDGAME_PANEL_COMMON_EXIT
       {platform_mgr set_notify_ui_location kOSNotifyTopRight}
    )
+   (BUTTON_DOWN_MSG
+      {do
+         {$this clear_anim_tasks}
+         {$this trigger_anims $num_players 5}
+         {switch $action
+            (kAction_Confirm
+               {synth play button_select}
+               #ifndef KIOSK_DEMO
+               {if_else {gamemode get is_tour}
+                  {cond
+                     ({gamemode get is_tour_quickplay}
+                        {ui goto_screen complete_screen}
+                     )
+                     ({&&
+                           {challenge_mgr has_challenge}
+                           {challenge_mgr is_in_player}}
+                        {$this do_quickplay_exit arcade_screen}
+                     )
+                     (TRUE {ui goto_screen tour_world_complete_screen})
+                  }
+                  {do
+                     {ui goto_screen complete_screen}
+                  }
+               }
+               #else
+               {sell_panel set should_quit FALSE}
+               {sell_panel set exit_screen meta_loading_main_screen}
+               {game demo_clear_prefabs}
+               {ui reset_screen sell_screen}
+               #endif
+            )
+            kDataUnhandled
+         }
+      }
+   )
+   (FOCUS_MSG DO_FOCUSCLICK kDataUnhandled)
+   (do_quickplay_exit
+      ($exit_screen)
+      {if {!= {ui bottom_screen} {ui current_screen}}
+         {{ui bottom_screen} set_showing FALSE}
+      }
+      {post_game_loading_panel load TRUE}
+      {post_game_loading_panel set next_screen $exit_screen}
+      {ui pop_screen post_game_loading_screen}
+   )
 )
 {new UIPanel
    lego_challenge_endgame_panel
@@ -470,4 +519,17 @@
 {new BandScreen
    lego_challenge_endgame_screen
    (panels lego_challenge_endgame_panel)
+}
+{new UIPanel
+   h2h_endgame_panel
+   (file "tow_endgame.milo")
+   H2H_END_GAME_PANEL_HANDLERS
+}
+{new BandScreen
+   h2h_endgame_screen
+   (panels endgame_background_animated_panel h2h_endgame_panel)
+   (helpbar ((confirm helpbar_continue)))
+   (focus h2h_endgame_panel)
+   (more_details_screen coop_details_endgame_screen)
+   (enter {endgame_background_panel show_overlay})
 }

@@ -684,3 +684,43 @@
    (disable_achivements TRUE)
    (game_screen autoplay_game_screen)
 )
+#define H2H_PROPERTIES (
+   (game_screen h2h_game_screen)
+   (track_panel h2h_track_panel)
+   (uisink_default_screen matchmaking_screen)
+   (main_mode_screen bonus_menuscreen)
+   (endgame_screen h2h_endgame_screen)
+   (show_loading_images TRUE)
+   (allow_create_char FALSE)
+   (can_lose FALSE)
+   ;(max_players 2)
+   (min_players 2)
+   (player_arrangement kArrangeH2h)
+   (use_video_venues_from_songs FALSE)
+   (crowd_reacts FALSE)
+   (show_stars FALSE)
+   (update_leaderboards FALSE)
+)
+#define H2H_TUG_OF_WAR_PROPERTIES (
+   H2H_PROPERTIES
+   (separate_parts TRUE)
+   (max_delta TRUE)
+   (game_mode_context CONTEXT_GAME_MODE_TYPE_TUG_OF_WAR)
+   (vocal_smooth_update TRUE)
+   (allow_overdrive_achievement FALSE)
+)
+#define H2H_SCORE_DUEL_PROPERTIES (
+   H2H_PROPERTIES
+   (game_mode_context CONTEXT_GAME_MODE_TYPE_SCORE_DUEL)
+)
+(h2h_score_duel_local
+   H2H_SCORE_DUEL_PROPERTIES
+   (max_local_players 2)
+   ;(ready_screen h2h_seldiff_screen)
+   (missing_part_type kMissingSelectH2H)
+)
+(h2h_tug_of_war_local
+   H2H_TUG_OF_WAR_PROPERTIES
+   (max_local_players 2)
+   (missing_part_type kMissingSelectH2H)
+)

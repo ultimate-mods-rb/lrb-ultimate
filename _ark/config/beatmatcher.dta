@@ -7,9 +7,8 @@
 )
 (callbacks
    (sixteenth_note
-      {do
-         ($lbl {{{get_track_panel} find scoreboard} find timer.lbl})
-         {$lbl set_localized
+      {unless {gamemode is_h2h_arrangement}
+         {{{{get_track_panel} find scoreboard} find timer.lbl} set_localized
             {switch $songtimer
                (1
                   {sprint
@@ -42,7 +41,7 @@
       ; doing this on downbeat causes it to countdown at half speed on songs like vasoline and tomsawyer
       {if {== {mod {int {taskmgr beat}} 4} 0}
          {foreach $inst (guitar drum vocals bass)
-            {with coop_track_panel
+            {with {get_track_panel}
                {if {exists {sprint $inst "_countdown"}}
                   {{sprint $inst "_countdown"} downbeat}
                }

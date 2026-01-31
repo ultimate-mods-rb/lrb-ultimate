@@ -19,6 +19,8 @@
       {set $band_sel_mode 0}
       {venue.lst set_data
          (
+            tug_of_war
+            score_duel
             play_a_show
             theatre
             autoplay
@@ -92,6 +94,14 @@
          (play_a_show
             {gamemode set_mode play_a_show}
             {play_a_show_panel set played_songs {array 0}}
+            {ui goto_screen {gamemode get matchmaking_screen}}
+         )
+         (score_duel
+            {gamemode set_mode h2h_score_duel_local}
+            {ui goto_screen {gamemode get matchmaking_screen}}
+         )
+         (tug_of_war
+            {gamemode set_mode h2h_tug_of_war_local}
             {ui goto_screen {gamemode get matchmaking_screen}}
          )
          (musicstore

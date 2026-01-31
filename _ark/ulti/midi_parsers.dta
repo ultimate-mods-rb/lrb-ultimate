@@ -86,3 +86,23 @@
    (init COUNTDOWN_PARSER_INIT)
    (midi COUNTDOWN_PARSER)
 }
+{if {gamemode is_h2h_arrangement}
+   {new MidiParser
+      track0_countdown_mp
+      (track_name H2H_TRACK)
+      (inverted TRUE)
+      (append_length TRUE)
+      (allowed_notes 105)
+      (init COUNTDOWN_PARSER_INIT)
+      (midi COUNTDOWN_PARSER)
+   }
+   {new MidiParser
+      track1_countdown_mp
+      (track_name H2H_TRACK)
+      (inverted TRUE)
+      (append_length TRUE)
+      (allowed_notes 106)
+      (init COUNTDOWN_PARSER_INIT)
+      (midi COUNTDOWN_PARSER)
+   }
+}

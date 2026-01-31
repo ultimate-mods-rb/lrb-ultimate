@@ -119,6 +119,20 @@
                         {$user set_track_type kTrackNone}
                      }
                   }
+                  {if {gamemode is_h2h_arrangement}
+                     ;{game set_venue blank/blank_01/blank_01.milo}
+                     ; add part select!
+                     {$user set_track_type
+                        {switch {$user get_controller_type}
+                           (kControllerGuitar kTrackGuitar)
+                           (kControllerDrum kTrackDrum)
+                           (kControllerVocals kTrackVocals)
+                           kTrackNone
+                        }
+                        {$user set_difficulty expert}
+                        {$user set_ready TRUE}
+                     }
+                  }
                }
             }
          }
