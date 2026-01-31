@@ -74,5 +74,8 @@
         <memory offset="0x804f0c8c" value="4BDC0F70" /> <!-- b 0x802b1bfc  -->
 
         <memory offset="0x804f0c90" value="4BDC0F78" /> <!-- b 0x802b1c08  -->
+
+        <!-- h2h crash fix -->
+        <memory offset="0x800db450" value="4e800020" />
     </patch>
 </wiidisc>
