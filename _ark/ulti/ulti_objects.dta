@@ -13,57 +13,98 @@
          (parent 0)
          (anim 0)
          (player 0)
+         (parser 0)
          (init
             ($player $dir)
             {set [player] $player}
-            {set [track] {coop_track_panel find {[player] instrument}}}
-            {with $dir
-               {unless {$this has (init)}
-                  ; maybe like move most of this to the objects one day. maybe if wii wasn't special (le) i'd do it now :<
-                  {{streak_meter.grp dir} set_trans_parent end_game_drum.grp}
-                  {{streak_meter.grp dir} set_local_scale 35 35 35}
-                  {LegoStud.mesh set_showing FALSE}
-                  {multi_meter_anim.grp set_showing FALSE}
-                  {end_game_drum.lbl set_local_scale 0.014 0.014 0.014}
-                  {end_game_drum.lbl set_local_pos -0.08 0 0}
-                  {end_game_drum.lbl set_trans_parent streak_meter.grp}
-                  {$this set init TRUE}
-                  {$this sync_objects}
+            {set [track] {get_dir_from_player [player]}}
+            {set [parser] {object
+               {sprint
+                  {if_else {gamemode get separate_parts}
+                     {[player] track}
+                     {[player] instrument}
+                  }
+                  "_countdown_mp"
                }
-               {{coop_track_panel find ulti_objects.grp} add_object {streak_meter.grp dir}}
-               {{coop_track_panel find ulti_objects.grp} add_object end_game_drum.lbl}
+            }}
+            {if_else {gamemode is_h2h_arrangement}
+               {do
+                  {cond
+                     ({&& {== {[player] instrument} vocals} {== $dir countdown_0}}
+                        {$dir set_trans_parent volume_0}
+                        {$dir set_local_pos -396 0 185}
+                        {$dir set_local_scale 30 30 30}
+                     )
+                     ({&& {== {[player] instrument} vocals} {== $dir countdown_1}}
+                        {$dir set_trans_parent volume_1}
+                        {$dir set_local_pos -400 0 -155}
+                        {$dir set_local_scale 30 30 30}
+                     )
+                     ({== $dir countdown_0}
+                        {$dir set_trans_parent player_feedback_01}
+                     )
+                     ({== $dir countdown_1}
+                        {$dir set_trans_parent player_feedback_02}
+                     )
+                  }
+                  {set [target] {$dir find countdown.lbl}}
+                  {set [anim] {$dir find meter_wipe.mnm}}
+                  {set [parent] $dir}
+                  {ulti_objects.grp add_object [parent]}
+                  {{$this dir} sync_objects}
+               }
+               {do
+                  {with $dir
+                     {unless {$this has (init)}
+                        ; maybe like move most of this to the objects one day. maybe if wii wasn't special (le) i'd do it now :<
+                        {{streak_meter.grp dir} set_trans_parent end_game_drum.grp}
+                        {{streak_meter.grp dir} set_local_scale 35 35 35}
+                        {LegoStud.mesh set_showing FALSE}
+                        {multi_meter_anim.grp set_showing FALSE}
+                        {end_game_drum.lbl set_local_scale 0.014 0.014 0.014}
+                        {end_game_drum.lbl set_local_pos -0.08 0 0}
+                        {end_game_drum.lbl set_trans_parent streak_meter.grp}
+                        {$this set init TRUE}
+                        {$this sync_objects}
+                     }
+                     {{coop_track_panel find ulti_objects.grp} add_object {streak_meter.grp dir}}
+                     {{coop_track_panel find ulti_objects.grp} add_object end_game_drum.lbl}
+                  }
+                  {set [target] {$dir find end_game_drum.lbl}}
+                  {set [anim] {$dir find meter_wipe.mnm}}
+                  {set [parent] {$dir find streak_meter.grp}}
+                  {cond
+                     (
+                        {&&
+                           {find_elem
+                              (2_player_wide 2_player_regular)
+                              {{coop_track_panel loaded_dir} get configuration}
+                           }
+                           {!= {[player] instrument} vocals}
+                        }
+                        {[parent] set_local_pos 0 -2 -10}
+                     )
+                     ({!= {[player] instrument} vocals}
+                        {[parent] set_local_pos 0 0 -14}
+                     )
+                     ({! {is_vocals_on_top}}
+                        {[parent] set_local_pos 0 0 -6}
+                     )
+                     kDataUnhandled
+                  }
+               }
             }
-            {set [target] {$dir find end_game_drum.lbl}}
-            {set [anim] {$dir find meter_wipe.mnm}}
-            {set [parent] {$dir find streak_meter.grp}}
             {[parent] set_showing FALSE}
             {$this set_lbl " "}
-            {cond
-               (
-                  {&&
-                     {find_elem
-                        (2_player_wide 2_player_regular)
-                        {{coop_track_panel loaded_dir} get configuration}
-                     }
-                     {!= {[player] instrument} vocals}
+            {set [event_array] {array {[parser] get event_array}}}
+            {unless {[parser] get first_note}
+               {do
+                  ($pos {[parser] get final_note_pos})
+                  ($len {- {end_of_song get end} $pos})
+                  {if {>= $len 20}
+                     {set [hide_at_end] TRUE}
+                     {push_back [event_array] {array ($pos {int {- $len 4}})}}
                   }
-                  {[parent] set_local_pos 0 -2 -10}
-               )
-               ({!= {[player] instrument} vocals}
-                  {[parent] set_local_pos 0 0 -14}
-               )
-               ({! {is_vocals_on_top}}
-                  {[parent] set_local_pos 0 0 -6}
-               )
-               kDataUnhandled
-            }
-            {set [event_array] {{sprint $this "_mp"} get event_array}}
-            {do
-               ($pos {{sprint $this "_mp"} get final_note_pos})
-               ($len {- {end_of_song get end} $pos})
-               {if {>= $len 20}
-                  {set [hide_at_end] TRUE}
-                  {push_back [event_array] {array ($pos {int {- $len 4}})}}
                }
             }
             {set [total_events] {max 0 {- {size [event_array]} 1}}}

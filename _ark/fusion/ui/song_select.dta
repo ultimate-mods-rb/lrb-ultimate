@@ -1054,7 +1054,10 @@
          {switch {gamemode get song_select_mode}
             (song_select_quickplay
                {input_mgr set_user ''}
-               {ui reset_screen {gamemode get ready_screen}}
+               {if_else {gamemode get is_h2h_arrangement}
+                  {h2h_goto_tracksel_screen}
+                  {ui reset_screen {gamemode get ready_screen}}
+               }
                {do
                   ($entry {song.lst selected_pos})
                   {if {song_offer_provider is_song $entry}

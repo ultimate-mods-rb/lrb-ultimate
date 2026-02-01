@@ -217,7 +217,42 @@
       jukebox_game_screen
       camera_debug_game_screen
       autoplay_game_screen
+      game_screen
+      h2h_game_screen
       main_startscreen
       attract_screen
+   )
+)
+#define HANDLE_MIC_DEPLOY (
+   (BUTTON_DOWN_MSG
+      {do
+         ($user {user_mgr get_band_user $player_num})
+         {if_else
+            {&&
+               {== $raw_button kPad_Select}
+               {$user is_participating}
+               {== {$user get_track_sym} vocals}
+            }
+            {{beatmatch active_player $player_num} set_scream_thresholds -1.0 -1.0}
+            kDataUnhandled
+         }
+      }
+   )
+   (BUTTON_UP_MSG
+      {do
+         ($user {user_mgr get_band_user $player_num})
+         {if_else
+            {&&
+               {== $raw_button kPad_Select}
+               {$user is_participating}
+               {== {$user get_track_sym} vocals}
+            }
+            {if_else $micdeploy
+               {{beatmatch active_player $player_num} set_scream_thresholds 0.1 0.39}
+               {{beatmatch active_player $player_num} set_scream_thresholds 1.1 0.39}
+            }
+            kDataUnhandled
+         }
+      }
    )
 )

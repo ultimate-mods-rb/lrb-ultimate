@@ -5,85 +5,6 @@
 {content_loading_panel load TRUE}
 #endif
 {passive_messages_panel load TRUE}
-{new UIPanel
-   world_movie_panel
-   (file
-      {if_else {&& {gamemode get is_tour} {! {gamemode get is_tour_quickplay}} {challenge_mgr has_challenge}}
-         "../../ui/np_bg.milo"
-         "../../ulti/world_movie.milo"
-      }
-   )
-   (has_video FALSE)
-   (video_delay 0)
-   (video_path "")
-   (enter
-      {if_else {exists TexMovie.tmov}
-         {do
-            {$this set_aspect_ratio}
-            {game add_sink $this (intro_start intro_end game_lost)}
-         }
-         {$this set_showing FALSE}
-      }
-   )
-   (exit {game remove_sink $this})
-   (intro_end
-      {if [has_video]
-         {$this set_showing TRUE}
-         {script_task kTaskSeconds
-            (delay [video_delay])
-            (script
-               {$this show_video TRUE}
-               {TexMovie.tmov set movie_file [video_path]}
-            )
-         }
-      }
-   )
-   (intro_start
-      {set [has_video] FALSE}
-      {set [video_delay] 0}
-      {if {&& $video_bgs {== $speedmod 1.0} {song_offer_provider num_data}} {do
-         ($song {meta_performer song})
-         ($offer {song_offer_provider get_song_offer {song_offer_provider data_index $song}})
-         {if {$offer has_data has_video}
-            {set [has_video] {$offer get_data (has_video)}}
-            #ifdef HX_WII
-            {set [video_path] {sprintf "../../videos/%s_video.bik" $song}}
-            #else
-            {set [video_path] {sprint {song_mgr song_path $song} "_video.bik"}}
-            #endif
-            {if {$offer has_data video_delay}
-               {set [video_delay] {$offer get_data (video_delay)}}
-            }
-         }
-      }}
-      {$this show_video FALSE}
-      {world_panel set_showing {! {|| $blackbg [has_video]}}}
-   )
-   (game_lost {$this show_video FALSE})
-   (show_video
-      ($showing)
-      {background_vingetted.mesh set_showing $showing}
-   )
-   (set_aspect_ratio
-      {if_else {== {rnd aspect} kWidescreenAspect}
-         #ifdef HX_NG
-         {background_vingetted.mesh set_local_scale 0.60 0.60 0.60}
-         {background_vingetted.mesh set_local_scale 0.40 0.40 0.40}
-         #else
-         {background_vingetted.mesh set_local_scale 0.60 0.80 0.60}
-         {background_vingetted.mesh set_local_scale 0.40 0.46 0.40}
-         #endif
-      }
-      #ifdef HX_WII
-      {background_vingetted.mesh set_local_pos 0.00 0.00 -25.00}
-      #endif
-   )
-   (poll
-      {if {&& [has_video] {game paused}}
-         {game set_paused FALSE}
-      }
-   )
-}
 {new BandScreen
    test_game_screen
    (bad_data_reset FALSE)
@@ -99,37 +20,7 @@
       }
    )
    #endif
-   (BUTTON_DOWN_MSG
-      {do
-         ($user {user_mgr get_band_user $player_num})
-         {if_else
-            {&&
-               {== $raw_button kPad_Select}
-               {$user is_participating}
-               {== {$user get_track_sym} vocals}
-            }
-            {{beatmatch active_player $player_num} set_scream_thresholds -1.0 -1.0}
-            kDataUnhandled
-         }
-      }
-   )
-   (BUTTON_UP_MSG
-      {do
-         ($user {user_mgr get_band_user $player_num})
-         {if_else
-            {&&
-               {== $raw_button kPad_Select}
-               {$user is_participating}
-               {== {$user get_track_sym} vocals}
-            }
-            {if_else $micdeploy
-               {{beatmatch active_player $player_num} set_scream_thresholds 0.1 0.39}
-               {{beatmatch active_player $player_num} set_scream_thresholds 1.1 0.39}
-            }
-            kDataUnhandled
-         }
-      }
-   )
+   HANDLE_MIC_DEPLOY
 }
 {new SessionPanel
    loading_panel

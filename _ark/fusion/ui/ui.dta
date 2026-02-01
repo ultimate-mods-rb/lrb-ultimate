@@ -37,6 +37,7 @@
    #include mov/movie_screens.dta
    #include song_select.dta
    #include seldiff.dta
+   #include seltrack.dta
    #include modifiers_screen.dta
    #include endgame/endgame.dta
    #include endgame/lose.dta

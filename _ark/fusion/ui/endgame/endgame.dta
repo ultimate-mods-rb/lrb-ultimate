@@ -434,6 +434,10 @@
       {unless {gamemode get separate_parts}
          {score0.lbl set_showing TRUE}
          {score1.lbl set_showing TRUE}
+         {score0.lbl set text_size 20}
+         {score0.lbl set_local_pos -160 0 -60}
+         {score1.lbl set text_size 20}
+         {score1.lbl set_local_pos 180 0 -60}
       }
       {platform_mgr set_notify_ui_location kOSNotifyBottomCenter}
       {$this set_results}

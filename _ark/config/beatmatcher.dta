@@ -40,7 +40,7 @@
    (beat
       ; doing this on downbeat causes it to countdown at half speed on songs like vasoline and tomsawyer
       {if {== {mod {int {taskmgr beat}} 4} 0}
-         {foreach $inst (guitar drum vocals bass)
+         {foreach $inst (track0 track1 track2 track3)
             {with {get_track_panel}
                {if {exists {sprint $inst "_countdown"}}
                   {{sprint $inst "_countdown"} downbeat}

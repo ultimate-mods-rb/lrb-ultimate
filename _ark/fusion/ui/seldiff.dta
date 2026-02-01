@@ -119,20 +119,11 @@
                         {$user set_track_type kTrackNone}
                      }
                   }
+                  #ifndef _SHIP
                   {if {gamemode is_h2h_arrangement}
-                     ;{game set_venue blank/blank_01/blank_01.milo}
-                     ; add part select!
-                     {$user set_track_type
-                        {switch {$user get_controller_type}
-                           (kControllerGuitar kTrackGuitar)
-                           (kControllerDrum kTrackDrum)
-                           (kControllerVocals kTrackVocals)
-                           kTrackNone
-                        }
-                        {$user set_difficulty expert}
-                        {$user set_ready TRUE}
-                     }
+                     {game set_venue blank/blank_01/blank_01.milo}
                   }
+                  #endif
                }
             }
          }
@@ -291,7 +282,7 @@
       (is_active
          {&& {!= [player_num] -1} {gamecfg is_player_participating [player_num]}}
       )
-      (is_guitar_slot {== [slot] guitar})
+      (is_guitar_slot {&& {== [slot] guitar} {! {gamemode is_h2h_arrangement}}})
       (is_track_set
          {!= {{user_mgr get_band_user [player_num]} get_track_type} kTrackNone}
       )

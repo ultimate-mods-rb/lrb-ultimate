@@ -19,10 +19,10 @@
       {set $band_sel_mode 0}
       {venue.lst set_data
          (
-            tug_of_war
-            score_duel
             play_a_show
             theatre
+            score_duel
+            tug_of_war
             autoplay
             cutsceneviewer
             #ifndef _SHIP

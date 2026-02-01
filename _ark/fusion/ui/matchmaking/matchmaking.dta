@@ -18,6 +18,10 @@
       {rnd set_sync 2}
       #endif
       {[postprocess] select}
+      {if {gamemode is_h2h_arrangement}
+         {coop0.pxy set_local_pos -41 0 0}
+         {coop1.pxy set_local_pos 8 0 0}
+      }
    )
    (exit
       #ifdef HX_PS3
