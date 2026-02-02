@@ -84,11 +84,6 @@
          (block_ingame TRUE)
          (sel_script {modifier_mgr toggle_modifier_active mod_autokick})
       )
-      (mod_doublespeed
-         (type uOnOFF)
-         (bool {modifier_mgr is_modifier_active mod_doublespeed})
-         (sel_script {modifier_mgr toggle_modifier_active mod_doublespeed})
-      )
       (os_tiltsensor
          (type uOnOFF)
          (bool $tiltsensor)
@@ -359,6 +354,20 @@
          (step 0.05)
          (range 0.50 2.50)
       )
+      (track0_trackspeed_msg
+         (type uSld)
+         (fmt_type uSpeed)
+         (var track0_trackspeed)
+         (step 0.05)
+         (range 0.50 2.50)
+      )
+      (track1_trackspeed_msg
+         (type uSld)
+         (fmt_type uSpeed)
+         (var track1_trackspeed)
+         (step 0.05)
+         (range 0.50 2.50)
+      )
       (os_indvtrkspeeds
          (type uOnOFF)
          (bool $indvtrkspeeds)
@@ -368,6 +377,11 @@
          (type uOnOFF)
          (bool $syncdifspeeds)
          (sel_script {toggle_var syncdifspeeds})
+      )
+      (mod_doublespeed
+         (type uOnOFF)
+         (bool {modifier_mgr is_modifier_active mod_doublespeed})
+         (sel_script {modifier_mgr toggle_modifier_active mod_doublespeed})
       )
    ))
    (enter {os_setup_common})

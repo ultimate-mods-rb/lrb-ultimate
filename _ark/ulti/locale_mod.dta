@@ -130,6 +130,8 @@
 (gtr_trackspeed_msg "Ò Guitar: %d% Ó")
 (bass_trackspeed_msg "Ò Bass: %d% Ó")
 (drum_trackspeed_msg "Ò Drums: %d% Ó")
+(track0_trackspeed_msg "Ò H2H Player 1: %d% Ó")
+(track1_trackspeed_msg "Ò H2H Player 2: %d% Ó")
 (os_prodrums "Pro Drums")
 (os_colorshuffle "Note Color Shuffle")
 (os_countdown "Countdown")

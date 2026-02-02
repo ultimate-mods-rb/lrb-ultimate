@@ -302,9 +302,17 @@
                   }
                )
                ($ts
-                  {if_else {modifier_mgr is_modifier_active mod_doublespeed}
-                     {+ {eval_var {sprint {$player instrument} "_trackspeed"}} 0.5}
-                     {eval_var {sprint {$player instrument} "_trackspeed"}}
+                  {+
+                     {eval_var
+                        {sprint 
+                           {if_else {gamemode is_h2h_arrangement}
+                              {$player track}
+                              {$player instrument}
+                           }
+                           "_trackspeed"
+                        }
+                     }
+                     {if_else {modifier_mgr is_modifier_active mod_doublespeed} 0.5 0}
                   }
                )
                ($hwss
