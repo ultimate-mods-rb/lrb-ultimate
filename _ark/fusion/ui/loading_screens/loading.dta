@@ -691,6 +691,7 @@
             {&&
                {== {meta_performer num_songs} 1}
                {'||' {! {gamemode get is_tour}} {gamemode get is_tour_quickplay}}
+               {! {gamemode is_h2h_arrangement}}
             }
             {data_override_band}
             {if_else {&& {gamemode get is_tour} {{tour band} playing_special_gig}}

@@ -114,65 +114,55 @@
          }
       }}}
       {if_else {gamemode is_h2h_arrangement}
-         {do 
-            {foreach $dir (scoreboard_p01 scoreboard_p02)
-               {with $dir
-                  {score.txt set_size 0.8}
-                  {score.txt set_local_pos 0 0 -0.06}
-               }
-            }
-            {foreach $o (countdown_0 countdown_1)
-               {new RndDir $o}
-               {$o insert (subdirs 0)
-                  {if_else {== $o countdown_0}
-                     ulti/track/countdown_guitar.milo
-                     ulti/track/countdown_bass.milo
-                  }
-               }
-               {with $o
-                  {streak_meter.grp set_trans_parent $this}
-                  {LegoStud.mesh set_showing FALSE}
-                  {multi_meter_anim.grp set_showing FALSE}
-                  {with {new BandLabel countdown.lbl}
-                     {$this set_type bipolar}
-                     {set [color] 16777215}
-                     {set [text_size] 1.2}
-                     {$this set_localized "2"}
-                     {$this set_local_pos -0.08 0 -0.04}
-                  }
-                  {streak_meter.grp add_object countdown.lbl}
-                  {countdown.lbl set_trans_parent streak_meter.grp}
-                  {$this set_local_scale 1.5 1.5 1.5}
-                  {$this set_local_pos 0 0 -25}
-                  {$this sync_objects}
-               }
+         {foreach $dir (scoreboard_p01 scoreboard_p02) ; fix score size
+            {with $dir
+               {score.txt set_size 0.8}
+               {score.txt set_local_pos 0 0 -0.06}
             }
          }
-         {do
-            ; song timer stuff
-            {with scoreboard
-               ; just creating a new label results in "File: z:/LEGORockBand/Code/System/ui/Label.cpp Line: 115 Error: f"
-               ; i assume this is due to a property it's not initalizing so consider looking into it at some point.
-               {{new BandLabel timer.lbl} copy {endgame_feedback_01 find end_game_vox.lbl} 0}
-               {timer.lbl set_local_scale 0.022 0.021 0.021}
-               {if_else {is_vocals_on_top}
-                  {timer.lbl set_local_pos 9.3 0 -3.0}
-                  {timer.lbl set_local_pos 9.7 0 6.8}
-               }
-               {timer.lbl set alignment kMiddleRight}
-               {timer.lbl set_localized
-                  {sprint
-                     "0:00/"
-                     {seconds_to_time {beat_to_seconds {end_of_song get end}}}
-                  }
-               }
-               {timer.lbl set_trans_parent $this}
-               {$this sync_objects}
+         {with scoreboard ; song timer stuff
+            {{new BandLabel timer.lbl} copy {endgame_feedback_01 find end_game_vox.lbl} 0}
+            {timer.lbl set_local_scale 0.022 0.021 0.021}
+            {if_else {is_vocals_on_top}
+               {timer.lbl set_local_pos 9.3 0 -3.0}
+               {timer.lbl set_local_pos 9.7 0 6.8}
             }
-            {endgame_feedback_01 insert (subdirs 0) ulti/track/countdown_guitar.milo}
-            {endgame_feedback_02 insert (subdirs 0) ulti/track/countdown_drum.milo}
-            {endgame_feedback_03 insert (subdirs 0) ulti/track/countdown_bass.milo}
-            {endgame_feedback_vox insert (subdirs 0) ulti/track/countdown_vocals.milo}
+            {timer.lbl set alignment kMiddleRight}
+            {timer.lbl set_localized
+               {sprint
+                  "0:00/"
+                  {seconds_to_time {beat_to_seconds {end_of_song get end}}}
+               }
+            }
+            {timer.lbl set_trans_parent $this}
+            {$this sync_objects}
+         }
+      }
+      {foreach $o (countdown_0 countdown_1 countdown_2 countdown_3)
+         {{new RndDir $o} insert (subdirs 0)
+            {switch $o
+               (countdown_0 ulti/track/countdown_guitar.milo)
+               (countdown_1 ulti/track/countdown_drum.milo)
+               (countdown_2 ulti/track/countdown_vocals.milo)
+               (countdown_3 ulti/track/countdown_bass.milo)
+            }
+         }
+         {with $o
+            {streak_meter.grp set_trans_parent $this}
+            {LegoStud.mesh set_showing FALSE}
+            {multi_meter_anim.grp set_showing FALSE}
+            {with {new BandLabel countdown.lbl}
+               {$this set_type bipolar}
+               {set [color] 16777215}
+               {set [text_size] 1.2}
+               {$this set_localized "2"}
+               {$this set_local_pos -0.08 0 -0.04}
+            }
+            {streak_meter.grp add_object countdown.lbl}
+            {countdown.lbl set_trans_parent streak_meter.grp}
+            {$this set_local_scale 1.5 1.5 1.5}
+            {$this set_local_pos 0 0 -25}
+            {$this sync_objects}
          }
       }
       {do
@@ -223,10 +213,6 @@
       }
       {$this update_track_speeds}
       {beatmatch foreach_active_player $player ;handle adding the appropriate callbacks to each player
-         {if {gamemode is_h2h_arrangement}
-            {$player set_crowd_rating_active FALSE}
-            ;{$player set_auto_play TRUE}
-         }
          {if_else {== {$player instrument} vocals}
             {if_else $micdeploy
                {$player set_scream_thresholds 0.1 0.39}
@@ -255,20 +241,7 @@
          {unless {|| {! $countdown} {gamemode get is_practice} {gamemode get is_drum_trainer} {challenge_mgr has_challenge}}
             {do
                ($obj {sprint {$player track} "_countdown"})
-               ($dir
-                  {if_else {gamemode is_h2h_arrangement}
-                     {sprint "countdown_" {str_elem {{$player track} name} 5}}
-                     {sprint "endgame_feedback_"
-                        {if_else {== {$player instrument} vocals}
-                           vox
-                           {do
-                              ($str {sprint {{$player instrument} get player_feedback}})
-                              {sprint 0 {str_elem $str {- {strlen $str} 1}}}
-                           }
-                        }
-                     }
-                  }
-               )
+               ($dir {sprint "countdown_" {str_elem {{$player track} name} 5}})
                {if {exists $obj} {delete $obj}}
                {new Object $obj}
                {$obj set_type countdown}
@@ -360,6 +333,9 @@
    (poll
       {unless {&& {gamemode get is_practice} {gamecfg get practice_speed}}
          {beatmatch set_music_speed {max $speedmod 1.00}}
+      }
+      {if {gamemode is_h2h_arrangement}
+         {beatmatch foreach_active_player $player {$player set_crowd_rating 1.00}}
       }
    )
 )
