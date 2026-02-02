@@ -51,6 +51,10 @@
       FALSE
    }
 }
+{if {&& {gamemode is_h2h_arrangement} {!= $game.play_mode coop}}
+   {set $game.play_mode.real $game.play_mode}
+   {set $game.play_mode coop}
+}
 {new MidiParser
    events_parser
    (track_name EVENTS)
@@ -1839,7 +1843,7 @@
    )
 }
 #define H2H_TRACK (
-   {switch $game.play_mode
+   {switch $game.play_mode.real
       (h2h_drum 'PART DRUMS')
       (h2h_guitar 'PART GUITAR')
       (h2h_bass 'PART BASS')

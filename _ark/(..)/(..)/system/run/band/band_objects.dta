@@ -767,6 +767,60 @@
                   }
                }
             }
+            {if {gamemode is_h2h_arrangement}
+               {with $world {do ($x) ($y) ($z)
+                  {switch $game.play_mode.real
+                     (h2h_guitar
+                        {player_bass set_showing FALSE}
+
+                        {player_bass get_local_pos $x $y $z}
+                        {player_guitar set_local_pos $x $y $z}
+                        {player_bass get_local_rot $x $y $z}
+                        {player_guitar set_local_rot $x $y $z}
+
+                        {player_guitar_old iterate CharDriver $driver {$driver play 0}}
+                        {player_guitar iterate CharDriver $driver {$driver play 0}}
+                        {player_drum iterate CharDriver $driver {$driver play 0}}
+                     )
+                     (h2h_bass
+                        {player_vocal set_showing FALSE}
+                        {player_guitar set_showing FALSE}
+
+                        {player_guitar get_local_pos $x $y $z}
+                        {player_bass set_local_pos $x $y $z}
+                        {player_guitar get_local_rot $x $y $z}
+                        {player_bass set_local_rot $x $y $z}
+
+                        {player_bass_old iterate CharDriver $driver {$driver play 0}}
+                        {player_bass iterate CharDriver $driver {$driver play 0}}
+                     )
+                     (h2h_vocals
+                        {player_bass set_showing FALSE}
+
+                        {player_bass get_local_pos $x $y $z}
+                        {player_vocal_old set_local_pos $x $y $z}
+                        {player_bass get_local_rot $x $y $z}
+                        {player_vocal_old set_local_rot $x $y $z}
+
+                        {player_vocal_old iterate CharDriver $driver {$driver play 0}}
+                        {player_vocal iterate CharDriver $driver {$driver play 0}}
+                        {player_guitar iterate CharDriver $driver {$driver play 0}}
+                     )
+                     (h2h_drum
+                        {player_bass set_showing FALSE}
+
+                        {player_bass get_local_pos $x $y $z}
+                        {player_drum_old set_local_pos $x $y $z}
+                        {player_bass get_local_rot $x $y $z}
+                        {player_drum_old set_local_rot $x $y $z}
+
+                        {player_drum_old iterate CharDriver $driver {$driver play 0}}
+                        {player_drum iterate CharDriver $driver {$driver play 0}}
+                        {player_guitar iterate CharDriver $driver {$driver play 0}}
+                     )
+                  }
+               }}
+            }
             {if [play_anim]
                {[play_anim] animate}
             }
