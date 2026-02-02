@@ -774,9 +774,9 @@
                         {player_bass set_showing FALSE}
 
                         {player_bass get_local_pos $x $y $z}
-                        {player_guitar set_local_pos $x $y $z}
+                        {player_guitar_old set_local_pos $x $y $z}
                         {player_bass get_local_rot $x $y $z}
-                        {player_guitar set_local_rot $x $y $z}
+                        {player_guitar_old set_local_rot $x $y $z}
 
                         {player_guitar_old iterate CharDriver $driver {$driver play 0}}
                         {player_guitar iterate CharDriver $driver {$driver play 0}}
@@ -787,9 +787,9 @@
                         {player_guitar set_showing FALSE}
 
                         {player_guitar get_local_pos $x $y $z}
-                        {player_bass set_local_pos $x $y $z}
+                        {player_bass_old set_local_pos $x $y $z}
                         {player_guitar get_local_rot $x $y $z}
-                        {player_bass set_local_rot $x $y $z}
+                        {player_bass_old set_local_rot $x $y $z}
 
                         {player_bass_old iterate CharDriver $driver {$driver play 0}}
                         {player_bass iterate CharDriver $driver {$driver play 0}}
