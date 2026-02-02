@@ -434,6 +434,7 @@
 (endgame_winner "WINNER!")
 (endgame_tie "TIE!")
 (versus "vs.")
+(need_friend "You need a friend on the same instrument to play this mode!")
 (rb1 "Rock Band")
 (rb1_alt "Rock Band (alt)")
 (rb2 "Rock Band 2")

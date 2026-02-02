@@ -294,6 +294,14 @@
          )
          (update_instrument_icons
             ($icon_char $icon_enabled)
+            {if {gamemode is_h2h_arrangement}
+               {foreach_int $i 0 2 {do
+                  ($user {user_mgr get_band_user {gamecfg get_player_num_from_slot_num $i}})
+                  {if $user
+                     {set $icon_char {cnv_instrumenttoicon {$user get_controller_sym}}}
+                  }
+               }}
+            }
             {user_name_instrument_icon.lbl set_localized $icon_char}
             {slot_instrument_icon.lbl set_localized $icon_char}
             {if_else $icon_enabled
@@ -382,23 +390,28 @@
    (BUTTON_DOWN_MSG TRUE)
    (update)
    (on_start
-      #ifdef KIOSK_DEMO
-      {if_else {challenge_mgr has_challenge}
+      {if_else {&& {gamemode is_h2h_arrangement} {== {gamecfg get_num_participants} 1}}
+         {ui push_screen need_friend_screen}
          {do
-            {quickplay_venuepanel set_challenge}
-            {qp_difficulty_screen set cancel_screen matchmaking_screen}
-            {ui goto_screen qp_difficulty_screen}
-         }
-         {do
-            {quickplay_venuepanel set_venue ven_lego_city_rooftop}
-            {qp_difficulty_screen set cancel_screen song_select_screen}
-            {ui goto_screen song_select_screen}
+            #ifdef KIOSK_DEMO
+            {if_else {challenge_mgr has_challenge}
+               {do
+                  {quickplay_venuepanel set_challenge}
+                  {qp_difficulty_screen set cancel_screen matchmaking_screen}
+                  {ui goto_screen qp_difficulty_screen}
+               }
+               {do
+                  {quickplay_venuepanel set_venue ven_lego_city_rooftop}
+                  {qp_difficulty_screen set cancel_screen song_select_screen}
+                  {ui goto_screen song_select_screen}
+               }
+            }
+            #else
+            {autosave_push {gamemode get post_matchmaking_screen}}
+            #endif
+            {user_mgr save_slots}
          }
       }
-      #else
-      {autosave_push {gamemode get post_matchmaking_screen}}
-      #endif
-      {user_mgr save_slots}
    )
    (settings_changed {$this update_all})
    (game_changed {$this update_all})
