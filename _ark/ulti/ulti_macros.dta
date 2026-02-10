@@ -11,6 +11,7 @@
 #define uMapping   (6)
 #define uSpeed     (7)
 #define uTimer     (8)
+#define uLocalize  (9)
 
 #define COLOR_DATA_COMMON (
    (type uFakeSld)

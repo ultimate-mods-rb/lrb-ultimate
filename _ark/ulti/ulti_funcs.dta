@@ -29,103 +29,120 @@
             )
             ((uSld uFakeSld)
                {push_back $array
-                  {sprintf
-                     {localize {elem $entry 0}}
-                     {switch {elem {find $entry fmt_type} 1}
-                        (uNormal {eval_var {elem {find $entry var} 1}})
-                        (uColor
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (0 color_green)
-                                 (1 color_red)
-                                 (2 color_yellow)
-                                 (3 color_blue)
-                                 (4 color_orange)
-                                 invalid
+                  {do
+                     ($selected {== {- {size $array} 1} {elem [pos] 0}})
+                     ($fmt_type {elem {find $entry fmt_type} 1})
+                     ($hide_on_sel
+                        {if_else {find_exists $entry hide_on_sel}
+                           {elem {find $entry hide_on_sel} 1}
+                           FALSE
+                        }
+                     )
+                     ($fmt
+                        {switch $fmt_type
+                           (uNormal {eval_var {elem {find $entry var} 1}})
+                           (uColor
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (0 color_green)
+                                    (1 color_red)
+                                    (2 color_yellow)
+                                    (3 color_blue)
+                                    (4 color_orange)
+                                    invalid
+                                 }
                               }
-                           }
-                        )
-                        (uDrumColor
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (0 kick)
-                                 (1 color_red)
-                                 (2 color_yellow)
-                                 (3 color_blue)
-                                 (4 color_green)
-                                 invalid
+                           )
+                           (uDrumColor
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (0 kick)
+                                    (1 color_red)
+                                    (2 color_yellow)
+                                    (3 color_blue)
+                                    (4 color_green)
+                                    invalid
+                                 }
                               }
-                           }
-                        )
-                        (uCunt
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (kPad_L2 os_pad_l2)
-                                 (kPad_L1 os_pad_l1)
-                                 (kPad_R1 os_pad_r1)
-                                 (kPad_R2 os_pad_r2)
-                                 (kPad_X os_pad_x)
-                                 (kPad_Circle os_pad_circle)
-                                 (kPad_Square os_pad_square)
-                                 (kPad_Tri os_pad_tri)
-                                 (kPad_DUp os_pad_dup)
-                                 (kPad_DDown os_pad_ddown)
-                                 (kPad_DLeft os_pad_dleft)
-                                 (kPad_DRight os_pad_dright)
-                                 (kPad_L3 os_pad_l3)
-                                 (kPad_R3 os_pad_r3)
-                                 (kPad_Select os_pad_select)
-                                 invalid
+                           )
+                           (uCunt
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (kPad_L2 os_pad_l2)
+                                    (kPad_L1 os_pad_l1)
+                                    (kPad_R1 os_pad_r1)
+                                    (kPad_R2 os_pad_r2)
+                                    (kPad_X os_pad_x)
+                                    (kPad_Circle os_pad_circle)
+                                    (kPad_Square os_pad_square)
+                                    (kPad_Tri os_pad_tri)
+                                    (kPad_DUp os_pad_dup)
+                                    (kPad_DDown os_pad_ddown)
+                                    (kPad_DLeft os_pad_dleft)
+                                    (kPad_DRight os_pad_dright)
+                                    (kPad_L3 os_pad_l3)
+                                    (kPad_R3 os_pad_r3)
+                                    (kPad_Select os_pad_select)
+                                    invalid
+                                 }
                               }
-                           }
-                        )
-                        (uSync
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (0 infinite)
-                                 (1 full)
-                                 (2 half)
-                                 (4 quarter)
-                                 invalid
+                           )
+                           (uSync
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (0 infinite)
+                                    (1 full)
+                                    (2 half)
+                                    (4 quarter)
+                                    invalid
+                                 }
                               }
-                           }
-                        )
-                        (uInst
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (kControllerGuitar guitar_sym)
-                                 (kControllerDrum drum_sym)
-                                 (kControllerVocals vocals_sym)
-                                 invalid
+                           )
+                           (uInst
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (kControllerGuitar guitar_sym)
+                                    (kControllerDrum drum_sym)
+                                    (kControllerVocals vocals_sym)
+                                    invalid
+                                 }
                               }
-                           }
-                        )
-                        (uMapping
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (0 custom)
-                                 (1 guitar_sym)
-                                 (2 gh_guitar)
-                                 (3 ps2_guitar)
-                                 (4 drum_sym)
-                                 invalid
+                           )
+                           (uMapping
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (0 custom)
+                                    (1 guitar_sym)
+                                    (2 gh_guitar)
+                                    (3 ps2_guitar)
+                                    (4 drum_sym)
+                                    invalid
+                                 }
                               }
-                           }
-                        )
-                        (uSpeed {int {+ {* {eval_var {elem {find $entry var} 1}} 100} 0.5}})
-                        (uTimer
-                           {localize
-                              {switch {eval_var {elem {find $entry var} 1}}
-                                 (0 off)
-                                 (1 time_total)
-                                 (2 remaining_total)
-                                 (3 remaining)
-                                 (4 time)
-                                 (5 total)
-                                 invalid
+                           )
+                           (uSpeed {int {+ {* {eval_var {elem {find $entry var} 1}} 100} 0.5}})
+                           (uTimer
+                              {localize
+                                 {switch {eval_var {elem {find $entry var} 1}}
+                                    (0 off)
+                                    (1 time_total)
+                                    (2 remaining_total)
+                                    (3 remaining)
+                                    (4 time)
+                                    (5 total)
+                                    invalid
+                                 }
                               }
-                           }
+                           )
+                           (uLocalize {localize {eval_var {elem {find $entry var} 1}}})
+                        }
+                     )
+                     {cond
+                        ({&& $hide_on_sel $selected {$this has (focused)} [focused]}
+                           {sprint {localize os_l} $fmt {localize os_r}}
                         )
+                        ($hide_on_sel {localize {elem $entry 0}})
+                        (TRUE {sprintf {localize {elem $entry 0}} $fmt})
                      }
                   }
                }
@@ -142,6 +159,13 @@
    {OS_LIST set_data $array}
    {if {$this has (pos)}
       {OS_LIST set_selected {elem [pos] 0} {elem [pos] 1}}
+      {if {&& {$this has (focused)} [focused]}
+         {foreach $entry $array
+            {if {!= $entry {elem $array {elem [pos] 0}}}
+               {OS_LIST disable_data {symbol $entry}}
+            }
+         }
+      }
    }
    {os_update_helpbar}
 }}
@@ -175,7 +199,7 @@
             )
             ((uSld uFakeSld)
                {$this set focused TRUE}
-               {$this set store {eval_var {elem {find $entry var} 1}}}
+               {OS_LIST set store {eval_var {elem {find $entry var} 1}}}
             )
          }
       }
@@ -193,14 +217,15 @@
                   (kAction_Confirm
                      {synth play button_select}
                      {$this set focused FALSE}
-                     {set [store] 0}
+                     {OS_LIST set store 0}
                      {os_update_helpbar}
+                     {lst_reset}
                   )
                   (kAction_Cancel
                      {synth play button_back}
                      {$this set focused FALSE}
-                     {set_var {elem {find $entry var} 1} [store]}
-                     {set [store] 0}
+                     {set_var {elem {find $entry var} 1} {OS_LIST get store}}
+                     {OS_LIST set store 0}
                      {lst_reset}
                   )
                   ((kAction_Up kAction_Left)

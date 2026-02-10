@@ -29,6 +29,8 @@
 (os_onoff_fmt "%s %s")
 (on "Õ")
 (off "Ô")
+(os_l "Ò ")
+(os_r " Ó")
 (os_fxdof "Depth of Field")
 (os_scrnoise "Film Grain")
 (os_scrbloom "Bloom")
