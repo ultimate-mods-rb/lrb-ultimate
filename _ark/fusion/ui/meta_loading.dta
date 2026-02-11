@@ -1,22 +1,31 @@
 {new UIPanel
    meta_loading
-   (file
-      {random_elem (
-         "../../ui/meta_loading.milo"
-         "../../ulti/loading_screens/rb2/meta_loading.milo"
-         "../../ulti/loading_screens/gh2/meta_loading.milo"
-      )}
-   )
-   (enter
-      {if {exists meta_loading.view}
-         {meta_loading.view animate
-            (range 0 18144000)
-            (period 604800)
-            (units kTaskUISeconds)
+   (screen lrb)
+   (file {do
+      {set [screen]
+         {if_else {!= $loading_screen random} 
+            $loading_screen
+            {random_elem (gh2 #ifdef HX_NG rb1 #endif rb2 lrb)}
          }
       }
-      {if {exists meta_loading.lbl}
-         {meta_loading.lbl set text_token LOADING}
+      {switch [screen]
+         (gh2 "../../ulti/loading_screens/gh2/meta_loading.milo")
+         (rb1 "../../ulti/loading_screens/rb1/meta_loading.milo")
+         (rb2 "../../ulti/loading_screens/rb2/meta_loading.milo")
+         "../../ui/meta_loading.milo"
+      }
+   })
+   (enter
+      {switch [screen]
+         (gh2
+            {meta_loading.view animate
+               (range 0 18144000)
+               (period 604800)
+               (units kTaskUISeconds)
+            }
+         )
+         (rb1 {meta_loading.lbl set_type screen_title})
+         (rb2 {meta_loading.lbl set text_token LOADING})
       }
    )
 }

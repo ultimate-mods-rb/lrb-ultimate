@@ -421,6 +421,13 @@
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_colors_screen})
       )
+      (os_loading
+         (type uFakeSld)
+         (fmt_type uLocalize)
+         (hide_on_sel TRUE)
+         (var loading_screen)
+         (array (random lrb rb2 #ifdef HX_NG rb1 #endif gh2))
+      )
    ))
    (enter {os_setup_common})
    (BUTTON_DOWN_MSG {os_down_common})

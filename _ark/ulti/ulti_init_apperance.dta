@@ -26,3 +26,4 @@
 
 {set $gems lrb}
 {set $smashers lrb}
+{set $loading_screen random}

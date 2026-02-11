@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (11) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (12) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -114,6 +114,8 @@
                         $track0_trackspeed
                         " "
                         $track1_trackspeed
+                        " "
+                        $loading_screen
                      })
                      {unless {== $new_motto {$band band_motto}}
                         {$band set_band_motto $new_motto}
@@ -254,6 +256,10 @@
                            {if {>= $version 11}
                               {set $track0_trackspeed {sftf {elem $array 8}}}
                               {set $track1_trackspeed {sftf {elem $array 9}}}
+                           }
+
+                           {if {>= $version 12}
+                              {set $loading_screen {elem $array 10}}
                            }
 
                            {set_pad_map $pad_map}

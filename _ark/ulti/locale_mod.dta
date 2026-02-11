@@ -21,8 +21,8 @@
 #ifdef HX_XBOX
 (os_anywhere_info "You can press back twice almost everywhere to open this menu")
 #endif
-(os_mod "Gameplay Modifiers")
-(os_vis "Visual Modifiers")
+(os_mod "Gameplay Settings")
+(os_vis "Visual Settings")
 (os_gfx "Graphics Settings")
 (os_spd "Speed Settings")
 (os_other "Other Settings")
@@ -49,6 +49,7 @@
 (os_colors "Colors")
 (os_gems_colors "Gem Colors")
 (os_smashers "Smashers")
+(os_loading "Loading Screen")
 (os_smashers_colors "Smasher Colors")
 (os_gtr_gems_color "Guitar Gem Colors")
 (os_drm_gems_color "Drum Gem Colors")
@@ -445,6 +446,7 @@
 (endgame_tie "TIE!")
 (versus "vs.")
 (need_friend "You need a friend on the same instrument to play this mode!")
+(random "Random")
 (rb1 "Rock Band")
 (rb1_alt "Rock Band (alt)")
 (rb2 "Rock Band 2")
