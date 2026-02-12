@@ -39,7 +39,57 @@
                {clear_array base_top.grp objects}
                {base_top.grp add_object $l}
 
-               {$this set custom TRUE}
+               {$this set custom gh3}
+               {$this sync_objects}
+            }
+         }}
+      }
+   }}
+)
+(gh2
+   {$smashers_dir insert (subdirs 0) "ulti/track/smashers/gh2_smashers.milo"}
+   {foreach $inst (guitar bass) {do
+      ($dir {$smashers_dir find $inst})
+      {if
+         {&&
+            {gamemode is_h2h_arrangement}
+            {find_elem (guitar bass) {{game get_participant_config 0} get_track_sym}}
+         }
+         {set $inst {switch $inst (guitar track_0) (bass track_1)}}
+      }
+      {if {exists $inst}
+         {{$inst find bass_superstreak_plane.mesh} set_local_pos_index 1 24806}
+         {clear_array {$inst find now_bar_rising_sun_draw.grp} objects}
+         {{{$inst find smasher_plate_guitar} find smasher_plate.mesh} set_showing FALSE}
+         {foreach_int $i 0 5 {do
+            ($m {$dir find {sprintf "gem_smasher%d.mesh" $i}})
+            ($r {$dir find {sprintf "smasher_rim%d.mesh" $i}})
+            {$r set_mat
+               {$dir find
+                  {sprintf "now_ring_%s.mat"
+                     {elem (green red yellow blue orange) {eval_var {sprint gtrsm {+ $i 1}}}}
+                  }
+               }
+            }
+            {with {{$inst find smasher_plate_guitar} find {sprint gem_smasher $i}}
+               {if {exists smashers_parent.trans}
+                  {delete smashers_parent.trans}
+               }
+               {new Trans smashers_parent.trans}
+               {smashers_parent.trans set_trans_parent smasher_react.trans}
+               {smashers_parent.trans set_local_pos 0 -1 0.1}
+               {smashers_parent.trans set_local_scale 1.04 1.04 1.04}
+
+               {$m set_trans_parent smashers_parent.trans}
+               {$r set_trans_parent smashers_parent.trans}
+
+               {clear_array base_bottom.grp objects}
+               {base_bottom.grp add_object $m}
+               {base_bottom.grp add_object $r}
+
+               {clear_array base_top.grp objects}
+
+               {$this set custom gh2}
                {$this sync_objects}
             }
          }}

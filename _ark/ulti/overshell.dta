@@ -415,7 +415,7 @@
          (fmt_type uLocalize)
          (hide_on_sel TRUE)
          (var smashers)
-         (array (lrb rb2 rb1 rb1_alt gh3 ghwor ghl))
+         (array (lrb rb2 rb1 rb1_alt gh2 gh3 ghwor ghl))
       )
       (os_colors
          (type uNormal)
@@ -452,13 +452,13 @@
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_gtr_sus_color_screen})
       )
-      (os_drm_gems_color
-         (type uNormal)
-         (sel_script {pop_and_goto_screen overshell_drm_gem_color_screen})
-      )
       (os_gtr_smasher_color
          (type uNormal)
          (sel_script {pop_and_goto_screen overshell_gtr_smasher_color_screen})
+      )
+      (os_drm_gems_color
+         (type uNormal)
+         (sel_script {pop_and_goto_screen overshell_drm_gem_color_screen})
       )
       (os_drm_smasher_color
          (type uNormal)

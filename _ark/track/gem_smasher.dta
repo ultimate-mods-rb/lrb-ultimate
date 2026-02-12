@@ -51,6 +51,7 @@
          (velocity_fill_triggers ())
          (velocity_fill_triggers_3p ())
          (last_set_color '')
+         (custom FALSE)
          (reset
             {$this set_color [color]}
             {if {exists reset.trig}
@@ -113,8 +114,19 @@
          (set_glow
             ($in_state)
             {set [glow] $in_state}
-            {if {&& {$this has (custom)} {exists base_top.grp}}
-               {base_top.grp set_showing [glow]}
+            {switch [custom]
+               (gh2 {do
+                  ($m {base_bottom.grp get (objects 0)})
+                  {$m set_mat
+                     {{$m dir} find
+                        {if_else [glow]
+                           {sprintf "gem_smasher_%s.mat" [color]}
+                           "gem_smasher.mat"
+                        }
+                     }
+                  }
+               })
+               (gh3 {base_top.grp set_showing [glow]})
             }
             {if {exists smasher_glow.anim}
                {if_else [glow]
