@@ -195,7 +195,11 @@
       {content_mgr start_refresh}
       {content_loading_panel allowed_to_show TRUE}
    )
-   (finish_load {content_loading_panel allowed_to_show FALSE})
+   (finish_load
+      {content_loading_panel allowed_to_show FALSE}
+      {{new UIPicture venue.pic} set mesh challenge_castle.mesh}
+      {$this sync_objects}
+   )
    (is_loaded {content_mgr refresh_done})
    (set_venue_image
       {if [current_grp]
@@ -209,16 +213,8 @@
             {$this set current_grp $newgrp_obj}
          }
          {do
-            ; consider rewriting this with a uipicture.
-            ; i couldnt get it working but it could've been that i was creating it with scripting
             ($newgrp_obj {$this find challenge_castle.grp})
-            ($tex {sprint {venue.lst selected_sym} .tex})
-            {challenge_castle.mat set diffuse_tex
-               {if_else {exists $tex}
-                 $tex
-                 Tex.tex ; fallback
-               }
-            }
+            {venue.pic set tex_file {sprintf "ulti/image/%s.png" {venue.lst selected_sym}}}
             {$newgrp_obj set_showing TRUE}
             {$this set current_grp $newgrp_obj}
          }
