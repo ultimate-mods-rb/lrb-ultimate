@@ -216,6 +216,11 @@
                      {'++' $diff}
                   }
                }
+               {if {is_playing_special_gig gig_spf_special_03}
+                  {foreach $btn (novice.btn easy.btn)
+                     {$this disable $btn}
+                  }
+               }
                {if {selpart.grp showing}
                   {if_else {$this is_track_set}
                      {do
@@ -460,6 +465,7 @@
                   {== FALSE {gamecfg shortsongmodeavailable}}
                }
                {== TRUE {gamecfg any_dlc_in_set}}
+               {is_playing_special_gig gig_spf_special_03}
             }
             (
                (cancel helpbar_back)
@@ -491,6 +497,7 @@
                {== FALSE {gamecfg shortsongmodeavailable}}
             }
             {== TRUE {gamecfg any_dlc_in_set}}
+            {is_playing_special_gig gig_spf_special_03}
          }
          {helpbar set_config
             (
@@ -603,6 +610,7 @@
                         {== TRUE {gamecfg shortsongmodeavailable}}
                      }
                      {== FALSE {gamecfg any_dlc_in_set}}
+                     {! {is_playing_special_gig gig_spf_special_03}}
                   }
                   {synth play button_select}
                   {if_else {gamecfg get_globalshortsongmode}

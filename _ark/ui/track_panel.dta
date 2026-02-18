@@ -342,7 +342,13 @@
    })
    (poll
       {unless {&& {gamemode get is_practice} {gamecfg get practice_speed}}
-         {beatmatch set_music_speed {max $speedmod 1.00}}
+         {beatmatch set_music_speed
+            #ifdef _SHIP
+            {max $speedmod 1.00}
+            #else
+            $speedmod
+            #endif
+         }
       }
       {if {gamemode is_h2h_arrangement}
          {beatmatch foreach_active_player $player {$player set_crowd_rating 1.00}}

@@ -376,6 +376,14 @@
       $random
    }
 }
+{func is_playing_special_gig
+   ($gig)
+   {&&
+      {gamemode get is_tour}
+      {{tour band} playing_special_gig}
+      {== {{{tour band} special_gig} name} $gig}
+   }
+}
 {func seconds_to_time
    ($float)
    {do

@@ -516,9 +516,7 @@
             {== {size [current_set]} {max 2 {user_mgr get_num_participants}}}
          }
          {thread_task kTaskSeconds (script
-            {$this iterate BandList $lst {$lst set_showing FALSE}}
-            {loading.grp set_showing TRUE}
-            {loading.trig trigger}
+            {$this show_loading}
             {$task sleep 1}
             {foreach $song [current_set]
                {push_back [played_songs] $song}
@@ -598,6 +596,11 @@
          )}
       }
    )
+   (show_loading
+      {$this iterate BandList $lst {$lst set_showing FALSE}}
+      {loading.grp set_showing TRUE}
+      {loading.trig trigger}
+   )
    (BUTTON_DOWN_MSG
       {if {&& {$player is_participating} {find_elem (kPad_X kPad_Circle kPad_Tri kPad_Square kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) $raw_button} [can_vote]} {do
          ($inst
@@ -610,6 +613,7 @@
             {cond
                ({== $raw_button kPad_X} 0)
                ({== $raw_button kPad_Circle} 1)
+               #ifdef HX_PS3
                (
                   {&&
                      {== {joypad_controller_type $pad_num} ro_guitar_ps3}
@@ -624,6 +628,7 @@
                   }
                   2
                )
+               #endif
                ({== $raw_button kPad_Tri} 2)
                ({== $raw_button kPad_Square} 3)
                ({find_elem (kPad_L1 kPad_R1 #ifdef HX_WII kPad_Select #endif) $raw_button} 4)
@@ -648,6 +653,7 @@
          {switch $action
             (kAction_Start
                {taskmgr clear_tasks}
+               {$this show_loading}
                {ui goto_screen {song_select_get_back_screen}}
             )
          }

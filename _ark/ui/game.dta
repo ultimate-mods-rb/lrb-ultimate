@@ -179,13 +179,10 @@
             {&&
                {! {ui in_transition}}
                {!= pause_screen {ui current_screen}}
-               {'||'
-                  {gamemode get is_jukebox}
-                  {&&
-                     {gamecfg is_player_participating $user_num}
-                     {beatmatch player $user_num}
-                     {{beatmatch player $user_num} can_pause}
-                  }
+               {&&
+                  {gamecfg is_player_participating $user_num}
+                  {beatmatch player $user_num}
+                  {{beatmatch player $user_num} can_pause}
                }
                {! {game is_game_over}}
                {!= {gamemode get pause_screen} ''}

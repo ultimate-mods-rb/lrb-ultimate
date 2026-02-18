@@ -216,6 +216,7 @@
          (store.btn
             {do
                {set [focus_btn] store.btn}
+               {bonus_menupanel set selection_memory 0}
                {ui goto_screen bonus_menuscreen}
             }
          )
