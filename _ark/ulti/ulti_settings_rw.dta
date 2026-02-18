@@ -1,4 +1,4 @@
-#define SETTINGS_VERSION (12) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
+#define SETTINGS_VERSION (13) ; INCREASE THIS IF ANY SETTINGS GET ADDED!
 {new UIPanel
    mod_settings_rw
    (file "bp_init.milo")
@@ -98,6 +98,7 @@
                         $prodrums
                         $micdeploy
                         $indvtrkspeeds
+                        $nofail
                         " "
                         $guitar_trackspeed
                         " "
@@ -236,6 +237,9 @@
                            }
                            {if {>= $version 9}
                               {set $indvtrkspeeds {sti {str_elem $pool 55}}}
+                           }
+                           {if {>= $version 13}
+                              {set $nofail {sti {str_elem $pool 56}}}
                            }
 
                            {set $guitar_trackspeed {sftf {elem $array 2}}}

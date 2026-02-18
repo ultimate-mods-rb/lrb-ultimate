@@ -104,6 +104,11 @@
          (bool $misssounds)
          (sel_script {toggle_var misssounds})
       )
+      (mod_nofail
+         (type uOnOFF)
+         (bool $nofail)
+         (sel_script {toggle_var nofail})
+      )
       (os_micdeploy
          (type uOnOFF)
          (bool $micdeploy)

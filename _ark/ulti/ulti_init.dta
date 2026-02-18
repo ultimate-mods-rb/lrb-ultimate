@@ -78,6 +78,8 @@
 
 {set $indvtrkspeeds TRUE}
 
+{set $nofail FALSE}
+
 {set $fillvelocity TRUE}
 
 {set $smallworld FALSE}

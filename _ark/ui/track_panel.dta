@@ -350,8 +350,20 @@
             #endif
          }
       }
-      {if {gamemode is_h2h_arrangement}
-         {beatmatch foreach_active_player $player {$player set_crowd_rating 1.00}}
+      {if
+         {||
+            {gamemode is_h2h_arrangement}
+            {&&
+               $nofail
+               {||
+                  {! {gamemode get is_tour}}
+                  {gamemode get is_tour_quickplay}
+               }
+            }
+         }
+         {beatmatch foreach_active_player $player
+            {$player set_crowd_rating {clamp {$player crowd_rating} 0.21 1.00}}
+         }
       }
    )
 )
