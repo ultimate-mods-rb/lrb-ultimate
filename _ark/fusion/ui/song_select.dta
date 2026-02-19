@@ -1294,7 +1294,6 @@
    (results)
    (search_for
       ($string)
-      {set [results] {array 0}}
       {do
          ($array {array 0})
          ($song_array {array 0})
@@ -1321,6 +1320,7 @@
          }
          {if_else {size $array}
             {do
+               {set [results] {array 0}}
                {sort $array}
                {foreach $entry $array
                   {push_back $song_array {elem $entry 0}}
