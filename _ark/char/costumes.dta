@@ -2167,6 +2167,17 @@
             (hair chap_hair)
          )
       )
+      (teto
+         (unlocked TRUE)
+         (cost 2000000)
+         (genre lrb_shop_custom)
+         (outfit
+            (heads teto_head)
+            (torso teto_torso)
+            (legs teto_legs)
+            (hair teto_hair)
+         )
+      )
       #ifdef HX_NG
       (noob
          (unlocked TRUE)

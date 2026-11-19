@@ -1356,5 +1356,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (teto_hair
+         (ui_name teto)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

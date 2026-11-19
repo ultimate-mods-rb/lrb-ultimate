@@ -855,5 +855,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (teto_head
+         (ui_name teto)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )

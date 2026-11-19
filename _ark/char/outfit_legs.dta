@@ -911,5 +911,10 @@
          (genre lrb_shop_custom)
          (unlocked TRUE)
       )
+      (teto_legs
+         (ui_name teto)
+         (genre lrb_shop_custom)
+         (unlocked TRUE)
+      )
    )
 )
